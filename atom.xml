@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-22T04:35:00.879Z</updated>
+  <updated>2017-07-22T05:03:45.089Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>Keras实现简单的手写数字识别</title>
     <link href="http://yoursite.com/2017/07/22/Keras02-MNIST%E6%89%8B%E5%86%99%E5%AE%9E%E4%BE%8B/"/>
     <id>http://yoursite.com/2017/07/22/Keras02-MNIST手写实例/</id>
-    <published>2017-07-22T04:35:00.879Z</published>
-    <updated>2017-07-22T04:35:00.879Z</updated>
+    <published>2017-07-22T05:03:45.089Z</published>
+    <updated>2017-07-22T05:03:45.089Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Keras实现简单的手写数字识别"><a href="#Keras实现简单的手写数字识别" class="headerlink" title="Keras实现简单的手写数字识别"></a>Keras实现简单的手写数字识别</h1><p><a href="http://www.cnblogs.com/yqtm/p/6924939.html" target="_blank" rel="external">参考</a><br>文中代码有点小bug,加以改正。顺带才了下数据集的坑</p>
 <h2 id="导入需要的函数和包"><a href="#导入需要的函数和包" class="headerlink" title="导入需要的函数和包"></a>导入需要的函数和包</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Sequential</div><div class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Dense,Activation,Dropout</div><div class="line"><span class="keyword">from</span> keras.optimizers <span class="keyword">import</span> SGD</div><div class="line"><span class="keyword">from</span> keras.datasets <span class="keyword">import</span> mnist</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div></pre></td></tr></table></figure>
@@ -359,8 +359,8 @@ The accuracy of the model is 0.943400
     <title>我会自动改变</title>
     <link href="http://yoursite.com/2017/07/22/hello-world/"/>
     <id>http://yoursite.com/2017/07/22/hello-world/</id>
-    <published>2017-07-22T04:35:00.879Z</published>
-    <updated>2017-07-22T04:35:00.879Z</updated>
+    <published>2017-07-22T05:03:45.089Z</published>
+    <updated>2017-07-22T05:03:45.089Z</updated>
     
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
@@ -386,8 +386,8 @@ The accuracy of the model is 0.943400
     <title></title>
     <link href="http://yoursite.com/2017/07/22/Keras02-MNIST%E6%89%8B%E5%86%99%E5%AE%9E%E4%BE%8B/"/>
     <id>http://yoursite.com/2017/07/22/Keras02-MNIST手写实例/</id>
-    <published>2017-07-22T04:35:00.863Z</published>
-    <updated>2017-07-22T04:35:00.863Z</updated>
+    <published>2017-07-22T05:03:45.089Z</published>
+    <updated>2017-07-22T05:03:45.089Z</updated>
     
     <content type="html"><![CDATA[title:"Keras02-MNIST手写实例"
 ---
