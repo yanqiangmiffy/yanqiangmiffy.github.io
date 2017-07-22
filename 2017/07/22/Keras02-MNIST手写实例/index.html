@@ -5,12 +5,16 @@
   
   <title>yanqiangmiffy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="title:&quot;Keras02-MNIST手写实例&quot; ---------    Keras02-MNIST手写实例        /*! * * Twitter Bootstrap * */ /*!  * Bootstrap v3.3.7 (http://getbootstrap.com)  * Copyright 2011-2016 Twitter, Inc.  * Licensed under">
+<meta property="og:type" content="article">
 <meta property="og:title" content="yanqiangmiffy">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/07/22/Keras02-MNIST手写实例/index.html">
 <meta property="og:site_name" content="yanqiangmiffy">
+<meta property="og:description" content="title:&quot;Keras02-MNIST手写实例&quot; ---------    Keras02-MNIST手写实例        /*! * * Twitter Bootstrap * */ /*!  * Bootstrap v3.3.7 (http://getbootstrap.com)  * Copyright 2011-2016 Twitter, Inc.  * Licensed under">
+<meta property="og:updated_time" content="2017-07-22T04:05:40.069Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="yanqiangmiffy">
+<meta name="twitter:description" content="title:&quot;Keras02-MNIST手写实例&quot; ---------    Keras02-MNIST手写实例        /*! * * Twitter Bootstrap * */ /*!  * Bootstrap v3.3.7 (http://getbootstrap.com)  * Copyright 2011-2016 Twitter, Inc.  * Licensed under">
   
     <link rel="alternate" href="/atom.xml" title="yanqiangmiffy" type="application/atom+xml">
   
@@ -59,402 +63,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Keras02-MNIST手写实例" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/07/22/Keras02-MNIST手写实例/" class="article-date">
-  <time datetime="2017-07-22T04:05:40.069Z" itemprop="datePublished">2017-07-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Keras实现简单的手写数字识别"><a href="#Keras实现简单的手写数字识别" class="headerlink" title="Keras实现简单的手写数字识别"></a>Keras实现简单的手写数字识别</h1><p><a href="http://www.cnblogs.com/yqtm/p/6924939.html" target="_blank" rel="external">参考</a><br>文中代码有点小bug,加以改正。顺带才了下数据集的坑</p>
-<h2 id="导入需要的函数和包"><a href="#导入需要的函数和包" class="headerlink" title="导入需要的函数和包"></a>导入需要的函数和包</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Sequential</div><div class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Dense,Activation,Dropout</div><div class="line"><span class="keyword">from</span> keras.optimizers <span class="keyword">import</span> SGD</div><div class="line"><span class="keyword">from</span> keras.datasets <span class="keyword">import</span> mnist</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#从s3.amazonaws.com/img-datasets/mnist.npz下载数据太慢了。挂了代理，结果程序运行崩溃，只好写一个加载本地的文件函数</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_data</span><span class="params">(path=<span class="string">'mnist.npz'</span>)</span>:</span></div><div class="line">    f=np.load(path)</div><div class="line">    x_train,y_train=f[<span class="string">'x_train'</span>],f[<span class="string">'y_train'</span>]</div><div class="line">    x_test,y_test=f[<span class="string">'x_test'</span>],f[<span class="string">'y_test'</span>]</div><div class="line">    f.close()</div><div class="line">    <span class="keyword">return</span> (x_train,y_train),(x_test,y_test)</div></pre></td></tr></table></figure>
-<p>Sequential是序贯模型，Dense是用于添加模型的层数，SGD是用于模型变异的时候优化器参数,<br>mnist是用于加载手写识别的数据集，需要在网上下载,下面是mnist.py</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">from ..utils.data_utils import get_file</div><div class="line">import numpy as np</div><div class="line"></div><div class="line"></div><div class="line">def load_data(path=&apos;mnist.npz&apos;):</div><div class="line">    &quot;&quot;&quot;Loads the MNIST dataset.</div><div class="line"></div><div class="line">    # Arguments</div><div class="line">        path: path where to cache the dataset locally</div><div class="line">            (relative to ~/.keras/datasets).</div><div class="line"></div><div class="line">    # Returns</div><div class="line">        Tuple of Numpy arrays: `(x_train, y_train), (x_test, y_test)`.</div><div class="line">    &quot;&quot;&quot;</div><div class="line">    path = get_file(path, origin=&apos;https://s3.amazonaws.com/img-datasets/mnist.npz&apos;)</div><div class="line">    f = np.load(path)</div><div class="line">    x_train, y_train = f[&apos;x_train&apos;], f[&apos;y_train&apos;]</div><div class="line">    x_test, y_test = f[&apos;x_test&apos;], f[&apos;y_test&apos;]</div><div class="line">    f.close()</div><div class="line">    return (x_train, y_train), (x_test, y_test)</div></pre></td></tr></table></figure>
-<h2 id="构建模型"><a href="#构建模型" class="headerlink" title="构建模型"></a>构建模型</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">model=Sequential()</div><div class="line">model.add(Dense(<span class="number">500</span>,input_shape=(<span class="number">784</span>,)))<span class="comment">#输入层</span></div><div class="line">model.add(Activation(<span class="string">'tanh'</span>))</div><div class="line">model.add(Dropout(<span class="number">0.5</span>))</div><div class="line"></div><div class="line">model.add(Dense(<span class="number">500</span>))<span class="comment">#隐藏层</span></div><div class="line">model.add(Activation(<span class="string">'tanh'</span>))</div><div class="line">model.add(Dropout(<span class="number">0.5</span>))</div><div class="line"></div><div class="line">model.add(Dense(<span class="number">10</span>))</div><div class="line">model.add(Activation(<span class="string">'softmax'</span>))</div></pre></td></tr></table></figure>
-<ol>
-<li>Dense()设定该层的结构，第一个参数表示输出的个数，第二个参数是接受的输入数据的格式。第一层中需要指定输入的格式，在之后的增加的层中输入层节点数默认是上一层的输出个数</li>
-<li>Activation()指定预定义激活函数：softmax，elu、softplus、softsign、relu、、sigmoid、hard_sigmoid、linear<br></li>
-<li>Dropout()用于指定每层丢掉的信息百分比。</li>
-</ol>
-<h2 id="编译模型"><a href="#编译模型" class="headerlink" title="编译模型"></a>编译模型</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sgd=SGD(lr=<span class="number">0.01</span>,decay=<span class="number">1e-6</span>,momentum=<span class="number">0.9</span>,nesterov=<span class="keyword">True</span>)<span class="comment">#设定学习效率等参数</span></div><div class="line">model.compile(loss=<span class="string">'categorical_crossentropy'</span>,optimizer=sgd)</div><div class="line"><span class="comment">#model.compile(loss = 'categorical_crossentropy', optimizer=sgd, class_mode='categorical') #使用交叉熵作为loss</span></div></pre></td></tr></table></figure>
-<p>调用model.compile()之前初始化一个优化器对象，然后传入该函数,使用优化器sgd来编译模型，用来指定学习效率等参数。编译时指定loss函数，这里使用交叉熵函数作为loss函数。</p>
-<p><em>SGD</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">keras.optimizers.SGD(lr=0.01, momentum=0.0, decay=0.0, nesterov=False)</div></pre></td></tr></table></figure>
-<p>随机梯度下降法，支持动量参数，支持学习衰减率，支持Nesterov动量</p>
-<p>参数</p>
-<ul>
-<li><code>lr</code>：大于0的浮点数，学习率</li>
-<li><code>momentum</code>：大于0的浮点数，动量参数</li>
-<li><code>decay</code>：大于0的浮点数，每次更新后的学习率衰减值</li>
-<li><code>nesterov</code>：布尔值，确定是否使用Nesterov动量</li>
-</ul>
-<h2 id="读取训练集和测试集"><a href="#读取训练集和测试集" class="headerlink" title="读取训练集和测试集"></a>读取训练集和测试集</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">(x_train,y_train),(x_test,y_test)=load_data()<span class="comment">#直接加载本地文件</span></div><div class="line"><span class="comment">#(x_train,y_train),(x_test,y_test)=mnist.load_data()#不使用mnist提供的load_data函数，</span></div><div class="line">X_train=x_train.reshape(x_train.shape[<span class="number">0</span>],x_train.shape[<span class="number">1</span>]*x_train.shape[<span class="number">2</span>])</div><div class="line">X_test=x_test.reshape(x_test.shape[<span class="number">0</span>],x_test.shape[<span class="number">1</span>]*x_test.shape[<span class="number">2</span>])</div><div class="line">Y_train=(np.arange(<span class="number">10</span>)==y_train[:,<span class="keyword">None</span>]).astype(int)<span class="comment">#将index转换成一个one_hot矩阵</span></div><div class="line">Y_test=(np.arange(<span class="number">10</span>)==y_test[:,<span class="keyword">None</span>]).astype(int)</div></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">print(x_train.shape)</div><div class="line">print(x_train)</div><div class="line">print(x_test.shape)</div><div class="line">print(<span class="string">"y_train:"</span>,y_train,len(y_train))</div><div class="line">print(y_train[:<span class="keyword">None</span>])</div><div class="line">print(y_train[:,<span class="keyword">None</span>]==np.arange(<span class="number">10</span>))</div><div class="line">print(np.arange(<span class="number">10</span>))</div></pre></td></tr></table></figure>
-<pre><code>(60000, 28, 28)
-[[[0 0 0 ..., 0 0 0]
-  [0 0 0 ..., 0 0 0]
-  [0 0 0 ..., 0 0 0]
-  ..., 
-  [0 0 0 ..., 0 0 0]
-  [0 0 0 ..., 0 0 0]
-  [0 0 0 ..., 0 0 0]]
-
- [[0 0 0 ..., 0 0 0]
-  [0 0 0 ..., 0 0 0]
-  [0 0 0 ..., 0 0 0]
-  ..., 
-  [0 0 0 ..., 0 0 0]
-  [0 0 0 ..., 0 0 0]
-  [0 0 0 ..., 0 0 0]]
-
- [[0 0 0 ..., 0 0 0]
-  [0 0 0 ..., 0 0 0]
-  [0 0 0 ..., 0 0 0]
-  ..., 
-  [0 0 0 ..., 0 0 0]
-  [0 0 0 ..., 0 0 0]
-  [0 0 0 ..., 0 0 0]]
-
- ..., 
- [[0 0 0 ..., 0 0 0]
-  [0 0 0 ..., 0 0 0]
-  [0 0 0 ..., 0 0 0]
-  ..., 
-  [0 0 0 ..., 0 0 0]
-  [0 0 0 ..., 0 0 0]
-  [0 0 0 ..., 0 0 0]]
-
- [[0 0 0 ..., 0 0 0]
-  [0 0 0 ..., 0 0 0]
-  [0 0 0 ..., 0 0 0]
-  ..., 
-  [0 0 0 ..., 0 0 0]
-  [0 0 0 ..., 0 0 0]
-  [0 0 0 ..., 0 0 0]]
-
- [[0 0 0 ..., 0 0 0]
-  [0 0 0 ..., 0 0 0]
-  [0 0 0 ..., 0 0 0]
-  ..., 
-  [0 0 0 ..., 0 0 0]
-  [0 0 0 ..., 0 0 0]
-  [0 0 0 ..., 0 0 0]]]
-(10000, 28, 28)
-y_train: [5 0 4 ..., 5 6 8] 60000
-[5 0 4 ..., 5 6 8]
-[[False False False ..., False False False]
- [ True False False ..., False False False]
- [False False False ..., False False False]
- ..., 
- [False False False ..., False False False]
- [False False False ..., False False False]
- [False False False ..., False  True False]]
-[0 1 2 3 4 5 6 7 8 9]
-</code></pre><ol>
-<li>读取minst数据集，通过reshape()函数转换数据的格式。</li>
-<li>如果我们打印x_train.shape会发现它是(60000,28,28)，即一共60000个数据，每个数据是28*28的图片。通过reshape转换为(60000,784)的线性张量。</li>
-<li>如果我们打印y_train会发现它是一组表示每张图片的表示数字的数组，通过numpy的arange()和astype()函数将每个数字转换为一组长度为10的张量，代表的数字的位置是1，其它位置为0.</li>
-</ol>
-<h2 id="训练模型"><a href="#训练模型" class="headerlink" title="训练模型"></a>训练模型</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">model.fit(X_train,Y_train,batch_size=<span class="number">200</span>,epochs=<span class="number">100</span>,shuffle=<span class="keyword">True</span>,verbose=<span class="number">1</span>,validation_split=<span class="number">0.3</span>)</div></pre></td></tr></table></figure>
-<pre><code>Train on 42000 samples, validate on 18000 samples
-Epoch 1/100
-42000/42000 [==============================] - 5s - loss: 1.2457 - val_loss: 0.5666
-Epoch 2/100
-42000/42000 [==============================] - 4s - loss: 0.9481 - val_loss: 0.4958
-Epoch 3/100
-42000/42000 [==============================] - 4s - loss: 0.8623 - val_loss: 0.4659
-Epoch 4/100
-42000/42000 [==============================] - 4s - loss: 0.8145 - val_loss: 0.4691
-Epoch 5/100
-42000/42000 [==============================] - 4s - loss: 0.7788 - val_loss: 0.4342
-Epoch 6/100
-42000/42000 [==============================] - 4s - loss: 0.7225 - val_loss: 0.4105
-Epoch 7/100
-42000/42000 [==============================] - 4s - loss: 0.7338 - val_loss: 0.3970
-Epoch 8/100
-42000/42000 [==============================] - 4s - loss: 0.6848 - val_loss: 0.3961
-Epoch 9/100
-42000/42000 [==============================] - 4s - loss: 0.6693 - val_loss: 0.3875
-Epoch 10/100
-42000/42000 [==============================] - 4s - loss: 0.6544 - val_loss: 0.3751
-Epoch 11/100
-42000/42000 [==============================] - 4s - loss: 0.6276 - val_loss: 0.3681
-Epoch 12/100
-42000/42000 [==============================] - 4s - loss: 0.6605 - val_loss: 0.3660
-Epoch 13/100
-42000/42000 [==============================] - 4s - loss: 0.6487 - val_loss: 0.3515
-Epoch 14/100
-42000/42000 [==============================] - 4s - loss: 0.6426 - val_loss: 0.3646
-Epoch 15/100
-42000/42000 [==============================] - 4s - loss: 0.6292 - val_loss: 0.3424
-Epoch 16/100
-42000/42000 [==============================] - 4s - loss: 0.6074 - val_loss: 0.3378
-Epoch 17/100
-42000/42000 [==============================] - 4s - loss: 0.5844 - val_loss: 0.3320
-Epoch 18/100
-42000/42000 [==============================] - 4s - loss: 0.5753 - val_loss: 0.3363
-Epoch 19/100
-42000/42000 [==============================] - 4s - loss: 0.5570 - val_loss: 0.3199
-Epoch 20/100
-42000/42000 [==============================] - 4s - loss: 0.5452 - val_loss: 0.3108
-Epoch 21/100
-42000/42000 [==============================] - 4s - loss: 0.5320 - val_loss: 0.3108
-Epoch 22/100
-42000/42000 [==============================] - 4s - loss: 0.5354 - val_loss: 0.3024
-Epoch 23/100
-42000/42000 [==============================] - 4s - loss: 0.5172 - val_loss: 0.2973
-Epoch 24/100
-42000/42000 [==============================] - 4s - loss: 0.5222 - val_loss: 0.3037
-Epoch 25/100
-42000/42000 [==============================] - 4s - loss: 0.5208 - val_loss: 0.2940
-Epoch 26/100
-42000/42000 [==============================] - 4s - loss: 0.5154 - val_loss: 0.2948
-Epoch 27/100
-42000/42000 [==============================] - 4s - loss: 0.5258 - val_loss: 0.2918
-Epoch 28/100
-42000/42000 [==============================] - 4s - loss: 0.5033 - val_loss: 0.2889
-Epoch 29/100
-42000/42000 [==============================] - 4s - loss: 0.4962 - val_loss: 0.2828
-Epoch 30/100
-42000/42000 [==============================] - 4s - loss: 0.4848 - val_loss: 0.2761
-Epoch 31/100
-42000/42000 [==============================] - 4s - loss: 0.4884 - val_loss: 0.2881
-Epoch 32/100
-42000/42000 [==============================] - 4s - loss: 0.4873 - val_loss: 0.2794
-Epoch 33/100
-42000/42000 [==============================] - 4s - loss: 0.4823 - val_loss: 0.2686
-Epoch 34/100
-42000/42000 [==============================] - 4s - loss: 0.4781 - val_loss: 0.2788
-Epoch 35/100
-42000/42000 [==============================] - 4s - loss: 0.4781 - val_loss: 0.2732
-Epoch 36/100
-42000/42000 [==============================] - 4s - loss: 0.4786 - val_loss: 0.2880
-Epoch 37/100
-42000/42000 [==============================] - 4s - loss: 0.4829 - val_loss: 0.2729
-Epoch 38/100
-42000/42000 [==============================] - 4s - loss: 0.4744 - val_loss: 0.2731
-Epoch 39/100
-42000/42000 [==============================] - 4s - loss: 0.4564 - val_loss: 0.2698
-Epoch 40/100
-42000/42000 [==============================] - 4s - loss: 0.4614 - val_loss: 0.2629
-Epoch 41/100
-42000/42000 [==============================] - 4s - loss: 0.4673 - val_loss: 0.2586
-Epoch 42/100
-42000/42000 [==============================] - 4s - loss: 0.4666 - val_loss: 0.2524
-Epoch 43/100
-42000/42000 [==============================] - 4s - loss: 0.4545 - val_loss: 0.2682
-Epoch 44/100
-42000/42000 [==============================] - 4s - loss: 0.4550 - val_loss: 0.2653
-Epoch 45/100
-42000/42000 [==============================] - 4s - loss: 0.4426 - val_loss: 0.2537
-Epoch 46/100
-42000/42000 [==============================] - 4s - loss: 0.4322 - val_loss: 0.2523
-Epoch 47/100
-42000/42000 [==============================] - 4s - loss: 0.4541 - val_loss: 0.2552
-Epoch 48/100
-42000/42000 [==============================] - 4s - loss: 0.4465 - val_loss: 0.2493
-Epoch 49/100
-42000/42000 [==============================] - 4s - loss: 0.4366 - val_loss: 0.2445
-Epoch 50/100
-42000/42000 [==============================] - 4s - loss: 0.4362 - val_loss: 0.2458
-Epoch 51/100
-42000/42000 [==============================] - 4s - loss: 0.4388 - val_loss: 0.2446
-Epoch 52/100
-42000/42000 [==============================] - 4s - loss: 0.4440 - val_loss: 0.2551
-Epoch 53/100
-42000/42000 [==============================] - 4s - loss: 0.4278 - val_loss: 0.2469
-Epoch 54/100
-42000/42000 [==============================] - 4s - loss: 0.4185 - val_loss: 0.2416
-Epoch 55/100
-42000/42000 [==============================] - 4s - loss: 0.4086 - val_loss: 0.2332
-Epoch 56/100
-42000/42000 [==============================] - 4s - loss: 0.4005 - val_loss: 0.2407
-Epoch 57/100
-42000/42000 [==============================] - 4s - loss: 0.4064 - val_loss: 0.2396
-Epoch 58/100
-42000/42000 [==============================] - 4s - loss: 0.4063 - val_loss: 0.2384
-Epoch 59/100
-42000/42000 [==============================] - 4s - loss: 0.4020 - val_loss: 0.2358
-Epoch 60/100
-42000/42000 [==============================] - 4s - loss: 0.4008 - val_loss: 0.2332
-Epoch 61/100
-42000/42000 [==============================] - 4s - loss: 0.4045 - val_loss: 0.2338
-Epoch 62/100
-42000/42000 [==============================] - 4s - loss: 0.4153 - val_loss: 0.2346
-Epoch 63/100
-42000/42000 [==============================] - 4s - loss: 0.4102 - val_loss: 0.2279
-Epoch 64/100
-42000/42000 [==============================] - 4s - loss: 0.4013 - val_loss: 0.2337
-Epoch 65/100
-42000/42000 [==============================] - 4s - loss: 0.3945 - val_loss: 0.2312
-Epoch 66/100
-42000/42000 [==============================] - 4s - loss: 0.3917 - val_loss: 0.2243
-Epoch 67/100
-42000/42000 [==============================] - 4s - loss: 0.3780 - val_loss: 0.2219
-Epoch 68/100
-42000/42000 [==============================] - 4s - loss: 0.3781 - val_loss: 0.2249
-Epoch 69/100
-42000/42000 [==============================] - 4s - loss: 0.3755 - val_loss: 0.2192
-Epoch 70/100
-42000/42000 [==============================] - 4s - loss: 0.3814 - val_loss: 0.2164
-Epoch 71/100
-42000/42000 [==============================] - 4s - loss: 0.3843 - val_loss: 0.2197
-Epoch 72/100
-42000/42000 [==============================] - 4s - loss: 0.3835 - val_loss: 0.2228
-Epoch 73/100
-42000/42000 [==============================] - 4s - loss: 0.3908 - val_loss: 0.2281
-Epoch 74/100
-42000/42000 [==============================] - 4s - loss: 0.3881 - val_loss: 0.2185
-Epoch 75/100
-42000/42000 [==============================] - 4s - loss: 0.3870 - val_loss: 0.2108
-Epoch 76/100
-42000/42000 [==============================] - 4s - loss: 0.3731 - val_loss: 0.2112
-Epoch 77/100
-42000/42000 [==============================] - 4s - loss: 0.3685 - val_loss: 0.2069
-Epoch 78/100
-42000/42000 [==============================] - 4s - loss: 0.3633 - val_loss: 0.2059
-Epoch 79/100
-42000/42000 [==============================] - 4s - loss: 0.3626 - val_loss: 0.2073
-Epoch 80/100
-42000/42000 [==============================] - 4s - loss: 0.3594 - val_loss: 0.2053
-Epoch 81/100
-42000/42000 [==============================] - 4s - loss: 0.3489 - val_loss: 0.2001
-Epoch 82/100
-42000/42000 [==============================] - 4s - loss: 0.3521 - val_loss: 0.2007
-Epoch 83/100
-42000/42000 [==============================] - 4s - loss: 0.3488 - val_loss: 0.2029
-Epoch 84/100
-42000/42000 [==============================] - 4s - loss: 0.3531 - val_loss: 0.1984
-Epoch 85/100
-42000/42000 [==============================] - 4s - loss: 0.3545 - val_loss: 0.2034
-Epoch 86/100
-42000/42000 [==============================] - 4s - loss: 0.3559 - val_loss: 0.2053
-Epoch 87/100
-42000/42000 [==============================] - 4s - loss: 0.3551 - val_loss: 0.2019
-Epoch 88/100
-42000/42000 [==============================] - 4s - loss: 0.3538 - val_loss: 0.2043
-Epoch 89/100
-42000/42000 [==============================] - 4s - loss: 0.3498 - val_loss: 0.2050
-Epoch 90/100
-42000/42000 [==============================] - 4s - loss: 0.3566 - val_loss: 0.2076
-Epoch 91/100
-42000/42000 [==============================] - 4s - loss: 0.3573 - val_loss: 0.2052
-Epoch 92/100
-42000/42000 [==============================] - 4s - loss: 0.3633 - val_loss: 0.1994
-Epoch 93/100
-42000/42000 [==============================] - 4s - loss: 0.3561 - val_loss: 0.2004
-Epoch 94/100
-42000/42000 [==============================] - 4s - loss: 0.3473 - val_loss: 0.2015
-Epoch 95/100
-42000/42000 [==============================] - 4s - loss: 0.3463 - val_loss: 0.1951
-Epoch 96/100
-42000/42000 [==============================] - 4s - loss: 0.3485 - val_loss: 0.1985
-Epoch 97/100
-42000/42000 [==============================] - 4s - loss: 0.3357 - val_loss: 0.1994
-Epoch 98/100
-42000/42000 [==============================] - 4s - loss: 0.3399 - val_loss: 0.1965
-Epoch 99/100
-42000/42000 [==============================] - 4s - loss: 0.3408 - val_loss: 0.1931
-Epoch 100/100
-42000/42000 [==============================] - 4s - loss: 0.3366 - val_loss: 0.1956
-
-
-
-
-
-&lt;keras.callbacks.History at 0x2a5fdb3d278&gt;
-</code></pre><ul>
-<li>batch_size表示每个训练块包含的数据个数，</li>
-<li>epochs表示训练的次数，</li>
-<li>shuffle表示是否每次训练后将batch打乱重排，</li>
-<li>verbose表示是否输出进度log，</li>
-<li>validation_split指定验证集占比</li>
-</ul>
-<h2 id="输出测试结果"><a href="#输出测试结果" class="headerlink" title="输出测试结果"></a>输出测试结果</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">print(<span class="string">"test set"</span>)</div><div class="line">scores = model.evaluate(X_test,Y_test,batch_size=<span class="number">200</span>,verbose=<span class="number">1</span>)</div><div class="line">print(<span class="string">""</span>)</div><div class="line">print(<span class="string">"The test loss is %f"</span> % scores)</div><div class="line">result = model.predict(X_test,batch_size=<span class="number">200</span>,verbose=<span class="number">1</span>)</div><div class="line"></div><div class="line">result_max = np.argmax(result, axis = <span class="number">1</span>)</div><div class="line">test_max = np.argmax(Y_test, axis = <span class="number">1</span>)</div><div class="line"></div><div class="line">result_bool = np.equal(result_max, test_max)</div><div class="line">true_num = np.sum(result_bool)</div><div class="line">print(<span class="string">""</span>)</div><div class="line">print(<span class="string">"The accuracy of the model is %f"</span> % (true_num/len(result_bool)))</div></pre></td></tr></table></figure>
-<pre><code>test set
- 8800/10000 [=========================&gt;....] - ETA: 0s
-The test loss is 0.185958
-10000/10000 [==============================] - 0s     
-
-The accuracy of the model is 0.943400
-</code></pre><ul>
-<li>model.evaluate()计算了测试集中的识别的loss值。</li>
-<li>通过model.predict()，我们可以得到对于测试集中每个数字的识别结果，每个数字对应一个表示每个数字都是多少概率的长度为10的张量。</li>
-<li><p>通过np.argmax()，我们得到每个数字的识别结果和期望的识别结果</p>
-</li>
-<li><p>通过np.equal()，我们得到每个数字是否识别正确</p>
-</li>
-<li><p>通过np.sum()得到识别正确的总的数字个数</p>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/22/Keras02-MNIST手写实例/" data-id="cj5ervoxl0000fwmjnfv10sh3" class="article-share-link">Partager</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/07/22/hello-world/" class="article-date">
-  <time datetime="2017-07-22T04:05:40.069Z" itemprop="datePublished">2017-07-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/22/hello-world/">我会自动改变</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/22/hello-world/" data-id="cj5ervoy00001fwmj2k1le8wu" class="article-share-link">Partager</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Keras02-MNIST手写实例" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Keras02-MNIST手写实例" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/07/22/Keras02-MNIST手写实例/" class="article-date">
   <time datetime="2017-07-22T04:05:40.069Z" itemprop="datePublished">2017-07-22</time>
@@ -12931,10 +12540,23 @@ The accuracy of the model is 0.943400
     </footer>
   </div>
   
-</article>
-
+    
+<nav id="article-nav">
+  
+    <a href="/2017/07/22/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          我会自动改变
+        
+      </div>
+    </a>
+  
+  
+</nav>
 
   
+</article>
 
 </section>
         
