@@ -5,16 +5,16 @@
   
   <title>Keras实现简单的手写数字识别 | yanqiangmiffy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Keras实现简单的手写数字识别参考文中代码有点小bug,加以改正。顺带才了下数据集的坑 导入需要的函数和包12345from keras.models import Sequentialfrom keras.layers import Dense,Activation,Dropoutfrom keras.optimizers import SGDfrom keras.datasets impor">
+  <meta name="description" content="参考文中代码有点小bug,加以改正。顺带才了下数据集的坑 导入需要的函数和包12345from keras.models import Sequentialfrom keras.layers import Dense,Activation,Dropoutfrom keras.optimizers import SGDfrom keras.datasets import mnistimport nu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Keras实现简单的手写数字识别">
 <meta property="og:url" content="http://yoursite.com/2017/07/22/Keras02-MNIST手写实例/index.html">
 <meta property="og:site_name" content="yanqiangmiffy">
-<meta property="og:description" content="Keras实现简单的手写数字识别参考文中代码有点小bug,加以改正。顺带才了下数据集的坑 导入需要的函数和包12345from keras.models import Sequentialfrom keras.layers import Dense,Activation,Dropoutfrom keras.optimizers import SGDfrom keras.datasets impor">
-<meta property="og:updated_time" content="2017-07-22T05:08:55.075Z">
+<meta property="og:description" content="参考文中代码有点小bug,加以改正。顺带才了下数据集的坑 导入需要的函数和包12345from keras.models import Sequentialfrom keras.layers import Dense,Activation,Dropoutfrom keras.optimizers import SGDfrom keras.datasets import mnistimport nu">
+<meta property="og:updated_time" content="2017-07-22T05:14:31.688Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Keras实现简单的手写数字识别">
-<meta name="twitter:description" content="Keras实现简单的手写数字识别参考文中代码有点小bug,加以改正。顺带才了下数据集的坑 导入需要的函数和包12345from keras.models import Sequentialfrom keras.layers import Dense,Activation,Dropoutfrom keras.optimizers import SGDfrom keras.datasets impor">
+<meta name="twitter:description" content="参考文中代码有点小bug,加以改正。顺带才了下数据集的坑 导入需要的函数和包12345from keras.models import Sequentialfrom keras.layers import Dense,Activation,Dropoutfrom keras.optimizers import SGDfrom keras.datasets import mnistimport nu">
   
     <link rel="alternate" href="/atom.xml" title="yanqiangmiffy" type="application/atom+xml">
   
@@ -66,7 +66,7 @@
         <section id="main"><article id="post-Keras02-MNIST手写实例" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/07/22/Keras02-MNIST手写实例/" class="article-date">
-  <time datetime="2017-07-22T05:08:55.075Z" itemprop="datePublished">2017-07-22</time>
+  <time datetime="2017-07-22T05:14:31.688Z" itemprop="datePublished">2017-07-22</time>
 </a>
     
   </div>
@@ -85,7 +85,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Keras实现简单的手写数字识别"><a href="#Keras实现简单的手写数字识别" class="headerlink" title="Keras实现简单的手写数字识别"></a>Keras实现简单的手写数字识别</h1><p><a href="http://www.cnblogs.com/yqtm/p/6924939.html" target="_blank" rel="external">参考</a><br>文中代码有点小bug,加以改正。顺带才了下数据集的坑</p>
+        <p><a href="http://www.cnblogs.com/yqtm/p/6924939.html" target="_blank" rel="external">参考</a><br>文中代码有点小bug,加以改正。顺带才了下数据集的坑</p>
 <h2 id="导入需要的函数和包"><a href="#导入需要的函数和包" class="headerlink" title="导入需要的函数和包"></a>导入需要的函数和包</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Sequential</div><div class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Dense,Activation,Dropout</div><div class="line"><span class="keyword">from</span> keras.optimizers <span class="keyword">import</span> SGD</div><div class="line"><span class="keyword">from</span> keras.datasets <span class="keyword">import</span> mnist</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#从s3.amazonaws.com/img-datasets/mnist.npz下载数据太慢了。挂了代理，结果程序运行崩溃，只好写一个加载本地的文件函数</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_data</span><span class="params">(path=<span class="string">'mnist.npz'</span>)</span>:</span></div><div class="line">    f=np.load(path)</div><div class="line">    x_train,y_train=f[<span class="string">'x_train'</span>],f[<span class="string">'y_train'</span>]</div><div class="line">    x_test,y_test=f[<span class="string">'x_test'</span>],f[<span class="string">'y_test'</span>]</div><div class="line">    f.close()</div><div class="line">    <span class="keyword">return</span> (x_train,y_train),(x_test,y_test)</div></pre></td></tr></table></figure>
 <p>Sequential是序贯模型，Dense是用于添加模型的层数，SGD是用于模型变异的时候优化器参数,<br>mnist是用于加载手写识别的数据集，需要在网上下载,下面是mnist.py</p>
@@ -411,7 +411,7 @@ The accuracy of the model is 0.943400
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/22/Keras02-MNIST手写实例/" data-id="cj5eu4zwr000198mjj3qktja9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/22/Keras02-MNIST手写实例/" data-id="cj5euc7lq0000g8mjx8lk5tkt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -420,15 +420,11 @@ The accuracy of the model is 0.943400
     
 <nav id="article-nav">
   
-    <a href="/2017/07/22/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          我会自动改变
-        
-      </div>
-    </a>
   
+    <a href="/2017/07/22/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">我会自动改变</div>
+    </a>
   
 </nav>
 
@@ -464,11 +460,11 @@ The accuracy of the model is 0.943400
       <ul>
         
           <li>
-            <a href="/2017/07/22/hello-world/">我会自动改变</a>
+            <a href="/2017/07/22/Keras02-MNIST手写实例/">Keras实现简单的手写数字识别</a>
           </li>
         
           <li>
-            <a href="/2017/07/22/Keras02-MNIST手写实例/">Keras实现简单的手写数字识别</a>
+            <a href="/2017/07/22/hello-world/">我会自动改变</a>
           </li>
         
       </ul>
