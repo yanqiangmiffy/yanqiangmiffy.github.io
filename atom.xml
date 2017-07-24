@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-24T08:20:04.510Z</updated>
+  <updated>2017-07-24T08:24:36.661Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,243 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>我会自动改变</title>
-    <link href="http://yoursite.com/2017/07/24/hello-world/"/>
-    <id>http://yoursite.com/2017/07/24/hello-world/</id>
-    <published>2017-07-24T08:20:04.497Z</published>
-    <updated>2017-07-24T08:20:04.510Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>使用Python和R语言从头开始理解和编写神经网络</title>
-    <link href="http://yoursite.com/2017/07/24/Python26-%E4%BD%BF%E7%94%A8Python%E5%92%8CR%E8%AF%AD%E8%A8%80%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B%E7%90%86%E8%A7%A3%E5%92%8C%E7%BC%96%E5%86%99%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
-    <id>http://yoursite.com/2017/07/24/Python26-使用Python和R语言从头开始理解和编写神经网络/</id>
-    <published>2017-07-24T08:20:04.497Z</published>
-    <updated>2017-07-24T08:20:04.497Z</updated>
-    
-    <content type="html"><![CDATA[<p>本篇文章是<a href="https://www.analyticsvidhya.com/blog/2017/05/neural-network-from-scratch-in-python-and-r/" target="_blank" rel="external">原文</a>的翻译过来的，自己在学习和阅读之后觉得文章非常不错，文章结构清晰，由浅入深、从理论到代码实现，最终将神经网络的概念和工作流程呈现出来。自己将其翻译成中文，以便以后阅读和复习和网友参考。因时间（文字纯手打加配图）紧促和翻译水平有限，文章有不足之处请大家指正。</p>
-<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>你可以通过两种方式学习和实践一个概念：</p>
-<ul>
-<li>选项1：您可以了解一个特定主题的整个理论，然后寻找应用这些概念的方法。所以，你阅读整个算法的工作原理，背后的数学知识、假设理论、局限，然后去应用它。这样学习稳健但是需要花费大量的时间去准备。</li>
-<li>选项2：从简单的基础开始，并就此主题研究直觉上的知识。接下来，选择一个问题并开始解决它。在解决问题的同时了解这些概念，保持调整并改善您对此问题的理解。所以，你去了解如何应用一个算法——实践并应用它。一旦你知道如何应用它，请尝试使用不同的参数和测试值，极限值去测试算法和继续优化对算法的理解。</li>
-</ul>
-<p>我更喜欢选项2，并采取这种方法来学习任何新的话题。我可能无法告诉你算法背后的整个数学，但我可以告诉你直觉上的知识以及基于实验和理解来应用算法的最佳场景。</p>
-<p>在与其他人交流的过程中，我发现人们不用花时间来发展这种直觉，所以他们能够以正确的方式努力地去解决问题。</p>
-<p>在本文中，我将从头开始讨论一个神经网络的构建，更多地关注研究这种直觉上的知识来实现神经网络。我们将在“Python”和“R”中编写代码。读完本篇文章后，您将了解神经网络如何工作，如何初始化权重，以及如何使用反向传播进行更新。</p>
-<p>让我们开始吧</p>
-<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
-<li>神经网络背后的简单直觉知识</li>
-<li>多层感知器及其基础知识</li>
-<li>涉及神经网络方法的步骤</li>
-<li>可视化神经网络工作方法的步骤</li>
-<li>使用Numpy（Python）实现NN</li>
-<li>使用R实现NN</li>
-<li>[可选]反向传播算法的数学观点</li>
-</ul>
-<h1 id="神经网络背后的直观知识"><a href="#神经网络背后的直观知识" class="headerlink" title="神经网络背后的直观知识"></a>神经网络背后的直观知识</h1><p>如果您是开发人员或了解一种工作——知道如何在代码中调试错误。您可以通过改变输入或条件来触发各种测试用例，并查找输出，输出的变化提供了一个提示：在代码中，去哪里寻找bug？ - 哪个模块要检查，哪些行要阅读。找到bug后，您进行更改并继续运行，直到您能够运行正确的代码或者实现应用程序。</p>
-<p>神经网络的工作方式非常相似。它需要多个输入，通过来自多个隐藏层的多个神经元进行处理，并使用输出层返回结果。这个结果估计过程在技术上被称为“前向传播”。</p>
-<p>接下来，我们将结果与实际输出进行比较。任务是使神经网络的输出接近实际（期望的）输出。在这些神经元中，每一个都会对最终输出产生一些误差，你如何减少这些误差呢？</p>
-<p>我们尝试最小化那些对错误“贡献”更多的神经元的值和权重，并且在返回到神经网络的神经元并发现误差在哪里时发生。这个过程被称为“向后传播”。</p>
-<p>为了减少迭代次数来实现最小化误差，神经网络通常使用称为“梯度下降”的算法，来快速有效地优化任务。</p>
-<p>的确 ，这就是神经网络如何工作的！我知道这是一个非常简单的表示，但它可以帮助您以简单的方式理解事物。</p>
-<h1 id="多层感知器及其基础知识"><a href="#多层感知器及其基础知识" class="headerlink" title="多层感知器及其基础知识"></a>多层感知器及其基础知识</h1><p>就像原子是形成地球上任何物质的基础 - 神经网络的基本形成单位是感知器。 那么，什么是感知器呢？</p>
-<p>感知器可以被理解为需要多个输入并产生一个输出的任何东西。 例如，看下面的图片<br><img src="https://i.loli.net/2017/07/24/59756c063bbec.png" alt="感知器" title="感知器"><br>上述结构需要三个输入并产生一个输出，下一个逻辑问题是输入和输出之间的关系是什么？让我们从基本的方式着手，寻求更复杂的方法。</p>
-<p>下面我讨论了三种创建输入输出关系的方法：</p>
-<ol>
-<li>通过直接组合输入和计算基于阈值的输出。例如：取x1 = 0，x2 = 1，x3 = 1并设置阈值= 0。因此，如果<code>x1 + x2 + x3&gt; 0</code>，则输出为1，否则为0.可以看出，在这种情况下，感知器会将输出计算为1。</li>
-<li>接下来，让我们为输入添加权重。权重重视输入。例如，您分别为x1，x2和x3分配w1 = 2，w2 = 3和w3 = 4。为了计算输出，我们将输入与相应权重相乘，并将其与阈值进行比较，如w1 <em> x1 + w2 </em> x2 + w3 * x3&gt;阈值。与x1和x2相比，这些权重对于x3显得更重要。</li>
-<li>最后，让我们添加偏置量：每个感知器也有一个偏置量，可以被认为是感知器多么灵活。它与某种线性函数y = ax + b的常数b类似，它允许我们上下移动线以适应数据更好的预测。假设没有b，线将始终通过原点（0，0），并且可能会得到较差的拟合。例如，感知器可以具有两个输入，在这种情况下，它需要三个权重。每个输入一个，偏置一个。现在输入的线性表示将如下所示：w1 <em> x1 + w2 </em> x2 + w3 <em> x3 + 1 </em> b。</li>
-</ol>
-<p>但是，上面所讲的感知器之间的关系都是线性的，并没有那么有趣。所以，人们认为将感知器演化成现在所谓的人造神经元，对于输入和偏差，神经元将使用非线性变换（激活函数）。</p>
-<h1 id="什么是激活函数？"><a href="#什么是激活函数？" class="headerlink" title="什么是激活函数？"></a>什么是激活函数？</h1><p>激活函数将加权输入<code>（w1 * x1 + w2 * x2 + w3 * x3 + 1 * b）</code>的和作为参数，并返回神经元的输出。<br><img src="https://i.loli.net/2017/07/24/59757bc8a16d3.png" alt="激活函数" title="激活函数"></p>
-<p>在上式中，我们用x0表示1，w0表示b。</p>
-<p>激活函数主要用于进行非线性变换，使我们能够拟合非线性假设或估计复杂函数。 有多种激活功能，如：<code>“Sigmoid”</code>，<code>“Tanh”</code>，<code>ReLu</code>等等。</p>
-<h1 id="前向传播，反向传播和训练次数-epochs"><a href="#前向传播，反向传播和训练次数-epochs" class="headerlink" title="前向传播，反向传播和训练次数(epochs)"></a>前向传播，反向传播和训练次数(epochs)</h1><p>到目前为止，我们已经计算了输出，这个过程被称为“正向传播”。 但是如果估计的输出远离实际输出（非常大的误差）怎么办？ 下面正是我们在神经网络中所做的：基于错误更新偏差和权重。 这种权重和偏差更新过程被称为“反向传播”。</p>
-<p>反向传播（BP）算法通过确定输出处的损耗（或误差），然后将其传播回网络来工作， 更新权重以最小化每个神经元产生的错误。 最小化误差的第一步是确定每个节点w.r.t.的梯度（Derivatives），最终实现输出。 要获得反向传播的数学视角，请参阅下面的部分。</p>
-<p>这一轮的前向和后向传播迭代被称为一个训练迭代也称为“Epoch”。<code>ps:e（一）poch（波）的意思;一个epoch是指把所有训练数据完整的过一遍</code></p>
-<h1 id="多层感知器"><a href="#多层感知器" class="headerlink" title="多层感知器"></a>多层感知器</h1><p>现在，我们来看看多层感知器。 到目前为止，我们已经看到只有一个由3个输入节点组成的单层，即x1，x2和x3，以及由单个神经元组成的输出层。 但是，出于实际，单层网络只能做到这一点。 如下所示，MLP由层叠在输入层和输出层之间的许多隐层组成。<br><img src="https://i.loli.net/2017/07/24/59757fa6a6e02.png" alt="多层感知器" title="多层感知器"><br>上面的图像只显示一个单一的隐藏层，但实际上可以包含多个隐藏层。 在MLP的情况下要记住的另一点是，所有层都完全连接，即层中的每个节点（输入和输出层除外）连接到上一层和下一层中的每个节点。让我们继续下一个主题，即神经网络的训练算法（最小化误差）。 在这里，我们将看到最常见的训练算法称为梯度下降。</p>
-<h1 id="全批量梯度下降和随机梯度下降"><a href="#全批量梯度下降和随机梯度下降" class="headerlink" title="全批量梯度下降和随机梯度下降"></a>全批量梯度下降和随机梯度下降</h1><p>Gradient Descent的第二个变体通过使用相同的更新算法执行更新MLP的权重的相同工作，但差异在于用于更新权重和偏差的训练样本的数量。</p>
-<p>全部批量梯度下降算法作为名称意味着使用所有的训练数据点来更新每个权重一次，而随机渐变使用1个或更多（样本），但从不使整个训练数据更新权重一次。</p>
-<p>让我们用一个简单的例子来理解这个10个数据点的数据集，它们有两个权重w1和w2。</p>
-<ul>
-<li><p>全批：您可以使用10个数据点（整个训练数据），并计算w1（Δw1）的变化和w2（Δw2）的变化，并更新w1和w2。</p>
-</li>
-<li><p>SGD：使用第一个数据点并计算w1（Δw1）的变化，并改变w2（Δw2）并更新w1和w2。 接下来，当您使用第二个数据点时，您将处理更新的权重</p>
-</li>
-</ul>
-<h1 id="神经网络方法的步骤"><a href="#神经网络方法的步骤" class="headerlink" title="神经网络方法的步骤"></a>神经网络方法的步骤</h1><p><img src="https://i.loli.net/2017/07/24/59757fa6a6e02.png" alt="多层感知器" title="多层感知器"><br>我们来看一步一步地构建神经网络的方法（MLP与一个隐藏层，类似于上图所示的架构）。 在输出层，我们只有一个神经元，因为我们正在解决二进制分类问题（预测0或1）。 我们也可以有两个神经元来预测两个类的每一个。</p>
-<p>先看一下广泛的步骤：</p>
-<ol>
-<li><p>我们输入和输出</p>
-<ul>
-<li>X作为输入矩阵</li>
-<li>y作为输出矩阵</li>
-</ul>
-</li>
-<li><p>我们用随机值初始化权重和偏差（这是一次启动，在下一次迭代中，我们将使用更新的权重和偏差）。 让我们定义：</p>
-<ul>
-<li>wh作为权重矩阵隐藏层</li>
-<li>bh作为隐藏层的偏置矩阵</li>
-<li>wout作为输出层的权重矩阵</li>
-<li>bout作为偏置矩阵作为输出层</li>
-</ul>
-</li>
-<li><p>我们将输入和权重的矩阵点积分配给输入和隐藏层之间的边，然后将隐层神经元的偏差添加到相应的输入，这被称为线性变换：</p>
-<p>   <code>hidden_layer_input= matrix_dot_product(X,wh) + bh</code></p>
-</li>
-<li>使用激活函数（Sigmoid）执行非线性变换。 Sigmoid将返回输出1/(1 + exp(-x)).<br>   <code>hiddenlayer_activations = sigmoid(hidden_layer_input)</code></li>
-<li><p>对隐藏层激活进行线性变换（取矩阵点积，并加上输出层神经元的偏差），然后应用激活函数（再次使用Sigmoid，但是根据您的任务可以使用任何其他激活函数 ）来预测输出</p>
-<p>   <code>output_layer_input = matrix_dot_product (hiddenlayer_activations * wout ) + bout</code></p>
-<p>   <code>output = sigmoid(output_layer_input)</code></p>
-<p><strong>所有上述步骤被称为“前向传播”（Forward Propagation）</strong></p>
-</li>
-<li>将预测与实际输出进行比较，并计算误差梯度（实际预测值）。 误差是均方损失= ((Y-t)^2)/2<br>   <code>E = y – output</code></li>
-<li><p>计算隐藏和输出层神经元的斜率/斜率（为了计算斜率，我们计算每个神经元的每层的非线性激活x的导数）。 S形梯度可以返回 <code>x * (1 – x)</code>.</p>
-<p>   <code>slope_output_layer = derivatives_sigmoid(output)</code></p>
-<p>   <code>slope_hidden_layer = derivatives_sigmoid(hiddenlayer_activations)</code></p>
-</li>
-<li>计算输出层的变化因子（delta），取决于误差梯度乘以输出层激活的斜率<br>   <code>d_output = E * slope_output_layer</code></li>
-<li>在这一步，错误将传播回网络，这意味着隐藏层的错误。 为此，我们将采用输出层三角形的点积与隐藏层和输出层之间的边缘的重量参数（wout.T）。<br>   <code>Error_at_hidden_layer = matrix_dot_product(d_output, wout.Transpose)</code></li>
-<li>计算隐层的变化因子（delta），将隐层的误差乘以隐藏层激活的斜率<br>  <code>d_hiddenlayer = Error_at_hidden_layer * slope_hidden_layer</code></li>
-<li><p>在输出和隐藏层更新权重：网络中的权重可以从为训练示例计算的错误中更新。<br>   <code>wout = wout + matrix_dot_product(hiddenlayer_activations.Transpose, d_output)*learning_rate</code></p>
-<p>   <code>wh =  wh + matrix_dot_product(X.Transpose,d_hiddenlayer)*learning_rate</code><br>learning_rate：权重更新的量由称为学习率的配置参数控制）</p>
-</li>
-<li><p>在输出和隐藏层更新偏差：网络中的偏差可以从该神经元的聚合错误中更新。</p>
-<ul>
-<li>bias at output_layer =bias at output_layer + sum of delta of output_layer at row-wise * learning_rate</li>
-<li><p>bias at hidden_layer =bias at hidden_layer + sum of delta of output_layer at row-wise * learning_rate  </p>
-<p><code>bh = bh + sum(d_hiddenlayer, axis=0) * learning_rate</code></p>
-<p><code>bout = bout + sum(d_output, axis=0)*learning_rate</code></p>
-</li>
-</ul>
-<p><strong>从6到12的步骤被称为“向后传播”(Backward Propagation)</strong></p>
-</li>
-</ol>
-<p>一个正向和反向传播迭代被认为是一个训练周期。 如前所述，我们什么时候训练第二次，然后更新权重和偏差用于正向传播。</p>
-<p>以上，我们更新了隐藏和输出层的权重和偏差，我们使用了全批量梯度下降算法。</p>
-<h1 id="神经网络方法的可视化步骤"><a href="#神经网络方法的可视化步骤" class="headerlink" title="神经网络方法的可视化步骤"></a>神经网络方法的可视化步骤</h1><p>我们将重复上述步骤，可视化输入，权重，偏差，输出，误差矩阵，以了解神经网络（MLP）的工作方法。</p>
-<ul>
-<li><p><strong>注意：</strong></p>
-<ul>
-<li>对于良好的可视化图像，我有2或3个位置的十进制小数位。</li>
-<li>黄色填充的细胞代表当前活动细胞</li>
-<li>橙色单元格表示用于填充当前单元格值的输入</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>步骤1：读取输入和输出<br><img src="https://i.loli.net/2017/07/24/597588fe182b4.png" alt="Step 1"></li>
-<li>步骤2：用随机值初始化权重和偏差（有初始化权重和偏差的方法，但是现在用随机值初始化）<br><img src="https://i.loli.net/2017/07/24/597589475b8bb.png" alt="Step 2"></li>
-<li>步骤3：计算隐层输入： <br><br><code>hidden_layer_input= matrix_dot_product(X,wh) + bh</code><br><img src="https://i.loli.net/2017/07/24/597589a62c037.png" alt="Step 3"></li>
-<li>步骤4：对隐藏的线性输入进行非线性变换 <br><br><code>hiddenlayer_activations = sigmoid(hidden_layer_input)</code><br><img src="https://i.loli.net/2017/07/24/59758a0111ed8.png" alt="Step 4"></li>
-<li><p>步骤5：在输出层执行隐层激活的线性和非线性变换 <br><br><code>output_layer_input = matrix_dot_product (hiddenlayer_activations * wout ) + bout</code> <br><br><code>output = sigmoid(output_layer_input)</code><br><img src="https://i.loli.net/2017/07/24/59758a58893ba.png" alt="Step 5"></p>
-</li>
-<li><p>步骤6：计算输出层的误差（E）梯度 <br><br><code>E = y-output</code><br><img src="https://i.loli.net/2017/07/24/59758ad4a72ff.png" alt="Step 6"></p>
-</li>
-<li>步骤7：计算输出和隐藏层的斜率 <br><br><code>Slope_output_layer= derivatives_sigmoid(output)</code> <br><br><code>Slope_hidden_layer = derivatives_sigmoid(hiddenlayer_activations)</code><br><img src="https://i.loli.net/2017/07/24/59758b26893ef.png" alt="py26-10.png"></li>
-<li>步骤8：计算输出层的增量 <br><br><code>d_output = E * slope_output_layer*lr</code><br><img src="https://i.loli.net/2017/07/24/59758b61227a9.png" alt="py26-11.png"></li>
-<li>步骤9：计算隐藏层的误差 <br><br><code>Error_at_hidden_layer = matrix_dot_product(d_output, wout.Transpose)</code><br><img src="https://i.loli.net/2017/07/24/59758ba276123.png" alt="py26-12.png"></li>
-<li>步骤10：计算隐藏层的增量 <br><br><code>d_hiddenlayer = Error_at_hidden_layer * slope_hidden_layer</code><br><img src="https://i.loli.net/2017/07/24/59758bd705865.png" alt="py26-13.png"></li>
-<li>步骤11：更新输出和隐藏层的权重 <br><br><code>wout = wout + matrix_dot_product(hiddenlayer_activations.Transpose, d_output)*learning_rate</code> <br><br><code>wh =  wh+ matrix_dot_product(X.Transpose,d_hiddenlayer)*learning_rate</code><br><img src="https://i.loli.net/2017/07/24/59758c13cc478.png" alt="py26-14.png"></li>
-<li>步骤12：更新输出和隐藏层的偏置量<br><br><code>bh = bh + sum(d_hiddenlayer, axis=0) * learning_rate</code><br><br><code>bout = bout + sum(d_output, axis=0)*learning_rate</code><br><img src="https://i.loli.net/2017/07/24/59758c71210be.png" alt="py26-15.png"></li>
-</ul>
-<p>以上，您可以看到仍然有一个很好的误差而不接近于实际目标值，因为我们已经完成了一次训练迭代。 如果我们多次训练模型，那么这将是一个非常接近的实际结果。 我完成了数千次迭代，我的结果接近实际的目标值（<code>[[0.98032096] [0.96845624] [0.04532167]]</code>）。</p>
-<h1 id="使用Numpy（Python）实现NN"><a href="#使用Numpy（Python）实现NN" class="headerlink" title="使用Numpy（Python）实现NN"></a>使用Numpy（Python）实现NN</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line"><span class="comment">#Input array</span></div><div class="line">X=np.array([[<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>],[<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>],[<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>]])</div><div class="line"></div><div class="line"><span class="comment">#Output</span></div><div class="line">y=np.array([[<span class="number">1</span>],[<span class="number">1</span>],[<span class="number">0</span>]])</div><div class="line"></div><div class="line"><span class="comment">#Sigmoid Function</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">sigmoid</span> <span class="params">(x)</span>:</span></div><div class="line">    <span class="keyword">return</span> <span class="number">1</span>/(<span class="number">1</span> + np.exp(-x))</div><div class="line"></div><div class="line"><span class="comment">#Derivative of Sigmoid Function</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">derivatives_sigmoid</span><span class="params">(x)</span>:</span></div><div class="line">    <span class="keyword">return</span> x * (<span class="number">1</span> - x)</div><div class="line"></div><div class="line"><span class="comment">#Variable initialization</span></div><div class="line">epoch=<span class="number">5000</span> <span class="comment">#Setting training iterations</span></div><div class="line">lr=<span class="number">0.1</span> <span class="comment">#Setting learning rate</span></div><div class="line">inputlayer_neurons = X.shape[<span class="number">1</span>] <span class="comment">#number of features in data set</span></div><div class="line">hiddenlayer_neurons = <span class="number">3</span> <span class="comment">#number of hidden layers neurons</span></div><div class="line">output_neurons = <span class="number">1</span> <span class="comment">#number of neurons at output layer</span></div><div class="line"></div><div class="line"><span class="comment">#weight and bias initialization</span></div><div class="line">wh=np.random.uniform(size=(inputlayer_neurons,hiddenlayer_neurons))</div><div class="line">bh=np.random.uniform(size=(<span class="number">1</span>,hiddenlayer_neurons))</div><div class="line">wout=np.random.uniform(size=(hiddenlayer_neurons,output_neurons))</div><div class="line">bout=np.random.uniform(size=(<span class="number">1</span>,output_neurons))</div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(epoch):</div><div class="line">    <span class="comment">#Forward Propogation</span></div><div class="line">    hidden_layer_input1=np.dot(X,wh)</div><div class="line">    hidden_layer_input=hidden_layer_input1 + bh</div><div class="line">    hiddenlayer_activations = sigmoid(hidden_layer_input)</div><div class="line">    output_layer_input1=np.dot(hiddenlayer_activations,wout)</div><div class="line">    output_layer_input= output_layer_input1+ bout</div><div class="line">    output = sigmoid(output_layer_input)</div><div class="line">    <span class="comment">#Backpropagation</span></div><div class="line">    E = y-output</div><div class="line">    slope_output_layer = derivatives_sigmoid(output)</div><div class="line">    slope_hidden_layer = derivatives_sigmoid(hiddenlayer_activations)</div><div class="line">    d_output = E * slope_output_layer</div><div class="line">    Error_at_hidden_layer = d_output.dot(wout.T)</div><div class="line">    d_hiddenlayer = Error_at_hidden_layer * slope_hidden_layer</div><div class="line">    wout += hiddenlayer_activations.T.dot(d_output) *lr</div><div class="line">    bout += np.sum(d_output, axis=<span class="number">0</span>,keepdims=<span class="keyword">True</span>) *lr</div><div class="line">    wh += X.T.dot(d_hiddenlayer) *lr</div><div class="line">    bh += np.sum(d_hiddenlayer, axis=<span class="number">0</span>,keepdims=<span class="keyword">True</span>) *lr</div><div class="line"></div><div class="line">print(<span class="string">"output of Forward Propogation:\n&#123;&#125;"</span>.format(output))</div><div class="line">print(<span class="string">"wout,bout of Backpropagation:\n&#123;&#125;,\n&#123;&#125;"</span>.format(wout,bout))</div></pre></td></tr></table></figure>
-<pre><code>output of Forward Propogation:
-[[ 0.98497471]
- [ 0.96956956]
- [ 0.0416628 ]]
-wout,bout of Backpropagation:
-[[ 3.34342103]
- [-1.97924327]
- [ 3.90636787]],
-[[-1.71231223]]
-</code></pre><h1 id="在R中实现NN"><a href="#在R中实现NN" class="headerlink" title="在R中实现NN"></a>在R中实现NN</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># input matrix</span></div><div class="line">X=matrix(c(<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>),nrow = <span class="number">3</span>, ncol=<span class="number">4</span>,byrow = TRUE)</div><div class="line"></div><div class="line"><span class="comment"># output matrix</span></div><div class="line">Y=matrix(c(<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>),byrow=FALSE)</div><div class="line"></div><div class="line"><span class="comment">#sigmoid function</span></div><div class="line">sigmoid&lt;-function(x)&#123;</div><div class="line"><span class="number">1</span>/(<span class="number">1</span>+exp(-x))</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment"># derivative of sigmoid function</span></div><div class="line">derivatives_sigmoid&lt;-function(x)&#123;</div><div class="line">x*(<span class="number">1</span>-x)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment"># variable initialization</span></div><div class="line">epoch=<span class="number">5000</span></div><div class="line">lr=<span class="number">0.1</span></div><div class="line">inputlayer_neurons=ncol(X)</div><div class="line">hiddenlayer_neurons=<span class="number">3</span></div><div class="line">output_neurons=<span class="number">1</span></div><div class="line"></div><div class="line"><span class="comment">#weight and bias initialization</span></div><div class="line">wh=matrix( rnorm(inputlayer_neurons*hiddenlayer_neurons,mean=<span class="number">0</span>,sd=<span class="number">1</span>), inputlayer_neurons, hiddenlayer_neurons)</div><div class="line">bias_in=runif(hiddenlayer_neurons)</div><div class="line">bias_in_temp=rep(bias_in, nrow(X))</div><div class="line">bh=matrix(bias_in_temp, nrow = nrow(X), byrow = FALSE)</div><div class="line">wout=matrix( rnorm(hiddenlayer_neurons*output_neurons,mean=<span class="number">0</span>,sd=<span class="number">1</span>), hiddenlayer_neurons, output_neurons)</div><div class="line"></div><div class="line">bias_out=runif(output_neurons)</div><div class="line">bias_out_temp=rep(bias_out,nrow(X))</div><div class="line">bout=matrix(bias_out_temp,nrow = nrow(X),byrow = FALSE)</div><div class="line"><span class="comment"># forward propagation</span></div><div class="line"><span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:epoch)&#123;</div><div class="line"></div><div class="line">hidden_layer_input1= X%*%wh</div><div class="line">hidden_layer_input=hidden_layer_input1+bh</div><div class="line">hidden_layer_activations=sigmoid(hidden_layer_input)</div><div class="line">output_layer_input1=hidden_layer_activations%*%wout</div><div class="line">output_layer_input=output_layer_input1+bout</div><div class="line">output= sigmoid(output_layer_input)</div><div class="line"></div><div class="line"><span class="comment"># Back Propagation</span></div><div class="line"></div><div class="line">E=Y-output</div><div class="line">slope_output_layer=derivatives_sigmoid(output)</div><div class="line">slope_hidden_layer=derivatives_sigmoid(hidden_layer_activations)</div><div class="line">d_output=E*slope_output_layer</div><div class="line">Error_at_hidden_layer=d_output%*%t(wout)</div><div class="line">d_hiddenlayer=Error_at_hidden_layer*slope_hidden_layer</div><div class="line">wout= wout + (t(hidden_layer_activations)%*%d_output)*lr</div><div class="line">bout= bout+rowSums(d_output)*lr</div><div class="line">wh = wh +(t(X)%*%d_hiddenlayer)*lr</div><div class="line">bh = bh + rowSums(d_hiddenlayer)*lr</div><div class="line"></div><div class="line">&#125;</div><div class="line">output</div></pre></td></tr></table></figure>
-<h1 id="可选-反向传播算法的数学理解"><a href="#可选-反向传播算法的数学理解" class="headerlink" title="[可选]反向传播算法的数学理解"></a>[可选]反向传播算法的数学理解</h1><p>设Wi为输入层和隐层之间的权重。 Wh是隐层和输出层之间的权重。</p>
-<p>现在，<code>h =σ（u）=σ（WiX）</code>，即h是u的函数，u是Wi和X的函数。这里我们将我们的函数表示为σ</p>
-<p><code>Y =σ（u&#39;）=σ（Whh）</code>，即Y是u’的函数，u’是Wh和h的函数。</p>
-<p>我们将不断参考上述方程来计算偏导数。</p>
-<p>我们主要感兴趣的是找到两个项：∂E/∂Wi和∂E/∂Wh即改变输入和隐藏层之间权重的误差变化，改变隐层和输出之间权重的变化 层。</p>
-<p>但是为了计算这两个偏导数，我们将需要使用部分微分的链规则，因为E是Y的函数，Y是u’的函数，u’是Wi的函数。</p>
-<p>让我们把这个属性很好的用于计算梯度。</p>
-<p>`∂E/∂Wh = (∂E/∂Y).( ∂Y/∂u’).( ∂u’/∂Wh), ……..(1)</p>
-<p>We know E is of the form E=(Y-t)2/2.</p>
-<p>So, (∂E/∂Y)= (Y-t)`</p>
-<p>现在，σ是一个S形函数，并具有σ（1-σ）形式的有意义的区分。 我敦促读者在他们身边进行验证。<br>所以, <code>(∂Y/∂u’)= ∂( σ(u’)/ ∂u’= σ(u’)(1- σ(u’))</code>.</p>
-<p>但是, <code>σ(u’)=Y, So</code>,</p>
-<p><code>(∂Y/∂u’)=Y(1-Y)</code></p>
-<p>现在得出, <code>( ∂u’/∂Wh)= ∂( Whh)/ ∂Wh = h</code></p>
-<p>取代等式（1）中的值我们得到，</p>
-<p><code>∂E/∂Wh = (Y-t). Y(1-Y).h</code></p>
-<p>所以，现在我们已经计算了隐层和输出层之间的梯度。 现在是计算输入层和隐藏层之间的梯度的时候了。<br><code>∂E/∂Wi =(∂ E/∂ h). (∂h/∂u).( ∂u/∂Wi)</code><br>但是，<code>(∂ E/∂ h) = (∂E/∂Y).( ∂Y/∂u’).( ∂u’/∂h)</code>. 在上述方程中替换这个值得到：</p>
-<p><code>∂E/∂Wi =[(∂E/∂Y).( ∂Y/∂u’).( ∂u’/∂h)]. (∂h/∂u).( ∂u/∂Wi)……………(2)</code><br>那么，首先计算隐层和输出层之间的梯度有什么好处？</p>
-<p>如等式（2）所示，我们已经计算出∂E/∂Y和∂Y/∂u’节省了空间和计算时间。 我们会在一段时间内知道为什么这个算法称为反向传播算法。</p>
-<p>让我们计算公式（2）中的未知导数。</p>
-<p><code>∂u’/∂h = ∂(Whh)/ ∂h = Wh</code></p>
-<p><code>∂h/∂u = ∂( σ(u)/ ∂u= σ(u)(1- σ(u))</code></p>
-<p>但是, <code>σ(u)=h, So,</code></p>
-<p><code>(∂Y/∂u)=h(1-h)</code></p>
-<p>得出, <code>∂u/∂Wi = ∂(WiX)/ ∂Wi = X</code></p>
-<p>取代等式（2）中的所有这些值，我们得到：<br><br><code>∂E/∂Wi = [(Y-t). Y(1-Y).Wh].h(1-h).X</code></p>
-<p>所以现在，由于我们已经计算了两个梯度，所以权重可以更新为:</p>
-<p><code>Wh = Wh + η . ∂E/∂Wh</code></p>
-<p> <code>Wi = Wi + η . ∂E/∂Wi</code></p>
-<p>其中η是学习率。</p>
-<p>所以回到这个问题：为什么这个算法叫做反向传播算法？</p>
-<p>原因是：如果您注意到∂E/∂Wh和∂E/∂Wi的最终形式，您将看到术语（Yt）即输出错误，这是我们开始的，然后将其传播回输入 层重量更新。</p>
-<p>那么，这个数学在哪里适合代码？</p>
-<p><code>hiddenlayer_activations= H</code></p>
-<p><code>E = Y-t</code></p>
-<p><code>Slope_output_layer = Y（1-Y）</code></p>
-<p><code>lr =η</code></p>
-<p><code>slope_hidden_layer = h（1-h）</code></p>
-<p><code>wout = Wh</code></p>
-<p>现在，您可以轻松地将代码与数学联系起来。</p>
-<h1 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h1><p>本文主要从头开始构建神经网络，并了解其基本概念。 我希望你现在可以理解神经网络的工作，如前向和后向传播的工作，优化算法（全批次和随机梯度下降），如何更新权重和偏差，Excel中每个步骤的可视化以及建立在python和R的代码.</p>
-<p>因此，在即将到来的文章中，我将解释在Python中使用神经网络的应用，并解决与以下问题相关的现实生活中的挑战：</p>
-<ol>
-<li>计算机视觉</li>
-<li>言语</li>
-<li>自然语言处理</li>
-</ol>
-<p>我在写这篇文章的时候感到很愉快，并希望从你的反馈中学习。 你觉得这篇文章有用吗？ 感谢您的建议/意见。 请随时通过以下意见提出您的问题。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">（转载请注明来源）</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本篇文章是&lt;a href=&quot;https://www.analyticsvidhya.com/blog/2017/05/neural-network-from-scratch-in-python-and-r/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;原
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>Keras实现简单的手写数字识别</title>
     <link href="http://yoursite.com/2017/07/24/Keras02-MNIST%E6%89%8B%E5%86%99%E5%AE%9E%E4%BE%8B/"/>
     <id>http://yoursite.com/2017/07/24/Keras02-MNIST手写实例/</id>
-    <published>2017-07-24T08:20:04.497Z</published>
-    <updated>2017-07-24T08:20:04.497Z</updated>
+    <published>2017-07-24T08:24:36.661Z</published>
+    <updated>2017-07-24T08:24:36.661Z</updated>
     
     <content type="html"><![CDATA[<p><a href="http://www.cnblogs.com/yqtm/p/6924939.html" target="_blank" rel="external">参考</a><br>文中代码有点小bug,加以改正。顺带才了下数据集的坑</p>
 <h2 id="导入需要的函数和包"><a href="#导入需要的函数和包" class="headerlink" title="导入需要的函数和包"></a>导入需要的函数和包</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Sequential</div><div class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Dense,Activation,Dropout</div><div class="line"><span class="keyword">from</span> keras.optimizers <span class="keyword">import</span> SGD</div><div class="line"><span class="keyword">from</span> keras.datasets <span class="keyword">import</span> mnist</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div></pre></td></tr></table></figure>
@@ -582,6 +350,238 @@ The accuracy of the model is 0.943400
     
       &lt;p&gt;&lt;a href=&quot;http://www.cnblogs.com/yqtm/p/6924939.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;参考&lt;/a&gt;&lt;br&gt;文中代码有点小bug,加以改正。顺带才了下数据集的坑&lt;/p&gt;
 &lt;h2 id=&quot;导入需要
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>我会自动改变</title>
+    <link href="http://yoursite.com/2017/07/24/hello-world/"/>
+    <id>http://yoursite.com/2017/07/24/hello-world/</id>
+    <published>2017-07-24T08:24:36.661Z</published>
+    <updated>2017-07-24T08:24:36.676Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>使用Python和R语言从头开始理解和编写神经网络</title>
+    <link href="http://yoursite.com/2017/07/24/Python26-%E4%BD%BF%E7%94%A8Python%E5%92%8CR%E8%AF%AD%E8%A8%80%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B%E7%90%86%E8%A7%A3%E5%92%8C%E7%BC%96%E5%86%99%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    <id>http://yoursite.com/2017/07/24/Python26-使用Python和R语言从头开始理解和编写神经网络/</id>
+    <published>2017-07-24T08:24:36.661Z</published>
+    <updated>2017-07-24T08:24:36.661Z</updated>
+    
+    <content type="html"><![CDATA[<p>本篇文章是<a href="https://www.analyticsvidhya.com/blog/2017/05/neural-network-from-scratch-in-python-and-r/" target="_blank" rel="external">原文</a>的翻译过来的，自己在学习和阅读之后觉得文章非常不错，文章结构清晰，由浅入深、从理论到代码实现，最终将神经网络的概念和工作流程呈现出来。自己将其翻译成中文，以便以后阅读和复习和网友参考。因时间（文字纯手打加配图）紧促和翻译水平有限，文章有不足之处请大家指正。</p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>你可以通过两种方式学习和实践一个概念：</p>
+<ul>
+<li>选项1：您可以了解一个特定主题的整个理论，然后寻找应用这些概念的方法。所以，你阅读整个算法的工作原理，背后的数学知识、假设理论、局限，然后去应用它。这样学习稳健但是需要花费大量的时间去准备。</li>
+<li>选项2：从简单的基础开始，并就此主题研究直觉上的知识。接下来，选择一个问题并开始解决它。在解决问题的同时了解这些概念，保持调整并改善您对此问题的理解。所以，你去了解如何应用一个算法——实践并应用它。一旦你知道如何应用它，请尝试使用不同的参数和测试值，极限值去测试算法和继续优化对算法的理解。</li>
+</ul>
+<p>我更喜欢选项2，并采取这种方法来学习任何新的话题。我可能无法告诉你算法背后的整个数学，但我可以告诉你直觉上的知识以及基于实验和理解来应用算法的最佳场景。</p>
+<p>在与其他人交流的过程中，我发现人们不用花时间来发展这种直觉，所以他们能够以正确的方式努力地去解决问题。</p>
+<p>在本文中，我将从头开始讨论一个神经网络的构建，更多地关注研究这种直觉上的知识来实现神经网络。我们将在“Python”和“R”中编写代码。读完本篇文章后，您将了解神经网络如何工作，如何初始化权重，以及如何使用反向传播进行更新。</p>
+<p>让我们开始吧</p>
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
+<li>神经网络背后的简单直觉知识</li>
+<li>多层感知器及其基础知识</li>
+<li>涉及神经网络方法的步骤</li>
+<li>可视化神经网络工作方法的步骤</li>
+<li>使用Numpy（Python）实现NN</li>
+<li>使用R实现NN</li>
+<li>[可选]反向传播算法的数学观点</li>
+</ul>
+<h1 id="神经网络背后的直观知识"><a href="#神经网络背后的直观知识" class="headerlink" title="神经网络背后的直观知识"></a>神经网络背后的直观知识</h1><p>如果您是开发人员或了解一种工作——知道如何在代码中调试错误。您可以通过改变输入或条件来触发各种测试用例，并查找输出，输出的变化提供了一个提示：在代码中，去哪里寻找bug？ - 哪个模块要检查，哪些行要阅读。找到bug后，您进行更改并继续运行，直到您能够运行正确的代码或者实现应用程序。</p>
+<p>神经网络的工作方式非常相似。它需要多个输入，通过来自多个隐藏层的多个神经元进行处理，并使用输出层返回结果。这个结果估计过程在技术上被称为“前向传播”。</p>
+<p>接下来，我们将结果与实际输出进行比较。任务是使神经网络的输出接近实际（期望的）输出。在这些神经元中，每一个都会对最终输出产生一些误差，你如何减少这些误差呢？</p>
+<p>我们尝试最小化那些对错误“贡献”更多的神经元的值和权重，并且在返回到神经网络的神经元并发现误差在哪里时发生。这个过程被称为“向后传播”。</p>
+<p>为了减少迭代次数来实现最小化误差，神经网络通常使用称为“梯度下降”的算法，来快速有效地优化任务。</p>
+<p>的确 ，这就是神经网络如何工作的！我知道这是一个非常简单的表示，但它可以帮助您以简单的方式理解事物。</p>
+<h1 id="多层感知器及其基础知识"><a href="#多层感知器及其基础知识" class="headerlink" title="多层感知器及其基础知识"></a>多层感知器及其基础知识</h1><p>就像原子是形成地球上任何物质的基础 - 神经网络的基本形成单位是感知器。 那么，什么是感知器呢？</p>
+<p>感知器可以被理解为需要多个输入并产生一个输出的任何东西。 例如，看下面的图片<br><img src="https://i.loli.net/2017/07/24/59756c063bbec.png" alt="感知器" title="感知器"><br>上述结构需要三个输入并产生一个输出，下一个逻辑问题是输入和输出之间的关系是什么？让我们从基本的方式着手，寻求更复杂的方法。</p>
+<p>下面我讨论了三种创建输入输出关系的方法：</p>
+<ol>
+<li>通过直接组合输入和计算基于阈值的输出。例如：取x1 = 0，x2 = 1，x3 = 1并设置阈值= 0。因此，如果<code>x1 + x2 + x3&gt; 0</code>，则输出为1，否则为0.可以看出，在这种情况下，感知器会将输出计算为1。</li>
+<li>接下来，让我们为输入添加权重。权重重视输入。例如，您分别为x1，x2和x3分配w1 = 2，w2 = 3和w3 = 4。为了计算输出，我们将输入与相应权重相乘，并将其与阈值进行比较，如w1 <em> x1 + w2 </em> x2 + w3 * x3&gt;阈值。与x1和x2相比，这些权重对于x3显得更重要。</li>
+<li>最后，让我们添加偏置量：每个感知器也有一个偏置量，可以被认为是感知器多么灵活。它与某种线性函数y = ax + b的常数b类似，它允许我们上下移动线以适应数据更好的预测。假设没有b，线将始终通过原点（0，0），并且可能会得到较差的拟合。例如，感知器可以具有两个输入，在这种情况下，它需要三个权重。每个输入一个，偏置一个。现在输入的线性表示将如下所示：w1 <em> x1 + w2 </em> x2 + w3 <em> x3 + 1 </em> b。</li>
+</ol>
+<p>但是，上面所讲的感知器之间的关系都是线性的，并没有那么有趣。所以，人们认为将感知器演化成现在所谓的人造神经元，对于输入和偏差，神经元将使用非线性变换（激活函数）。</p>
+<h1 id="什么是激活函数？"><a href="#什么是激活函数？" class="headerlink" title="什么是激活函数？"></a>什么是激活函数？</h1><p>激活函数将加权输入<code>（w1 * x1 + w2 * x2 + w3 * x3 + 1 * b）</code>的和作为参数，并返回神经元的输出。<br><img src="https://i.loli.net/2017/07/24/59757bc8a16d3.png" alt="激活函数" title="激活函数"></p>
+<p>在上式中，我们用x0表示1，w0表示b。</p>
+<p>激活函数主要用于进行非线性变换，使我们能够拟合非线性假设或估计复杂函数。 有多种激活功能，如：<code>“Sigmoid”</code>，<code>“Tanh”</code>，<code>ReLu</code>等等。</p>
+<h1 id="前向传播，反向传播和训练次数-epochs"><a href="#前向传播，反向传播和训练次数-epochs" class="headerlink" title="前向传播，反向传播和训练次数(epochs)"></a>前向传播，反向传播和训练次数(epochs)</h1><p>到目前为止，我们已经计算了输出，这个过程被称为“正向传播”。 但是如果估计的输出远离实际输出（非常大的误差）怎么办？ 下面正是我们在神经网络中所做的：基于错误更新偏差和权重。 这种权重和偏差更新过程被称为“反向传播”。</p>
+<p>反向传播（BP）算法通过确定输出处的损耗（或误差），然后将其传播回网络来工作， 更新权重以最小化每个神经元产生的错误。 最小化误差的第一步是确定每个节点w.r.t.的梯度（Derivatives），最终实现输出。 要获得反向传播的数学视角，请参阅下面的部分。</p>
+<p>这一轮的前向和后向传播迭代被称为一个训练迭代也称为“Epoch”。<code>ps:e（一）poch（波）的意思;一个epoch是指把所有训练数据完整的过一遍</code></p>
+<h1 id="多层感知器"><a href="#多层感知器" class="headerlink" title="多层感知器"></a>多层感知器</h1><p>现在，我们来看看多层感知器。 到目前为止，我们已经看到只有一个由3个输入节点组成的单层，即x1，x2和x3，以及由单个神经元组成的输出层。 但是，出于实际，单层网络只能做到这一点。 如下所示，MLP由层叠在输入层和输出层之间的许多隐层组成。<br><img src="https://i.loli.net/2017/07/24/59757fa6a6e02.png" alt="多层感知器" title="多层感知器"><br>上面的图像只显示一个单一的隐藏层，但实际上可以包含多个隐藏层。 在MLP的情况下要记住的另一点是，所有层都完全连接，即层中的每个节点（输入和输出层除外）连接到上一层和下一层中的每个节点。让我们继续下一个主题，即神经网络的训练算法（最小化误差）。 在这里，我们将看到最常见的训练算法称为梯度下降。</p>
+<h1 id="全批量梯度下降和随机梯度下降"><a href="#全批量梯度下降和随机梯度下降" class="headerlink" title="全批量梯度下降和随机梯度下降"></a>全批量梯度下降和随机梯度下降</h1><p>Gradient Descent的第二个变体通过使用相同的更新算法执行更新MLP的权重的相同工作，但差异在于用于更新权重和偏差的训练样本的数量。</p>
+<p>全部批量梯度下降算法作为名称意味着使用所有的训练数据点来更新每个权重一次，而随机渐变使用1个或更多（样本），但从不使整个训练数据更新权重一次。</p>
+<p>让我们用一个简单的例子来理解这个10个数据点的数据集，它们有两个权重w1和w2。</p>
+<ul>
+<li><p>全批：您可以使用10个数据点（整个训练数据），并计算w1（Δw1）的变化和w2（Δw2）的变化，并更新w1和w2。</p>
+</li>
+<li><p>SGD：使用第一个数据点并计算w1（Δw1）的变化，并改变w2（Δw2）并更新w1和w2。 接下来，当您使用第二个数据点时，您将处理更新的权重</p>
+</li>
+</ul>
+<h1 id="神经网络方法的步骤"><a href="#神经网络方法的步骤" class="headerlink" title="神经网络方法的步骤"></a>神经网络方法的步骤</h1><p><img src="https://i.loli.net/2017/07/24/59757fa6a6e02.png" alt="多层感知器" title="多层感知器"><br>我们来看一步一步地构建神经网络的方法（MLP与一个隐藏层，类似于上图所示的架构）。 在输出层，我们只有一个神经元，因为我们正在解决二进制分类问题（预测0或1）。 我们也可以有两个神经元来预测两个类的每一个。</p>
+<p>先看一下广泛的步骤：</p>
+<ol>
+<li><p>我们输入和输出</p>
+<ul>
+<li>X作为输入矩阵</li>
+<li>y作为输出矩阵</li>
+</ul>
+</li>
+<li><p>我们用随机值初始化权重和偏差（这是一次启动，在下一次迭代中，我们将使用更新的权重和偏差）。 让我们定义：</p>
+<ul>
+<li>wh作为权重矩阵隐藏层</li>
+<li>bh作为隐藏层的偏置矩阵</li>
+<li>wout作为输出层的权重矩阵</li>
+<li>bout作为偏置矩阵作为输出层</li>
+</ul>
+</li>
+<li><p>我们将输入和权重的矩阵点积分配给输入和隐藏层之间的边，然后将隐层神经元的偏差添加到相应的输入，这被称为线性变换：</p>
+<p>   <code>hidden_layer_input= matrix_dot_product(X,wh) + bh</code></p>
+</li>
+<li>使用激活函数（Sigmoid）执行非线性变换。 Sigmoid将返回输出1/(1 + exp(-x)).<br>   <code>hiddenlayer_activations = sigmoid(hidden_layer_input)</code></li>
+<li><p>对隐藏层激活进行线性变换（取矩阵点积，并加上输出层神经元的偏差），然后应用激活函数（再次使用Sigmoid，但是根据您的任务可以使用任何其他激活函数 ）来预测输出</p>
+<p>   <code>output_layer_input = matrix_dot_product (hiddenlayer_activations * wout ) + bout</code></p>
+<p>   <code>output = sigmoid(output_layer_input)</code></p>
+<p><strong>所有上述步骤被称为“前向传播”（Forward Propagation）</strong></p>
+</li>
+<li>将预测与实际输出进行比较，并计算误差梯度（实际预测值）。 误差是均方损失= ((Y-t)^2)/2<br>   <code>E = y – output</code></li>
+<li><p>计算隐藏和输出层神经元的斜率/斜率（为了计算斜率，我们计算每个神经元的每层的非线性激活x的导数）。 S形梯度可以返回 <code>x * (1 – x)</code>.</p>
+<p>   <code>slope_output_layer = derivatives_sigmoid(output)</code></p>
+<p>   <code>slope_hidden_layer = derivatives_sigmoid(hiddenlayer_activations)</code></p>
+</li>
+<li>计算输出层的变化因子（delta），取决于误差梯度乘以输出层激活的斜率<br>   <code>d_output = E * slope_output_layer</code></li>
+<li>在这一步，错误将传播回网络，这意味着隐藏层的错误。 为此，我们将采用输出层三角形的点积与隐藏层和输出层之间的边缘的重量参数（wout.T）。<br>   <code>Error_at_hidden_layer = matrix_dot_product(d_output, wout.Transpose)</code></li>
+<li>计算隐层的变化因子（delta），将隐层的误差乘以隐藏层激活的斜率<br>  <code>d_hiddenlayer = Error_at_hidden_layer * slope_hidden_layer</code></li>
+<li><p>在输出和隐藏层更新权重：网络中的权重可以从为训练示例计算的错误中更新。<br>   <code>wout = wout + matrix_dot_product(hiddenlayer_activations.Transpose, d_output)*learning_rate</code></p>
+<p>   <code>wh =  wh + matrix_dot_product(X.Transpose,d_hiddenlayer)*learning_rate</code><br>learning_rate：权重更新的量由称为学习率的配置参数控制）</p>
+</li>
+<li><p>在输出和隐藏层更新偏差：网络中的偏差可以从该神经元的聚合错误中更新。</p>
+<ul>
+<li>bias at output_layer =bias at output_layer + sum of delta of output_layer at row-wise * learning_rate</li>
+<li><p>bias at hidden_layer =bias at hidden_layer + sum of delta of output_layer at row-wise * learning_rate  </p>
+<p><code>bh = bh + sum(d_hiddenlayer, axis=0) * learning_rate</code></p>
+<p><code>bout = bout + sum(d_output, axis=0)*learning_rate</code></p>
+</li>
+</ul>
+<p><strong>从6到12的步骤被称为“向后传播”(Backward Propagation)</strong></p>
+</li>
+</ol>
+<p>一个正向和反向传播迭代被认为是一个训练周期。 如前所述，我们什么时候训练第二次，然后更新权重和偏差用于正向传播。</p>
+<p>以上，我们更新了隐藏和输出层的权重和偏差，我们使用了全批量梯度下降算法。</p>
+<h1 id="神经网络方法的可视化步骤"><a href="#神经网络方法的可视化步骤" class="headerlink" title="神经网络方法的可视化步骤"></a>神经网络方法的可视化步骤</h1><p>我们将重复上述步骤，可视化输入，权重，偏差，输出，误差矩阵，以了解神经网络（MLP）的工作方法。</p>
+<ul>
+<li><p><strong>注意：</strong></p>
+<ul>
+<li>对于良好的可视化图像，我有2或3个位置的十进制小数位。</li>
+<li>黄色填充的细胞代表当前活动细胞</li>
+<li>橙色单元格表示用于填充当前单元格值的输入</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>步骤1：读取输入和输出<br><img src="https://i.loli.net/2017/07/24/597588fe182b4.png" alt="Step 1"></li>
+<li>步骤2：用随机值初始化权重和偏差（有初始化权重和偏差的方法，但是现在用随机值初始化）<br><img src="https://i.loli.net/2017/07/24/597589475b8bb.png" alt="Step 2"></li>
+<li>步骤3：计算隐层输入： <br><br><code>hidden_layer_input= matrix_dot_product(X,wh) + bh</code><br><img src="https://i.loli.net/2017/07/24/597589a62c037.png" alt="Step 3"></li>
+<li>步骤4：对隐藏的线性输入进行非线性变换 <br><br><code>hiddenlayer_activations = sigmoid(hidden_layer_input)</code><br><img src="https://i.loli.net/2017/07/24/59758a0111ed8.png" alt="Step 4"></li>
+<li><p>步骤5：在输出层执行隐层激活的线性和非线性变换 <br><br><code>output_layer_input = matrix_dot_product (hiddenlayer_activations * wout ) + bout</code> <br><br><code>output = sigmoid(output_layer_input)</code><br><img src="https://i.loli.net/2017/07/24/59758a58893ba.png" alt="Step 5"></p>
+</li>
+<li><p>步骤6：计算输出层的误差（E）梯度 <br><br><code>E = y-output</code><br><img src="https://i.loli.net/2017/07/24/59758ad4a72ff.png" alt="Step 6"></p>
+</li>
+<li>步骤7：计算输出和隐藏层的斜率 <br><br><code>Slope_output_layer= derivatives_sigmoid(output)</code> <br><br><code>Slope_hidden_layer = derivatives_sigmoid(hiddenlayer_activations)</code><br><img src="https://i.loli.net/2017/07/24/59758b26893ef.png" alt="py26-10.png"></li>
+<li>步骤8：计算输出层的增量 <br><br><code>d_output = E * slope_output_layer*lr</code><br><img src="https://i.loli.net/2017/07/24/59758b61227a9.png" alt="py26-11.png"></li>
+<li>步骤9：计算隐藏层的误差 <br><br><code>Error_at_hidden_layer = matrix_dot_product(d_output, wout.Transpose)</code><br><img src="https://i.loli.net/2017/07/24/59758ba276123.png" alt="py26-12.png"></li>
+<li>步骤10：计算隐藏层的增量 <br><br><code>d_hiddenlayer = Error_at_hidden_layer * slope_hidden_layer</code><br><img src="https://i.loli.net/2017/07/24/59758bd705865.png" alt="py26-13.png"></li>
+<li>步骤11：更新输出和隐藏层的权重 <br><br><code>wout = wout + matrix_dot_product(hiddenlayer_activations.Transpose, d_output)*learning_rate</code> <br><br><code>wh =  wh+ matrix_dot_product(X.Transpose,d_hiddenlayer)*learning_rate</code><br><img src="https://i.loli.net/2017/07/24/59758c13cc478.png" alt="py26-14.png"></li>
+<li>步骤12：更新输出和隐藏层的偏置量<br><br><code>bh = bh + sum(d_hiddenlayer, axis=0) * learning_rate</code><br><br><code>bout = bout + sum(d_output, axis=0)*learning_rate</code><br><img src="https://i.loli.net/2017/07/24/59758c71210be.png" alt="py26-15.png"></li>
+</ul>
+<p>以上，您可以看到仍然有一个很好的误差而不接近于实际目标值，因为我们已经完成了一次训练迭代。 如果我们多次训练模型，那么这将是一个非常接近的实际结果。 我完成了数千次迭代，我的结果接近实际的目标值（<code>[[0.98032096] [0.96845624] [0.04532167]]</code>）。</p>
+<h1 id="使用Numpy（Python）实现NN"><a href="#使用Numpy（Python）实现NN" class="headerlink" title="使用Numpy（Python）实现NN"></a>使用Numpy（Python）实现NN</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line"><span class="comment">#Input array</span></div><div class="line">X=np.array([[<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>],[<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>],[<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>]])</div><div class="line"></div><div class="line"><span class="comment">#Output</span></div><div class="line">y=np.array([[<span class="number">1</span>],[<span class="number">1</span>],[<span class="number">0</span>]])</div><div class="line"></div><div class="line"><span class="comment">#Sigmoid Function</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">sigmoid</span> <span class="params">(x)</span>:</span></div><div class="line">    <span class="keyword">return</span> <span class="number">1</span>/(<span class="number">1</span> + np.exp(-x))</div><div class="line"></div><div class="line"><span class="comment">#Derivative of Sigmoid Function</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">derivatives_sigmoid</span><span class="params">(x)</span>:</span></div><div class="line">    <span class="keyword">return</span> x * (<span class="number">1</span> - x)</div><div class="line"></div><div class="line"><span class="comment">#Variable initialization</span></div><div class="line">epoch=<span class="number">5000</span> <span class="comment">#Setting training iterations</span></div><div class="line">lr=<span class="number">0.1</span> <span class="comment">#Setting learning rate</span></div><div class="line">inputlayer_neurons = X.shape[<span class="number">1</span>] <span class="comment">#number of features in data set</span></div><div class="line">hiddenlayer_neurons = <span class="number">3</span> <span class="comment">#number of hidden layers neurons</span></div><div class="line">output_neurons = <span class="number">1</span> <span class="comment">#number of neurons at output layer</span></div><div class="line"></div><div class="line"><span class="comment">#weight and bias initialization</span></div><div class="line">wh=np.random.uniform(size=(inputlayer_neurons,hiddenlayer_neurons))</div><div class="line">bh=np.random.uniform(size=(<span class="number">1</span>,hiddenlayer_neurons))</div><div class="line">wout=np.random.uniform(size=(hiddenlayer_neurons,output_neurons))</div><div class="line">bout=np.random.uniform(size=(<span class="number">1</span>,output_neurons))</div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(epoch):</div><div class="line">    <span class="comment">#Forward Propogation</span></div><div class="line">    hidden_layer_input1=np.dot(X,wh)</div><div class="line">    hidden_layer_input=hidden_layer_input1 + bh</div><div class="line">    hiddenlayer_activations = sigmoid(hidden_layer_input)</div><div class="line">    output_layer_input1=np.dot(hiddenlayer_activations,wout)</div><div class="line">    output_layer_input= output_layer_input1+ bout</div><div class="line">    output = sigmoid(output_layer_input)</div><div class="line">    <span class="comment">#Backpropagation</span></div><div class="line">    E = y-output</div><div class="line">    slope_output_layer = derivatives_sigmoid(output)</div><div class="line">    slope_hidden_layer = derivatives_sigmoid(hiddenlayer_activations)</div><div class="line">    d_output = E * slope_output_layer</div><div class="line">    Error_at_hidden_layer = d_output.dot(wout.T)</div><div class="line">    d_hiddenlayer = Error_at_hidden_layer * slope_hidden_layer</div><div class="line">    wout += hiddenlayer_activations.T.dot(d_output) *lr</div><div class="line">    bout += np.sum(d_output, axis=<span class="number">0</span>,keepdims=<span class="keyword">True</span>) *lr</div><div class="line">    wh += X.T.dot(d_hiddenlayer) *lr</div><div class="line">    bh += np.sum(d_hiddenlayer, axis=<span class="number">0</span>,keepdims=<span class="keyword">True</span>) *lr</div><div class="line"></div><div class="line">print(<span class="string">"output of Forward Propogation:\n&#123;&#125;"</span>.format(output))</div><div class="line">print(<span class="string">"wout,bout of Backpropagation:\n&#123;&#125;,\n&#123;&#125;"</span>.format(wout,bout))</div></pre></td></tr></table></figure>
+<pre><code>output of Forward Propogation:
+[[ 0.98497471]
+ [ 0.96956956]
+ [ 0.0416628 ]]
+wout,bout of Backpropagation:
+[[ 3.34342103]
+ [-1.97924327]
+ [ 3.90636787]],
+[[-1.71231223]]
+</code></pre><h1 id="在R中实现NN"><a href="#在R中实现NN" class="headerlink" title="在R中实现NN"></a>在R中实现NN</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># input matrix</span></div><div class="line">X=matrix(c(<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>),nrow = <span class="number">3</span>, ncol=<span class="number">4</span>,byrow = TRUE)</div><div class="line"></div><div class="line"><span class="comment"># output matrix</span></div><div class="line">Y=matrix(c(<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>),byrow=FALSE)</div><div class="line"></div><div class="line"><span class="comment">#sigmoid function</span></div><div class="line">sigmoid&lt;-function(x)&#123;</div><div class="line"><span class="number">1</span>/(<span class="number">1</span>+exp(-x))</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment"># derivative of sigmoid function</span></div><div class="line">derivatives_sigmoid&lt;-function(x)&#123;</div><div class="line">x*(<span class="number">1</span>-x)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment"># variable initialization</span></div><div class="line">epoch=<span class="number">5000</span></div><div class="line">lr=<span class="number">0.1</span></div><div class="line">inputlayer_neurons=ncol(X)</div><div class="line">hiddenlayer_neurons=<span class="number">3</span></div><div class="line">output_neurons=<span class="number">1</span></div><div class="line"></div><div class="line"><span class="comment">#weight and bias initialization</span></div><div class="line">wh=matrix( rnorm(inputlayer_neurons*hiddenlayer_neurons,mean=<span class="number">0</span>,sd=<span class="number">1</span>), inputlayer_neurons, hiddenlayer_neurons)</div><div class="line">bias_in=runif(hiddenlayer_neurons)</div><div class="line">bias_in_temp=rep(bias_in, nrow(X))</div><div class="line">bh=matrix(bias_in_temp, nrow = nrow(X), byrow = FALSE)</div><div class="line">wout=matrix( rnorm(hiddenlayer_neurons*output_neurons,mean=<span class="number">0</span>,sd=<span class="number">1</span>), hiddenlayer_neurons, output_neurons)</div><div class="line"></div><div class="line">bias_out=runif(output_neurons)</div><div class="line">bias_out_temp=rep(bias_out,nrow(X))</div><div class="line">bout=matrix(bias_out_temp,nrow = nrow(X),byrow = FALSE)</div><div class="line"><span class="comment"># forward propagation</span></div><div class="line"><span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:epoch)&#123;</div><div class="line"></div><div class="line">hidden_layer_input1= X%*%wh</div><div class="line">hidden_layer_input=hidden_layer_input1+bh</div><div class="line">hidden_layer_activations=sigmoid(hidden_layer_input)</div><div class="line">output_layer_input1=hidden_layer_activations%*%wout</div><div class="line">output_layer_input=output_layer_input1+bout</div><div class="line">output= sigmoid(output_layer_input)</div><div class="line"></div><div class="line"><span class="comment"># Back Propagation</span></div><div class="line"></div><div class="line">E=Y-output</div><div class="line">slope_output_layer=derivatives_sigmoid(output)</div><div class="line">slope_hidden_layer=derivatives_sigmoid(hidden_layer_activations)</div><div class="line">d_output=E*slope_output_layer</div><div class="line">Error_at_hidden_layer=d_output%*%t(wout)</div><div class="line">d_hiddenlayer=Error_at_hidden_layer*slope_hidden_layer</div><div class="line">wout= wout + (t(hidden_layer_activations)%*%d_output)*lr</div><div class="line">bout= bout+rowSums(d_output)*lr</div><div class="line">wh = wh +(t(X)%*%d_hiddenlayer)*lr</div><div class="line">bh = bh + rowSums(d_hiddenlayer)*lr</div><div class="line"></div><div class="line">&#125;</div><div class="line">output</div></pre></td></tr></table></figure>
+<h1 id="可选-反向传播算法的数学理解"><a href="#可选-反向传播算法的数学理解" class="headerlink" title="[可选]反向传播算法的数学理解"></a>[可选]反向传播算法的数学理解</h1><p>设Wi为输入层和隐层之间的权重。 Wh是隐层和输出层之间的权重。</p>
+<p>现在，<code>h =σ（u）=σ（WiX）</code>，即h是u的函数，u是Wi和X的函数。这里我们将我们的函数表示为σ</p>
+<p><code>Y =σ（u&#39;）=σ（Whh）</code>，即Y是u’的函数，u’是Wh和h的函数。</p>
+<p>我们将不断参考上述方程来计算偏导数。</p>
+<p>我们主要感兴趣的是找到两个项：∂E/∂Wi和∂E/∂Wh即改变输入和隐藏层之间权重的误差变化，改变隐层和输出之间权重的变化 层。</p>
+<p>但是为了计算这两个偏导数，我们将需要使用部分微分的链规则，因为E是Y的函数，Y是u’的函数，u’是Wi的函数。</p>
+<p>让我们把这个属性很好的用于计算梯度。</p>
+<p>`∂E/∂Wh = (∂E/∂Y).( ∂Y/∂u’).( ∂u’/∂Wh), ……..(1)</p>
+<p>We know E is of the form E=(Y-t)2/2.</p>
+<p>So, (∂E/∂Y)= (Y-t)`</p>
+<p>现在，σ是一个S形函数，并具有σ（1-σ）形式的有意义的区分。 我敦促读者在他们身边进行验证。<br>所以, <code>(∂Y/∂u’)= ∂( σ(u’)/ ∂u’= σ(u’)(1- σ(u’))</code>.</p>
+<p>但是, <code>σ(u’)=Y, So</code>,</p>
+<p><code>(∂Y/∂u’)=Y(1-Y)</code></p>
+<p>现在得出, <code>( ∂u’/∂Wh)= ∂( Whh)/ ∂Wh = h</code></p>
+<p>取代等式（1）中的值我们得到，</p>
+<p><code>∂E/∂Wh = (Y-t). Y(1-Y).h</code></p>
+<p>所以，现在我们已经计算了隐层和输出层之间的梯度。 现在是计算输入层和隐藏层之间的梯度的时候了。<br><code>∂E/∂Wi =(∂ E/∂ h). (∂h/∂u).( ∂u/∂Wi)</code><br>但是，<code>(∂ E/∂ h) = (∂E/∂Y).( ∂Y/∂u’).( ∂u’/∂h)</code>. 在上述方程中替换这个值得到：</p>
+<p><code>∂E/∂Wi =[(∂E/∂Y).( ∂Y/∂u’).( ∂u’/∂h)]. (∂h/∂u).( ∂u/∂Wi)……………(2)</code><br>那么，首先计算隐层和输出层之间的梯度有什么好处？</p>
+<p>如等式（2）所示，我们已经计算出∂E/∂Y和∂Y/∂u’节省了空间和计算时间。 我们会在一段时间内知道为什么这个算法称为反向传播算法。</p>
+<p>让我们计算公式（2）中的未知导数。</p>
+<p><code>∂u’/∂h = ∂(Whh)/ ∂h = Wh</code></p>
+<p><code>∂h/∂u = ∂( σ(u)/ ∂u= σ(u)(1- σ(u))</code></p>
+<p>但是, <code>σ(u)=h, So,</code></p>
+<p><code>(∂Y/∂u)=h(1-h)</code></p>
+<p>得出, <code>∂u/∂Wi = ∂(WiX)/ ∂Wi = X</code></p>
+<p>取代等式（2）中的所有这些值，我们得到：<br><br><code>∂E/∂Wi = [(Y-t). Y(1-Y).Wh].h(1-h).X</code></p>
+<p>所以现在，由于我们已经计算了两个梯度，所以权重可以更新为:</p>
+<p><code>Wh = Wh + η . ∂E/∂Wh</code></p>
+<p> <code>Wi = Wi + η . ∂E/∂Wi</code></p>
+<p>其中η是学习率。</p>
+<p>所以回到这个问题：为什么这个算法叫做反向传播算法？</p>
+<p>原因是：如果您注意到∂E/∂Wh和∂E/∂Wi的最终形式，您将看到术语（Yt）即输出错误，这是我们开始的，然后将其传播回输入 层重量更新。</p>
+<p>那么，这个数学在哪里适合代码？</p>
+<p><code>hiddenlayer_activations= H</code></p>
+<p><code>E = Y-t</code></p>
+<p><code>Slope_output_layer = Y（1-Y）</code></p>
+<p><code>lr =η</code></p>
+<p><code>slope_hidden_layer = h（1-h）</code></p>
+<p><code>wout = Wh</code></p>
+<p>现在，您可以轻松地将代码与数学联系起来。</p>
+<h1 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h1><p>本文主要从头开始构建神经网络，并了解其基本概念。 我希望你现在可以理解神经网络的工作，如前向和后向传播的工作，优化算法（全批次和随机梯度下降），如何更新权重和偏差，Excel中每个步骤的可视化以及建立在python和R的代码.</p>
+<p>因此，在即将到来的文章中，我将解释在Python中使用神经网络的应用，并解决与以下问题相关的现实生活中的挑战：</p>
+<ol>
+<li>计算机视觉</li>
+<li>言语</li>
+<li>自然语言处理</li>
+</ol>
+<p>我在写这篇文章的时候感到很愉快，并希望从你的反馈中学习。 你觉得这篇文章有用吗？ 感谢您的建议/意见。 请随时通过以下意见提出您的问题。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">（转载请注明来源）</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本篇文章是&lt;a href=&quot;https://www.analyticsvidhya.com/blog/2017/05/neural-network-from-scratch-in-python-and-r/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;原
     
     </summary>
     
