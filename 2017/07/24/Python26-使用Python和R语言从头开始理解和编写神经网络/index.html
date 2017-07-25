@@ -15,12 +15,12 @@
 
 
 
-<meta name="description" content="本篇文章是原文的翻译过来的，自己在学习和阅读之后觉得文章非常不错，文章结构清晰，由浅入深、从理论到代码实现，最终将神经网络的概念和工作流程呈现出来。">
+<meta name="description" content="本篇文章是原文的翻译过来的，自己在学习和阅读之后觉得文章非常不错，文章结构清晰，由浅入深、从理论到代码实现，最终将神经网络的概念和工作流程呈现出来。自己将其翻译成中文，以便以后阅读和复习和网友参考。因时间（文字纯手打加配图）紧促和翻译水平有限，文章有不足之处请大家指正。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Python和R语言从头开始理解和编写神经网络">
 <meta property="og:url" content="http://yoursite.com/2017/07/24/Python26-使用Python和R语言从头开始理解和编写神经网络/index.html">
 <meta property="og:site_name" content="yanqiangmiffy">
-<meta property="og:description" content="本篇文章是原文的翻译过来的，自己在学习和阅读之后觉得文章非常不错，文章结构清晰，由浅入深、从理论到代码实现，最终将神经网络的概念和工作流程呈现出来。">
+<meta property="og:description" content="本篇文章是原文的翻译过来的，自己在学习和阅读之后觉得文章非常不错，文章结构清晰，由浅入深、从理论到代码实现，最终将神经网络的概念和工作流程呈现出来。自己将其翻译成中文，以便以后阅读和复习和网友参考。因时间（文字纯手打加配图）紧促和翻译水平有限，文章有不足之处请大家指正。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.loli.net/2017/07/24/59756c063bbec.png">
 <meta property="og:image" content="https://i.loli.net/2017/07/24/59757bc8a16d3.png">
@@ -38,10 +38,10 @@
 <meta property="og:image" content="https://i.loli.net/2017/07/24/59758bd705865.png">
 <meta property="og:image" content="https://i.loli.net/2017/07/24/59758c13cc478.png">
 <meta property="og:image" content="https://i.loli.net/2017/07/24/59758c71210be.png">
-<meta property="og:updated_time" content="2017-07-25T08:59:18.328Z">
+<meta property="og:updated_time" content="2017-07-25T09:11:05.593Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Python和R语言从头开始理解和编写神经网络">
-<meta name="twitter:description" content="本篇文章是原文的翻译过来的，自己在学习和阅读之后觉得文章非常不错，文章结构清晰，由浅入深、从理论到代码实现，最终将神经网络的概念和工作流程呈现出来。">
+<meta name="twitter:description" content="本篇文章是原文的翻译过来的，自己在学习和阅读之后觉得文章非常不错，文章结构清晰，由浅入深、从理论到代码实现，最终将神经网络的概念和工作流程呈现出来。自己将其翻译成中文，以便以后阅读和复习和网友参考。因时间（文字纯手打加配图）紧促和翻译水平有限，文章有不足之处请大家指正。">
 <meta name="twitter:image" content="https://i.loli.net/2017/07/24/59756c063bbec.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
@@ -310,8 +310,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><excerpt in="" index="" |="" 首页摘要=""><br>本篇文章是<a href="https://www.analyticsvidhya.com/blog/2017/05/neural-network-from-scratch-in-python-and-r/" target="_blank" rel="external">原文</a>的翻译过来的，自己在学习和阅读之后觉得文章非常不错，文章结构清晰，由浅入深、从理论到代码实现，最终将神经网络的概念和工作流程呈现出来。<br><a id="more"></a></excerpt></p>
-<p>本篇文章是<a href="https://www.analyticsvidhya.com/blog/2017/05/neural-network-from-scratch-in-python-and-r/" target="_blank" rel="external">原文</a>的翻译过来的，自己在学习和阅读之后觉得文章非常不错，文章结构清晰，由浅入深、从理论到代码实现，最终将神经网络的概念和工作流程呈现出来。自己将其翻译成中文，以便以后阅读和复习和网友参考。因时间（文字纯手打加配图）紧促和翻译水平有限，文章有不足之处请大家指正。</p>
+        <p><excerpt in="" index="" |="" 首页摘要=""><br>本篇文章是<a href="https://www.analyticsvidhya.com/blog/2017/05/neural-network-from-scratch-in-python-and-r/" target="_blank" rel="external">原文</a>的翻译过来的，自己在学习和阅读之后觉得文章非常不错，文章结构清晰，由浅入深、从理论到代码实现，最终将神经网络的概念和工作流程呈现出来。自己将其翻译成中文，以便以后阅读和复习和网友参考。因时间（文字纯手打加配图）紧促和翻译水平有限，文章有不足之处请大家指正。<br><a id="more"></a></excerpt></p>
 <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>你可以通过两种方式学习和实践一个概念：</p>
 <ul>
 <li>选项1：您可以了解一个特定主题的整个理论，然后寻找应用这些概念的方法。所以，你阅读整个算法的工作原理，背后的数学知识、假设理论、局限，然后去应用它。这样学习稳健但是需要花费大量的时间去准备。</li>
@@ -509,7 +508,7 @@ wout,bout of Backpropagation:
         <p><span>本文标题:</span><a href="/2017/07/24/Python26-使用Python和R语言从头开始理解和编写神经网络/">使用Python和R语言从头开始理解和编写神经网络</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">致Great</a></p>
         <p><span>发布时间:</span>2017-07-24, 14:46:25</p>
-        <p><span>最后更新:</span>2017-07-25, 08:59:18</p>
+        <p><span>最后更新:</span>2017-07-25, 09:11:05</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/07/24/Python26-使用Python和R语言从头开始理解和编写神经网络/" title="使用Python和R语言从头开始理解和编写神经网络">http://yoursite.com/2017/07/24/Python26-使用Python和R语言从头开始理解和编写神经网络/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/07/24/Python26-使用Python和R语言从头开始理解和编写神经网络/　　作者: 致Great" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
