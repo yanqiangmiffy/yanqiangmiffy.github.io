@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-25T08:54:50.876Z</updated>
+  <updated>2017-07-25T08:59:18.344Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,8 +19,8 @@
     <title>我会自动改变</title>
     <link href="http://yoursite.com/2017/07/25/hello-world/"/>
     <id>http://yoursite.com/2017/07/25/hello-world/</id>
-    <published>2017-07-25T08:54:50.876Z</published>
-    <updated>2017-07-25T08:54:50.876Z</updated>
+    <published>2017-07-25T08:59:18.328Z</published>
+    <updated>2017-07-25T08:59:18.344Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>我会自动改变<br>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.<br><a id="more"></a><br>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</excerpt></p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
@@ -47,7 +47,7 @@
     <link href="http://yoursite.com/2017/07/24/Keras02-MNIST%E6%89%8B%E5%86%99%E5%AE%9E%E4%BE%8B/"/>
     <id>http://yoursite.com/2017/07/24/Keras02-MNIST手写实例/</id>
     <published>2017-07-24T14:54:03.000Z</published>
-    <updated>2017-07-25T08:54:50.876Z</updated>
+    <updated>2017-07-25T08:59:18.328Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>Keras实现简单的手写数字识别：构建模型、编译模型、训练数据、输出<br><a id="more"></a></excerpt></p>
 <p><a href="http://www.cnblogs.com/yqtm/p/6924939.html" target="_blank" rel="external">参考</a><br>文中代码有点小bug,加以改正。顺带才了下数据集的坑</p>
@@ -385,10 +385,10 @@ The accuracy of the model is 0.943400
   
   <entry>
     <title>使用Python和R语言从头开始理解和编写神经网络</title>
-    <link href="http://yoursite.com/2013/07/24/Python26-%E4%BD%BF%E7%94%A8Python%E5%92%8CR%E8%AF%AD%E8%A8%80%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B%E7%90%86%E8%A7%A3%E5%92%8C%E7%BC%96%E5%86%99%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
-    <id>http://yoursite.com/2013/07/24/Python26-使用Python和R语言从头开始理解和编写神经网络/</id>
-    <published>2013-07-24T14:46:25.000Z</published>
-    <updated>2017-07-25T08:54:50.876Z</updated>
+    <link href="http://yoursite.com/2017/07/24/Python26-%E4%BD%BF%E7%94%A8Python%E5%92%8CR%E8%AF%AD%E8%A8%80%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B%E7%90%86%E8%A7%A3%E5%92%8C%E7%BC%96%E5%86%99%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    <id>http://yoursite.com/2017/07/24/Python26-使用Python和R语言从头开始理解和编写神经网络/</id>
+    <published>2017-07-24T14:46:25.000Z</published>
+    <updated>2017-07-25T08:59:18.328Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>本篇文章是<a href="https://www.analyticsvidhya.com/blog/2017/05/neural-network-from-scratch-in-python-and-r/" target="_blank" rel="external">原文</a>的翻译过来的，自己在学习和阅读之后觉得文章非常不错，文章结构清晰，由浅入深、从理论到代码实现，最终将神经网络的概念和工作流程呈现出来。<br><a id="more"></a></excerpt></p>
 <p>本篇文章是<a href="https://www.analyticsvidhya.com/blog/2017/05/neural-network-from-scratch-in-python-and-r/" target="_blank" rel="external">原文</a>的翻译过来的，自己在学习和阅读之后觉得文章非常不错，文章结构清晰，由浅入深、从理论到代码实现，最终将神经网络的概念和工作流程呈现出来。自己将其翻译成中文，以便以后阅读和复习和网友参考。因时间（文字纯手打加配图）紧促和翻译水平有限，文章有不足之处请大家指正。</p>
