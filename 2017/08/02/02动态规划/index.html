@@ -15,13 +15,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="yanqiangmiffy">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta name="description" content="文中主要总结动态规划的01背包问题以及相关实例，然后通过c++解决问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态规划">
+<meta property="og:url" content="http://yoursite.com/2017/08/02/02动态规划/index.html">
 <meta property="og:site_name" content="yanqiangmiffy">
+<meta property="og:description" content="文中主要总结动态规划的01背包问题以及相关实例，然后通过c++解决问题">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-02T10:37:22.016Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="yanqiangmiffy">
+<meta name="twitter:title" content="动态规划">
+<meta name="twitter:description" content="文中主要总结动态规划的01背包问题以及相关实例，然后通过c++解决问题">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -53,7 +57,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Archives | yanqiangmiffy</title>
+<title>动态规划 | yanqiangmiffy</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -63,8 +67,8 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
-        isArchive: true,
+        isPost: true,
+        isArchive: false,
         isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
@@ -253,255 +257,168 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-02动态规划" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2017/08/02/02动态规划/" class="article-date">
+      <time datetime="2017-08-02T16:00:25.000Z" itemprop="datePublished">2017-08-02</time>
+</a>
+
+
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      动态规划
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/08/02/02动态规划/" class="archive-article-date">
-      <time datetime="2017-08-02T16:00:25.000Z" itemprop="datePublished">08-02</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/02/02动态规划/">动态规划</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
+    <div class="article-entry" itemprop="articleBody">
+      
           
+        <p><excerpt in="" index="" |="" 首页摘要=""><br>文中主要总结动态规划的01背包问题以及相关实例，然后通过c++解决问题<br><a id="more"></a></excerpt></p>
+<h1 id="一、背包问题"><a href="#一、背包问题" class="headerlink" title="一、背包问题"></a>一、背包问题</h1><h2 id="01背包问题"><a href="#01背包问题" class="headerlink" title="01背包问题"></a>01背包问题</h2><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
+<p>有N件物品和一个容积为<code>V</code>的背包。第<code>i</code>件物品的体积是<code>c[i]</code>，价值是<code>w[i]</code>。求解将哪些物品装入背包可使价值总和最大。</p>
+<h2 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h2><p>这是最基础的背包问题，特点是：每种物品仅有一件，可以选择放或不放。<br>用子问题定义状态：即<code>f[i][v]</code>表示前<code>i</code>件物品恰放入一个容量为<code>v</code>的背包可以获得的最大价值。则其状态转移方程便是：</p>
+</blockquote>
+<ul>
+<li>二维方程：<code>f[i][v]=max(f[i-1][v],f[i-1][v-c[i]]+w[i])</code></li>
+<li>一维方程：<code>f[v]=max(f[v],f[v-c[i]]+w[i])</code><br><strong>状态转移方程解释</strong>：“将前<code>i</code>件物品放入容量为v的背包中”这个子问题，若只考虑第<code>i</code>件物品放或不放，那么就可以转化为一个只牵扯前<code>i-1</code>件物品的问题。如果不放第i件物品，那么问题就转化为“前<code>i-1</code>件物品放入容量为v的背包中”，价值为<code>f[i-1][v]</code>；如果放第i件物品，那么问题就转化为“前i-1件物品放入剩下的容量为<code>v-c[i]</code>的背包中”，此时能获得的最大价值就是<code>f[i-1][v-c[i]]</code>再加上通过放入第i件物品获得的价值<code>w[i]</code>。<br>(待续。。。。。)</li>
+</ul>
 
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    
   </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/08/02/02动态规划/">动态规划</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">致Great</a></p>
+        <p><span>发布时间:</span>2017-08-02, 16:00:25</p>
+        <p><span>最后更新:</span>2017-08-02, 10:37:22</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/08/02/02动态规划/" title="动态规划">http://yoursite.com/2017/08/02/02动态规划/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/08/02/02动态规划/　　作者: 致Great" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/08/02/hello-world/">
+                    我会自动改变
+                </a>
+            </div>
+        
+    </nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/08/02/hello-world/" class="archive-article-date">
-      <time datetime="2017-08-02T10:37:22.032Z" itemprop="datePublished">08-02</time>
-</a>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、背包问题"><span class="toc-number">1.</span> <span class="toc-text">一、背包问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#01背包问题"><span class="toc-number">1.1.</span> <span class="toc-text">01背包问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-number">1.2.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本思路"><span class="toc-number">1.3.</span> <span class="toc-text">基本思路</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
 
 
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
         </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/02/hello-world/">我会自动改变</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"动态规划　| yanqiangmiffy　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
     
+
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/08/01/01排序问题/" class="archive-article-date">
-      <time datetime="2017-08-01T16:00:25.000Z" itemprop="datePublished">08-01</time>
-</a>
+</div>
 
 
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/01/01排序问题/">排序算法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/07/29/HDU1009-FatMouse' Trade/" class="archive-article-date">
-      <time datetime="2017-07-29T14:54:03.000Z" itemprop="datePublished">07-29</time>
-</a>
 
 
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/29/HDU1009-FatMouse' Trade/">HDU1009-FatMouse&#39; Trade</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/07/26/Keras04-白酒和红酒实例/" class="archive-article-date">
-      <time datetime="2017-07-26T15:51:25.000Z" itemprop="datePublished">07-26</time>
-</a>
 
 
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/26/Keras04-白酒和红酒实例/">Kera实例：预测白酒和红酒的质量</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/07/26/Python28-机器学习算法的基本知识（使用Python和R代码）/" class="archive-article-date">
-      <time datetime="2017-07-26T15:51:25.000Z" itemprop="datePublished">07-26</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/26/Python28-机器学习算法的基本知识（使用Python和R代码）/">机器学习算法的基本知识（使用Python和R代码）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/07/24/Keras02-MNIST手写实例/" class="archive-article-date">
-      <time datetime="2017-07-24T14:54:03.000Z" itemprop="datePublished">07-24</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/24/Keras02-MNIST手写实例/">Keras实现简单的手写数字识别</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/07/24/Python26-使用Python和R语言从头开始理解和编写神经网络/" class="archive-article-date">
-      <time datetime="2017-07-24T14:46:25.000Z" itemprop="datePublished">07-24</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/24/Python26-使用Python和R语言从头开始理解和编写神经网络/">使用Python和R语言从头开始理解和编写神经网络</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
     
 
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/08/02/hello-world/" title="下一篇: 我会自动改变">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/08/02/02动态规划/">动态规划</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/02/hello-world/">我会自动改变</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/01/01排序问题/">排序算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/29/HDU1009-FatMouse' Trade/">HDU1009-FatMouse' Trade</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/26/Keras04-白酒和红酒实例/">Kera实例：预测白酒和红酒的质量</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/26/Python28-机器学习算法的基本知识（使用Python和R代码）/">机器学习算法的基本知识（使用Python和R代码）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/Keras02-MNIST手写实例/">Keras实现简单的手写数字识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/Python26-使用Python和R语言从头开始理解和编写神经网络/">使用Python和R语言从头开始理解和编写神经网络</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
