@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="致Great" />
+
+
+
+<meta name="description" content="用Keras构建基本的前馈神经网络以及借助卷积层逐步优化预测结果，从海量图片中预测印度人们的年龄。目前结果为（0.750904）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Keras构建卷积神经网络预测“阿三”的年龄">
+<meta property="og:url" content="http://yoursite.com/2017/08/03/03AgeDetection/index.html">
+<meta property="og:site_name" content="yanqiangmiffy">
+<meta property="og:description" content="用Keras构建基本的前馈神经网络以及借助卷积层逐步优化预测结果，从海量图片中预测印度人们的年龄。目前结果为（0.750904）">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/06/27022332/mid3.png">
+<meta property="og:image" content="https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/06/27022132/y2.png">
+<meta property="og:image" content="https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/06/27022442/old1.png">
+<meta property="og:image" content="https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/06/27022313/mid1.png">
+<meta property="og:image" content="https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/06/27022102/side1.png">
+<meta property="og:image" content="https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/06/27022113/try1.png">
+<meta property="og:image" content="https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/06/27022450/pixel1.png">
+<meta property="og:image" content="https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/06/27022151/contra1.png">
+<meta property="og:image" content="https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/06/27022200/contra2.png">
+<meta property="og:updated_time" content="2017-08-03T09:53:05.086Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Keras构建卷积神经网络预测“阿三”的年龄">
+<meta name="twitter:description" content="用Keras构建基本的前馈神经网络以及借助卷积层逐步优化预测结果，从海量图片中预测印度人们的年龄。目前结果为（0.750904）">
+<meta name="twitter:image" content="https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/06/27022332/mid3.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="yanqiangmiffy" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>使用Keras构建卷积神经网络预测“阿三”的年龄 | yanqiangmiffy</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">致Great</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">致Great</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">致Great</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-03AgeDetection" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/08/03/03AgeDetection/" class="article-date">
+      <time datetime="2017-08-03T17:45:25.000Z" itemprop="datePublished">2017-08-03</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用Keras构建卷积神经网络预测“阿三”的年龄
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><excerpt in="" index="" |="" 首页摘要=""><br>用Keras构建基本的前馈神经网络以及借助卷积层逐步优化预测结果，从海量图片中预测印度人们的年龄。目前结果为（0.750904）<br><a id="more"></a></excerpt></p>
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>我们的任务是从一个人的面部特征来预测他的年龄(用“Young”“Middle ”“Old”表示)，我们训练的数据集大约有19906多张照片及其每张图片对应的年龄（全是阿三的头像。。。），测试集有6636张图片，首先我们加载数据集，然后我们通过深度学习框架Keras建立、编译、训练模型，预测出6636张人物头像对应的年龄</p>
+<h1 id="引入所需要模块"><a href="#引入所需要模块" class="headerlink" title="引入所需要模块"></a>引入所需要模块</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> random</div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</div></pre></td></tr></table></figure>
+<h1 id="加载数据集"><a href="#加载数据集" class="headerlink" title="加载数据集"></a>加载数据集</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">root_dir=os.path.abspath(<span class="string">'E:/data/age'</span>)</div><div class="line">train=pd.read_csv(os.path.join(root_dir,<span class="string">'train.csv'</span>))</div><div class="line">test=pd.read_csv(os.path.join(root_dir,<span class="string">'test.csv'</span>))</div><div class="line"></div><div class="line">print(train.head())</div><div class="line">print(test.head())</div></pre></td></tr></table></figure>
+<pre><code>          ID   Class
+0    377.jpg  MIDDLE
+1  17814.jpg   YOUNG
+2  21283.jpg  MIDDLE
+3  16496.jpg   YOUNG
+4   4487.jpg  MIDDLE
+          ID
+0  25321.jpg
+1    989.jpg
+2  19277.jpg
+3  13093.jpg
+4   5367.jpg
+</code></pre><h2 id="随机读取一张图片试下（☺）"><a href="#随机读取一张图片试下（☺）" class="headerlink" title="随机读取一张图片试下（☺）"></a>随机读取一张图片试下（☺）</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">i=random.choice(train.index)</div><div class="line">img_name=train.ID[i]</div><div class="line">print(img_name)</div><div class="line">img=Image.open(os.path.join(root_dir,<span class="string">'Train'</span>,img_name))</div><div class="line">img.show()</div><div class="line">print(train.Class[i])</div></pre></td></tr></table></figure>
+<pre><code>20188.jpg
+MIDDLE
+</code></pre><h2 id="难点"><a href="#难点" class="headerlink" title="难点"></a>难点</h2><p>我们随机打开几张图片之后，可以发现图片之间的差别比较大。大家感受下：</p>
+<ol>
+<li><p>质量好的图片：</p>
+<ul>
+<li>Middle:<img src="https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/06/27022332/mid3.png" alt="**Middle**"></li>
+<li>Young:<img src="https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/06/27022132/y2.png" alt="**Young**"></li>
+<li>Old:<img src="https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/06/27022442/old1.png" alt="**Old**"></li>
+</ul>
+</li>
+<li>质量差的：<ul>
+<li>Middle:<img src="https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/06/27022313/mid1.png" alt="**Middle**"></li>
+</ul>
+</li>
+</ol>
+<p>下面是我们需要面临的问题：</p>
+<ol>
+<li>图片的尺寸差别：有的图片的尺寸是66x46,而另一张图片尺寸为102x87</li>
+<li>人物面貌角度不同：<ul>
+<li>侧脸：<img src="https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/06/27022102/side1.png" alt=""></li>
+<li>正脸：<img src="https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/06/27022113/try1.png" alt=""></li>
+</ul>
+</li>
+<li>图片质量不一（直接上图）:<br> <img src="https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/06/27022450/pixel1.png" alt="插图"></li>
+<li>亮度和对比度的差异<br> <img src="https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/06/27022151/contra1.png" alt="亮度"><br> <img src="https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/06/27022200/contra2.png" alt="对比度"><br>现在，我们只专注下图片尺寸处理，将每一张图片尺寸重置为32x32</li>
+</ol>
+<h2 id="格式化图片尺寸和将图片转换成numpy数组"><a href="#格式化图片尺寸和将图片转换成numpy数组" class="headerlink" title="格式化图片尺寸和将图片转换成numpy数组"></a>格式化图片尺寸和将图片转换成numpy数组</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">temp=[]</div><div class="line"><span class="keyword">for</span> img_name <span class="keyword">in</span> train.ID:</div><div class="line">    img_path=os.path.join(root_dir,<span class="string">'Train'</span>,img_name)</div><div class="line">    img=Image.open(img_path)</div><div class="line">    img=img.resize((<span class="number">32</span>,<span class="number">32</span>))</div><div class="line">    array=np.array(img)</div><div class="line">    temp.append(array.astype(<span class="string">'float32'</span>))</div><div class="line">train_x=np.stack(temp)</div><div class="line">print(train_x.shape)</div><div class="line">print(train_x.ndim)</div></pre></td></tr></table></figure>
+<pre><code>(19906, 32, 32, 3)
+4
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">temp=[]</div><div class="line"><span class="keyword">for</span> img_name <span class="keyword">in</span> test.ID:</div><div class="line">    img_path=os.path.join(root_dir,<span class="string">'Test'</span>,img_name)</div><div class="line">    img=Image.open(img_path)</div><div class="line">    img=img.resize((<span class="number">32</span>,<span class="number">32</span>))</div><div class="line">    array=np.array(img)</div><div class="line">    temp.append(array.astype(<span class="string">'float32'</span>))</div><div class="line">test_x=np.stack(temp)</div><div class="line">print(test_x.shape)</div></pre></td></tr></table></figure>
+<pre><code>(6636, 32, 32, 3)
+</code></pre><p>另外我们再归一化图像，这样会使模型训练的更快</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">train_x = train_x / <span class="number">255.</span></div><div class="line">test_x = test_x / <span class="number">255.</span></div></pre></td></tr></table></figure>
+<p>我们看下图片年龄大致分布</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">train.Class.value_counts(normalize=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
+<pre><code>MIDDLE    0.542751
+YOUNG     0.336883
+OLD       0.120366
+Name: Class, dtype: float64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">test[<span class="string">'Class'</span>] = <span class="string">'MIDDLE'</span></div><div class="line">test.to_csv(<span class="string">'sub01.csv'</span>, index=<span class="keyword">False</span>)</div></pre></td></tr></table></figure>
+<p>将目标变量处理虚拟列，能够使模型更容易接受识别它</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> keras</div><div class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> LabelEncoder</div><div class="line">lb=LabelEncoder()</div><div class="line">train_y=lb.fit_transform(train.Class)</div><div class="line">print(train_y)</div><div class="line">train_y=keras.utils.np_utils.to_categorical(train_y)</div><div class="line">print(train_y)</div><div class="line">print(train_y.shape)</div></pre></td></tr></table></figure>
+<pre><code>[0 2 0 ..., 0 0 0]
+[[ 1.  0.  0.]
+ [ 0.  0.  1.]
+ [ 1.  0.  0.]
+ ..., 
+ [ 1.  0.  0.]
+ [ 1.  0.  0.]
+ [ 1.  0.  0.]]
+(19906, 3)
+</code></pre><h1 id="创建模型"><a href="#创建模型" class="headerlink" title="创建模型"></a>创建模型</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#构建神经网络</span></div><div class="line">input_num_units=(<span class="number">32</span>,<span class="number">32</span>,<span class="number">3</span>)</div><div class="line">hidden_num_units=<span class="number">500</span></div><div class="line">output_num_units=<span class="number">3</span></div><div class="line">epochs=<span class="number">5</span></div><div class="line">batch_size=<span class="number">128</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Sequential</div><div class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Dense,Flatten,InputLayer</div><div class="line">model=Sequential(&#123;</div><div class="line">    InputLayer(input_shape=input_num_units),</div><div class="line">    Flatten(),</div><div class="line">    Dense(units=hidden_num_units,activation=<span class="string">'relu'</span>),</div><div class="line">    Dense(input_shape=(<span class="number">32</span>,<span class="number">32</span>,<span class="number">3</span>),units=output_num_units,activation=<span class="string">'softmax'</span>)</div><div class="line">&#125;)</div><div class="line">model.summary()</div></pre></td></tr></table></figure>
+<pre><code>_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+input_23 (InputLayer)        (None, 32, 32, 3)         0         
+_________________________________________________________________
+flatten_23 (Flatten)         (None, 3072)              0         
+_________________________________________________________________
+dense_45 (Dense)             (None, 500)               1536500   
+_________________________________________________________________
+dense_46 (Dense)             (None, 3)                 1503      
+=================================================================
+Total params: 1,538,003
+Trainable params: 1,538,003
+Non-trainable params: 0
+_________________________________________________________________
+</code></pre><h1 id="编译模型"><a href="#编译模型" class="headerlink" title="编译模型"></a>编译模型</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># model.compile(optimizer='sgd',loss='categorical_crossentropy',metrics=['accuracy'])</span></div><div class="line">model.compile(optimizer=<span class="string">'sgd'</span>,loss=<span class="string">'categorical_crossentropy'</span>, metrics=[<span class="string">'accuracy'</span>])</div><div class="line">model.fit(train_x,train_y,batch_size=batch_size,epochs=epochs,verbose=<span class="number">1</span>)</div></pre></td></tr></table></figure>
+<pre><code>Epoch 1/5
+19906/19906 [==============================] - 4s - loss: 0.8878 - acc: 0.5809     
+Epoch 2/5
+19906/19906 [==============================] - 4s - loss: 0.8420 - acc: 0.6077     
+Epoch 3/5
+19906/19906 [==============================] - 4s - loss: 0.8210 - acc: 0.6214     
+Epoch 4/5
+19906/19906 [==============================] - 4s - loss: 0.8149 - acc: 0.6194     
+Epoch 5/5
+19906/19906 [==============================] - 4s - loss: 0.8042 - acc: 0.6305     
+
+
+
+
+
+&lt;keras.callbacks.History at 0x1d3803e6278&gt;
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">model.fit(train_x, train_y, batch_size=batch_size,epochs=epochs,verbose=<span class="number">1</span>, validation_split=<span class="number">0.2</span>)</div></pre></td></tr></table></figure>
+<pre><code>Train on 15924 samples, validate on 3982 samples
+Epoch 1/5
+15924/15924 [==============================] - 3s - loss: 0.7970 - acc: 0.6375 - val_loss: 0.7854 - val_acc: 0.6396
+Epoch 2/5
+15924/15924 [==============================] - 3s - loss: 0.7919 - acc: 0.6378 - val_loss: 0.7767 - val_acc: 0.6519
+Epoch 3/5
+15924/15924 [==============================] - 3s - loss: 0.7870 - acc: 0.6404 - val_loss: 0.7754 - val_acc: 0.6534
+Epoch 4/5
+15924/15924 [==============================] - 3s - loss: 0.7806 - acc: 0.6439 - val_loss: 0.7715 - val_acc: 0.6524
+Epoch 5/5
+15924/15924 [==============================] - 3s - loss: 0.7755 - acc: 0.6519 - val_loss: 0.7970 - val_acc: 0.6346
+
+
+
+
+
+&lt;keras.callbacks.History at 0x1d3800a4eb8&gt;
+</code></pre><h1 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h1><p>我们使用最基本的模型来处理这个年龄预测结果，并且最终的预测结果为0.6375。接下来，从以下角度尝试优化：</p>
+<ol>
+<li>使用更好的神经网络模型</li>
+<li>增加训练次数</li>
+<li>将图片进行灰度处理（因为对于本问题而言，图片颜色不是一个特别重要的特征。）</li>
+</ol>
+<h1 id="optimize1-使用卷积神经网络"><a href="#optimize1-使用卷积神经网络" class="headerlink" title="optimize1 使用卷积神经网络"></a>optimize1 使用卷积神经网络</h1><p><code>添加卷积层之后，预测准确率有所上涨，从6.3到6.7；最开始epochs轮数是5，训练轮数增加到10，此时准确率为6.87；然后将训练轮数增加到20，结果没有发生变化。</code></p>
+<h2 id="Conv2D层"><a href="#Conv2D层" class="headerlink" title="Conv2D层"></a>Conv2D层</h2><p><code>keras.layers.convolutional.Conv2D(filters, kernel_size, strides=(1, 1), padding=&#39;valid&#39;, data_format=None, dilation_rate=(1, 1), activation=None, use_bias=True, kernel_initializer=&#39;glorot_uniform&#39;, bias_initializer=&#39;zeros&#39;, kernel_regularizer=None, bias_regularizer=None, activity_regularizer=None, kernel_constraint=None, bias_constraint=None)</code></p>
+<ul>
+<li>filters:输出的维度</li>
+<li>strides:卷积的步长</li>
+</ul>
+<p>更多关于Conv2D的介绍请看<a href="http://keras-cn.readthedocs.io/en/latest/layers/convolutional_layer/#conv2d" target="_blank" rel="external">Keras文档Conv2D层</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#参数初始化</span></div><div class="line">filters=<span class="number">10</span></div><div class="line">filtersize=(<span class="number">5</span>,<span class="number">5</span>)</div><div class="line"></div><div class="line">epochs =<span class="number">10</span></div><div class="line">batchsize=<span class="number">128</span></div><div class="line"></div><div class="line">input_shape=(<span class="number">32</span>,<span class="number">32</span>,<span class="number">3</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Sequential</div><div class="line">model = Sequential()</div><div class="line"></div><div class="line">model.add(keras.layers.InputLayer(input_shape=input_shape))</div><div class="line"></div><div class="line">model.add(keras.layers.convolutional.Conv2D(filters, filtersize, strides=(<span class="number">1</span>, <span class="number">1</span>), padding=<span class="string">'valid'</span>, data_format=<span class="string">"channels_last"</span>, activation=<span class="string">'relu'</span>))</div><div class="line">model.add(keras.layers.MaxPooling2D(pool_size=(<span class="number">2</span>, <span class="number">2</span>)))</div><div class="line">model.add(keras.layers.Flatten())</div><div class="line"></div><div class="line">model.add(keras.layers.Dense(units=<span class="number">3</span>, input_dim=<span class="number">50</span>,activation=<span class="string">'softmax'</span>))</div><div class="line"></div><div class="line">model.compile(loss=<span class="string">'categorical_crossentropy'</span>, optimizer=<span class="string">'adam'</span>, metrics=[<span class="string">'accuracy'</span>])</div><div class="line">model.fit(train_x, train_y, epochs=epochs, batch_size=batchsize,validation_split=<span class="number">0.3</span>)</div><div class="line"></div><div class="line">model.summary()</div></pre></td></tr></table></figure>
+<pre><code>Train on 13934 samples, validate on 5972 samples
+Epoch 1/10
+13934/13934 [==============================] - 9s - loss: 0.8986 - acc: 0.5884 - val_loss: 0.8352 - val_acc: 0.6271
+Epoch 2/10
+13934/13934 [==============================] - 9s - loss: 0.8141 - acc: 0.6281 - val_loss: 0.7886 - val_acc: 0.6474
+Epoch 3/10
+13934/13934 [==============================] - 9s - loss: 0.7788 - acc: 0.6504 - val_loss: 0.7706 - val_acc: 0.6551
+Epoch 4/10
+13934/13934 [==============================] - 9s - loss: 0.7638 - acc: 0.6577 - val_loss: 0.7559 - val_acc: 0.6626
+Epoch 5/10
+13934/13934 [==============================] - 9s - loss: 0.7484 - acc: 0.6679 - val_loss: 0.7457 - val_acc: 0.6710
+Epoch 6/10
+13934/13934 [==============================] - 9s - loss: 0.7346 - acc: 0.6723 - val_loss: 0.7490 - val_acc: 0.6780
+Epoch 7/10
+13934/13934 [==============================] - 9s - loss: 0.7217 - acc: 0.6804 - val_loss: 0.7298 - val_acc: 0.6795
+Epoch 8/10
+13934/13934 [==============================] - 9s - loss: 0.7162 - acc: 0.6826 - val_loss: 0.7248 - val_acc: 0.6792
+Epoch 9/10
+13934/13934 [==============================] - 9s - loss: 0.7082 - acc: 0.6892 - val_loss: 0.7202 - val_acc: 0.6890
+Epoch 10/10
+13934/13934 [==============================] - 9s - loss: 0.7001 - acc: 0.6940 - val_loss: 0.7226 - val_acc: 0.6885
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+input_6 (InputLayer)         (None, 32, 32, 3)         0         
+_________________________________________________________________
+conv2d_6 (Conv2D)            (None, 28, 28, 10)        760       
+_________________________________________________________________
+max_pooling2d_6 (MaxPooling2 (None, 14, 14, 10)        0         
+_________________________________________________________________
+flatten_6 (Flatten)          (None, 1960)              0         
+_________________________________________________________________
+dense_6 (Dense)              (None, 3)                 5883      
+=================================================================
+Total params: 6,643
+Trainable params: 6,643
+Non-trainable params: 0
+_________________________________________________________________
+</code></pre><h1 id="optimize2-增加神经网络的层数"><a href="#optimize2-增加神经网络的层数" class="headerlink" title="optimize2 增加神经网络的层数"></a>optimize2 增加神经网络的层数</h1><p>我们在模型中多添加几层并且提高卷几层的输出维度，这次结果得到显著提升：0.750904</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#参数初始化</span></div><div class="line">filters1=<span class="number">50</span></div><div class="line">filters2=<span class="number">100</span></div><div class="line">filters3=<span class="number">100</span></div><div class="line"></div><div class="line">filtersize=(<span class="number">5</span>,<span class="number">5</span>)</div><div class="line"></div><div class="line">epochs =<span class="number">10</span></div><div class="line">batchsize=<span class="number">128</span></div><div class="line"></div><div class="line">input_shape=(<span class="number">32</span>,<span class="number">32</span>,<span class="number">3</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Sequential</div><div class="line"></div><div class="line">model = Sequential()</div><div class="line"></div><div class="line">model.add(keras.layers.InputLayer(input_shape=input_shape))</div><div class="line"></div><div class="line">model.add(keras.layers.convolutional.Conv2D(filters1, filtersize, strides=(<span class="number">1</span>, <span class="number">1</span>), padding=<span class="string">'valid'</span>, data_format=<span class="string">"channels_last"</span>, activation=<span class="string">'relu'</span>))</div><div class="line">model.add(keras.layers.MaxPooling2D(pool_size=(<span class="number">2</span>, <span class="number">2</span>)))</div><div class="line"></div><div class="line">model.add(keras.layers.convolutional.Conv2D(filters2, filtersize, strides=(<span class="number">1</span>, <span class="number">1</span>), padding=<span class="string">'valid'</span>, data_format=<span class="string">"channels_last"</span>, activation=<span class="string">'relu'</span>))</div><div class="line">model.add(keras.layers.MaxPooling2D(pool_size=(<span class="number">2</span>, <span class="number">2</span>)))</div><div class="line"></div><div class="line">model.add(keras.layers.convolutional.Conv2D(filters3, filtersize, strides=(<span class="number">1</span>, <span class="number">1</span>), padding=<span class="string">'valid'</span>, data_format=<span class="string">"channels_last"</span>, activation=<span class="string">'relu'</span>))</div><div class="line">model.add(keras.layers.Flatten())</div><div class="line"></div><div class="line">model.add(keras.layers.Dense(units=<span class="number">3</span>, input_dim=<span class="number">50</span>,activation=<span class="string">'softmax'</span>))</div><div class="line"></div><div class="line">model.compile(loss=<span class="string">'categorical_crossentropy'</span>, optimizer=<span class="string">'adam'</span>, metrics=[<span class="string">'accuracy'</span>])</div><div class="line">model.fit(train_x, train_y, epochs=epochs, batch_size=batchsize,validation_split=<span class="number">0.3</span>)</div><div class="line">model.summary()</div></pre></td></tr></table></figure>
+<pre><code>Train on 13934 samples, validate on 5972 samples
+Epoch 1/10
+13934/13934 [==============================] - 44s - loss: 0.8613 - acc: 0.5985 - val_loss: 0.7778 - val_acc: 0.6586
+Epoch 2/10
+13934/13934 [==============================] - 44s - loss: 0.7493 - acc: 0.6697 - val_loss: 0.7545 - val_acc: 0.6808
+Epoch 3/10
+13934/13934 [==============================] - 43s - loss: 0.7079 - acc: 0.6877 - val_loss: 0.7150 - val_acc: 0.6947
+Epoch 4/10
+13934/13934 [==============================] - 43s - loss: 0.6694 - acc: 0.7061 - val_loss: 0.6496 - val_acc: 0.7261
+Epoch 5/10
+13934/13934 [==============================] - 43s - loss: 0.6274 - acc: 0.7295 - val_loss: 0.6683 - val_acc: 0.7125
+Epoch 6/10
+13934/13934 [==============================] - 43s - loss: 0.5950 - acc: 0.7462 - val_loss: 0.6194 - val_acc: 0.7400
+Epoch 7/10
+13934/13934 [==============================] - 43s - loss: 0.5562 - acc: 0.7655 - val_loss: 0.5981 - val_acc: 0.7465
+Epoch 8/10
+13934/13934 [==============================] - 43s - loss: 0.5165 - acc: 0.7852 - val_loss: 0.6458 - val_acc: 0.7354
+Epoch 9/10
+13934/13934 [==============================] - 46s - loss: 0.4826 - acc: 0.7986 - val_loss: 0.6206 - val_acc: 0.7467
+Epoch 10/10
+13934/13934 [==============================] - 45s - loss: 0.4530 - acc: 0.8130 - val_loss: 0.5984 - val_acc: 0.7569
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+input_15 (InputLayer)        (None, 32, 32, 3)         0         
+_________________________________________________________________
+conv2d_31 (Conv2D)           (None, 28, 28, 50)        3800      
+_________________________________________________________________
+max_pooling2d_23 (MaxPooling (None, 14, 14, 50)        0         
+_________________________________________________________________
+conv2d_32 (Conv2D)           (None, 10, 10, 100)       125100    
+_________________________________________________________________
+max_pooling2d_24 (MaxPooling (None, 5, 5, 100)         0         
+_________________________________________________________________
+conv2d_33 (Conv2D)           (None, 1, 1, 100)         250100    
+_________________________________________________________________
+flatten_15 (Flatten)         (None, 100)               0         
+_________________________________________________________________
+dense_7 (Dense)              (None, 3)                 303       
+=================================================================
+Total params: 379,303
+Trainable params: 379,303
+Non-trainable params: 0
+_________________________________________________________________
+</code></pre><h1 id="输出结果"><a href="#输出结果" class="headerlink" title="输出结果"></a>输出结果</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">pred=model.predict_classes(test_x)</div><div class="line">pred=lb.inverse_transform(pred)</div><div class="line">print(pred)</div><div class="line">test[<span class="string">'Class'</span>]=pred</div><div class="line">test.to_csv(<span class="string">'sub02.csv'</span>,index=<span class="keyword">False</span>)</div></pre></td></tr></table></figure>
+<pre><code>6636/6636 [==============================] - 7s     
+[&apos;MIDDLE&apos; &apos;YOUNG&apos; &apos;MIDDLE&apos; ..., &apos;MIDDLE&apos; &apos;MIDDLE&apos; &apos;YOUNG&apos;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">i = random.choice(train.index)</div><div class="line">img_name = train.ID[i]</div><div class="line"></div><div class="line">img=Image.open(os.path.join(root_dir,<span class="string">'Train'</span>,img_name))</div><div class="line">img.show()</div><div class="line">pred = model.predict_classes(train_x)</div><div class="line">print(<span class="string">'Original:'</span>, train.Class[i], <span class="string">'Predicted:'</span>, lb.inverse_transform(pred[i]))</div></pre></td></tr></table></figure>
+<pre><code>19872/19906 [============================&gt;.] - ETA: 0sOriginal: MIDDLE Predicted: MIDDLE
+</code></pre><h1 id="继续探讨"><a href="#继续探讨" class="headerlink" title="继续探讨"></a>继续探讨</h1>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/08/03/03AgeDetection/">使用Keras构建卷积神经网络预测“阿三”的年龄</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">致Great</a></p>
+        <p><span>发布时间:</span>2017-08-03, 17:45:25</p>
+        <p><span>最后更新:</span>2017-08-03, 09:53:05</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/08/03/03AgeDetection/" title="使用Keras构建卷积神经网络预测“阿三”的年龄">http://yoursite.com/2017/08/03/03AgeDetection/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/08/03/03AgeDetection/　　作者: 致Great" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/08/03/hello-world/">
+                    我会自动改变
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#问题描述"><span class="toc-number">1.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#引入所需要模块"><span class="toc-number">2.</span> <span class="toc-text">引入所需要模块</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#加载数据集"><span class="toc-number">3.</span> <span class="toc-text">加载数据集</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#随机读取一张图片试下（☺）"><span class="toc-number">3.1.</span> <span class="toc-text">随机读取一张图片试下（☺）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#难点"><span class="toc-number">3.2.</span> <span class="toc-text">难点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#格式化图片尺寸和将图片转换成numpy数组"><span class="toc-number">3.3.</span> <span class="toc-text">格式化图片尺寸和将图片转换成numpy数组</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#创建模型"><span class="toc-number">4.</span> <span class="toc-text">创建模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#编译模型"><span class="toc-number">5.</span> <span class="toc-text">编译模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#优化"><span class="toc-number">6.</span> <span class="toc-text">优化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#optimize1-使用卷积神经网络"><span class="toc-number">7.</span> <span class="toc-text">optimize1 使用卷积神经网络</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Conv2D层"><span class="toc-number">7.1.</span> <span class="toc-text">Conv2D层</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#optimize2-增加神经网络的层数"><span class="toc-number">8.</span> <span class="toc-text">optimize2 增加神经网络的层数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#输出结果"><span class="toc-number">9.</span> <span class="toc-text">输出结果</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#继续探讨"><span class="toc-number">10.</span> <span class="toc-text">继续探讨</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"使用Keras构建卷积神经网络预测“阿三”的年龄　| yanqiangmiffy　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/08/03/hello-world/" title="下一篇: 我会自动改变">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/08/03/03AgeDetection/">使用Keras构建卷积神经网络预测“阿三”的年龄</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/03/hello-world/">我会自动改变</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/02/02动态规划/">动态规划</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/01/01排序问题/">排序算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/29/HDU1009-FatMouse' Trade/">HDU1009-FatMouse' Trade</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/26/Python28-机器学习算法的基本知识（使用Python和R代码）/">机器学习算法的基本知识（使用Python和R代码）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/26/Keras04-白酒和红酒实例/">Kera实例：预测白酒和红酒的质量</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/Keras02-MNIST手写实例/">Keras实现简单的手写数字识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/Python26-使用Python和R语言从头开始理解和编写神经网络/">使用Python和R语言从头开始理解和编写神经网络</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 致Great
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
