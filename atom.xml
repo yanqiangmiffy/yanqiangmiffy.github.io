@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-24T03:43:07.095Z</updated>
+  <updated>2017-08-24T03:51:42.557Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/08/24/06-%E5%8D%A1%E7%89%B9%E5%85%B0%E6%95%B0/"/>
     <id>http://yoursite.com/2017/08/24/06-卡特兰数/</id>
     <published>2017-08-24T16:00:25.000Z</published>
-    <updated>2017-08-24T03:43:07.095Z</updated>
+    <updated>2017-08-24T03:51:42.557Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>这篇文章主要介绍了卡特兰数、推导和应用<br><a id="more"></a></excerpt></p>
 <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>卡特兰数又称卡塔兰数，卡特兰数是组合数学中一个常出现在各种计数问题中的数列。<br>卡塔兰数的一般项公式为：<br><img src="http://upload-images.jianshu.io/upload_images/1531909-0c81412304254b5b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="卡特兰公式"><br>其前20项为：1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862, 16796, 58786, 208012, 742900, 2674440, 9694845, 35357670, 129644790, 477638700, 1767263190。</p>
@@ -28,7 +28,9 @@
 <li>令h(0)=1,h(1)=1，catalan数满足递推式：<br><code>h(n)= h(0)*h(n-1)+h(1)*h(n-2) + ... + h(n-1)*h(0) (n&gt;=2)</code><br>例如：<br><code>h(2)=h(0)*h(1)+h(1)*h(0)=1*1+1*1=2</code><br><code>h(3)=h(0)*h(2)+h(1)*h(1)+h(2)*h(0)=1*2+1*1+2*1=5</code></li>
 <li>另类递推式[3]：<br><code>h(n)=h(n-1)*(4*n-2)/(n+1)</code></li>
 <li>递推关系的解为：<br><code>h(n)=C(2n,n)/(n+1) (n=0,1,2,...)</code></li>
-<li>递推关系的另类解为：<br><code>h(n)=c(2n,n)-c(2n,n-1)(n=0,1,2,...)</code><h1 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h1></li>
+<li>递推关系的另类解为：<br><code>h(n)=c(2n,n)-c(2n,n-1)(n=0,1,2,...)</code></li>
+</ol>
+<h1 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h1><ol>
 <li>卡特兰数的另一个表达形式为：<br><img src="http://upload-images.jianshu.io/upload_images/1531909-95a9185528096891.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="表现形式"><br>所以，卡特兰数是一个自然数；这一点在先前的通项公式中并不显而易见。</li>
 <li>递推关系</li>
 </ol>
@@ -42,7 +44,8 @@
 <li>所有的奇卡塔兰数Cn都满足：<br><img src="http://upload-images.jianshu.io/upload_images/1531909-a634b4c05f99a0e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="奇卡塔兰数"><br>所有其他的卡塔兰数都是偶数。<h1 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h1></li>
 </ol>
 <ul>
-<li><p>dyck word<br>Cn 表示长度2n的<code>dyck word</code>的个数。<code>Dyck word</code>是一个有<code>n</code>个X 和<code>n</code> 个Y 组成的字串，且所有的前缀字串皆满足X 的个数大于等于Y 的个数。以下为长度为6的<code>dyck words</code>:<br> <code>XXXYYY XYXXYY XYXYXY XXYYXY XXYXYY</code></p>
+<li><p>dyck word</p>
+<p>Cn 表示长度2n的<code>dyck word</code>的个数。<code>Dyck word</code>是一个有<code>n</code>个X 和<code>n</code> 个Y 组成的字串，且所有的前缀字串皆满足X 的个数大于等于Y 的个数。以下为长度为6的<code>dyck words</code>:<br> <code>XXXYYY XYXXYY XYXYXY XXYYXY XXYXYY</code></p>
 </li>
 <li><p>n对括号正确匹配数目<br>将上例的X换成左括号，Y换成右括号，Cn表示所有包含n组括号的合法运算式的个数：<br><code>((())) ()(()) ()()() (())() (()())</code></p>
 </li>
@@ -51,23 +54,27 @@
 <p>给定n对括号，求括号正确配对的字符串数，例如：<br>0对括号：[空序列] 1种可能<br>1对括号：() 1种可能<br>2对括号：()() (()) 2种可能<br>3对括号：((())) ()(()) ()()() (())() (()()) 5种可能<br>那么问题来了，n对括号有多少种正确配对的可能呢？<br>考虑n对括号时的任意一种配对方案，最后一个右括号有唯一的与之匹配的左括号，于是有唯一的表示A(B)，其中A和B也是合法的括号匹配序列<br>假设S(n)为n对括号的正确配对数目，那么有递推关系S(n)=S(0)S(n-1)+S(1)S(n-2) +…+S(n-1)S(0)，显然S(n)是卡特兰数。</p>
 </blockquote>
 <ul>
-<li><p>括号化<br>矩阵连乘： P=a1×a2×a3×……×an，依据乘法结合律，不改变其顺序，只用括号表示成对的乘积，试问有几种括号化的方案？(h(n)种)</p>
-</li>
-<li><p>出栈次序<br>一个栈无穷大的进栈序列为1，2，3，…，n，有多少个不同的出栈序列?<br><code>分析：</code></p>
+<li>括号化</li>
+</ul>
+<p>矩阵连乘： P=a1×a2×a3×……×an，依据乘法结合律，不改变其顺序，只用括号表示成对的乘积，试问有几种括号化的方案？(h(n)种)</p>
+<ul>
+<li>出栈次序</li>
+</ul>
+<p>一个栈无穷大的进栈序列为1，2，3，…，n，有多少个不同的出栈序列?<br><code>分析：</code></p>
 <blockquote>
-<p>首先，我们设f（n）=序列个数为n的出栈序列种数。（我们假定，最后出栈的元素为k，显然，k取不同值时的情况是相互独立的，也就是求出每种k最后出栈的情况数后可用加法原则，由于k最后出栈，因此，在k入栈之前，比k小的值均出栈，此处情况有f(k-1)种，而之后比k大的值入栈，且都在k之前出栈，因此有f(n-k)种方式，由于比k小和比k大的值入栈出栈情况是相互独立的，此处可用乘法原则，f(n-k)*f(k-1)种，求和便是Catalan递归式。<br>首次出空之前第一个出栈的序数k将1~n的序列分成两个序列，其中一个是1 <code>~</code> k-1，序列个数为k-1，另外一个是k+1~n，序列个数是n-k。<br>此时，我们若把k视为确定一个序数，那么根据乘法原理，f（n）的问题就等价于——序列个数为k-1的出栈序列种数乘以序列个数为n - k的出栈序列种数，即选择k这个序数的f（n）=f（k-1）×f（n-k）。而k可以选1到n，所以再根据加法原理，将k取不同值的序列种数相加，得到的总序列种数为：<code>f（n）=f（0）f（n-1）+f（1）f（n-2）+……+f（n-1）f（0）</code>。<br>看到此处，再看看卡特兰数的递推式，答案不言而喻，即为<code>f（n）=h（n）= C（2n,n）/（n+1）= c（2n,n）-c（2n,n-1）（n=0，1，2，……）</code>。<br>最后，令<code>f（0）=1，f（1）=1</code>。</p>
+<p>首先，我们设f（n）=序列个数为n的出栈序列种数。（我们假定，最后出栈的元素为k，显然，k取不同值时的情况是相互独立的，也就是求出每种k最后出栈的情况数后可用加法原则，由于k最后出栈，因此，在k入栈之前，比k小的值均出栈，此处情况有f(k-1)种，而之后比k大的值入栈，且都在k之前出栈，因此有f(n-k)种方式，由于比k小和比k大的值入栈出栈情况是相互独立的，此处可用乘法原则，f(n-k)*f(k-1)种，求和便是Catalan递归式。<br>首次出空之前第一个出栈的序数k将1~n的序列分成两个序列，其中一个是1 <code>~</code> k-1，序列个数为k-1，另外一个是k+1~n，序列个数是n-k。<br>此时，我们若把k视为确定一个序数，那么根据乘法原理，f（n）的问题就等价于——序列个数为k-1的出栈序列种数乘以序列个数为n - k的出栈序列种数，即选择k这个序数的f（n）=f（k-1）×f（n-k）。而k可以选1到n，所以再根据加法原理，将k取不同值的序列种数相加，得到的总序列种数为：<code>f（n）=f（0）f（n-1）+f（1）f（n-2）+……+f（n-1）f（0）</code>。<br>看到此处，再看看卡特兰数的递推式，答案不言而喻，即为<code>f（n）=h（n）= C（2n,n）/（n+1）= c（2n,n）-c（2n,n-1）（n=0，1，2，……）</code>。<br>  最后，令<code>f（0）=1，f（1）=1</code>。</p>
 </blockquote>
-<p><code>相似问题-买票找零</code></p>
+<p> <code>相似问题-买票找零</code></p>
 <blockquote>
 <p>有2n个人排成一行进入剧场。入场费5元。其中只有n个人有一张5元钞票，另外n人只有10元钞票，剧院无其它钞票，问有多少中方法使得只要有10元的人买票，售票处就有5元的钞票找零？(将持5元者到达视作将5元入栈，持10元者到达视作使栈中某5元出栈)</p>
 </blockquote>
-</li>
-<li><p>凸多边形三角划分<br>Cn表示通过连结顶点而将<em>n</em> + 2边的凸多边形分成三角形的方法个数。下图中为<em>n</em> = 4的情况：<br><img src="http://upload-images.jianshu.io/upload_images/1531909-02e672283a30f88b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="凸多边形三角划分"><br><code>分析 :</code></p>
+<ul>
+<li>凸多边形三角划分</li>
+</ul>
+<p>Cn表示通过连结顶点而将<em>n</em> + 2边的凸多边形分成三角形的方法个数。下图中为<em>n</em> = 4的情况：<br><img src="http://upload-images.jianshu.io/upload_images/1531909-02e672283a30f88b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="凸多边形三角划分"><br><code>分析 :</code></p>
 <blockquote>
 <p>如果纯粹从f（4）=2，f（5）=5，f（6）=14，……，f（n）=n慢慢去归纳，恐怕很难找到问题的递推式，我们必须从一般情况出发去找规律。<br>因为凸多边形的任意一条边必定属于某一个三角形，所以我们以某一条边为基准，以这条边的两个顶点为起点P1和终点Pn（P即Point），将该凸多边形的顶点依序标记为P1、P2、……、Pn，再在该凸多边形中找任意一个不属于这两个点的顶点Pk（2&lt;=k&lt;=n-1），来构成一个三角形，用这个三角形把一个凸多边形划分成两个凸多边形，其中一个凸多边形，是由P1，P2，……，Pk构成的凸k边形（顶点数即是边数），另一个凸多边形，是由Pk，Pk+1，……，Pn构成的凸n-k+1边形。<br>此时，我们若把Pk视为确定一点，那么根据乘法原理，f（n）的问题就等价于——凸k多边形的划分方案数乘以凸n-k+1多边形的划分方案数，即选择Pk这个顶点的f（n）=f（k）×f（n-k+1）。而k可以选2到n-1，所以再根据加法原理，将k取不同值的划分方案相加，得到的总方案数为：f（n）=f（2）f（n-2+1）+f（3）f（n-3+1）+……+f（n-1）f（2）。看到此处，再看看卡特兰数的递推式，答案不言而喻，即为f（n）=h（n-2） （n=2，3，4，……）。<br>最后，令f（2）=1，f（3）=1。</p>
 </blockquote>
-</li>
-</ul>
 <p><code>类似问题 ：</code></p>
 <blockquote>
 <p>一位大城市的律师在她住所以北n个街区和以东n个街区处工作。每天她走2n个街区去上班。如果她从不穿越（但可以碰到）从家到办公室的对角线，那么有多少条可能的道路？</p>
@@ -101,8 +108,8 @@
     <title>我会自动改变</title>
     <link href="http://yoursite.com/2017/08/24/hello-world/"/>
     <id>http://yoursite.com/2017/08/24/hello-world/</id>
-    <published>2017-08-24T03:43:07.095Z</published>
-    <updated>2017-08-24T03:43:07.095Z</updated>
+    <published>2017-08-24T03:51:42.557Z</published>
+    <updated>2017-08-24T03:51:42.557Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>我会自动改变<br>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.<br><a id="more"></a><br>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</excerpt></p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
@@ -129,7 +136,7 @@
     <link href="http://yoursite.com/2017/08/06/05-%20Matrix-Vector/"/>
     <id>http://yoursite.com/2017/08/06/05- Matrix-Vector/</id>
     <published>2017-08-06T16:31:25.000Z</published>
-    <updated>2017-08-24T03:43:07.095Z</updated>
+    <updated>2017-08-24T03:51:42.557Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>关于论文的总结<br><a id="more"></a></excerpt></p>
 <p><a href="http://www.socher.org/index.php/Main/SemanticCompositionalityThroughRecursiveMatrix-VectorSpaces" target="_blank" rel="external">Semantic Compositionality Through Recursive Matrix-Vector Spaces</a></p>
@@ -191,7 +198,7 @@
     <link href="http://yoursite.com/2017/08/04/04-Laravel%E5%8D%9A%E5%AE%A2%E5%AE%9E%E6%88%98/"/>
     <id>http://yoursite.com/2017/08/04/04-Laravel博客实战/</id>
     <published>2017-08-04T17:31:25.000Z</published>
-    <updated>2017-08-24T03:43:07.095Z</updated>
+    <updated>2017-08-24T03:51:42.557Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>用了5天时间，参考后盾网老师的Laravel实战视频做的博客<br><a id="more"></a></excerpt></p>
 <blockquote>
@@ -275,7 +282,7 @@
     <link href="http://yoursite.com/2017/08/03/03AgeDetection/"/>
     <id>http://yoursite.com/2017/08/03/03AgeDetection/</id>
     <published>2017-08-03T17:45:25.000Z</published>
-    <updated>2017-08-24T03:43:07.079Z</updated>
+    <updated>2017-08-24T03:51:42.542Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>用Keras构建基本的前馈神经网络以及借助卷积层逐步优化预测结果，从海量图片中预测印度人们的年龄。目前结果为（0.750904）<br><a id="more"></a></excerpt></p>
 <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>我们的任务是从一个人的面部特征来预测他的年龄(用“Young”“Middle ”“Old”表示)，我们训练的数据集大约有19906多张照片及其每张图片对应的年龄（全是阿三的头像。。。），测试集有6636张图片，首先我们加载数据集，然后我们通过深度学习框架Keras建立、编译、训练模型，预测出6636张人物头像对应的年龄</p>
@@ -519,7 +526,7 @@ _________________________________________________________________
     <link href="http://yoursite.com/2017/08/02/02%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
     <id>http://yoursite.com/2017/08/02/02动态规划/</id>
     <published>2017-08-02T16:00:25.000Z</published>
-    <updated>2017-08-24T03:43:07.079Z</updated>
+    <updated>2017-08-24T03:51:42.542Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>文中主要总结动态规划的01背包问题以及相关实例，然后通过c++解决问题<br><a id="more"></a></excerpt></p>
 <h1 id="一、背包问题"><a href="#一、背包问题" class="headerlink" title="一、背包问题"></a>一、背包问题</h1><h2 id="01背包问题"><a href="#01背包问题" class="headerlink" title="01背包问题"></a>01背包问题</h2><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
@@ -564,7 +571,7 @@ _________________________________________________________________
     <link href="http://yoursite.com/2017/08/01/01%E6%8E%92%E5%BA%8F%E9%97%AE%E9%A2%98/"/>
     <id>http://yoursite.com/2017/08/01/01排序问题/</id>
     <published>2017-08-01T16:00:25.000Z</published>
-    <updated>2017-08-24T03:43:07.079Z</updated>
+    <updated>2017-08-24T03:51:42.542Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>这篇文章主要介绍了啊哈算法的排序问题，包括桶排序、快速排序、冒泡排序<br><a id="more"></a></excerpt></p>
 <h1 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h1><h2 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h2><p><code>这个算法好比有11个桶，编号从0~10。每出现一个数，就在对应编号的桶里放一个小旗子。最后只要数数每个桶中有几个小旗子就可以了。例如2号桶中有2个旗子，表示数字2出现了2次。</code></p>
@@ -591,7 +598,7 @@ _________________________________________________________________
     <link href="http://yoursite.com/2017/07/29/HDU1009-FatMouse&#39;%20Trade/"/>
     <id>http://yoursite.com/2017/07/29/HDU1009-FatMouse&#39; Trade/</id>
     <published>2017-07-29T14:54:03.000Z</published>
-    <updated>2017-08-24T03:43:07.095Z</updated>
+    <updated>2017-08-24T03:51:42.557Z</updated>
     
     <content type="html"><![CDATA[<excerpt in="" index="" |="" 首页摘要=""> 
 
@@ -618,11 +625,171 @@ _________________________________________________________________
   </entry>
   
   <entry>
+    <title>机器学习算法的基本知识（使用Python和R代码）</title>
+    <link href="http://yoursite.com/2017/07/26/Python28-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%EF%BC%88%E4%BD%BF%E7%94%A8Python%E5%92%8CR%E4%BB%A3%E7%A0%81%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/07/26/Python28-机器学习算法的基本知识（使用Python和R代码）/</id>
+    <published>2017-07-26T15:51:25.000Z</published>
+    <updated>2017-08-24T03:51:42.557Z</updated>
+    
+    <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>本篇文章是<a href="https://www.analyticsvidhya.com/blog/2015/08/common-machine-learning-algorithms/" target="_blank" rel="external">原文</a>的译文，然后自己对其中做了一些修改和添加内容（随机森林和降维算法）。文章简洁地介绍了机器学习的主要算法和一些伪代码，对于初学者有很大帮助，是一篇不错的总结文章，后期可以通过文中提到的算法展开去做一些实际问题。<br><a id="more"></a></excerpt></p>
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><hr>
+<p><code>Google的自驾车和机器人得到了很多新闻，但公司的真正未来是机器学习，这种技术使计算机变得更智能，更个性化。</code><em>-Eric Schmidt (Google Chairman)</em></p>
+<hr>
+<p>我们可能生活在人类历史上最具影响力的时期——计算从大型主机到PC移动到云计算的时期。 但是使这段时期有意义的不是发生了什么，而是在未来几年里我们的方式。</p>
+<p>这个时期令像我这样的一个人兴奋的就是，随着计算机的推动，工具和技术的民主化。 今天，作为数据科学家，我可以每小时为几个玩偶构建具有复杂算法的数据处理机。 但到达这里并不容易，我已经度过了许多黑暗的日日夜夜。</p>
+<h1 id="谁可以从本指南中获益最多"><a href="#谁可以从本指南中获益最多" class="headerlink" title="谁可以从本指南中获益最多"></a>谁可以从本指南中获益最多</h1><p><strong>我今天发布的可能是我创造的最有价值的指南。</strong></p>
+<p>创建本指南背后的理念是简化全球有抱负的数据科学家和机器学习爱好者的旅程。 本指南能够使你在研究机器学习问题的过程中获取经验。 我提供了关于各种机器学习算法以及R＆Python代码的高级理解以及运行它们，这些应该足以使你得心顺手。<br><img src="https://www.analyticsvidhya.com/wp-content/uploads/2015/08/Newl-Machine-Learning-Algorithms.jpg" alt="machine learning"><br>我故意跳过了这些技术背后的统计数据，因为你不需要在开始时就了解它们。 所以，如果你正在寻找对这些算法的统计学理解，你应该看看别的文章。 但是，如果你正在寻找并开始构建机器学习项目，那么这篇文章给你带来极大好处。</p>
+<h1 id="3类机器学习算法（广义上）"><a href="#3类机器学习算法（广义上）" class="headerlink" title="3类机器学习算法（广义上）"></a>3类机器学习算法（广义上）</h1><ol>
+<li><p>监督学习<br>工作原理：该算法由一组目标/结果变量（或因变量）组成，该变量将根据给定的一组预测变量（独立变量）进行预测。 使用这些变量集，我们生成一个将输入映射到所需输出的函数。 训练过程继续进行执行，直到模型达到培训数据所需的准确度水平。 监督学习的例子：回归，决策树，随机森林，KNN，逻辑回归等</p>
+</li>
+<li><p>无监督学习<br>如何工作：在这个算法中，我们没有任何目标或结果变量来预测/估计。 用于不同群体的群体聚类和用于不同群体的客户进行特定干预。 无监督学习的例子：Apriori算法，K-means。</p>
+</li>
+<li><p>加强学习：<br>工作原理：使用这种算法，机器受到学习和训练，作出具体决定。 它以这种方式工作：机器暴露在一个环境中，它连续不断地使用试错。 该机器从过去的经验中学习，并尝试捕获最好的知识，以做出准确的业务决策。 加强学习示例：马尔可夫决策过程</p>
+</li>
+</ol>
+<h1 id="常见机器学习算法"><a href="#常见机器学习算法" class="headerlink" title="常见机器学习算法"></a>常见机器学习算法</h1><p>以下是常用机器学习算法的列表。 这些算法几乎可以应用于任何数据问题：</p>
+<ul>
+<li>线性回归</li>
+<li>逻辑回归</li>
+<li>决策树</li>
+<li>SVM</li>
+<li>朴素贝叶斯</li>
+<li>KNN</li>
+<li>K-Means</li>
+<li>随机森林</li>
+<li>降维算法</li>
+<li>Gradient Boost＆Adaboost</li>
+</ul>
+<h1 id="1-线性回归"><a href="#1-线性回归" class="headerlink" title="1.线性回归"></a>1.线性回归</h1><p>它用于基于连续变量来估计实际价值（房屋成本，电话数量，总销售额等）。在这里，我们通过拟合最佳线来建立独立变量和因变量之间的关系。这个最佳拟合线被称为回归线，由线性方程<code>Y = a * X + b</code>表示。</p>
+<p>理解线性回归的最好方法是回想童年的经历。比如，你要求五年级的孩子通过体重来从小到大排序班里的学生，而事先不告诉学生们的体重！你认为孩子会做什么？他/她很可能在身高和体格上分析人物的体重，并使用这些可视参数的组合进行排列。这是现实生活中的线性回归！孩子实际上已经弄清楚，身高和体格将有一个关系与体重相关联，看起来就像上面的等式。</p>
+<p>在这个方程式中：</p>
+<p><code>Y-因变量</code><br><code>a - 斜率</code><br><code>X - 自变量</code><br><code>b - 截距</code><br>这些系数a和b是基于最小化数据点和回归线之间的距离的平方差之和导出的。</p>
+<p>看下面的例子。这里我们确定了线性方程<code>y = 0.2811x + 13.9</code>的最佳拟合线。现在使用这个方程，我们可以找到一个人（身高已知）的体重。<br><img src="https://www.analyticsvidhya.com/wp-content/uploads/2015/08/Linear_Regression.png" alt="线性回归"><br>线性回归主要有两种类型：简单线性回归和多元线性回归。 简单线性回归的特征在于一个自变量。 而且，多元线性回归（顾名思义）的特征是多个（多于1个）自变量。 在找到最佳拟合线的同时，可以拟合多项式或曲线回归线，这些被称为多项式或曲线回归。</p>
+<h2 id="Python-Code"><a href="#Python-Code" class="headerlink" title="Python Code"></a>Python Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Import Library</span></div><div class="line"><span class="comment">#Import other necessary libraries like pandas, numpy...</span></div><div class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> linear_model</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="comment">#Load Train and Test datasets</span></div><div class="line"><span class="comment">#Identify feature and response variable(s) and values must be numeric and numpy arrays</span></div><div class="line"><span class="comment"># x_train=input_variables_values_training_datasets</span></div><div class="line">x_train=np.random.rand(<span class="number">4</span>,<span class="number">4</span>)</div><div class="line">print(x_train)</div><div class="line"><span class="comment"># y_train=target_variables_values_training_datasets</span></div><div class="line">y_train=np.random.rand(<span class="number">4</span>,<span class="number">4</span>)</div><div class="line">print(y_train)</div><div class="line"></div><div class="line"><span class="comment"># x_test=input_variables_values_test_datasets</span></div><div class="line">x_test=np.random.rand(<span class="number">4</span>,<span class="number">4</span>)</div><div class="line">print(x_test)</div><div class="line"></div><div class="line"><span class="comment"># Create linear regression object</span></div><div class="line">linear = linear_model.LinearRegression()</div><div class="line"><span class="comment"># Train the model using the training sets and check score</span></div><div class="line">linear.fit(x_train, y_train)</div><div class="line">linear.score(x_train, y_train)</div><div class="line"><span class="comment">#Equation coefficient and Intercept</span></div><div class="line">print(<span class="string">'Coefficient: \n'</span>, linear.coef_)</div><div class="line">print(<span class="string">'Intercept: \n'</span>, linear.intercept_)</div><div class="line"><span class="comment">#Predict Output</span></div><div class="line">predicted= linear.predict(x_test)</div><div class="line">print(<span class="string">'predicted:\n'</span>,predicted)</div></pre></td></tr></table></figure>
+<pre><code>[[ 0.98267731  0.23364069  0.35133775  0.92826309]
+ [ 0.80538991  0.05637806  0.87662175  0.3960776 ]
+ [ 0.54686738  0.6816495   0.99747716  0.32531085]
+ [ 0.19189509  0.87105462  0.88158122  0.25056621]]
+[[ 0.55541608  0.56859636  0.40616234  0.14683524]
+ [ 0.09937835  0.63874553  0.92062536  0.32798326]
+ [ 0.87174236  0.779044    0.79119392  0.06912842]
+ [ 0.87907434  0.53175367  0.01371655  0.11414196]]
+[[ 0.37568516  0.17267374  0.51647046  0.04774661]
+ [ 0.38573914  0.85335136  0.11647555  0.0758696 ]
+ [ 0.67559384  0.57535368  0.88579261  0.26278658]
+ [ 0.13829782  0.28328756  0.51170484  0.04260013]]
+Coefficient: 
+ [[ 0.55158868  1.45901817  0.31224322  0.49538173]
+ [ 0.6995448   0.40804135  0.59938423  0.09084578]
+ [ 1.79010371  0.21674532  1.60972012 -0.046387  ]
+ [-0.31562917 -0.53767439 -0.16141312 -0.2154683 ]]
+Intercept: 
+ [-0.89705102 -0.50908061 -1.9260686   0.83934127]
+predicted:
+ [[-0.25297601  0.13808785 -0.38696891  0.53426883]
+ [ 0.63472658  0.18566989 -0.86662193  0.22361739]
+ [ 0.72181277  0.75309881  0.82170796  0.11715048]
+ [-0.22656611  0.01383581 -0.79537442  0.55159912]]
+</code></pre><h2 id="R-Code"><a href="#R-Code" class="headerlink" title="R Code"></a>R Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Load Train and Test datasets</span></div><div class="line"><span class="comment">#Identify feature and response variable(s) and values must be numeric and numpy arrays</span></div><div class="line">x_train &lt;- input_variables_values_training_datasets</div><div class="line">y_train &lt;- target_variables_values_training_datasets</div><div class="line">x_test &lt;- input_variables_values_test_datasets</div><div class="line">x &lt;- cbind(x_train,y_train)</div><div class="line"><span class="comment"># Train the model using the training sets and check score</span></div><div class="line">linear &lt;- lm(y_train ~ ., data = x)</div><div class="line">summary(linear)</div><div class="line"><span class="comment">#Predict Output</span></div><div class="line">predicted= predict(linear,x_test)</div></pre></td></tr></table></figure>
+<h1 id="2-逻辑回归"><a href="#2-逻辑回归" class="headerlink" title="2.逻辑回归"></a>2.逻辑回归</h1><p>不要因为它的名字而感到困惑，逻辑回归是一个分类算法而不是回归算法。它用于基于给定的一组自变量来估计离散值（二进制值，如0/1，是/否，真/假）。简单来说，它通过将数据拟合到logit函数来预测事件发生的概率。因此，它也被称为logit回归。由于它预测概率，其输出值在0和1之间（如预期的那样）。</p>
+<p>再次，让我们通过一个简单的例子来尝试理解这一点。</p>
+<p>假设你的朋友给你一个难题解决。只有2个结果场景 - 你能解决和不能解决。现在想象，你正在被许多猜谜或者简单测验，来试图理解你擅长的科目。这项研究的结果将是这样的结果 - 如果给你一个10级的三角形问题，那么你有70％可能会解决这个问题。另外一个例子，如果是五级的历史问题，得到答案的概率只有30％。这就是逻辑回归为你提供的结果。</p>
+<p>对数学而言，结果的对数几率被建模为预测变量的线性组合。</p>
+<p><code>odds= p/ (1-p) = probability of event occurrence / probability of not event occurrence
+ln(odds) = ln(p/(1-p))
+logit(p) = ln(p/(1-p)) = b0+b1X1+b2X2+b3X3....+bkXk</code></p>
+<p>以上，p是感兴趣特征的概率。 它选择最大化观察样本值的可能性的参数，而不是最小化平方误差的总和（如在普通回归中）。</p>
+<p>现在，你可能会问，为什么要采用log？ 为了简单起见，让我们来说，这是复制阶梯函数的最好的数学方法之一。 我可以进一步详细介绍，但这将会打破这篇文章的目的。<br><img src="https://www.analyticsvidhya.com/wp-content/uploads/2015/08/Logistic_Regression.png" alt="逻辑回归"></p>
+<h2 id="Python-Code-1"><a href="#Python-Code-1" class="headerlink" title="Python Code"></a>Python Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Import Library</span></div><div class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</div><div class="line"><span class="comment">#Assumed you have, X (predictor) and Y (target) for training data set and x_test(predictor) of test_dataset</span></div><div class="line"><span class="comment"># Create logistic regression object</span></div><div class="line">model = LogisticRegression()</div><div class="line"><span class="comment"># Train the model using the training sets and check score</span></div><div class="line">model.fit(X, y)</div><div class="line">model.score(X, y)</div><div class="line"><span class="comment">#Equation coefficient and Intercept</span></div><div class="line">print(<span class="string">'Coefficient: \n'</span>, model.coef_)</div><div class="line">print(<span class="string">'Intercept: \n'</span>, model.intercept_)</div><div class="line"><span class="comment">#Predict Output</span></div><div class="line">predicted= model.predict(x_test)</div></pre></td></tr></table></figure>
+<h2 id="R-Code-1"><a href="#R-Code-1" class="headerlink" title="R Code"></a>R Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">x &lt;- cbind(x_train,y_train)</div><div class="line"><span class="comment"># Train the model using the training sets and check score</span></div><div class="line">logistic &lt;- glm(y_train ~ ., data = x,family=<span class="string">'binomial'</span>)</div><div class="line">summary(logistic)</div><div class="line"><span class="comment">#Predict Output</span></div><div class="line">predicted= predict(logistic,x_test)</div></pre></td></tr></table></figure>
+<h1 id="3-决策树"><a href="#3-决策树" class="headerlink" title="3.决策树"></a>3.决策树</h1><p>这是我最喜欢的算法之一，我经常使用它。 它是一种主要用于分类问题的监督学习算法，令人惊讶的是，它可以适用于分类和连·续因变量。 在该算法中，我们将群体分为两个或多个均匀集合。 这是基于最重要的属性/自变量来做出的并将它们分为不同的组。关于决策树的更多细节，你可以阅读<a href="https://www.analyticsvidhya.com/blog/2015/01/decision-tree-simplified/" target="_blank" rel="external">决策树简介</a></p>
+<p><img src="https://www.analyticsvidhya.com/wp-content/uploads/2015/08/IkBzK.png" alt="决策树"><br>在上图中，您可以看到根据多个属性将群体分为四个不同的群组，以确定用户“是否可以玩”。为了 将人口分为不同的特征群体，它使用了诸如Gini，信息增益，卡方，熵等各种技术。<br><img src="https://www.analyticsvidhya.com/wp-content/uploads/2015/08/download.jpg" alt="JezzBall"><br>了解决策树如何运作的最佳方法是播放Jezzball - 微软的经典游戏（下图）。 大体上就是，来一起在屏幕上滑动手指，筑起墙壁，掩住移动的球吧。</p>
+<h2 id="Python-Code-2"><a href="#Python-Code-2" class="headerlink" title="Python Code"></a>Python Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Import Library</span></div><div class="line"><span class="comment">#Import other necessary libraries like pandas, numpy...</span></div><div class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> tree</div><div class="line"><span class="comment">#Assumed you have, X (predictor) and Y (target) for training data set and x_test(predictor) of test_dataset</span></div><div class="line"><span class="comment"># Create tree object </span></div><div class="line">model = tree.DecisionTreeClassifier(criterion=<span class="string">'gini'</span>) </div><div class="line"><span class="comment"># for classification, here you can change the algorithm as gini or entropy (information gain) by default it is gini  </span></div><div class="line"><span class="comment"># model = tree.DecisionTreeRegressor() for regression</span></div><div class="line"><span class="comment"># Train the model using the training sets and check score</span></div><div class="line">model.fit(X, y)</div><div class="line">model.score(X, y)</div><div class="line"><span class="comment">#Predict Output</span></div><div class="line">predicted= model.predict(x_test)</div></pre></td></tr></table></figure>
+<h2 id="R-Code-2"><a href="#R-Code-2" class="headerlink" title="R Code"></a>R Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">library(rpart)</div><div class="line">x &lt;- cbind(x_train,y_train)</div><div class="line"><span class="comment"># grow tree </span></div><div class="line">fit &lt;- rpart(y_train ~ ., data = x,method=<span class="string">"class"</span>)</div><div class="line">summary(fit)</div><div class="line"><span class="comment">#Predict Output </span></div><div class="line">predicted= predict(fit,x_test)</div></pre></td></tr></table></figure>
+<h1 id="4-SVM-支持向量机"><a href="#4-SVM-支持向量机" class="headerlink" title="4.SVM(支持向量机)"></a>4.SVM(支持向量机)</h1><p>这是一种分类方法。 在这个算法中，我们将每个数据项目绘制为n维空间中的一个点（其中n是拥有的特征数），每个特征的值是特定坐标的值。</p>
+<p>例如，如果我们有一个人的“高度”和“头发长度”这两个特征，我们首先将这两个变量绘制在二维空间中，其中每个点都有两个坐标（这些坐标称为支持向量）<br><img src="https://www.analyticsvidhya.com/wp-content/uploads/2015/08/SVM1-850x575.png" alt="支持向量机"><br>现在，我们将找到一些可以将数据分割成两类的线。 而我们想要的线，就是使得两组数据中最近点到分割线的距离最长的线。<br><img src="https://www.analyticsvidhya.com/wp-content/uploads/2015/08/SVM2-850x578.png" alt="最佳分割直线"><br>在上述示例中，将数据分成两个不同分类的组的线是黑线，因为两个最接近的点距离线最远（红线也可以，但不是一最远）。 这条线是我们的分类器， 然后根据测试数据位于线路两边的位置，我们可以将新数据分类为什么类别。</p>
+<h2 id="Python-Code-3"><a href="#Python-Code-3" class="headerlink" title="Python Code"></a>Python Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Import Library</span></div><div class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> svm</div><div class="line"><span class="comment">#Assumed you have, X (predictor) and Y (target) for training data set and x_test(predictor) of test_dataset</span></div><div class="line"><span class="comment"># Create SVM classification object </span></div><div class="line">model = svm.svc() <span class="comment"># there is various option associated with it, this is simple for classification. You can refer link, for mo# re detail.</span></div><div class="line"><span class="comment"># Train the model using the training sets and check score</span></div><div class="line">model.fit(X, y)</div><div class="line">model.score(X, y)</div><div class="line"><span class="comment">#Predict Output</span></div><div class="line">predicted= model.predict(x_test)</div></pre></td></tr></table></figure>
+<h2 id="R-Code-3"><a href="#R-Code-3" class="headerlink" title="R Code"></a>R Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">library(e1071)</div><div class="line">x &lt;- cbind(x_train,y_train)</div><div class="line"><span class="comment"># Fitting model</span></div><div class="line">fit &lt;-svm(y_train ~ ., data = x)</div><div class="line">summary(fit)</div><div class="line"><span class="comment">#Predict Output </span></div><div class="line">predicted= predict(fit,x_test)</div></pre></td></tr></table></figure>
+<h1 id="5-朴素贝叶斯"><a href="#5-朴素贝叶斯" class="headerlink" title="5. 朴素贝叶斯"></a>5. 朴素贝叶斯</h1><p>它是基于贝叶斯定理的分类技术，假设预测因子之间是独立的。 简单来说，朴素贝叶斯分类器假设类中特定特征的存在与任何其他特征的存在无关。 例如，如果果实是红色，圆形，直径约3英寸，则果实可能被认为是苹果。 即使这些特征依赖于彼此或其他特征的存在，一个朴素的贝叶斯分类器将考虑的是所有属性来单独地贡献这个果实是苹果的概率。</p>
+<p>朴素贝叶斯模型易于构建，对于非常大的数据集尤其有用。 除了简单之外，朴素贝叶斯也被称为超高级分类方法。</p>
+<p>贝叶斯定理提供了一种由P（c），P（x）和P（x | c）计算概率P（c | x）的方法。 看下面的等式：<br><img src="https://www.analyticsvidhya.com/wp-content/uploads/2015/08/Bayes_rule.png" alt="朴素贝叶斯"></p>
+<ul>
+<li>其中：<ul>
+<li>P（c | x）是在x条件下c发生的概率。</li>
+<li>P（c）是c发生的概率。</li>
+<li>P（x | c）在c条件下x发生的概率。</li>
+<li>P（x）是x发生的概率。</li>
+</ul>
+</li>
+</ul>
+<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><p>让我们用一个例子来理解它。 下面我有一个天气和相应的目标变量“玩游戏”的训练数据集。 现在，我们需要根据天气条件对玩家是否玩游戏进行分类。 我们按照以下步骤执行。</p>
+<p>步骤1：将数据集转换为频率表</p>
+<p>步骤2：通过发现像“Overcast”概率= 0.29和播放概率为0.64的概率来创建似然表。<br><img src="https://www.analyticsvidhya.com/wp-content/uploads/2015/08/Bayes_41-850x310.png" alt="例子"><br>步骤3：现在，使用朴素贝叶斯方程来计算每个类的概率。 其中概率最高的情况就是是预测的结果。</p>
+<h2 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h2><p>如果天气晴朗，玩家会玩游戏，这个说法是正确的吗？</p>
+<p>我们可以使用上述方法解决，所以P(Yes | Sunny) = P( Sunny | Yes) * P(Yes) / P (Sunny)</p>
+<p>这里，P（Sunny | Yes）= 3/9 = 0.33，P（Sunny）= 5/14 = 0.36，P（Yes）= 9/14 = 0.64</p>
+<p>现在，P（Yes | Sunny）= 0.33 * 0.64 / 0.36 = 0.60，该事件发生的概率还是比较高的。</p>
+<p>朴素贝叶斯使用类似的方法根据各种属性预测不同分类的概率，该算法主要用于文本分类和具有多个类的问题。</p>
+<h2 id="Python-Code-4"><a href="#Python-Code-4" class="headerlink" title="Python Code"></a>Python Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Import Library</span></div><div class="line"><span class="keyword">from</span> sklearn.naive_bayes <span class="keyword">import</span> GaussianNB</div><div class="line"><span class="comment">#Assumed you have, X (predictor) and Y (target) for training data set and x_test(predictor) of test_dataset</span></div><div class="line"><span class="comment"># Create SVM classification object model = GaussianNB() </span></div><div class="line"><span class="comment"># there is other distribution for multinomial classes like Bernoulli Naive Bayes, Refer link</span></div><div class="line"><span class="comment"># Train the model using the training sets and check score</span></div><div class="line">model.fit(X, y)</div><div class="line"><span class="comment">#Predict Output</span></div><div class="line">predicted= model.predict(x_test)</div></pre></td></tr></table></figure>
+<h2 id="R-Code-4"><a href="#R-Code-4" class="headerlink" title="R Code"></a>R Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">library(e1071)</div><div class="line">x &lt;- cbind(x_train,y_train)</div><div class="line"><span class="comment"># Fitting model</span></div><div class="line">fit &lt;-naiveBayes(y_train ~ ., data = x)</div><div class="line">summary(fit)</div><div class="line"><span class="comment">#Predict Output </span></div><div class="line">predicted= predict(fit,x_test)</div></pre></td></tr></table></figure>
+<h1 id="6-KNN-K-近邻算法"><a href="#6-KNN-K-近邻算法" class="headerlink" title="6. KNN (K-近邻算法)"></a>6. KNN (K-近邻算法)</h1><p>它可以用于分类和回归问题, 然而，它在行业中被广泛地应用于分类问题。 K-近邻算法用于存储所有训练样本集（所有已知的案列），并通过其k个邻近数据多数投票对新的数据（或者案列）进行分类。通常，选择k个最近邻数据中出现次数最多的分类作为新数据的分类。</p>
+<p>这些计算机的距离函数可以是欧几里德，曼哈顿，闵可夫斯基和汉明距离。 前三个函数用于连续函数，第四个函数用于分类变量。 如果K = 1，则简单地将该情况分配给其最近邻的类。 有时，选择K在执行KNN建模时是一个难点。<br><img src="https://www.analyticsvidhya.com/wp-content/uploads/2015/08/KNN.png" alt="K-近邻算法"><br>KNN可以轻松映射到我们的现实生活中。 如果你想了解一个人，你没有任何信息，你可能想知道先去了解他的亲密的朋友和他活动的圈子，从而获得他/她的信息！</p>
+<p>选择KNN之前要考虑的事项：</p>
+<ul>
+<li>KNN在计算上是昂贵的</li>
+<li>变量应该被归一化，否则更高的范围变量可以偏移它</li>
+<li>在进行KNN之前，预处理阶段的工作更像去除离群值、噪声值</li>
+</ul>
+<h2 id="Python-Code-5"><a href="#Python-Code-5" class="headerlink" title="Python Code"></a>Python Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Import Library</span></div><div class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</div><div class="line"><span class="comment">#Assumed you have, X (predictor) and Y (target) for training data set and x_test(predictor) of test_dataset</span></div><div class="line"><span class="comment"># Create KNeighbors classifier object model </span></div><div class="line">KNeighborsClassifier(n_neighbors=<span class="number">6</span>) <span class="comment"># default value for n_neighbors is 5</span></div><div class="line"><span class="comment"># Train the model using the training sets and check score</span></div><div class="line">model.fit(X, y)</div><div class="line"><span class="comment">#Predict Output</span></div><div class="line">predicted= model.predict(x_test)</div></pre></td></tr></table></figure>
+<h2 id="R-Code-5"><a href="#R-Code-5" class="headerlink" title="R Code"></a>R Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">library(knn)</div><div class="line">x &lt;- cbind(x_train,y_train)</div><div class="line"><span class="comment"># Fitting model</span></div><div class="line">fit &lt;-knn(y_train ~ ., data = x,k=<span class="number">5</span>)</div><div class="line">summary(fit)</div><div class="line"><span class="comment">#Predict Output </span></div><div class="line">predicted= predict(fit,x_test)</div></pre></td></tr></table></figure>
+<h1 id="7-K-Means"><a href="#7-K-Means" class="headerlink" title="7. K-Means"></a>7. K-Means</h1><p>它是解决聚类问题的一种无监督算法。 其过程遵循一种简单而简单的方式，通过一定数量的聚类（假设k个聚类）对给定的数据集进行分类。 集群内的数据点与对等组是同构的和异构的。</p>
+<p>尝试从油墨印迹中找出形状？（见下图） k means 与这个活动相似， 你通过墨水渍形状来判断有多少群体存在！<br><img src="https://www.analyticsvidhya.com/wp-content/uploads/2015/08/splatter_ink_blot_texture_by_maki_tak-d5p6zph-284x300.jpg" alt="K-Means"><br>下面两点感觉原文解释的不是很清楚，自己然后查了下国内的解释方法</p>
+<h2 id="K-means如何形成集群"><a href="#K-means如何形成集群" class="headerlink" title="K-means如何形成集群"></a>K-means如何形成集群</h2><ul>
+<li>（1） 从 n个数据对象任意选择 k 个对象作为初始聚类中心；</li>
+<li>（2） 根据每个聚类对象的均值（中心对象），计算每个对象与这些中心对象的距离；并根据最小距离重新对相应对象进行划分；</li>
+<li>（3） 重新计算每个（有变化）聚类的均值（中心对象）</li>
+<li>（4） 循环（2）到（3）直到每个聚类不再发生变化为止<a href="https://baike.baidu.com/item/K-means/4934806?fr=aladdin" target="_blank" rel="external">参考</a></li>
+</ul>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p><img src="http://cms.csdnimg.cn/articlev1/uploads/allimg/120703/091301K62-1.jpg" alt="K-Means例子"><br>从上图中，我们可以看到，<code>A，B，C，D，E</code>是五个在图中点。而灰色的点是我们的种子点，也就是我们用来找点群的点。有两个种子点，所以<code>K=2</code>。</p>
+<p>然后，<code>K-Means</code>的算法如下：</p>
+<ol>
+<li>随机在图中取K（这里K=2）个种子点。</li>
+<li>然后对图中的所有点求到这K个种子点的距离，假如点Pi离种子点Si最近，那么Pi属于Si点群。（上图中，我们可以看到A，B属于上面的种子点，C，D，E属于下面中部的种子点）</li>
+<li>接下来，我们要移动种子点到属于他的“点群”的中心。（见图上的第三步）</li>
+<li>然后重复第2）和第3）步，直到，种子点没有移动（我们可以看到图中的第四步上面的种子点聚合了A，B，C，下面的种子点聚合了D，E）。<a href="http://www.csdn.net/article/2012-07-03/2807073-k-means" target="_blank" rel="external">参考</a></li>
+</ol>
+<h2 id="K值如何确定"><a href="#K值如何确定" class="headerlink" title="K值如何确定"></a>K值如何确定</h2><p>在实际应用中，由于Kmean一般作为数据预处理，或者用于辅助分聚类贴标签。所以k一般不会设置很大。可以通过枚举，令k从2到一个固定值如10，在每个k值上重复运行数次kmeans(避免局部最优解)，并计算当前k的平均轮廓系数，最后选取轮廓系数最大的值对应的k作为最终的集群数目。<a href="http://www.cnblogs.com/dudumiaomiao/p/5839905.html" target="_blank" rel="external">参考</a></p>
+<p>我们知道随着群集数量的增加，该值不断减少，但是如果绘制结果，则可能会发现平方距离的总和急剧下降到k的某个值，然后再慢一些。 在这里，我们可以找到最佳聚类数。<br><img src="https://www.analyticsvidhya.com/wp-content/uploads/2015/08/Kmenas-850x429.png" alt="k值"></p>
+<h2 id="Python-Code-6"><a href="#Python-Code-6" class="headerlink" title="Python Code"></a>Python Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Import Library</span></div><div class="line"><span class="keyword">from</span> sklearn.cluster <span class="keyword">import</span> KMeans</div><div class="line"><span class="comment">#Assumed you have, X (attributes) for training data set and x_test(attributes) of test_dataset</span></div><div class="line"><span class="comment"># Create KNeighbors classifier object model </span></div><div class="line">k_means = KMeans(n_clusters=<span class="number">3</span>, random_state=<span class="number">0</span>)</div><div class="line"><span class="comment"># Train the model using the training sets and check score</span></div><div class="line">model.fit(X)</div><div class="line"><span class="comment">#Predict Output</span></div><div class="line">predicted= model.predict(x_test)</div></pre></td></tr></table></figure>
+<h2 id="R-Code-6"><a href="#R-Code-6" class="headerlink" title="R Code"></a>R Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">library(cluster)</div><div class="line">fit &lt;- kmeans(X, <span class="number">3</span>) <span class="comment"># 5 cluster solution</span></div></pre></td></tr></table></figure>
+<h1 id="8-Random-Forest（随机树林）"><a href="#8-Random-Forest（随机树林）" class="headerlink" title="8. Random Forest（随机树林）"></a>8. Random Forest（随机树林）</h1><p>随机森林(Random Forest)是一个包含多个决策树的分类器， 其输出的类别由个别树输出类别的众数而定。（相当于许多不同领域的专家对数据进行分类判断，然后投票）<br><img src="https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=e0a6ac59104c510fbac9ea4801304e48/960a304e251f95cab62ae027c3177f3e66095247.jpg" alt="随机树林"><br>感觉原文没有将什么实质内容，给大家推进这一篇<a href="https://www.zybuluo.com/hshustc/note/179319" target="_blank" rel="external">Random Forest入门</a></p>
+<h1 id="9-降维算法"><a href="#9-降维算法" class="headerlink" title="9. 降维算法"></a>9. 降维算法</h1><p>在过去的4-5年中，数据挖掘在每个可能的阶段都呈指数级增长。 公司/政府机构/研究机构不仅有新的来源，而且他们正在非常详细地挖掘数据。</p>
+<p>例如：电子商务公司正在捕获更多关于客户的细节，例如人口统计，网络爬网历史，他们喜欢或不喜欢的内容，购买历史记录，反馈信息等等，给予他们个性化的关注，而不是离你最近的杂货店主。</p>
+<p>作为数据科学家，我们提供的数据还包括许多功能，这对建立良好的稳健模型是非常有用的，但是有一个挑战。 你如何识别出1000或2000年高度重要的变量？ 在这种情况下，维数降低算法可以帮助我们与决策树，随机森林，PCA，因子分析，基于相关矩阵，缺失值比等的其他算法一起使用。<br>要了解更多有关此算法的信息，您可以阅读<a href="https://www.analyticsvidhya.com/blog/2015/07/dimension-reduction-methods/" target="_blank" rel="external"> “Beginners Guide To Learn Dimension Reduction Techniques“.</a></p>
+<h2 id="Python-Code-7"><a href="#Python-Code-7" class="headerlink" title="Python Code"></a>Python Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Import Library</span></div><div class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> decomposition</div><div class="line"><span class="comment">#Assumed you have training and test data set as train and test</span></div><div class="line"><span class="comment"># Create PCA obeject pca= decomposition.PCA(n_components=k) #default value of k =min(n_sample, n_features)</span></div><div class="line"><span class="comment"># For Factor analysis</span></div><div class="line"><span class="comment">#fa= decomposition.FactorAnalysis()</span></div><div class="line"><span class="comment"># Reduced the dimension of training dataset using PCA</span></div><div class="line">train_reduced = pca.fit_transform(train)</div><div class="line"><span class="comment">#Reduced the dimension of test dataset</span></div><div class="line">test_reduced = pca.transform(test)</div></pre></td></tr></table></figure>
+<p>For more detail on this, please refer  <a href="http://scikit-learn.org/stable/modules/decomposition.html#decompositions" target="_blank" rel="external">this link</a>.</p>
+<h2 id="R-Code-7"><a href="#R-Code-7" class="headerlink" title="R Code"></a>R Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">library(stats)</div><div class="line">pca &lt;- princomp(train, cor = TRUE)</div><div class="line">train_reduced  &lt;- predict(pca,train)</div><div class="line">test_reduced  &lt;- predict(pca,test)</div></pre></td></tr></table></figure>
+<h1 id="10-Gradient-Boosting-amp-AdaBoost"><a href="#10-Gradient-Boosting-amp-AdaBoost" class="headerlink" title="10. Gradient Boosting &amp; AdaBoost"></a>10. Gradient Boosting &amp; AdaBoost</h1><p>当我们处理大量数据以预测高预测能力时，GBM＆AdaBoost是更加强大的算法。 Boosting是一种综合学习算法，它结合了几个基本估计器的预测，以提高单个估计器的鲁棒性。 它将多个弱或平均预测值组合到一个强大的预测变量上。 这些提升算法在数据科学比赛中总是能够很好地运行，如Kaggle，AV Hackathon，CrowdAnalytix。<br>More: <a href="https://www.analyticsvidhya.com/blog/2015/05/boosting-algorithms-simplified/" target="_blank" rel="external">Know about Gradient and AdaBoost in detail</a></p>
+<h2 id="Python-Code-8"><a href="#Python-Code-8" class="headerlink" title="Python Code"></a>Python Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Import Library</span></div><div class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> GradientBoostingClassifier</div><div class="line"><span class="comment">#Assumed you have, X (predictor) and Y (target) for training data set and x_test(predictor) of test_dataset</span></div><div class="line"><span class="comment"># Create Gradient Boosting Classifier object</span></div><div class="line">model= GradientBoostingClassifier(n_estimators=<span class="number">100</span>, learning_rate=<span class="number">1.0</span>, max_depth=<span class="number">1</span>, random_state=<span class="number">0</span>)</div><div class="line"><span class="comment"># Train the model using the training sets and check score</span></div><div class="line">model.fit(X, y)</div><div class="line"><span class="comment">#Predict Output</span></div><div class="line">predicted= model.predict(x_test)</div></pre></td></tr></table></figure>
+<h2 id="R-Code-8"><a href="#R-Code-8" class="headerlink" title="R Code"></a>R Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">library(caret)</div><div class="line">x &lt;- cbind(x_train,y_train)</div><div class="line"><span class="comment"># Fitting model</span></div><div class="line">fitControl &lt;- trainControl( method = <span class="string">"repeatedcv"</span>, number = <span class="number">4</span>, repeats = <span class="number">4</span>)</div><div class="line">fit &lt;- train(y ~ ., data = x, method = <span class="string">"gbm"</span>, trControl = fitControl,verbose = FALSE)</div><div class="line">predicted= predict(fit,x_test,type= <span class="string">"prob"</span>)[,<span class="number">2</span>]</div></pre></td></tr></table></figure>
+<h1 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h1><p>现在我相信，你会有一个常用的机器学习算法的想法。 我在写这篇文章和提供R和Python中的代码的唯一意图就是让你马上开始。 如果您想要掌握机器学习，请将算法运用实际问题，体会其中的乐趣</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;excerpt in=&quot;&quot; index=&quot;&quot; |=&quot;&quot; 首页摘要=&quot;&quot;&gt;&lt;br&gt;本篇文章是&lt;a href=&quot;https://www.analyticsvidhya.com/blog/2015/08/common-machine-learning-algorithms/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;原文&lt;/a&gt;的译文，然后自己对其中做了一些修改和添加内容（随机森林和降维算法）。文章简洁地介绍了机器学习的主要算法和一些伪代码，对于初学者有很大帮助，是一篇不错的总结文章，后期可以通过文中提到的算法展开去做一些实际问题。&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>Kera实例：预测白酒和红酒的质量</title>
     <link href="http://yoursite.com/2017/07/26/Keras04-%E7%99%BD%E9%85%92%E5%92%8C%E7%BA%A2%E9%85%92%E5%AE%9E%E4%BE%8B/"/>
     <id>http://yoursite.com/2017/07/26/Keras04-白酒和红酒实例/</id>
     <published>2017-07-26T15:51:25.000Z</published>
-    <updated>2017-08-24T03:43:07.095Z</updated>
+    <updated>2017-08-24T03:51:42.557Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>本篇文章是益智的教程，参考之后动手进行实践了一遍。编译环境windows10+python3.5<br><a id="more"></a></excerpt></p>
 <p><a href="https://jizhi.im/course/dl_keras/2" target="_blank" rel="external">参考</a></p>
@@ -1206,171 +1373,11 @@ Epoch 5/5
   </entry>
   
   <entry>
-    <title>机器学习算法的基本知识（使用Python和R代码）</title>
-    <link href="http://yoursite.com/2017/07/26/Python28-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%EF%BC%88%E4%BD%BF%E7%94%A8Python%E5%92%8CR%E4%BB%A3%E7%A0%81%EF%BC%89/"/>
-    <id>http://yoursite.com/2017/07/26/Python28-机器学习算法的基本知识（使用Python和R代码）/</id>
-    <published>2017-07-26T15:51:25.000Z</published>
-    <updated>2017-08-24T03:43:07.095Z</updated>
-    
-    <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>本篇文章是<a href="https://www.analyticsvidhya.com/blog/2015/08/common-machine-learning-algorithms/" target="_blank" rel="external">原文</a>的译文，然后自己对其中做了一些修改和添加内容（随机森林和降维算法）。文章简洁地介绍了机器学习的主要算法和一些伪代码，对于初学者有很大帮助，是一篇不错的总结文章，后期可以通过文中提到的算法展开去做一些实际问题。<br><a id="more"></a></excerpt></p>
-<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><hr>
-<p><code>Google的自驾车和机器人得到了很多新闻，但公司的真正未来是机器学习，这种技术使计算机变得更智能，更个性化。</code><em>-Eric Schmidt (Google Chairman)</em></p>
-<hr>
-<p>我们可能生活在人类历史上最具影响力的时期——计算从大型主机到PC移动到云计算的时期。 但是使这段时期有意义的不是发生了什么，而是在未来几年里我们的方式。</p>
-<p>这个时期令像我这样的一个人兴奋的就是，随着计算机的推动，工具和技术的民主化。 今天，作为数据科学家，我可以每小时为几个玩偶构建具有复杂算法的数据处理机。 但到达这里并不容易，我已经度过了许多黑暗的日日夜夜。</p>
-<h1 id="谁可以从本指南中获益最多"><a href="#谁可以从本指南中获益最多" class="headerlink" title="谁可以从本指南中获益最多"></a>谁可以从本指南中获益最多</h1><p><strong>我今天发布的可能是我创造的最有价值的指南。</strong></p>
-<p>创建本指南背后的理念是简化全球有抱负的数据科学家和机器学习爱好者的旅程。 本指南能够使你在研究机器学习问题的过程中获取经验。 我提供了关于各种机器学习算法以及R＆Python代码的高级理解以及运行它们，这些应该足以使你得心顺手。<br><img src="https://www.analyticsvidhya.com/wp-content/uploads/2015/08/Newl-Machine-Learning-Algorithms.jpg" alt="machine learning"><br>我故意跳过了这些技术背后的统计数据，因为你不需要在开始时就了解它们。 所以，如果你正在寻找对这些算法的统计学理解，你应该看看别的文章。 但是，如果你正在寻找并开始构建机器学习项目，那么这篇文章给你带来极大好处。</p>
-<h1 id="3类机器学习算法（广义上）"><a href="#3类机器学习算法（广义上）" class="headerlink" title="3类机器学习算法（广义上）"></a>3类机器学习算法（广义上）</h1><ol>
-<li><p>监督学习<br>工作原理：该算法由一组目标/结果变量（或因变量）组成，该变量将根据给定的一组预测变量（独立变量）进行预测。 使用这些变量集，我们生成一个将输入映射到所需输出的函数。 训练过程继续进行执行，直到模型达到培训数据所需的准确度水平。 监督学习的例子：回归，决策树，随机森林，KNN，逻辑回归等</p>
-</li>
-<li><p>无监督学习<br>如何工作：在这个算法中，我们没有任何目标或结果变量来预测/估计。 用于不同群体的群体聚类和用于不同群体的客户进行特定干预。 无监督学习的例子：Apriori算法，K-means。</p>
-</li>
-<li><p>加强学习：<br>工作原理：使用这种算法，机器受到学习和训练，作出具体决定。 它以这种方式工作：机器暴露在一个环境中，它连续不断地使用试错。 该机器从过去的经验中学习，并尝试捕获最好的知识，以做出准确的业务决策。 加强学习示例：马尔可夫决策过程</p>
-</li>
-</ol>
-<h1 id="常见机器学习算法"><a href="#常见机器学习算法" class="headerlink" title="常见机器学习算法"></a>常见机器学习算法</h1><p>以下是常用机器学习算法的列表。 这些算法几乎可以应用于任何数据问题：</p>
-<ul>
-<li>线性回归</li>
-<li>逻辑回归</li>
-<li>决策树</li>
-<li>SVM</li>
-<li>朴素贝叶斯</li>
-<li>KNN</li>
-<li>K-Means</li>
-<li>随机森林</li>
-<li>降维算法</li>
-<li>Gradient Boost＆Adaboost</li>
-</ul>
-<h1 id="1-线性回归"><a href="#1-线性回归" class="headerlink" title="1.线性回归"></a>1.线性回归</h1><p>它用于基于连续变量来估计实际价值（房屋成本，电话数量，总销售额等）。在这里，我们通过拟合最佳线来建立独立变量和因变量之间的关系。这个最佳拟合线被称为回归线，由线性方程<code>Y = a * X + b</code>表示。</p>
-<p>理解线性回归的最好方法是回想童年的经历。比如，你要求五年级的孩子通过体重来从小到大排序班里的学生，而事先不告诉学生们的体重！你认为孩子会做什么？他/她很可能在身高和体格上分析人物的体重，并使用这些可视参数的组合进行排列。这是现实生活中的线性回归！孩子实际上已经弄清楚，身高和体格将有一个关系与体重相关联，看起来就像上面的等式。</p>
-<p>在这个方程式中：</p>
-<p><code>Y-因变量</code><br><code>a - 斜率</code><br><code>X - 自变量</code><br><code>b - 截距</code><br>这些系数a和b是基于最小化数据点和回归线之间的距离的平方差之和导出的。</p>
-<p>看下面的例子。这里我们确定了线性方程<code>y = 0.2811x + 13.9</code>的最佳拟合线。现在使用这个方程，我们可以找到一个人（身高已知）的体重。<br><img src="https://www.analyticsvidhya.com/wp-content/uploads/2015/08/Linear_Regression.png" alt="线性回归"><br>线性回归主要有两种类型：简单线性回归和多元线性回归。 简单线性回归的特征在于一个自变量。 而且，多元线性回归（顾名思义）的特征是多个（多于1个）自变量。 在找到最佳拟合线的同时，可以拟合多项式或曲线回归线，这些被称为多项式或曲线回归。</p>
-<h2 id="Python-Code"><a href="#Python-Code" class="headerlink" title="Python Code"></a>Python Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Import Library</span></div><div class="line"><span class="comment">#Import other necessary libraries like pandas, numpy...</span></div><div class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> linear_model</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="comment">#Load Train and Test datasets</span></div><div class="line"><span class="comment">#Identify feature and response variable(s) and values must be numeric and numpy arrays</span></div><div class="line"><span class="comment"># x_train=input_variables_values_training_datasets</span></div><div class="line">x_train=np.random.rand(<span class="number">4</span>,<span class="number">4</span>)</div><div class="line">print(x_train)</div><div class="line"><span class="comment"># y_train=target_variables_values_training_datasets</span></div><div class="line">y_train=np.random.rand(<span class="number">4</span>,<span class="number">4</span>)</div><div class="line">print(y_train)</div><div class="line"></div><div class="line"><span class="comment"># x_test=input_variables_values_test_datasets</span></div><div class="line">x_test=np.random.rand(<span class="number">4</span>,<span class="number">4</span>)</div><div class="line">print(x_test)</div><div class="line"></div><div class="line"><span class="comment"># Create linear regression object</span></div><div class="line">linear = linear_model.LinearRegression()</div><div class="line"><span class="comment"># Train the model using the training sets and check score</span></div><div class="line">linear.fit(x_train, y_train)</div><div class="line">linear.score(x_train, y_train)</div><div class="line"><span class="comment">#Equation coefficient and Intercept</span></div><div class="line">print(<span class="string">'Coefficient: \n'</span>, linear.coef_)</div><div class="line">print(<span class="string">'Intercept: \n'</span>, linear.intercept_)</div><div class="line"><span class="comment">#Predict Output</span></div><div class="line">predicted= linear.predict(x_test)</div><div class="line">print(<span class="string">'predicted:\n'</span>,predicted)</div></pre></td></tr></table></figure>
-<pre><code>[[ 0.98267731  0.23364069  0.35133775  0.92826309]
- [ 0.80538991  0.05637806  0.87662175  0.3960776 ]
- [ 0.54686738  0.6816495   0.99747716  0.32531085]
- [ 0.19189509  0.87105462  0.88158122  0.25056621]]
-[[ 0.55541608  0.56859636  0.40616234  0.14683524]
- [ 0.09937835  0.63874553  0.92062536  0.32798326]
- [ 0.87174236  0.779044    0.79119392  0.06912842]
- [ 0.87907434  0.53175367  0.01371655  0.11414196]]
-[[ 0.37568516  0.17267374  0.51647046  0.04774661]
- [ 0.38573914  0.85335136  0.11647555  0.0758696 ]
- [ 0.67559384  0.57535368  0.88579261  0.26278658]
- [ 0.13829782  0.28328756  0.51170484  0.04260013]]
-Coefficient: 
- [[ 0.55158868  1.45901817  0.31224322  0.49538173]
- [ 0.6995448   0.40804135  0.59938423  0.09084578]
- [ 1.79010371  0.21674532  1.60972012 -0.046387  ]
- [-0.31562917 -0.53767439 -0.16141312 -0.2154683 ]]
-Intercept: 
- [-0.89705102 -0.50908061 -1.9260686   0.83934127]
-predicted:
- [[-0.25297601  0.13808785 -0.38696891  0.53426883]
- [ 0.63472658  0.18566989 -0.86662193  0.22361739]
- [ 0.72181277  0.75309881  0.82170796  0.11715048]
- [-0.22656611  0.01383581 -0.79537442  0.55159912]]
-</code></pre><h2 id="R-Code"><a href="#R-Code" class="headerlink" title="R Code"></a>R Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Load Train and Test datasets</span></div><div class="line"><span class="comment">#Identify feature and response variable(s) and values must be numeric and numpy arrays</span></div><div class="line">x_train &lt;- input_variables_values_training_datasets</div><div class="line">y_train &lt;- target_variables_values_training_datasets</div><div class="line">x_test &lt;- input_variables_values_test_datasets</div><div class="line">x &lt;- cbind(x_train,y_train)</div><div class="line"><span class="comment"># Train the model using the training sets and check score</span></div><div class="line">linear &lt;- lm(y_train ~ ., data = x)</div><div class="line">summary(linear)</div><div class="line"><span class="comment">#Predict Output</span></div><div class="line">predicted= predict(linear,x_test)</div></pre></td></tr></table></figure>
-<h1 id="2-逻辑回归"><a href="#2-逻辑回归" class="headerlink" title="2.逻辑回归"></a>2.逻辑回归</h1><p>不要因为它的名字而感到困惑，逻辑回归是一个分类算法而不是回归算法。它用于基于给定的一组自变量来估计离散值（二进制值，如0/1，是/否，真/假）。简单来说，它通过将数据拟合到logit函数来预测事件发生的概率。因此，它也被称为logit回归。由于它预测概率，其输出值在0和1之间（如预期的那样）。</p>
-<p>再次，让我们通过一个简单的例子来尝试理解这一点。</p>
-<p>假设你的朋友给你一个难题解决。只有2个结果场景 - 你能解决和不能解决。现在想象，你正在被许多猜谜或者简单测验，来试图理解你擅长的科目。这项研究的结果将是这样的结果 - 如果给你一个10级的三角形问题，那么你有70％可能会解决这个问题。另外一个例子，如果是五级的历史问题，得到答案的概率只有30％。这就是逻辑回归为你提供的结果。</p>
-<p>对数学而言，结果的对数几率被建模为预测变量的线性组合。</p>
-<p><code>odds= p/ (1-p) = probability of event occurrence / probability of not event occurrence
-ln(odds) = ln(p/(1-p))
-logit(p) = ln(p/(1-p)) = b0+b1X1+b2X2+b3X3....+bkXk</code></p>
-<p>以上，p是感兴趣特征的概率。 它选择最大化观察样本值的可能性的参数，而不是最小化平方误差的总和（如在普通回归中）。</p>
-<p>现在，你可能会问，为什么要采用log？ 为了简单起见，让我们来说，这是复制阶梯函数的最好的数学方法之一。 我可以进一步详细介绍，但这将会打破这篇文章的目的。<br><img src="https://www.analyticsvidhya.com/wp-content/uploads/2015/08/Logistic_Regression.png" alt="逻辑回归"></p>
-<h2 id="Python-Code-1"><a href="#Python-Code-1" class="headerlink" title="Python Code"></a>Python Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Import Library</span></div><div class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</div><div class="line"><span class="comment">#Assumed you have, X (predictor) and Y (target) for training data set and x_test(predictor) of test_dataset</span></div><div class="line"><span class="comment"># Create logistic regression object</span></div><div class="line">model = LogisticRegression()</div><div class="line"><span class="comment"># Train the model using the training sets and check score</span></div><div class="line">model.fit(X, y)</div><div class="line">model.score(X, y)</div><div class="line"><span class="comment">#Equation coefficient and Intercept</span></div><div class="line">print(<span class="string">'Coefficient: \n'</span>, model.coef_)</div><div class="line">print(<span class="string">'Intercept: \n'</span>, model.intercept_)</div><div class="line"><span class="comment">#Predict Output</span></div><div class="line">predicted= model.predict(x_test)</div></pre></td></tr></table></figure>
-<h2 id="R-Code-1"><a href="#R-Code-1" class="headerlink" title="R Code"></a>R Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">x &lt;- cbind(x_train,y_train)</div><div class="line"><span class="comment"># Train the model using the training sets and check score</span></div><div class="line">logistic &lt;- glm(y_train ~ ., data = x,family=<span class="string">'binomial'</span>)</div><div class="line">summary(logistic)</div><div class="line"><span class="comment">#Predict Output</span></div><div class="line">predicted= predict(logistic,x_test)</div></pre></td></tr></table></figure>
-<h1 id="3-决策树"><a href="#3-决策树" class="headerlink" title="3.决策树"></a>3.决策树</h1><p>这是我最喜欢的算法之一，我经常使用它。 它是一种主要用于分类问题的监督学习算法，令人惊讶的是，它可以适用于分类和连·续因变量。 在该算法中，我们将群体分为两个或多个均匀集合。 这是基于最重要的属性/自变量来做出的并将它们分为不同的组。关于决策树的更多细节，你可以阅读<a href="https://www.analyticsvidhya.com/blog/2015/01/decision-tree-simplified/" target="_blank" rel="external">决策树简介</a></p>
-<p><img src="https://www.analyticsvidhya.com/wp-content/uploads/2015/08/IkBzK.png" alt="决策树"><br>在上图中，您可以看到根据多个属性将群体分为四个不同的群组，以确定用户“是否可以玩”。为了 将人口分为不同的特征群体，它使用了诸如Gini，信息增益，卡方，熵等各种技术。<br><img src="https://www.analyticsvidhya.com/wp-content/uploads/2015/08/download.jpg" alt="JezzBall"><br>了解决策树如何运作的最佳方法是播放Jezzball - 微软的经典游戏（下图）。 大体上就是，来一起在屏幕上滑动手指，筑起墙壁，掩住移动的球吧。</p>
-<h2 id="Python-Code-2"><a href="#Python-Code-2" class="headerlink" title="Python Code"></a>Python Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Import Library</span></div><div class="line"><span class="comment">#Import other necessary libraries like pandas, numpy...</span></div><div class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> tree</div><div class="line"><span class="comment">#Assumed you have, X (predictor) and Y (target) for training data set and x_test(predictor) of test_dataset</span></div><div class="line"><span class="comment"># Create tree object </span></div><div class="line">model = tree.DecisionTreeClassifier(criterion=<span class="string">'gini'</span>) </div><div class="line"><span class="comment"># for classification, here you can change the algorithm as gini or entropy (information gain) by default it is gini  </span></div><div class="line"><span class="comment"># model = tree.DecisionTreeRegressor() for regression</span></div><div class="line"><span class="comment"># Train the model using the training sets and check score</span></div><div class="line">model.fit(X, y)</div><div class="line">model.score(X, y)</div><div class="line"><span class="comment">#Predict Output</span></div><div class="line">predicted= model.predict(x_test)</div></pre></td></tr></table></figure>
-<h2 id="R-Code-2"><a href="#R-Code-2" class="headerlink" title="R Code"></a>R Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">library(rpart)</div><div class="line">x &lt;- cbind(x_train,y_train)</div><div class="line"><span class="comment"># grow tree </span></div><div class="line">fit &lt;- rpart(y_train ~ ., data = x,method=<span class="string">"class"</span>)</div><div class="line">summary(fit)</div><div class="line"><span class="comment">#Predict Output </span></div><div class="line">predicted= predict(fit,x_test)</div></pre></td></tr></table></figure>
-<h1 id="4-SVM-支持向量机"><a href="#4-SVM-支持向量机" class="headerlink" title="4.SVM(支持向量机)"></a>4.SVM(支持向量机)</h1><p>这是一种分类方法。 在这个算法中，我们将每个数据项目绘制为n维空间中的一个点（其中n是拥有的特征数），每个特征的值是特定坐标的值。</p>
-<p>例如，如果我们有一个人的“高度”和“头发长度”这两个特征，我们首先将这两个变量绘制在二维空间中，其中每个点都有两个坐标（这些坐标称为支持向量）<br><img src="https://www.analyticsvidhya.com/wp-content/uploads/2015/08/SVM1-850x575.png" alt="支持向量机"><br>现在，我们将找到一些可以将数据分割成两类的线。 而我们想要的线，就是使得两组数据中最近点到分割线的距离最长的线。<br><img src="https://www.analyticsvidhya.com/wp-content/uploads/2015/08/SVM2-850x578.png" alt="最佳分割直线"><br>在上述示例中，将数据分成两个不同分类的组的线是黑线，因为两个最接近的点距离线最远（红线也可以，但不是一最远）。 这条线是我们的分类器， 然后根据测试数据位于线路两边的位置，我们可以将新数据分类为什么类别。</p>
-<h2 id="Python-Code-3"><a href="#Python-Code-3" class="headerlink" title="Python Code"></a>Python Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Import Library</span></div><div class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> svm</div><div class="line"><span class="comment">#Assumed you have, X (predictor) and Y (target) for training data set and x_test(predictor) of test_dataset</span></div><div class="line"><span class="comment"># Create SVM classification object </span></div><div class="line">model = svm.svc() <span class="comment"># there is various option associated with it, this is simple for classification. You can refer link, for mo# re detail.</span></div><div class="line"><span class="comment"># Train the model using the training sets and check score</span></div><div class="line">model.fit(X, y)</div><div class="line">model.score(X, y)</div><div class="line"><span class="comment">#Predict Output</span></div><div class="line">predicted= model.predict(x_test)</div></pre></td></tr></table></figure>
-<h2 id="R-Code-3"><a href="#R-Code-3" class="headerlink" title="R Code"></a>R Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">library(e1071)</div><div class="line">x &lt;- cbind(x_train,y_train)</div><div class="line"><span class="comment"># Fitting model</span></div><div class="line">fit &lt;-svm(y_train ~ ., data = x)</div><div class="line">summary(fit)</div><div class="line"><span class="comment">#Predict Output </span></div><div class="line">predicted= predict(fit,x_test)</div></pre></td></tr></table></figure>
-<h1 id="5-朴素贝叶斯"><a href="#5-朴素贝叶斯" class="headerlink" title="5. 朴素贝叶斯"></a>5. 朴素贝叶斯</h1><p>它是基于贝叶斯定理的分类技术，假设预测因子之间是独立的。 简单来说，朴素贝叶斯分类器假设类中特定特征的存在与任何其他特征的存在无关。 例如，如果果实是红色，圆形，直径约3英寸，则果实可能被认为是苹果。 即使这些特征依赖于彼此或其他特征的存在，一个朴素的贝叶斯分类器将考虑的是所有属性来单独地贡献这个果实是苹果的概率。</p>
-<p>朴素贝叶斯模型易于构建，对于非常大的数据集尤其有用。 除了简单之外，朴素贝叶斯也被称为超高级分类方法。</p>
-<p>贝叶斯定理提供了一种由P（c），P（x）和P（x | c）计算概率P（c | x）的方法。 看下面的等式：<br><img src="https://www.analyticsvidhya.com/wp-content/uploads/2015/08/Bayes_rule.png" alt="朴素贝叶斯"></p>
-<ul>
-<li>其中：<ul>
-<li>P（c | x）是在x条件下c发生的概率。</li>
-<li>P（c）是c发生的概率。</li>
-<li>P（x | c）在c条件下x发生的概率。</li>
-<li>P（x）是x发生的概率。</li>
-</ul>
-</li>
-</ul>
-<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><p>让我们用一个例子来理解它。 下面我有一个天气和相应的目标变量“玩游戏”的训练数据集。 现在，我们需要根据天气条件对玩家是否玩游戏进行分类。 我们按照以下步骤执行。</p>
-<p>步骤1：将数据集转换为频率表</p>
-<p>步骤2：通过发现像“Overcast”概率= 0.29和播放概率为0.64的概率来创建似然表。<br><img src="https://www.analyticsvidhya.com/wp-content/uploads/2015/08/Bayes_41-850x310.png" alt="例子"><br>步骤3：现在，使用朴素贝叶斯方程来计算每个类的概率。 其中概率最高的情况就是是预测的结果。</p>
-<h2 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h2><p>如果天气晴朗，玩家会玩游戏，这个说法是正确的吗？</p>
-<p>我们可以使用上述方法解决，所以P(Yes | Sunny) = P( Sunny | Yes) * P(Yes) / P (Sunny)</p>
-<p>这里，P（Sunny | Yes）= 3/9 = 0.33，P（Sunny）= 5/14 = 0.36，P（Yes）= 9/14 = 0.64</p>
-<p>现在，P（Yes | Sunny）= 0.33 * 0.64 / 0.36 = 0.60，该事件发生的概率还是比较高的。</p>
-<p>朴素贝叶斯使用类似的方法根据各种属性预测不同分类的概率，该算法主要用于文本分类和具有多个类的问题。</p>
-<h2 id="Python-Code-4"><a href="#Python-Code-4" class="headerlink" title="Python Code"></a>Python Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Import Library</span></div><div class="line"><span class="keyword">from</span> sklearn.naive_bayes <span class="keyword">import</span> GaussianNB</div><div class="line"><span class="comment">#Assumed you have, X (predictor) and Y (target) for training data set and x_test(predictor) of test_dataset</span></div><div class="line"><span class="comment"># Create SVM classification object model = GaussianNB() </span></div><div class="line"><span class="comment"># there is other distribution for multinomial classes like Bernoulli Naive Bayes, Refer link</span></div><div class="line"><span class="comment"># Train the model using the training sets and check score</span></div><div class="line">model.fit(X, y)</div><div class="line"><span class="comment">#Predict Output</span></div><div class="line">predicted= model.predict(x_test)</div></pre></td></tr></table></figure>
-<h2 id="R-Code-4"><a href="#R-Code-4" class="headerlink" title="R Code"></a>R Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">library(e1071)</div><div class="line">x &lt;- cbind(x_train,y_train)</div><div class="line"><span class="comment"># Fitting model</span></div><div class="line">fit &lt;-naiveBayes(y_train ~ ., data = x)</div><div class="line">summary(fit)</div><div class="line"><span class="comment">#Predict Output </span></div><div class="line">predicted= predict(fit,x_test)</div></pre></td></tr></table></figure>
-<h1 id="6-KNN-K-近邻算法"><a href="#6-KNN-K-近邻算法" class="headerlink" title="6. KNN (K-近邻算法)"></a>6. KNN (K-近邻算法)</h1><p>它可以用于分类和回归问题, 然而，它在行业中被广泛地应用于分类问题。 K-近邻算法用于存储所有训练样本集（所有已知的案列），并通过其k个邻近数据多数投票对新的数据（或者案列）进行分类。通常，选择k个最近邻数据中出现次数最多的分类作为新数据的分类。</p>
-<p>这些计算机的距离函数可以是欧几里德，曼哈顿，闵可夫斯基和汉明距离。 前三个函数用于连续函数，第四个函数用于分类变量。 如果K = 1，则简单地将该情况分配给其最近邻的类。 有时，选择K在执行KNN建模时是一个难点。<br><img src="https://www.analyticsvidhya.com/wp-content/uploads/2015/08/KNN.png" alt="K-近邻算法"><br>KNN可以轻松映射到我们的现实生活中。 如果你想了解一个人，你没有任何信息，你可能想知道先去了解他的亲密的朋友和他活动的圈子，从而获得他/她的信息！</p>
-<p>选择KNN之前要考虑的事项：</p>
-<ul>
-<li>KNN在计算上是昂贵的</li>
-<li>变量应该被归一化，否则更高的范围变量可以偏移它</li>
-<li>在进行KNN之前，预处理阶段的工作更像去除离群值、噪声值</li>
-</ul>
-<h2 id="Python-Code-5"><a href="#Python-Code-5" class="headerlink" title="Python Code"></a>Python Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Import Library</span></div><div class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</div><div class="line"><span class="comment">#Assumed you have, X (predictor) and Y (target) for training data set and x_test(predictor) of test_dataset</span></div><div class="line"><span class="comment"># Create KNeighbors classifier object model </span></div><div class="line">KNeighborsClassifier(n_neighbors=<span class="number">6</span>) <span class="comment"># default value for n_neighbors is 5</span></div><div class="line"><span class="comment"># Train the model using the training sets and check score</span></div><div class="line">model.fit(X, y)</div><div class="line"><span class="comment">#Predict Output</span></div><div class="line">predicted= model.predict(x_test)</div></pre></td></tr></table></figure>
-<h2 id="R-Code-5"><a href="#R-Code-5" class="headerlink" title="R Code"></a>R Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">library(knn)</div><div class="line">x &lt;- cbind(x_train,y_train)</div><div class="line"><span class="comment"># Fitting model</span></div><div class="line">fit &lt;-knn(y_train ~ ., data = x,k=<span class="number">5</span>)</div><div class="line">summary(fit)</div><div class="line"><span class="comment">#Predict Output </span></div><div class="line">predicted= predict(fit,x_test)</div></pre></td></tr></table></figure>
-<h1 id="7-K-Means"><a href="#7-K-Means" class="headerlink" title="7. K-Means"></a>7. K-Means</h1><p>它是解决聚类问题的一种无监督算法。 其过程遵循一种简单而简单的方式，通过一定数量的聚类（假设k个聚类）对给定的数据集进行分类。 集群内的数据点与对等组是同构的和异构的。</p>
-<p>尝试从油墨印迹中找出形状？（见下图） k means 与这个活动相似， 你通过墨水渍形状来判断有多少群体存在！<br><img src="https://www.analyticsvidhya.com/wp-content/uploads/2015/08/splatter_ink_blot_texture_by_maki_tak-d5p6zph-284x300.jpg" alt="K-Means"><br>下面两点感觉原文解释的不是很清楚，自己然后查了下国内的解释方法</p>
-<h2 id="K-means如何形成集群"><a href="#K-means如何形成集群" class="headerlink" title="K-means如何形成集群"></a>K-means如何形成集群</h2><ul>
-<li>（1） 从 n个数据对象任意选择 k 个对象作为初始聚类中心；</li>
-<li>（2） 根据每个聚类对象的均值（中心对象），计算每个对象与这些中心对象的距离；并根据最小距离重新对相应对象进行划分；</li>
-<li>（3） 重新计算每个（有变化）聚类的均值（中心对象）</li>
-<li>（4） 循环（2）到（3）直到每个聚类不再发生变化为止<a href="https://baike.baidu.com/item/K-means/4934806?fr=aladdin" target="_blank" rel="external">参考</a></li>
-</ul>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p><img src="http://cms.csdnimg.cn/articlev1/uploads/allimg/120703/091301K62-1.jpg" alt="K-Means例子"><br>从上图中，我们可以看到，<code>A，B，C，D，E</code>是五个在图中点。而灰色的点是我们的种子点，也就是我们用来找点群的点。有两个种子点，所以<code>K=2</code>。</p>
-<p>然后，<code>K-Means</code>的算法如下：</p>
-<ol>
-<li>随机在图中取K（这里K=2）个种子点。</li>
-<li>然后对图中的所有点求到这K个种子点的距离，假如点Pi离种子点Si最近，那么Pi属于Si点群。（上图中，我们可以看到A，B属于上面的种子点，C，D，E属于下面中部的种子点）</li>
-<li>接下来，我们要移动种子点到属于他的“点群”的中心。（见图上的第三步）</li>
-<li>然后重复第2）和第3）步，直到，种子点没有移动（我们可以看到图中的第四步上面的种子点聚合了A，B，C，下面的种子点聚合了D，E）。<a href="http://www.csdn.net/article/2012-07-03/2807073-k-means" target="_blank" rel="external">参考</a></li>
-</ol>
-<h2 id="K值如何确定"><a href="#K值如何确定" class="headerlink" title="K值如何确定"></a>K值如何确定</h2><p>在实际应用中，由于Kmean一般作为数据预处理，或者用于辅助分聚类贴标签。所以k一般不会设置很大。可以通过枚举，令k从2到一个固定值如10，在每个k值上重复运行数次kmeans(避免局部最优解)，并计算当前k的平均轮廓系数，最后选取轮廓系数最大的值对应的k作为最终的集群数目。<a href="http://www.cnblogs.com/dudumiaomiao/p/5839905.html" target="_blank" rel="external">参考</a></p>
-<p>我们知道随着群集数量的增加，该值不断减少，但是如果绘制结果，则可能会发现平方距离的总和急剧下降到k的某个值，然后再慢一些。 在这里，我们可以找到最佳聚类数。<br><img src="https://www.analyticsvidhya.com/wp-content/uploads/2015/08/Kmenas-850x429.png" alt="k值"></p>
-<h2 id="Python-Code-6"><a href="#Python-Code-6" class="headerlink" title="Python Code"></a>Python Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Import Library</span></div><div class="line"><span class="keyword">from</span> sklearn.cluster <span class="keyword">import</span> KMeans</div><div class="line"><span class="comment">#Assumed you have, X (attributes) for training data set and x_test(attributes) of test_dataset</span></div><div class="line"><span class="comment"># Create KNeighbors classifier object model </span></div><div class="line">k_means = KMeans(n_clusters=<span class="number">3</span>, random_state=<span class="number">0</span>)</div><div class="line"><span class="comment"># Train the model using the training sets and check score</span></div><div class="line">model.fit(X)</div><div class="line"><span class="comment">#Predict Output</span></div><div class="line">predicted= model.predict(x_test)</div></pre></td></tr></table></figure>
-<h2 id="R-Code-6"><a href="#R-Code-6" class="headerlink" title="R Code"></a>R Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">library(cluster)</div><div class="line">fit &lt;- kmeans(X, <span class="number">3</span>) <span class="comment"># 5 cluster solution</span></div></pre></td></tr></table></figure>
-<h1 id="8-Random-Forest（随机树林）"><a href="#8-Random-Forest（随机树林）" class="headerlink" title="8. Random Forest（随机树林）"></a>8. Random Forest（随机树林）</h1><p>随机森林(Random Forest)是一个包含多个决策树的分类器， 其输出的类别由个别树输出类别的众数而定。（相当于许多不同领域的专家对数据进行分类判断，然后投票）<br><img src="https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=e0a6ac59104c510fbac9ea4801304e48/960a304e251f95cab62ae027c3177f3e66095247.jpg" alt="随机树林"><br>感觉原文没有将什么实质内容，给大家推进这一篇<a href="https://www.zybuluo.com/hshustc/note/179319" target="_blank" rel="external">Random Forest入门</a></p>
-<h1 id="9-降维算法"><a href="#9-降维算法" class="headerlink" title="9. 降维算法"></a>9. 降维算法</h1><p>在过去的4-5年中，数据挖掘在每个可能的阶段都呈指数级增长。 公司/政府机构/研究机构不仅有新的来源，而且他们正在非常详细地挖掘数据。</p>
-<p>例如：电子商务公司正在捕获更多关于客户的细节，例如人口统计，网络爬网历史，他们喜欢或不喜欢的内容，购买历史记录，反馈信息等等，给予他们个性化的关注，而不是离你最近的杂货店主。</p>
-<p>作为数据科学家，我们提供的数据还包括许多功能，这对建立良好的稳健模型是非常有用的，但是有一个挑战。 你如何识别出1000或2000年高度重要的变量？ 在这种情况下，维数降低算法可以帮助我们与决策树，随机森林，PCA，因子分析，基于相关矩阵，缺失值比等的其他算法一起使用。<br>要了解更多有关此算法的信息，您可以阅读<a href="https://www.analyticsvidhya.com/blog/2015/07/dimension-reduction-methods/" target="_blank" rel="external"> “Beginners Guide To Learn Dimension Reduction Techniques“.</a></p>
-<h2 id="Python-Code-7"><a href="#Python-Code-7" class="headerlink" title="Python Code"></a>Python Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Import Library</span></div><div class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> decomposition</div><div class="line"><span class="comment">#Assumed you have training and test data set as train and test</span></div><div class="line"><span class="comment"># Create PCA obeject pca= decomposition.PCA(n_components=k) #default value of k =min(n_sample, n_features)</span></div><div class="line"><span class="comment"># For Factor analysis</span></div><div class="line"><span class="comment">#fa= decomposition.FactorAnalysis()</span></div><div class="line"><span class="comment"># Reduced the dimension of training dataset using PCA</span></div><div class="line">train_reduced = pca.fit_transform(train)</div><div class="line"><span class="comment">#Reduced the dimension of test dataset</span></div><div class="line">test_reduced = pca.transform(test)</div></pre></td></tr></table></figure>
-<p>For more detail on this, please refer  <a href="http://scikit-learn.org/stable/modules/decomposition.html#decompositions" target="_blank" rel="external">this link</a>.</p>
-<h2 id="R-Code-7"><a href="#R-Code-7" class="headerlink" title="R Code"></a>R Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">library(stats)</div><div class="line">pca &lt;- princomp(train, cor = TRUE)</div><div class="line">train_reduced  &lt;- predict(pca,train)</div><div class="line">test_reduced  &lt;- predict(pca,test)</div></pre></td></tr></table></figure>
-<h1 id="10-Gradient-Boosting-amp-AdaBoost"><a href="#10-Gradient-Boosting-amp-AdaBoost" class="headerlink" title="10. Gradient Boosting &amp; AdaBoost"></a>10. Gradient Boosting &amp; AdaBoost</h1><p>当我们处理大量数据以预测高预测能力时，GBM＆AdaBoost是更加强大的算法。 Boosting是一种综合学习算法，它结合了几个基本估计器的预测，以提高单个估计器的鲁棒性。 它将多个弱或平均预测值组合到一个强大的预测变量上。 这些提升算法在数据科学比赛中总是能够很好地运行，如Kaggle，AV Hackathon，CrowdAnalytix。<br>More: <a href="https://www.analyticsvidhya.com/blog/2015/05/boosting-algorithms-simplified/" target="_blank" rel="external">Know about Gradient and AdaBoost in detail</a></p>
-<h2 id="Python-Code-8"><a href="#Python-Code-8" class="headerlink" title="Python Code"></a>Python Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Import Library</span></div><div class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> GradientBoostingClassifier</div><div class="line"><span class="comment">#Assumed you have, X (predictor) and Y (target) for training data set and x_test(predictor) of test_dataset</span></div><div class="line"><span class="comment"># Create Gradient Boosting Classifier object</span></div><div class="line">model= GradientBoostingClassifier(n_estimators=<span class="number">100</span>, learning_rate=<span class="number">1.0</span>, max_depth=<span class="number">1</span>, random_state=<span class="number">0</span>)</div><div class="line"><span class="comment"># Train the model using the training sets and check score</span></div><div class="line">model.fit(X, y)</div><div class="line"><span class="comment">#Predict Output</span></div><div class="line">predicted= model.predict(x_test)</div></pre></td></tr></table></figure>
-<h2 id="R-Code-8"><a href="#R-Code-8" class="headerlink" title="R Code"></a>R Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">library(caret)</div><div class="line">x &lt;- cbind(x_train,y_train)</div><div class="line"><span class="comment"># Fitting model</span></div><div class="line">fitControl &lt;- trainControl( method = <span class="string">"repeatedcv"</span>, number = <span class="number">4</span>, repeats = <span class="number">4</span>)</div><div class="line">fit &lt;- train(y ~ ., data = x, method = <span class="string">"gbm"</span>, trControl = fitControl,verbose = FALSE)</div><div class="line">predicted= predict(fit,x_test,type= <span class="string">"prob"</span>)[,<span class="number">2</span>]</div></pre></td></tr></table></figure>
-<h1 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h1><p>现在我相信，你会有一个常用的机器学习算法的想法。 我在写这篇文章和提供R和Python中的代码的唯一意图就是让你马上开始。 如果您想要掌握机器学习，请将算法运用实际问题，体会其中的乐趣</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;excerpt in=&quot;&quot; index=&quot;&quot; |=&quot;&quot; 首页摘要=&quot;&quot;&gt;&lt;br&gt;本篇文章是&lt;a href=&quot;https://www.analyticsvidhya.com/blog/2015/08/common-machine-learning-algorithms/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;原文&lt;/a&gt;的译文，然后自己对其中做了一些修改和添加内容（随机森林和降维算法）。文章简洁地介绍了机器学习的主要算法和一些伪代码，对于初学者有很大帮助，是一篇不错的总结文章，后期可以通过文中提到的算法展开去做一些实际问题。&lt;br&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>Keras实现简单的手写数字识别</title>
     <link href="http://yoursite.com/2017/07/24/Keras02-MNIST%E6%89%8B%E5%86%99%E5%AE%9E%E4%BE%8B/"/>
     <id>http://yoursite.com/2017/07/24/Keras02-MNIST手写实例/</id>
     <published>2017-07-24T14:54:03.000Z</published>
-    <updated>2017-08-24T03:43:07.095Z</updated>
+    <updated>2017-08-24T03:51:42.557Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>Keras实现简单的手写数字识别：构建模型、编译模型、训练数据、输出<br><a id="more"></a></excerpt></p>
 <p><a href="http://www.cnblogs.com/yqtm/p/6924939.html" target="_blank" rel="external">参考</a><br>文中代码有点小bug,加以改正。顺带才了下数据集的坑</p>
@@ -1711,7 +1718,7 @@ The accuracy of the model is 0.943400
     <link href="http://yoursite.com/2017/07/24/Python26-%E4%BD%BF%E7%94%A8Python%E5%92%8CR%E8%AF%AD%E8%A8%80%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B%E7%90%86%E8%A7%A3%E5%92%8C%E7%BC%96%E5%86%99%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     <id>http://yoursite.com/2017/07/24/Python26-使用Python和R语言从头开始理解和编写神经网络/</id>
     <published>2017-07-24T14:46:25.000Z</published>
-    <updated>2017-08-24T03:43:07.095Z</updated>
+    <updated>2017-08-24T03:51:42.557Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>本篇文章是<a href="https://www.analyticsvidhya.com/blog/2017/05/neural-network-from-scratch-in-python-and-r/" target="_blank" rel="external">原文</a>的翻译过来的，自己在学习和阅读之后觉得文章非常不错，文章结构清晰，由浅入深、从理论到代码实现，最终将神经网络的概念和工作流程呈现出来。自己将其翻译成中文，以便以后阅读和复习和网友参考。因时间（文字纯手打加配图）紧促和翻译水平有限，文章有不足之处请大家指正。<br><a id="more"></a></excerpt></p>
 <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>你可以通过两种方式学习和实践一个概念：</p>
