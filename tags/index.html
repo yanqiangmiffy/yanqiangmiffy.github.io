@@ -16,12 +16,13 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="yanqiangmiffy">
-<meta property="og:url" content="http://yoursite.com/archives/2017/page/2/index.html">
+<meta property="og:title" content="tags">
+<meta property="og:url" content="http://yoursite.com/tags/index.html">
 <meta property="og:site_name" content="yanqiangmiffy">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-30T08:07:15.050Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="yanqiangmiffy">
+<meta name="twitter:title" content="tags">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -53,7 +54,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Archives: 2017 | yanqiangmiffy</title>
+<title>tags | yanqiangmiffy</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -64,7 +65,7 @@
         animate: true,
         isHome: false,
         isPost: false,
-        isArchive: true,
+        isArchive: false,
         isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
@@ -253,143 +254,171 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/tags/index.html" class="article-date">
+      <time datetime="2017-08-30T16:02:04.000Z" itemprop="datePublished">2017-08-30</time>
+</a>
+
+
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      tags
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/07/26/Keras04-白酒和红酒实例/" class="archive-article-date">
-      <time datetime="2017-07-26T15:51:25.000Z" itemprop="datePublished">07-26</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/26/Keras04-白酒和红酒实例/">Kera实例：预测白酒和红酒的质量</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
+    <div class="article-entry" itemprop="articleBody">
+      
           
+              <style>
+    .article-meta { display: none; }
+    #container .article .article-title { padding-right: 0; }
+    .article-header {
+        padding: 0;
+        padding-top: 26px;
+        border-left: none;
+        text-align: center;
+    }
+    .article-header:hover { border-left: none; }
+    .article-title { font-size: 1.6em }
+    .article-entry hr { margin: 0;}
+    .article-meta,
+    #container .article-info-post.article-info { display: none;}
+    #container .article .article-title { padding: 0; }
+</style>
+
+
+    <!-- Tag Cloud Page -->
+    <hr>
+<br>
+
+
+<p class="count"></p>
+
+<div class="tags">
+    <a href="/tags/bfs/" style="font-size: 16px; color: #808080">bfs</a> <a href="/tags/dfs/" style="font-size: 16px; color: #808080">dfs</a> <a href="/tags/广度优先搜索/" style="font-size: 16px; color: #808080">广度优先搜索</a> <a href="/tags/深度优先搜索/" style="font-size: 16px; color: #808080">深度优先搜索</a>
+</div>
+<style>
+    .category-list li{
+        display: inline-block;
+        margin: 0 1em .5em 0;
+        padding: 4px;
+        border: 1px solid lightgray;
+        font-size: 1.2rem;
+    }
+    .category-list a { color: gray; }
+    .category-list-item:hover a {
+        color: gray;
+        text-decoration: none;
+    }
+    .category-list-count {
+        margin-left: 2px;
+        font-size: .9rem;
+    }
+    .article-entry ul li:before{ display: none; }
+    .article-inner { text-align: center; }
+    .tags {
+        max-width: 42em;
+        margin: 2em auto;
+        margin-top: 0em;
+    }
+    .tags a {
+        margin-right: 1em;
+        line-height: 65px;
+        border-bottom: 1px solid gray;
+        white-space: nowrap;
+        transition: border-bottom .5s;
+    }
+    .tags a:hover {
+        border-bottom: 3px dotted gray;
+        text-decoration: none;
+    }
+    #count > span {
+        margin: auto .2em;
+        font-weight: bold;
+    }
+</style>
+
+<!-- Count tags and categories -->
+<p id="count">
+        已有<span><script>document.write($(".category-list-item").length)</script></span>个分类，
+        共计<span><script>document.write($(".tags > a").length)</script></span>个标签
+</p>
+<script>
+    $('#count').appendTo('.count');
+</script>
 
           
-        </div>
-        <div class="clearfix"></div>
-    </header>
+        
+      
+    </div>
+    
   </div>
+  
+    
+
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/07/26/Python28-机器学习算法的基本知识（使用Python和R代码）/" class="archive-article-date">
-      <time datetime="2017-07-26T15:51:25.000Z" itemprop="datePublished">07-26</time>
-</a>
 
 
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
         </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/26/Python28-机器学习算法的基本知识（使用Python和R代码）/">机器学习算法的基本知识（使用Python和R代码）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"tags　| yanqiangmiffy　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/07/24/Keras02-MNIST手写实例/" class="archive-article-date">
-      <time datetime="2017-07-24T14:54:03.000Z" itemprop="datePublished">07-24</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/24/Keras02-MNIST手写实例/">Keras实现简单的手写数字识别</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/07/24/Python26-使用Python和R语言从头开始理解和编写神经网络/" class="archive-article-date">
-      <time datetime="2017-07-24T14:46:25.000Z" itemprop="datePublished">07-24</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/24/Python26-使用Python和R语言从头开始理解和编写神经网络/">使用Python和R语言从头开始理解和编写神经网络</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
     
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2017/">&laquo; Prev</a><a class="page-number" href="/archives/2017/">1</a><span class="page-number current">2</span>
-    </nav>
-  
+</div>
 
+
+
+
+
+
+
+    
+
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
