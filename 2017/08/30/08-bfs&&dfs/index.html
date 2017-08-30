@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="致Great" />
+
+
+
+<meta name="description" content="图的邻接链表的表示方法、图的广度优先搜索和图的深度优先搜索">
+<meta name="keywords" content="dfs,bfs,广度优先搜索,深度优先搜索">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图的广度优先搜索和图的深度优先搜索">
+<meta property="og:url" content="http://yoursite.com/2017/08/30/08-bfs&&dfs/index.html">
+<meta property="og:site_name" content="yanqiangmiffy">
+<meta property="og:description" content="图的邻接链表的表示方法、图的广度优先搜索和图的深度优先搜索">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1531909-e2e11cfa815bf198.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1531909-df3bc225970ef1bf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1531909-c28e0034fe262c31.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1531909-0ac37d322b53006b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-08-30T07:50:30.643Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="图的广度优先搜索和图的深度优先搜索">
+<meta name="twitter:description" content="图的邻接链表的表示方法、图的广度优先搜索和图的深度优先搜索">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1531909-e2e11cfa815bf198.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="yanqiangmiffy" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>图的广度优先搜索和图的深度优先搜索 | yanqiangmiffy</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">致Great</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="/yanqiangmiffy@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/yanqiangmiffy" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/bfs/">bfs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dfs/">dfs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/广度优先搜索/">广度优先搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度优先搜索/">深度优先搜索</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">致Great</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">致Great</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="/yanqiangmiffy@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/yanqiangmiffy" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-08-bfs&amp;&amp;dfs" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/08/30/08-bfs&&dfs/" class="article-date">
+      <time datetime="2017-08-30T15:29:25.000Z" itemprop="datePublished">2017-08-30</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      图的广度优先搜索和图的深度优先搜索
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bfs/">bfs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dfs/">dfs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/广度优先搜索/">广度优先搜索</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度优先搜索/">深度优先搜索</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><excerpt in="" index="" |="" 首页摘要=""><br>图的邻接链表的表示方法、图的广度优先搜索和图的深度优先搜索<br><a id="more"></a></excerpt></p>
+<h1 id="邻接链表"><a href="#邻接链表" class="headerlink" title="邻接链表"></a>邻接链表</h1><blockquote>
+<p>邻接表表示法将图以邻接表（adjacency  lists）的形式存储在计算机中。所谓图的邻接表，也就是图的所有节点的邻接表的集合；而对每个节点，它的邻接表就是它的所有出弧。邻接表表示法就是对图的每个节点，用一个单向链表列出从该节点出发的所有弧，链表中每个单元对应于一条出弧。为了记录弧上的权，链表中每个单元除列出弧的另一个端点外，还可以包含弧上的权等作为数据域。图的整个邻接表可以用一个指针数组表示。例如下图所示，邻接表表示为</p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/1531909-e2e11cfa815bf198.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="邻接链表"></p>
+<h1 id="广度优先搜索"><a href="#广度优先搜索" class="headerlink" title="广度优先搜索"></a>广度优先搜索</h1><h2 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h2><ol>
+<li>把根节点放到队列的末尾。</li>
+<li>每次从队列的头部取出一个元素，查看这个元素所有的下一级元素，把它们放到队列的末尾。并把这个元素记为它下一级元素的前驱。</li>
+<li>找到所要找的元素时结束程序。</li>
+<li>如果遍历整个树还没有找到，结束程序。<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//http://www.geeksforgeeks.org/breadth-first-traversal-for-a-graph/</span></div><div class="line"><span class="comment">// Program to print BFS traversal from a given source vertex. BFS(int s)</span></div><div class="line"><span class="comment">// traverses vertices reachable from s.</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;list&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="comment">// This class represents a directed graph using adjacency list representation</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Graph</span></span></div><div class="line"><span class="class">&#123;</span></div><div class="line">    <span class="keyword">int</span> V;    <span class="comment">// No. of vertices</span></div><div class="line">    <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; *adj;    <span class="comment">// Pointer to an array containing adjacency lists</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    Graph(<span class="keyword">int</span> V);  <span class="comment">// Constructor</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">int</span> w)</span></span>; <span class="comment">// function to add an edge to graph</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">BFS</span><span class="params">(<span class="keyword">int</span> s)</span></span>;  <span class="comment">// prints BFS traversal from a given source s</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line">Graph::Graph(<span class="keyword">int</span> V)</div><div class="line">&#123;</div><div class="line">    <span class="keyword">this</span>-&gt;V = V;</div><div class="line">    adj = <span class="keyword">new</span> <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;[V];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">void</span> Graph::addEdge(<span class="keyword">int</span> v, <span class="keyword">int</span> w)</div><div class="line">&#123;</div><div class="line">    adj[v].push_back(w); <span class="comment">// Add w to v’s list.</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">void</span> Graph::BFS(<span class="keyword">int</span> s)</div><div class="line">&#123;</div><div class="line">    <span class="comment">// Mark all the vertices as not visited</span></div><div class="line">    <span class="keyword">bool</span> *visited = <span class="keyword">new</span> <span class="keyword">bool</span>[V];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; V; i++)</div><div class="line">        visited[i] = <span class="literal">false</span>;</div><div class="line"></div><div class="line">    <span class="comment">// Create a queue for BFS</span></div><div class="line">    <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; <span class="built_in">queue</span>;</div><div class="line"></div><div class="line">    <span class="comment">// Mark the current node as visited and enqueue it</span></div><div class="line">    visited[s] = <span class="literal">true</span>;</div><div class="line">    <span class="built_in">queue</span>.push_back(s);</div><div class="line"></div><div class="line">    <span class="comment">// 'i' will be used to get all adjacent vertices of a vertex</span></div><div class="line">    <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator i;</div><div class="line"></div><div class="line">    <span class="keyword">while</span>(!<span class="built_in">queue</span>.empty())</div><div class="line">    &#123;</div><div class="line">        <span class="comment">// Dequeue a vertex from queue and print it</span></div><div class="line">        s = <span class="built_in">queue</span>.front();</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; s &lt;&lt; <span class="string">" "</span>;</div><div class="line">        <span class="built_in">queue</span>.pop_front();</div><div class="line"></div><div class="line">        <span class="comment">// Get all adjacent vertices of the dequeued vertex s</span></div><div class="line">        <span class="comment">// If a adjacent has not been visited, then mark it visited</span></div><div class="line">        <span class="comment">// and enqueue it</span></div><div class="line">        <span class="keyword">for</span>(i = adj[s].begin(); i != adj[s].end(); ++i)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span>(!visited[*i])</div><div class="line">            &#123;</div><div class="line">                visited[*i] = <span class="literal">true</span>;</div><div class="line">                <span class="built_in">queue</span>.push_back(*i);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Driver program to test methods of graph class</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="comment">// Create a graph given in the above diagram</span></div><div class="line">    <span class="function">Graph <span class="title">g</span><span class="params">(<span class="number">4</span>)</span></span>;</div><div class="line">    g.addEdge(<span class="number">0</span>, <span class="number">1</span>);</div><div class="line">    g.addEdge(<span class="number">0</span>, <span class="number">2</span>);</div><div class="line">    g.addEdge(<span class="number">1</span>, <span class="number">2</span>);</div><div class="line">    g.addEdge(<span class="number">2</span>, <span class="number">0</span>);</div><div class="line">    g.addEdge(<span class="number">2</span>, <span class="number">3</span>);</div><div class="line">    g.addEdge(<span class="number">3</span>, <span class="number">3</span>);</div><div class="line"></div><div class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Following is Breadth First Traversal "</span></div><div class="line">         &lt;&lt; <span class="string">"(starting from vertex 2) n:"</span>;</div><div class="line">    g.BFS(<span class="number">2</span>);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="深度优先搜索"><a href="#深度优先搜索" class="headerlink" title="深度优先搜索"></a>深度优先搜索</h1><h2 id="基本思路-1"><a href="#基本思路-1" class="headerlink" title="基本思路"></a>基本思路</h2><ol>
+<li>访问顶点v；</li>
+<li>依次从v的未被访问的邻接点出发，对图进行深度优先遍历；直至图中和v有路径相通的顶点都被访问；</li>
+<li>若此时图中尚有顶点未被访问，则从一个未被访问的顶点出发，重新进行深度优先遍历<h2 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//http://www.geeksforgeeks.org/depth-first-traversal-for-a-graph/</span></div><div class="line"><span class="comment">// C++ program to print DFS traversal from a given vertex in a  given graph</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;list&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="comment">// Graph class represents a directed graph using adjacency list representation</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Graph</span></span></div><div class="line"><span class="class">&#123;</span></div><div class="line">    <span class="keyword">int</span> V;    <span class="comment">// No. of vertices</span></div><div class="line">    <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; *adj;    <span class="comment">// Pointer to an array containing adjacency lists</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">DFSUtil</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">bool</span> visited[])</span></span>;  <span class="comment">// A function used by DFS</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    Graph(<span class="keyword">int</span> V);   <span class="comment">// Constructor</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">int</span> w)</span></span>;   <span class="comment">// function to add an edge to graph</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">DFS</span><span class="params">(<span class="keyword">int</span> v)</span></span>;    <span class="comment">// DFS traversal of the vertices reachable from v</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line">Graph::Graph(<span class="keyword">int</span> V)</div><div class="line">&#123;</div><div class="line">    <span class="keyword">this</span>-&gt;V = V;</div><div class="line">    adj = <span class="keyword">new</span> <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;[V];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">void</span> Graph::addEdge(<span class="keyword">int</span> v, <span class="keyword">int</span> w)</div><div class="line">&#123;</div><div class="line">    adj[v].push_back(w); <span class="comment">// Add w to v’s list.</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">void</span> Graph::DFSUtil(<span class="keyword">int</span> v, <span class="keyword">bool</span> visited[])</div><div class="line">&#123;</div><div class="line">    <span class="comment">// Mark the current node as visited and print it</span></div><div class="line">    visited[v] = <span class="literal">true</span>;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; v &lt;&lt; <span class="string">" "</span>;</div><div class="line"></div><div class="line">    <span class="comment">// Recur for all the vertices adjacent to this vertex</span></div><div class="line">    <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator i;</div><div class="line">    <span class="keyword">for</span> (i = adj[v].begin(); i != adj[v].end(); ++i)</div><div class="line">        <span class="keyword">if</span> (!visited[*i])</div><div class="line">            DFSUtil(*i, visited);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// DFS traversal of the vertices reachable from v.</span></div><div class="line"><span class="comment">// It uses recursive DFSUtil()</span></div><div class="line"><span class="keyword">void</span> Graph::DFS(<span class="keyword">int</span> v)</div><div class="line">&#123;</div><div class="line">    <span class="comment">// Mark all the vertices as not visited</span></div><div class="line">    <span class="keyword">bool</span> *visited = <span class="keyword">new</span> <span class="keyword">bool</span>[V];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; V; i++)</div><div class="line">        visited[i] = <span class="literal">false</span>;</div><div class="line"></div><div class="line">    <span class="comment">// Call the recursive helper function to print DFS traversal</span></div><div class="line">    DFSUtil(v, visited);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="comment">// Create a graph given in the above diagram</span></div><div class="line">    <span class="function">Graph <span class="title">g</span><span class="params">(<span class="number">4</span>)</span></span>;</div><div class="line">    g.addEdge(<span class="number">0</span>, <span class="number">1</span>);</div><div class="line">    g.addEdge(<span class="number">0</span>, <span class="number">2</span>);</div><div class="line">    g.addEdge(<span class="number">1</span>, <span class="number">2</span>);</div><div class="line">    g.addEdge(<span class="number">2</span>, <span class="number">0</span>);</div><div class="line">    g.addEdge(<span class="number">2</span>, <span class="number">3</span>);</div><div class="line">    g.addEdge(<span class="number">3</span>, <span class="number">3</span>);</div><div class="line"></div><div class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Following is Depth First Traversal (starting from vertex 2) n:"</span>;</div><div class="line">    g.DFS(<span class="number">2</span>);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h1><p><img src="http://upload-images.jianshu.io/upload_images/1531909-df3bc225970ef1bf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="输入"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1531909-c28e0034fe262c31.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="广度优先搜索"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1531909-0ac37d322b53006b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="深度优先搜索"></p>
+<p>也可以试试从其他定点（0,1,3）开始遍历☺<br><em>参考</em><br><a href="http://blog.csdn.net/dextrad_ihacker/article/details/50132129" target="_blank" rel="external">初识图，图的存储（邻接矩阵，邻接链表）和深搜遍历</a><br><a href="http://www.cnblogs.com/liushang0419/archive/2011/05/06/2039386.html" target="_blank" rel="external">算法与数据结构（2）——图的表示法与常用的转化算法</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/08/30/08-bfs&&dfs/">图的广度优先搜索和图的深度优先搜索</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">致Great</a></p>
+        <p><span>发布时间:</span>2017-08-30, 15:29:25</p>
+        <p><span>最后更新:</span>2017-08-30, 07:50:30</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/08/30/08-bfs&&dfs/" title="图的广度优先搜索和图的深度优先搜索">http://yoursite.com/2017/08/30/08-bfs&amp;&amp;dfs/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/08/30/08-bfs&amp;&amp;dfs/　　作者: 致Great" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/08/30/07-括号匹配问题/">
+                    括号匹配问题
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#邻接链表"><span class="toc-number">1.</span> <span class="toc-text">邻接链表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#广度优先搜索"><span class="toc-number">2.</span> <span class="toc-text">广度优先搜索</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本思路"><span class="toc-number">2.1.</span> <span class="toc-text">基本思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-number">2.2.</span> <span class="toc-text">代码实现</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#深度优先搜索"><span class="toc-number">3.</span> <span class="toc-text">深度优先搜索</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本思路-1"><span class="toc-number">3.1.</span> <span class="toc-text">基本思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现-1"><span class="toc-number">3.2.</span> <span class="toc-text">代码实现</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#运行结果"><span class="toc-number">4.</span> <span class="toc-text">运行结果</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"图的广度优先搜索和图的深度优先搜索　| yanqiangmiffy　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/08/30/07-括号匹配问题/" title="下一篇: 括号匹配问题">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/08/30/08-bfs&&dfs/">图的广度优先搜索和图的深度优先搜索</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/30/07-括号匹配问题/">括号匹配问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/30/hello-world/">我会自动改变</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/24/06-卡特兰数/">卡特兰数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/06/05- Matrix-Vector/">通过递归的矩阵向量空间预测组合语义</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/04/04-Laravel博客实战/">Laravel博客实战</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/03/03AgeDetection/">使用Keras构建卷积神经网络预测“阿三”的年龄</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/02/02动态规划/">动态规划</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/01/01排序问题/">排序算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/29/HDU1009-FatMouse' Trade/">HDU1009-FatMouse' Trade</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/26/Keras04-白酒和红酒实例/">Kera实例：预测白酒和红酒的质量</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/26/Python28-机器学习算法的基本知识（使用Python和R代码）/">机器学习算法的基本知识（使用Python和R代码）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/Keras02-MNIST手写实例/">Keras实现简单的手写数字识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/Python26-使用Python和R语言从头开始理解和编写神经网络/">使用Python和R语言从头开始理解和编写神经网络</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 致Great
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
