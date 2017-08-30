@@ -15,17 +15,19 @@
 
 
 
-<meta name="description" content="我会自动改变Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="description" content="这篇文章主要介绍了c++栈（stack）的应用以及括号匹配问题的实现">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我会自动改变">
-<meta property="og:url" content="http://yoursite.com/2017/08/24/hello-world/index.html">
+<meta property="og:title" content="括号匹配问题">
+<meta property="og:url" content="http://yoursite.com/2017/08/30/07-括号匹配问题/index.html">
 <meta property="og:site_name" content="yanqiangmiffy">
-<meta property="og:description" content="我会自动改变Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta property="og:description" content="这篇文章主要介绍了c++栈（stack）的应用以及括号匹配问题的实现">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-24T03:51:42.557Z">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1531909-60c6f4e57489130d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-08-30T04:27:41.598Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我会自动改变">
-<meta name="twitter:description" content="我会自动改变Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="twitter:title" content="括号匹配问题">
+<meta name="twitter:description" content="这篇文章主要介绍了c++栈（stack）的应用以及括号匹配问题的实现">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1531909-60c6f4e57489130d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -57,7 +59,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>我会自动改变 | yanqiangmiffy</title>
+<title>括号匹配问题 | yanqiangmiffy</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -257,11 +259,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-07-括号匹配问题" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/08/24/hello-world/" class="article-date">
-      <time datetime="2017-08-24T03:51:42.557Z" itemprop="datePublished">2017-08-24</time>
+      <a href="/2017/08/30/07-括号匹配问题/" class="article-date">
+      <time datetime="2017-08-30T11:42:25.000Z" itemprop="datePublished">2017-08-30</time>
 </a>
 
 
@@ -276,7 +278,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      我会自动改变
+      括号匹配问题
     </h1>
   
 
@@ -293,15 +295,22 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><excerpt in="" index="" |="" 首页摘要=""><br>我会自动改变<br>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.<br><a id="more"></a><br>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</excerpt></p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <p><excerpt in="" index="" |="" 首页摘要=""><br>这篇文章主要介绍了c++栈（stack）的应用以及括号匹配问题的实现<br><a id="more"></a></excerpt></p>
+<p><a href="http://acm.nyist.net/JudgeOnline/problem.php?pid=2" target="_blank" rel="external">括号配对问题-题目链接</a></p>
+<h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>现在，有一行括号序列，请你检查这行括号是否配对。</p>
+<h1 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h1><p>第一行输入一个数N（0&lt;N&lt;=100）,表示有N组测试数据。后面的N行输入多组输入数据，每组输入数据都是一个字符串S(S的长度小于10000，且S不是空串），测试数据组数少于5组。数据保证S中只含有”[“,”]”,”(“,”)”四种字符</p>
+<h1 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h1><p>每组输入数据的输出占一行，如果该字符串中所含的括号是配对的，则输出Yes,如果不配对则输出No</p>
+<h1 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">3</div><div class="line">[(])</div><div class="line">(])</div><div class="line">([[]()])</div></pre></td></tr></table></figure>
+<h1 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">No</div><div class="line">No</div><div class="line">Yes</div></pre></td></tr></table></figure>
+<h1 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h1><ul>
+<li>顺序扫描括号字符串中每一个字符,当遇到栈空或者遇到左括号时该括号进栈；</li>
+<li>当扫描到某一种类型的右括号时，比较当前栈顶元素是否与之匹配，若匹配，出栈继续判断；</li>
+<li>若当前栈顶元素与当前扫描的右括号括号不匹配，则将该右括号进栈(此时已经匹配失败)；</li>
+<li>若最终栈为空，则括号匹配成功，如果不为空，则不成功；<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> n;</div><div class="line">    <span class="built_in">cin</span>&gt;&gt;n;</div><div class="line">    <span class="keyword">while</span>(n--)&#123;</div><div class="line">        <span class="built_in">stack</span>&lt;<span class="keyword">char</span>&gt; s;</div><div class="line">        <span class="built_in">string</span> ch;</div><div class="line">        <span class="built_in">cin</span>&gt;&gt;ch;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;ch.length();i++)&#123;</div><div class="line">            <span class="keyword">if</span>(s.empty())&#123;<span class="comment">//如果栈为空继续进栈</span></div><div class="line"></div><div class="line">                s.push(ch[i]);</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                <span class="keyword">if</span>(ch[i]==<span class="string">'('</span>||ch[i]==<span class="string">'['</span>) s.push(ch[i]);</div><div class="line">                <span class="keyword">else</span>&#123;</div><div class="line">                    <span class="keyword">if</span>(ch[i]==<span class="string">')'</span>)&#123;</div><div class="line">                        <span class="keyword">if</span>(s.top()==<span class="string">'('</span>)s.pop();</div><div class="line">                        <span class="keyword">else</span> s.push(ch[i]);</div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">if</span>(ch[i]==<span class="string">']'</span>)&#123;</div><div class="line">                        <span class="keyword">if</span>(s.top()==<span class="string">'['</span>)s.pop();</div><div class="line">                        <span class="keyword">else</span> s.push(ch[i]);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(s.empty())&#123;</div><div class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="string">"Yes"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="string">"No"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h1><p><img src="http://upload-images.jianshu.io/upload_images/1531909-60c6f4e57489130d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="运行结果"></p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p> <a href="http://blog.csdn.net/the_victory/article/details/52733985" target="_blank" rel="external">[NYOJ] 02括号配对问题(c语言链栈实现)</a></p>
 
       
     </div>
@@ -310,13 +319,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/08/24/hello-world/">我会自动改变</a></p>
+        <p><span>本文标题:</span><a href="/2017/08/30/07-括号匹配问题/">括号匹配问题</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">致Great</a></p>
-        <p><span>发布时间:</span>2017-08-24, 03:51:42</p>
-        <p><span>最后更新:</span>2017-08-24, 03:51:42</p>
+        <p><span>发布时间:</span>2017-08-30, 11:42:25</p>
+        <p><span>最后更新:</span>2017-08-30, 04:27:41</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/08/24/hello-world/" title="我会自动改变">http://yoursite.com/2017/08/24/hello-world/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/08/24/hello-world/　　作者: 致Great" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/08/30/07-括号匹配问题/" title="括号匹配问题">http://yoursite.com/2017/08/30/07-括号匹配问题/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/08/30/07-括号匹配问题/　　作者: 致Great" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -328,16 +337,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/08/24/06-卡特兰数/">
-                    卡特兰数
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2017/08/06/05- Matrix-Vector/">
-                    通过递归的矩阵向量空间预测组合语义
+                <a href="/2017/08/30/hello-world/">
+                    我会自动改变
                 </a>
             </div>
         
@@ -349,7 +352,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#描述"><span class="toc-number">1.</span> <span class="toc-text">描述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#输入"><span class="toc-number">2.</span> <span class="toc-text">输入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#输出"><span class="toc-number">3.</span> <span class="toc-text">输出</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#样例输入"><span class="toc-number">4.</span> <span class="toc-text">样例输入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#样例输出"><span class="toc-number">5.</span> <span class="toc-text">样例输出</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解析"><span class="toc-number">6.</span> <span class="toc-text">解析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码实现"><span class="toc-number">7.</span> <span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#运行结果"><span class="toc-number">8.</span> <span class="toc-text">运行结果</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考链接"><span class="toc-number">9.</span> <span class="toc-text">参考链接</span></a></li></ol>
         
     </div>
     <style>
@@ -385,7 +388,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"我会自动改变　| yanqiangmiffy　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"括号匹配问题　| yanqiangmiffy　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -405,21 +408,19 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/08/24/06-卡特兰数/" title="上一篇: 卡特兰数">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2017/08/06/05- Matrix-Vector/" title="下一篇: 通过递归的矩阵向量空间预测组合语义">
+            <a href="/2017/08/30/hello-world/" title="下一篇: 我会自动改变">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/08/24/06-卡特兰数/">卡特兰数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/24/hello-world/">我会自动改变</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/06/05- Matrix-Vector/">通过递归的矩阵向量空间预测组合语义</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/04/04-Laravel博客实战/">Laravel博客实战</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/03/03AgeDetection/">使用Keras构建卷积神经网络预测“阿三”的年龄</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/02/02动态规划/">动态规划</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/01/01排序问题/">排序算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/29/HDU1009-FatMouse' Trade/">HDU1009-FatMouse' Trade</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/26/Python28-机器学习算法的基本知识（使用Python和R代码）/">机器学习算法的基本知识（使用Python和R代码）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/26/Keras04-白酒和红酒实例/">Kera实例：预测白酒和红酒的质量</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/Keras02-MNIST手写实例/">Keras实现简单的手写数字识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/Python26-使用Python和R语言从头开始理解和编写神经网络/">使用Python和R语言从头开始理解和编写神经网络</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/08/30/07-括号匹配问题/">括号匹配问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/30/hello-world/">我会自动改变</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/24/06-卡特兰数/">卡特兰数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/06/05- Matrix-Vector/">通过递归的矩阵向量空间预测组合语义</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/04/04-Laravel博客实战/">Laravel博客实战</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/03/03AgeDetection/">使用Keras构建卷积神经网络预测“阿三”的年龄</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/02/02动态规划/">动态规划</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/01/01排序问题/">排序算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/29/HDU1009-FatMouse' Trade/">HDU1009-FatMouse' Trade</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/26/Python28-机器学习算法的基本知识（使用Python和R代码）/">机器学习算法的基本知识（使用Python和R代码）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/26/Keras04-白酒和红酒实例/">Kera实例：预测白酒和红酒的质量</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/Keras02-MNIST手写实例/">Keras实现简单的手写数字识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/Python26-使用Python和R语言从头开始理解和编写神经网络/">使用Python和R语言从头开始理解和编写神经网络</a></li></ul>
 
 
 
