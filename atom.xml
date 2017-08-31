@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-30T15:16:57.919Z</updated>
+  <updated>2017-08-31T10:33:41.639Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,155 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>贪心算法总结</title>
+    <link href="http://yoursite.com/2017/08/31/10-%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/"/>
+    <id>http://yoursite.com/2017/08/31/10-贪心算法/</id>
+    <published>2017-08-31T15:29:25.000Z</published>
+    <updated>2017-08-31T10:33:41.639Z</updated>
+    
+    <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>贪心算法的介绍以及背包问题，活动安排问题，最小生成树问题三大实例的解析<br><a id="more"></a></excerpt></p>
+<h1 id="什么贪心算法"><a href="#什么贪心算法" class="headerlink" title="什么贪心算法"></a>什么贪心算法</h1><p>贪心算法（又称贪婪算法）是指，在对问题求解时，总是做出在当前看来是最好的选择。也就是说，不从整体最优上加以考虑，他所做出的是在某种意义上的局部最优解。<br>贪心算法不是对所有问题都能得到整体最优解，关键是贪心策略的选择，选择的贪心策略必须具备无后效性，即某个状态以前的过程不会影响以后的状态，只与当前状态有关。</p>
+<h1 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h1><ol>
+<li>建立数学模型来描述问题；</li>
+<li>把求解的问题分成若干个子问题；</li>
+<li>对每一子问题求解，得到子问题的局部最优解；</li>
+<li>把子问题的解局部最优解合成原来解问题的一个解。</li>
+</ol>
+<h1 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h1><ol>
+<li>从问题的某个初始解出发。</li>
+<li>采用循环语句，当可以向求解目标前进一步时，就根据局部最优策略，得到一个部分解，缩小问题的范围或规模。</li>
+<li>将所有部分解综合起来，得到问题的最终解。</li>
+</ol>
+<h1 id="实例分析"><a href="#实例分析" class="headerlink" title="实例分析"></a>实例分析</h1><h2 id="实例1-背包问题"><a href="#实例1-背包问题" class="headerlink" title="实例1 背包问题"></a>实例1 背包问题</h2><ul>
+<li>问题描述<br>有一个背包，背包容量是M=150。有7个物品，物品可以分割成任意大小。要求尽可能让装入背包中的物品总价值最大，但不能超过总容量。<br><img src="http://upload-images.jianshu.io/upload_images/1531909-f0413127c4754248.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+<li>问题分析<br>1.目标函数： ∑pi最大，使得装入背包中的所有物品pi的价值加起来最大。<br>2.约束条件：装入的物品总重量不超过背包容量：∑wi&lt;=M( M=150)<br>3.贪心策略：<ul>
+<li>选择价值最大的物品</li>
+<li>选择价值最大的物品</li>
+<li>选择单位重量价值最大的物品<br>有三个物品A,B,C，其重量分别为{30,10,20}，价值分别为{60,30,80}，背包的容量为50，分别应用三种贪心策略装入背包的物品和获得的价值如下图所示：</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1531909-78c7905f18412c41.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="三种策略"></p>
+<ul>
+<li>算法设计：</li>
+</ul>
+<ol>
+<li>计算出每个物品单位重量的价值</li>
+<li>按单位价值从大到小将物品排序</li>
+<li>根据背包当前所剩容量选取物品</li>
+<li>如果背包的容量大于当前物品的重量，那么就将当前物品装进去。否则，那么就将当前物品舍去，然后跳出循环结束。</li>
+</ol>
+<ul>
+<li><p>代码实现</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> w;</div><div class="line">    <span class="keyword">int</span> v;</div><div class="line">    <span class="keyword">double</span> avg;</div><div class="line">&#125;P;</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(P a,P b)</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> a.avg&gt;b.avg;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    P *p;</div><div class="line">    <span class="keyword">int</span> n,i,m;<span class="comment">//n 物品个数 m背包容量</span></div><div class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m)&#123;</div><div class="line">        p=<span class="keyword">new</span> P[n];</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)&#123;</div><div class="line">            <span class="built_in">cin</span>&gt;&gt;p[i].w&gt;&gt;p[i].v;</div><div class="line">            p[i].avg=p[i].v/p[i].w*<span class="number">1.0</span>;</div><div class="line">        &#125;</div><div class="line">        sort(p,p+n,cmp);</div><div class="line">        <span class="keyword">int</span> maxvalue=<span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)&#123;</div><div class="line">            <span class="keyword">if</span>(p[i].w&lt;=m)&#123;</div><div class="line">                m-=p[i].w;</div><div class="line">                maxvalue+=p[i].v;</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">cout</span>&lt;&lt;maxvalue&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>运行结果<br><img src="http://upload-images.jianshu.io/upload_images/1531909-bd56564c206c2060.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</li>
+</ul>
+<h2 id="实例2-活动安排问题"><a href="#实例2-活动安排问题" class="headerlink" title="实例2 活动安排问题"></a>实例2 活动安排问题</h2><ul>
+<li>问题描述：<br>设有n个活动的集合E={1,2,…,n}，其中每个活动都要求使用同一资源，如演讲会场等，而在同一时间内只有一个活动能使用这一资源。每个活动i都有一个要求使用该资源的起始时间si和一个结束时间fi,且si &lt;fi 。要求设计程序，使得安排的活动最多。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1531909-86b31fdeff88b7dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>(ps:活动结束时间按从小到大排序)</p>
+<ul>
+<li>问题分析：<br>活动安排问题要求安排一系列争用某一公共资源的活动。用贪心算法可提供一个简单、漂亮的方法，使尽可能多的活动能兼容的使用公共资源。设有n个活动的集合｛0，1，2，…，n-1｝，其中每个活动都要求使用同一资源，如会场等，而在同一时间内只有一个活动能使用这一资源。每个活动i都有一个要求使用该资源的起始时间starti和一个结束时间endi，且starti&lt;endi。如选择了活动i，则它在半开时间区间[starti,endi）内占用资源。若区间[starti,endi)与区间[startj,endj)不相交，称活动i与活动j是相容的。也就是说，当startj≥endi或starti≥endj时，活动i与活动j相容。活动安排问题就是在所给的活动集合中选出最多的不相容活动。<br>活动安排问题就是要在所给的活动集合中选出最大的相容活动子集合，是可以用贪心算法有效求解的很好例子。该问题要求高效地安排一系列争用某一公共资源的活动。贪心算法提供了一个简单、漂亮的方法使得尽可能多的活动能兼容地使用公共资源。</li>
+<li>算法设计：<br>若被检查的活动i的开始时间starti小于最近选择的活动j的结束时间endj，则不选择活动i，否则选择活动i加入集合中。运用该算法解决活动安排问题的效率极高。当输入的活动已按结束时间的非减序排列，算法只需O(n)的时间安排n个活动，使最多的活动能相容地使用公共资源。如果所给出的活动未按非减序排列，可以用O(nlogn)的时间重排。</li>
+<li><p>代码实现：<br>代码1</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">actime</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> start,finish;</div><div class="line">&#125;act[<span class="number">1002</span>];</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(actime a,actime b)</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> a.finish&lt;b.finish;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> i,n,t,total;</div><div class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;n)&#123;<span class="comment">//活动的个数</span></div><div class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)&#123;</div><div class="line">            <span class="built_in">cin</span>&gt;&gt;act[i].start&gt;&gt;act[i].finish;</div><div class="line">        &#125;</div><div class="line">        sort(act,act+n,cmp);<span class="comment">//按活动结束时间从小到大排序</span></div><div class="line">        t=<span class="number">-1</span>;</div><div class="line">        total=<span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)&#123;</div><div class="line">            <span class="keyword">if</span>(t&lt;=act[i].start)&#123;</div><div class="line">                total++;</div><div class="line">                t=act[i].finish;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">cout</span>&lt;&lt;total&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>运行结果1<br><img src="http://upload-images.jianshu.io/upload_images/1531909-7f69c2dc3fa512e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</li>
+</ul>
+<p>代码2<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">Type</span>&gt;</span></div><div class="line"><span class="class"><span class="title">void</span> <span class="title">GreedySelector</span>(<span class="title">int</span> <span class="title">n</span>, <span class="title">Type</span> <span class="title">s</span>[], <span class="title">Type</span> <span class="title">f</span>[], <span class="title">bool</span> <span class="title">A</span>[]);</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">11</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="comment">//下标从1开始,存储活动开始时间</span></div><div class="line">    <span class="keyword">int</span> s[] = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">0</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">8</span>,<span class="number">2</span>,<span class="number">12</span>&#125;;</div><div class="line"></div><div class="line">    <span class="comment">//下标从1开始,存储活动结束时间</span></div><div class="line">    <span class="keyword">int</span> f[] = &#123;<span class="number">0</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">13</span>,<span class="number">14</span>&#125;;</div><div class="line"></div><div class="line">    <span class="keyword">bool</span> A[N+<span class="number">1</span>];</div><div class="line"></div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"各活动的开始时间,结束时间分别为："</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">"["</span>&lt;&lt;i&lt;&lt;<span class="string">"]:"</span>&lt;&lt;<span class="string">"("</span>&lt;&lt;s[i]&lt;&lt;<span class="string">","</span>&lt;&lt;f[i]&lt;&lt;<span class="string">")"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    &#125;</div><div class="line">    GreedySelector(N,s,f,A);</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"最大相容活动子集为："</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span>(A[i])&#123;</div><div class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="string">"["</span>&lt;&lt;i&lt;&lt;<span class="string">"]:"</span>&lt;&lt;<span class="string">"("</span>&lt;&lt;s[i]&lt;&lt;<span class="string">","</span>&lt;&lt;f[i]&lt;&lt;<span class="string">")"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">Type</span>&gt;</span></div><div class="line"><span class="class"><span class="title">void</span> <span class="title">GreedySelector</span>(<span class="title">int</span> <span class="title">n</span>, <span class="title">Type</span> <span class="title">s</span>[], <span class="title">Type</span> <span class="title">f</span>[], <span class="title">bool</span> <span class="title">A</span>[])</span></div><div class="line"><span class="class">&#123;</span></div><div class="line">    A[<span class="number">1</span>]=<span class="literal">true</span>;</div><div class="line">    <span class="keyword">int</span> j=<span class="number">1</span>;<span class="comment">//记录最近一次加入A中的活动</span></div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)<span class="comment">//依次检查活动i是否与当前已选择的活动相容</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (s[i]&gt;=f[j])</div><div class="line">        &#123;</div><div class="line">            A[i]=<span class="literal">true</span>;</div><div class="line">            j=i;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span></div><div class="line">        &#123;</div><div class="line">            A[i]=<span class="literal">false</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>运行结果2</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1531909-fdab36968693b0f1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="实例3-最小生成树（克鲁斯卡尔算法）"><a href="#实例3-最小生成树（克鲁斯卡尔算法）" class="headerlink" title="实例3 最小生成树（克鲁斯卡尔算法）"></a>实例3 最小生成树（克鲁斯卡尔算法）</h2><ul>
+<li>问题描述<blockquote>
+<p>求一个连通无向图的最小生成树的代价（图边权值为正整数）。</p>
+</blockquote>
+</li>
+</ul>
+<p>输入</p>
+<blockquote>
+<p>第一行是一个整数N（1&lt;=N&lt;=20），表示有多少个图需要计算。以下有N个图，第i图的第一行是一个整数M（1&lt;=M&lt;=50），表示图的顶点数，第i图的第2行至1+M行为一个M*M的二维矩阵，其元素ai,j表示图的i顶点和j顶点的连接情况，如果ai,j=0，表示i顶点和j顶点不相连；如果ai,j&gt;0，表示i顶点和j顶点的连接权值。</p>
+</blockquote>
+<p>输出</p>
+<blockquote>
+<p>每个用例，用一行输出对应图的最小生成树的代价。</p>
+</blockquote>
+<p>样例输入</p>
+<blockquote>
+<p>1<br>6<br>0 6 1 5 0 0<br>6 0 5 0 3 0<br>1 5 0 5 6 4<br>5 0 5 0 0 2<br>0 3 6 0 0 6<br>0 0 4 2 6 0</p>
+</blockquote>
+<p>样例输出</p>
+<blockquote>
+<p>15</p>
+<ul>
+<li>Kruskal算法简述<br>假设 WN=(V,{E}) 是一个含有 n 个顶点的连通网，则按照克鲁斯卡尔算法构造最小生成树的过程为：先构造一个只含 n 个顶点，而边集为空的子图，若将该子图中各个顶点看成是各棵树上的根结点，则它是一个含有 n 棵树的一个森林。之后，从网的边集 E 中选取一条权值最小的边，若该条边的两个顶点分属不同的树，则将其加入子图，也就是说，将这两个顶点分别所在的两棵树合成一棵树；反之，若该条边的两个顶点已落在同一棵树上，则不可取，而应该取下一条权值最小的边再试之。依次类推，直至森林中只有一棵树，也即子图中含有 n-1条边为止。</li>
+<li>模拟过程：<br><img src="http://upload-images.jianshu.io/upload_images/1531909-32e164789d15c188.gif?imageMogr2/auto-orient/strip" alt="模拟过程"></li>
+<li>算法难点：<br>（1）边的选择要求从小到大选择，则开始显然要对边进行升序排序。<br>（2）选择的边是否需要，则从判断该边加入后是否构成环入手。</li>
+<li>算法设计：<br>（1）对边升序排序<br>在此采用链式结构，通过插入排序完成。每一结点存放一条边的左右端点序号、权值及后继结点指针<br>（2）边的加入是否构成环<br>一开始假定各顶点分别为一组，其组号为端点序号。选择某边后，看其两个端点是否在同一组中，即所在组号是否相同，如果是，表示构成了环，则舍去。  如果两个端点所在的组不同，则表示可以加入，则将该边两端的组合并成同一组。</li>
+<li>代码实现：<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></div><div class="line"><span class="class">&#123;</span></div><div class="line"> <span class="keyword">int</span> l;</div><div class="line"> <span class="keyword">int</span> r;</div><div class="line"> <span class="keyword">int</span> len;</div><div class="line"> node *next;</div><div class="line">&#125;;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(node *&amp;h,node *p)</span>   <span class="comment">//指针插入排序</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line"> node *q=h;</div><div class="line"> <span class="keyword">while</span>(q-&gt;next &amp;&amp; q-&gt;next-&gt;len &lt;= p-&gt;len)</div><div class="line"> &#123;</div><div class="line">  q=q-&gt;next;</div><div class="line"> &#125;</div><div class="line"> p-&gt;next=q-&gt;next;</div><div class="line"> q-&gt;next=p;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line"><span class="comment">// freopen("001.in","r",stdin);</span></div><div class="line"> node *h,*p;</div><div class="line"> <span class="keyword">int</span> n,m,x,temp;</div><div class="line"> <span class="keyword">int</span> *a;</div><div class="line"> <span class="keyword">int</span> i,j;</div><div class="line"> <span class="keyword">int</span> sum;</div><div class="line"> <span class="built_in">cin</span>&gt;&gt;n;</div><div class="line"> <span class="keyword">while</span>(n--)</div><div class="line"> &#123;</div><div class="line">  sum=<span class="number">0</span>;</div><div class="line">  <span class="built_in">cin</span>&gt;&gt;m;</div><div class="line">  a=<span class="keyword">new</span> <span class="keyword">int</span>[m+<span class="number">1</span>];</div><div class="line">  <span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=m;i++)</div><div class="line">  &#123;</div><div class="line">   a[i]=i;</div><div class="line">  &#125;</div><div class="line">  h=<span class="keyword">new</span> node;</div><div class="line">  p=h;</div><div class="line">  p-&gt;next=<span class="literal">NULL</span>;</div><div class="line">  <span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=m;i++)</div><div class="line">   <span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=m;j++)</div><div class="line">   &#123;</div><div class="line">    <span class="built_in">cin</span>&gt;&gt;x;</div><div class="line">    <span class="keyword">if</span> (i&gt;j &amp;&amp; x!=<span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">     p=<span class="keyword">new</span> node;</div><div class="line">     p-&gt;l=i;</div><div class="line">     p-&gt;r=j;</div><div class="line">     p-&gt;len=x;</div><div class="line">     p-&gt;next=<span class="literal">NULL</span>;</div><div class="line">     insert(h,p);   <span class="comment">//调用插入排序</span></div><div class="line">    &#125;</div><div class="line">   &#125;</div><div class="line">          p=h-&gt;next;</div><div class="line">   <span class="keyword">while</span> (p)</div><div class="line">   &#123;</div><div class="line">    <span class="keyword">if</span> (a[p-&gt;l]!=a[p-&gt;r])</div><div class="line">    &#123;</div><div class="line"></div><div class="line">     sum+=p-&gt;len;</div><div class="line">     temp=a[p-&gt;l];</div><div class="line">     <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=m;i++)</div><div class="line">      <span class="keyword">if</span> (a[i]==temp)</div><div class="line">      &#123;</div><div class="line">       a[i]=a[p-&gt;r];</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">   p=p-&gt;next;</div><div class="line">   &#125;</div><div class="line">   <span class="comment">/*   可以测试程序工作是否正常</span></div><div class="line"><span class="comment">   p=h-&gt;next;</span></div><div class="line"><span class="comment">   while(p)</span></div><div class="line"><span class="comment">   &#123;</span></div><div class="line"><span class="comment">    cout&lt;&lt;p-&gt;l&lt;&lt;':';cout&lt;&lt;p-&gt;r&lt;&lt;' ';</span></div><div class="line"><span class="comment">    cout&lt;&lt;p-&gt;len&lt;&lt;"   ";</span></div><div class="line"><span class="comment">    p=p-&gt;next;</span></div><div class="line"><span class="comment">   &#125;</span></div><div class="line"><span class="comment">   */</span></div><div class="line">   <span class="built_in">cout</span>&lt;&lt;sum&lt;&lt;<span class="built_in">endl</span>;</div><div class="line"> &#125;</div><div class="line"> <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>运行结果<br><img src="http://upload-images.jianshu.io/upload_images/1531909-a014db737d1ae27d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></li>
+</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p> <a href="http://blog.csdn.net/liufeng_king/article/details/8709005" target="_blank" rel="external">0021算法笔记——【贪心算法】贪心算法与活动安排问题</a><br> <a href="http://blog.csdn.net/pukuimin1226/article/details/6440714" target="_blank" rel="external">C++最小生成树问题</a><br><a href="https://wenku.baidu.com/view/8e5f335b77232f60ddcca144.html" target="_blank" rel="external">C++c语言贪心算法</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;excerpt in=&quot;&quot; index=&quot;&quot; |=&quot;&quot; 首页摘要=&quot;&quot;&gt;&lt;br&gt;贪心算法的介绍以及背包问题，活动安排问题，最小生成树问题三大实例的解析&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="贪心算法" scheme="http://yoursite.com/tags/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="背包问题" scheme="http://yoursite.com/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/"/>
+    
+      <category term="活动安排问题" scheme="http://yoursite.com/tags/%E6%B4%BB%E5%8A%A8%E5%AE%89%E6%8E%92%E9%97%AE%E9%A2%98/"/>
+    
+      <category term="最小生成树" scheme="http://yoursite.com/tags/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>我会自动改变</title>
+    <link href="http://yoursite.com/2017/08/31/hello-world/"/>
+    <id>http://yoursite.com/2017/08/31/hello-world/</id>
+    <published>2017-08-31T10:33:41.639Z</published>
+    <updated>2017-08-31T10:33:41.639Z</updated>
+    
+    <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>我会自动改变<br>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.<br><a id="more"></a><br>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</excerpt></p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;excerpt in=&quot;&quot; index=&quot;&quot; |=&quot;&quot; 首页摘要=&quot;&quot;&gt;&lt;br&gt;我会自动改变&lt;br&gt;Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>求一个数n次方后的末尾数（数论/快速幂）</title>
     <link href="http://yoursite.com/2017/08/30/09-%E5%BF%AB%E9%80%9F%E5%B9%82/"/>
     <id>http://yoursite.com/2017/08/30/09-快速幂/</id>
     <published>2017-08-30T23:14:25.000Z</published>
-    <updated>2017-08-30T15:16:57.919Z</updated>
+    <updated>2017-08-31T10:33:41.639Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>如何快速求出一个数n次方后的末尾数为多少<br><a id="more"></a></excerpt></p>
 <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1061" target="_blank" rel="external">hdu1061-Rightmost Digit</a><br><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1097" target="_blank" rel="external">hdu1097-A hard puzzle</a><br>这两个oj题目思路几乎一样，都是为了快速求出一个数n次方后的末尾数为多少？</p>
@@ -64,7 +208,7 @@
     <link href="http://yoursite.com/2017/08/30/08-bfs&amp;&amp;dfs/"/>
     <id>http://yoursite.com/2017/08/30/08-bfs&amp;&amp;dfs/</id>
     <published>2017-08-30T15:29:25.000Z</published>
-    <updated>2017-08-30T15:16:57.919Z</updated>
+    <updated>2017-08-31T10:33:41.639Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>图的邻接链表的表示方法、图的广度优先搜索和图的深度优先搜索<br><a id="more"></a></excerpt></p>
 <h1 id="邻接链表"><a href="#邻接链表" class="headerlink" title="邻接链表"></a>邻接链表</h1><blockquote>
@@ -108,38 +252,11 @@
   </entry>
   
   <entry>
-    <title>我会自动改变</title>
-    <link href="http://yoursite.com/2017/08/30/hello-world/"/>
-    <id>http://yoursite.com/2017/08/30/hello-world/</id>
-    <published>2017-08-30T15:16:57.919Z</published>
-    <updated>2017-08-30T15:16:57.919Z</updated>
-    
-    <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>我会自动改变<br>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.<br><a id="more"></a><br>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</excerpt></p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;excerpt in=&quot;&quot; index=&quot;&quot; |=&quot;&quot; 首页摘要=&quot;&quot;&gt;&lt;br&gt;我会自动改变&lt;br&gt;Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.&lt;br&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>括号匹配问题</title>
     <link href="http://yoursite.com/2017/08/30/07-%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/"/>
     <id>http://yoursite.com/2017/08/30/07-括号匹配问题/</id>
     <published>2017-08-30T11:42:25.000Z</published>
-    <updated>2017-08-30T15:16:57.919Z</updated>
+    <updated>2017-08-31T10:33:41.639Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>这篇文章主要介绍了c++栈（stack）的应用以及括号匹配问题的实现<br><a id="more"></a></excerpt></p>
 <p><a href="http://acm.nyist.net/JudgeOnline/problem.php?pid=2" target="_blank" rel="external">括号配对问题-题目链接</a></p>
@@ -173,7 +290,7 @@
     <link href="http://yoursite.com/2017/08/24/06-%E5%8D%A1%E7%89%B9%E5%85%B0%E6%95%B0/"/>
     <id>http://yoursite.com/2017/08/24/06-卡特兰数/</id>
     <published>2017-08-24T16:00:25.000Z</published>
-    <updated>2017-08-30T15:16:57.919Z</updated>
+    <updated>2017-08-31T10:33:41.639Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>这篇文章主要介绍了卡特兰数、推导和应用<br><a id="more"></a></excerpt></p>
 <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>卡特兰数又称卡塔兰数，卡特兰数是组合数学中一个常出现在各种计数问题中的数列。<br>卡塔兰数的一般项公式为：<br><img src="http://upload-images.jianshu.io/upload_images/1531909-0c81412304254b5b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="卡特兰公式"><br>其前20项为：1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862, 16796, 58786, 208012, 742900, 2674440, 9694845, 35357670, 129644790, 477638700, 1767263190。</p>
@@ -262,7 +379,7 @@
     <link href="http://yoursite.com/2017/08/06/05-%20Matrix-Vector/"/>
     <id>http://yoursite.com/2017/08/06/05- Matrix-Vector/</id>
     <published>2017-08-06T16:31:25.000Z</published>
-    <updated>2017-08-30T15:16:57.919Z</updated>
+    <updated>2017-08-31T10:33:41.639Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>关于论文的总结<br><a id="more"></a></excerpt></p>
 <p><a href="http://www.socher.org/index.php/Main/SemanticCompositionalityThroughRecursiveMatrix-VectorSpaces" target="_blank" rel="external">Semantic Compositionality Through Recursive Matrix-Vector Spaces</a></p>
@@ -324,7 +441,7 @@
     <link href="http://yoursite.com/2017/08/04/04-Laravel%E5%8D%9A%E5%AE%A2%E5%AE%9E%E6%88%98/"/>
     <id>http://yoursite.com/2017/08/04/04-Laravel博客实战/</id>
     <published>2017-08-04T17:31:25.000Z</published>
-    <updated>2017-08-30T15:16:57.919Z</updated>
+    <updated>2017-08-31T10:33:41.639Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>用了5天时间，参考后盾网老师的Laravel实战视频做的博客<br><a id="more"></a></excerpt></p>
 <blockquote>
@@ -408,7 +525,7 @@
     <link href="http://yoursite.com/2017/08/03/03AgeDetection/"/>
     <id>http://yoursite.com/2017/08/03/03AgeDetection/</id>
     <published>2017-08-03T17:45:25.000Z</published>
-    <updated>2017-08-30T15:16:57.903Z</updated>
+    <updated>2017-08-31T10:33:41.623Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>用Keras构建基本的前馈神经网络以及借助卷积层逐步优化预测结果，从海量图片中预测印度人们的年龄。目前结果为（0.750904）<br><a id="more"></a></excerpt></p>
 <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>我们的任务是从一个人的面部特征来预测他的年龄(用“Young”“Middle ”“Old”表示)，我们训练的数据集大约有19906多张照片及其每张图片对应的年龄（全是阿三的头像。。。），测试集有6636张图片，首先我们加载数据集，然后我们通过深度学习框架Keras建立、编译、训练模型，预测出6636张人物头像对应的年龄</p>
@@ -652,7 +769,7 @@ _________________________________________________________________
     <link href="http://yoursite.com/2017/08/02/02%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
     <id>http://yoursite.com/2017/08/02/02动态规划/</id>
     <published>2017-08-02T16:00:25.000Z</published>
-    <updated>2017-08-30T15:16:57.903Z</updated>
+    <updated>2017-08-31T10:33:41.623Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>文中主要总结动态规划的01背包问题以及相关实例，然后通过c++解决问题<br><a id="more"></a></excerpt></p>
 <h1 id="一、背包问题"><a href="#一、背包问题" class="headerlink" title="一、背包问题"></a>一、背包问题</h1><h2 id="01背包问题"><a href="#01背包问题" class="headerlink" title="01背包问题"></a>01背包问题</h2><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
@@ -697,7 +814,7 @@ _________________________________________________________________
     <link href="http://yoursite.com/2017/08/01/01%E6%8E%92%E5%BA%8F%E9%97%AE%E9%A2%98/"/>
     <id>http://yoursite.com/2017/08/01/01排序问题/</id>
     <published>2017-08-01T16:00:25.000Z</published>
-    <updated>2017-08-30T15:16:57.903Z</updated>
+    <updated>2017-08-31T10:33:41.623Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>这篇文章主要介绍了啊哈算法的排序问题，包括桶排序、快速排序、冒泡排序<br><a id="more"></a></excerpt></p>
 <h1 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h1><h2 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h2><p><code>这个算法好比有11个桶，编号从0~10。每出现一个数，就在对应编号的桶里放一个小旗子。最后只要数数每个桶中有几个小旗子就可以了。例如2号桶中有2个旗子，表示数字2出现了2次。</code></p>
@@ -724,7 +841,7 @@ _________________________________________________________________
     <link href="http://yoursite.com/2017/07/29/HDU1009-FatMouse&#39;%20Trade/"/>
     <id>http://yoursite.com/2017/07/29/HDU1009-FatMouse&#39; Trade/</id>
     <published>2017-07-29T14:54:03.000Z</published>
-    <updated>2017-08-30T15:16:57.919Z</updated>
+    <updated>2017-08-31T10:33:41.639Z</updated>
     
     <content type="html"><![CDATA[<excerpt in="" index="" |="" 首页摘要=""> 
 
@@ -755,7 +872,7 @@ _________________________________________________________________
     <link href="http://yoursite.com/2017/07/26/Keras04-%E7%99%BD%E9%85%92%E5%92%8C%E7%BA%A2%E9%85%92%E5%AE%9E%E4%BE%8B/"/>
     <id>http://yoursite.com/2017/07/26/Keras04-白酒和红酒实例/</id>
     <published>2017-07-26T15:51:25.000Z</published>
-    <updated>2017-08-30T15:16:57.919Z</updated>
+    <updated>2017-08-31T10:33:41.639Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>本篇文章是益智的教程，参考之后动手进行实践了一遍。编译环境windows10+python3.5<br><a id="more"></a></excerpt></p>
 <p><a href="https://jizhi.im/course/dl_keras/2" target="_blank" rel="external">参考</a></p>
@@ -1343,7 +1460,7 @@ Epoch 5/5
     <link href="http://yoursite.com/2017/07/26/Python28-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%EF%BC%88%E4%BD%BF%E7%94%A8Python%E5%92%8CR%E4%BB%A3%E7%A0%81%EF%BC%89/"/>
     <id>http://yoursite.com/2017/07/26/Python28-机器学习算法的基本知识（使用Python和R代码）/</id>
     <published>2017-07-26T15:51:25.000Z</published>
-    <updated>2017-08-30T15:16:57.919Z</updated>
+    <updated>2017-08-31T10:33:41.639Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>本篇文章是<a href="https://www.analyticsvidhya.com/blog/2015/08/common-machine-learning-algorithms/" target="_blank" rel="external">原文</a>的译文，然后自己对其中做了一些修改和添加内容（随机森林和降维算法）。文章简洁地介绍了机器学习的主要算法和一些伪代码，对于初学者有很大帮助，是一篇不错的总结文章，后期可以通过文中提到的算法展开去做一些实际问题。<br><a id="more"></a></excerpt></p>
 <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><hr>
@@ -1503,7 +1620,7 @@ logit(p) = ln(p/(1-p)) = b0+b1X1+b2X2+b3X3....+bkXk</code></p>
     <link href="http://yoursite.com/2017/07/24/Keras02-MNIST%E6%89%8B%E5%86%99%E5%AE%9E%E4%BE%8B/"/>
     <id>http://yoursite.com/2017/07/24/Keras02-MNIST手写实例/</id>
     <published>2017-07-24T14:54:03.000Z</published>
-    <updated>2017-08-30T15:16:57.919Z</updated>
+    <updated>2017-08-31T10:33:41.639Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>Keras实现简单的手写数字识别：构建模型、编译模型、训练数据、输出<br><a id="more"></a></excerpt></p>
 <p><a href="http://www.cnblogs.com/yqtm/p/6924939.html" target="_blank" rel="external">参考</a><br>文中代码有点小bug,加以改正。顺带才了下数据集的坑</p>
@@ -1844,7 +1961,7 @@ The accuracy of the model is 0.943400
     <link href="http://yoursite.com/2017/07/24/Python26-%E4%BD%BF%E7%94%A8Python%E5%92%8CR%E8%AF%AD%E8%A8%80%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B%E7%90%86%E8%A7%A3%E5%92%8C%E7%BC%96%E5%86%99%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     <id>http://yoursite.com/2017/07/24/Python26-使用Python和R语言从头开始理解和编写神经网络/</id>
     <published>2017-07-24T14:46:25.000Z</published>
-    <updated>2017-08-30T15:16:57.919Z</updated>
+    <updated>2017-08-31T10:33:41.639Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>本篇文章是<a href="https://www.analyticsvidhya.com/blog/2017/05/neural-network-from-scratch-in-python-and-r/" target="_blank" rel="external">原文</a>的翻译过来的，自己在学习和阅读之后觉得文章非常不错，文章结构清晰，由浅入深、从理论到代码实现，最终将神经网络的概念和工作流程呈现出来。自己将其翻译成中文，以便以后阅读和复习和网友参考。因时间（文字纯手打加配图）紧促和翻译水平有限，文章有不足之处请大家指正。<br><a id="more"></a></excerpt></p>
 <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>你可以通过两种方式学习和实践一个概念：</p>
