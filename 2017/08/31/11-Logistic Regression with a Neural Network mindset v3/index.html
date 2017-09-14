@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="致Great" />
+
+
+
+<meta name="description" content="吴恩达的神经网络学习第二周作业">
+<meta name="keywords" content="机器学习,神经网络,深度学习,分类问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="神经网络学习第二周编程作业">
+<meta property="og:url" content="http://yoursite.com/2017/08/31/11-Logistic Regression with a Neural Network mindset v3/index.html">
+<meta property="og:site_name" content="yanqiangmiffy">
+<meta property="og:description" content="吴恩达的神经网络学习第二周作业">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.loli.net/2017/09/14/59b9e0275a1e0.png">
+<meta property="og:image" content="http://yoursite.com/2017/08/31/11-Logistic%20Regression%20with%20a%20Neural%20Network%20mindset%20v3/images/LogReg_kiank.png">
+<meta property="og:image" content="https://i.loli.net/2017/09/14/59b9e0563b548.png">
+<meta property="og:image" content="https://i.loli.net/2017/09/14/59b9e06d98c1a.png">
+<meta property="og:image" content="https://i.loli.net/2017/09/14/59b9e08244c12.png">
+<meta property="og:image" content="https://i.loli.net/2017/09/14/59b9e095d3ad5.png">
+<meta property="og:updated_time" content="2017-09-14T01:55:32.902Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="神经网络学习第二周编程作业">
+<meta name="twitter:description" content="吴恩达的神经网络学习第二周作业">
+<meta name="twitter:image" content="https://i.loli.net/2017/09/14/59b9e0275a1e0.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="yanqiangmiffy" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>神经网络学习第二周编程作业 | yanqiangmiffy</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">致Great</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="https://yanqiangmiffy.github.io/resume/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="/yanqiangmiffy@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/yanqiangmiffy" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/bfs/">bfs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dfs/">dfs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分类问题/">分类问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/广度优先搜索/">广度优先搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快速幂/">快速幂</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数论/">数论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最小生成树/">最小生成树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/活动安排问题/">活动安排问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度优先搜索/">深度优先搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/神经网络/">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/背包问题/">背包问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/贪心算法/">贪心算法</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">致Great</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">致Great</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="https://yanqiangmiffy.github.io/resume/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="/yanqiangmiffy@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/yanqiangmiffy" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-11-Logistic Regression with a Neural Network mindset v3" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/08/31/11-Logistic Regression with a Neural Network mindset v3/" class="article-date">
+      <time datetime="2017-08-31T15:29:25.000Z" itemprop="datePublished">2017-08-31</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      神经网络学习第二周编程作业
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分类问题/">分类问题</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/神经网络/">神经网络</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><excerpt in="" index="" |="" 首页摘要=""><br>吴恩达的神经网络学习第二周作业<br><a id="more"></a></excerpt></p>
+<h1 id="Logistic-Regression-with-a-Neural-Network-mindset"><a href="#Logistic-Regression-with-a-Neural-Network-mindset" class="headerlink" title="Logistic Regression with a Neural Network mindset"></a>Logistic Regression with a Neural Network mindset</h1><p>Welcome to your first (required) programming assignment! You will build a logistic regression classifier to recognize  cats. This assignment will step you through how to do this with a Neural Network mindset, and so will also hone your intuitions about deep learning.</p>
+<p><strong>Instructions:</strong></p>
+<ul>
+<li>Do not use loops (for/while) in your code, unless the instructions explicitly ask you to do so.</li>
+</ul>
+<p><strong>You will learn to:</strong></p>
+<ul>
+<li>Build the general architecture of a learning algorithm, including:<ul>
+<li>Initializing parameters</li>
+<li>Calculating the cost function and its gradient</li>
+<li>Using an optimization algorithm (gradient descent) </li>
+</ul>
+</li>
+<li>Gather all three functions above into a main model function, in the right order.</li>
+</ul>
+<h2 id="1-Packages"><a href="#1-Packages" class="headerlink" title="1 - Packages"></a>1 - Packages</h2><p>First, let’s run the cell below to import all the packages that you will need during this assignment. </p>
+<ul>
+<li><a href="www.numpy.org">numpy</a> is the fundamental package for scientific computing with Python.</li>
+<li><a href="http://www.h5py.org" target="_blank" rel="external">h5py</a> is a common package to interact with a dataset that is stored on an H5 file.</li>
+<li><a href="http://matplotlib.org" target="_blank" rel="external">matplotlib</a> is a famous library to plot graphs in Python.</li>
+<li><a href="http://www.pythonware.com/products/pil/" target="_blank" rel="external">PIL</a> and <a href="https://www.scipy.org/" target="_blank" rel="external">scipy</a> are used here to test your model with your own picture at the end.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">import</span> h5py</div><div class="line"><span class="keyword">import</span> scipy</div><div class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</div><div class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> ndimage</div><div class="line"><span class="keyword">from</span> lr_utils <span class="keyword">import</span> load_dataset</div><div class="line"></div><div class="line">%matplotlib inline</div></pre></td></tr></table></figure>
+<h2 id="2-Overview-of-the-Problem-set"><a href="#2-Overview-of-the-Problem-set" class="headerlink" title="2 - Overview of the Problem set"></a>2 - Overview of the Problem set</h2><p><strong>Problem Statement</strong>: You are given a dataset (“data.h5”) containing:</p>
+<pre><code>- a training set of m_train images labeled as cat (y=1) or non-cat (y=0)
+- a test set of m_test images labeled as cat or non-cat
+- each image is of shape (num_px, num_px, 3) where 3 is for the 3 channels (RGB). Thus, each image is square (height = num_px) and (width = num_px).
+</code></pre><p>You will build a simple image-recognition algorithm that can correctly classify pictures as cat or non-cat.</p>
+<p>Let’s get more familiar with the dataset. Load the data by running the following code.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Loading the data (cat/non-cat)</span></div><div class="line">train_set_x_orig, train_set_y, test_set_x_orig, test_set_y, classes = load_dataset()</div></pre></td></tr></table></figure>
+<p>We added “_orig” at the end of image datasets (train and test) because we are going to preprocess them. After preprocessing, we will end up with train_set_x and test_set_x (the labels train_set_y and test_set_y don’t need any preprocessing).</p>
+<p>Each line of your train_set_x_orig and test_set_x_orig is an array representing an image. You can visualize an example by running the following code. Feel free also to change the <code>index</code> value and re-run to see other images. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Example of a picture</span></div><div class="line">index = <span class="number">25</span></div><div class="line">plt.imshow(train_set_x_orig[index])</div><div class="line"><span class="keyword">print</span> (<span class="string">"y = "</span> + str(train_set_y[:, index]) + <span class="string">", it's a '"</span> + classes[np.squeeze(train_set_y[:, index])].decode(<span class="string">"utf-8"</span>) +  <span class="string">"' picture."</span>)</div></pre></td></tr></table></figure>
+<pre><code>y = [1], it&apos;s a &apos;cat&apos; picture.
+</code></pre><p><a href="https://i.loli.net/2017/09/14/59b9e0275a1e0.png" target="_blank" rel="external"><img src="https://i.loli.net/2017/09/14/59b9e0275a1e0.png" alt="output_6_1.png"></a></p>
+<p>Many software bugs in deep learning come from having matrix/vector dimensions that don’t fit. If you can keep your matrix/vector dimensions straight you will go a long way toward eliminating many bugs. </p>
+<p><strong>Exercise:</strong> Find the values for:</p>
+<pre><code>- m_train (number of training examples)
+- m_test (number of test examples)
+- num_px (= height = width of a training image)
+</code></pre><p>Remember that <code>train_set_x_orig</code> is a numpy-array of shape (m_train, num_px, num_px, 3). For instance, you can access <code>m_train</code> by writing <code>train_set_x_orig.shape[0]</code>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">### START CODE HERE ### (≈ 3 lines of code)</span></div><div class="line">m_train = train_set_x_orig.shape[<span class="number">0</span>]</div><div class="line">m_test = test_set_x_orig.shape[<span class="number">0</span>]</div><div class="line">num_px = train_set_x_orig.shape[<span class="number">1</span>]</div><div class="line"><span class="comment">### END CODE HERE ###</span></div><div class="line"></div><div class="line"><span class="keyword">print</span> (<span class="string">"Number of training examples: m_train = "</span> + str(m_train))</div><div class="line"><span class="keyword">print</span> (<span class="string">"Number of testing examples: m_test = "</span> + str(m_test))</div><div class="line"><span class="keyword">print</span> (<span class="string">"Height/Width of each image: num_px = "</span> + str(num_px))</div><div class="line"><span class="keyword">print</span> (<span class="string">"Each image is of size: ("</span> + str(num_px) + <span class="string">", "</span> + str(num_px) + <span class="string">", 3)"</span>)</div><div class="line"><span class="keyword">print</span> (<span class="string">"train_set_x shape: "</span> + str(train_set_x_orig.shape))</div><div class="line"><span class="keyword">print</span> (<span class="string">"train_set_y shape: "</span> + str(train_set_y.shape))</div><div class="line"><span class="keyword">print</span> (<span class="string">"test_set_x shape: "</span> + str(test_set_x_orig.shape))</div><div class="line"><span class="keyword">print</span> (<span class="string">"test_set_y shape: "</span> + str(test_set_y.shape))</div></pre></td></tr></table></figure>
+<pre><code>Number of training examples: m_train = 209
+Number of testing examples: m_test = 50
+Height/Width of each image: num_px = 64
+Each image is of size: (64, 64, 3)
+train_set_x shape: (209, 64, 64, 3)
+train_set_y shape: (1, 209)
+test_set_x shape: (50, 64, 64, 3)
+test_set_y shape: (1, 50)
+</code></pre><p><strong>Expected Output for m_train, m_test and num_px</strong>: </p>
+<table style="width:15%"><br>  <tr><br>    <td><strong>m_train</strong></td><br>    <td> 209 </td><br>  </tr><br><br>  <tr><br>    <td><strong>m_test</strong></td><br>    <td> 50 </td><br>  </tr><br><br>  <tr><br>    <td><strong>num_px</strong></td><br>    <td> 64 </td><br>  </tr><br><br></table>
+
+
+<p>For convenience, you should now reshape images of shape (num_px, num_px, 3) in a numpy-array of shape (num_px $<em>$ num_px $</em>$ 3, 1). After this, our training (and test) dataset is a numpy-array where each column represents a flattened image. There should be m_train (respectively m_test) columns.</p>
+<p><strong>Exercise:</strong> Reshape the training and test data sets so that images of size (num_px, num_px, 3) are flattened into single vectors of shape (num_px $<em>$ num_px $</em>$ 3, 1).</p>
+<p>A trick when you want to flatten a matrix X of shape (a,b,c,d) to a matrix X_flatten of shape (b$<em>$c$</em>$d, a) is to use:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">X_flatten = X.reshape(X.shape[<span class="number">0</span>], <span class="number">-1</span>).T      <span class="comment"># X.T is the transpose of X</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Reshape the training and test examples</span></div><div class="line"></div><div class="line"><span class="comment">### START CODE HERE ### (≈ 2 lines of code)</span></div><div class="line">train_set_x_flatten = train_set_x_orig.reshape(train_set_x_orig.shape[<span class="number">0</span>],<span class="number">-1</span>).T</div><div class="line">test_set_x_flatten = test_set_x_orig.reshape(test_set_x_orig.shape[<span class="number">0</span>],<span class="number">-1</span>).T</div><div class="line"><span class="comment">### END CODE HERE ###</span></div><div class="line"></div><div class="line"><span class="keyword">print</span> (<span class="string">"train_set_x_flatten shape: "</span> + str(train_set_x_flatten.shape))</div><div class="line"><span class="keyword">print</span> (<span class="string">"train_set_y shape: "</span> + str(train_set_y.shape))</div><div class="line"><span class="keyword">print</span> (<span class="string">"test_set_x_flatten shape: "</span> + str(test_set_x_flatten.shape))</div><div class="line"><span class="keyword">print</span> (<span class="string">"test_set_y shape: "</span> + str(test_set_y.shape))</div><div class="line"><span class="keyword">print</span> (<span class="string">"sanity check after reshaping: "</span> + str(train_set_x_flatten[<span class="number">0</span>:<span class="number">5</span>,<span class="number">0</span>]))</div></pre></td></tr></table></figure>
+<pre><code>train_set_x_flatten shape: (12288, 209)
+train_set_y shape: (1, 209)
+test_set_x_flatten shape: (12288, 50)
+test_set_y shape: (1, 50)
+sanity check after reshaping: [17 31 56 22 33]
+</code></pre><p><strong>Expected Output</strong>: </p>
+<table style="width:35%"><br>  <tr><br>    <td><strong>train_set_x_flatten shape</strong></td><br>    <td> (12288, 209)</td><br>  </tr><br>  <tr><br>    <td><strong>train_set_y shape</strong></td><br>    <td>(1, 209)</td><br>  </tr><br>  <tr><br>    <td><strong>test_set_x_flatten shape</strong></td><br>    <td>(12288, 50)</td><br>  </tr><br>  <tr><br>    <td><strong>test_set_y shape</strong></td><br>    <td>(1, 50)</td><br>  </tr><br>  <tr><br>  <td><strong>sanity check after reshaping</strong></td><br>  <td>[17 31 56 22 33]</td><br>  </tr><br></table>
+
+<p>To represent color images, the red, green and blue channels (RGB) must be specified for each pixel, and so the pixel value is actually a vector of three numbers ranging from 0 to 255.</p>
+<p>One common preprocessing step in machine learning is to center and standardize your dataset, meaning that you substract the mean of the whole numpy array from each example, and then divide each example by the standard deviation of the whole numpy array. But for picture datasets, it is simpler and more convenient and works almost as well to just divide every row of the dataset by 255 (the maximum value of a pixel channel).</p>
+<!-- During the training of your model, you're going to multiply weights and add biases to some initial inputs in order to observe neuron activations. Then you backpropogate with the gradients to train the model. But, it is extremely important for each feature to have a similar range such that our gradients don't explode. You will see that more in detail later in the lectures. !--> 
+<p>Let’s standardize our dataset.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">train_set_x = train_set_x_flatten/<span class="number">255.</span></div><div class="line">test_set_x = test_set_x_flatten/<span class="number">255.</span></div></pre></td></tr></table></figure>
+<p><font color="blue"><br><strong>What you need to remember:</strong></font></p>
+<p>Common steps for pre-processing a new dataset are:</p>
+<ul>
+<li>Figure out the dimensions and shapes of the problem (m_train, m_test, num_px, …)</li>
+<li>Reshape the datasets such that each example is now a vector of size (num_px * num_px * 3, 1)</li>
+<li>“Standardize” the data</li>
+</ul>
+<h2 id="3-General-Architecture-of-the-learning-algorithm"><a href="#3-General-Architecture-of-the-learning-algorithm" class="headerlink" title="3 - General Architecture of the learning algorithm"></a>3 - General Architecture of the learning algorithm</h2><p>It’s time to design a simple algorithm to distinguish cat images from non-cat images.</p>
+<p>You will build a Logistic Regression, using a Neural Network mindset. The following Figure explains why <strong>Logistic Regression is actually a very simple Neural Network!</strong></p>
+<p><img src="images/LogReg_kiank.png" style="width:650px;height:400px;"></p>
+<p><strong>Mathematical expression of the algorithm</strong>:</p>
+<p>For one example $x^{(i)}$:<br>$$z^{(i)} = w^T x^{(i)} + b \tag{1}$$<br>$$\hat{y}^{(i)} = a^{(i)} = sigmoid(z^{(i)})\tag{2}$$<br>$$ \mathcal{L}(a^{(i)}, y^{(i)}) =  - y^{(i)}  \log(a^{(i)}) - (1-y^{(i)} )  \log(1-a^{(i)})\tag{3}$$</p>
+<p>The cost is then computed by summing over all training examples:<br>$$ J = \frac{1}{m} \sum_{i=1}^m \mathcal{L}(a^{(i)}, y^{(i)})\tag{6}$$</p>
+<p><strong>Key steps</strong>:<br>In this exercise, you will carry out the following steps: </p>
+<pre><code>- Initialize the parameters of the model
+- Learn the parameters for the model by minimizing the cost  
+- Use the learned parameters to make predictions (on the test set)
+- Analyse the results and conclude
+</code></pre><h2 id="4-Building-the-parts-of-our-algorithm"><a href="#4-Building-the-parts-of-our-algorithm" class="headerlink" title="4 - Building the parts of our algorithm"></a>4 - Building the parts of our algorithm</h2><p>The main steps for building a Neural Network are:</p>
+<ol>
+<li>Define the model structure (such as number of input features) </li>
+<li>Initialize the model’s parameters</li>
+<li>Loop:<ul>
+<li>Calculate current loss (forward propagation)</li>
+<li>Calculate current gradient (backward propagation)</li>
+<li>Update parameters (gradient descent)</li>
+</ul>
+</li>
+</ol>
+<p>You often build 1-3 separately and integrate them into one function we call <code>model()</code>.</p>
+<h3 id="4-1-Helper-functions"><a href="#4-1-Helper-functions" class="headerlink" title="4.1 - Helper functions"></a>4.1 - Helper functions</h3><p><strong>Exercise</strong>: Using your code from “Python Basics”, implement <code>sigmoid()</code>. As you’ve seen in the figure above, you need to compute $sigmoid( w^T x + b) = \frac{1}{1 + e^{-(w^T x + b)}}$ to make predictions. Use np.exp().</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># GRADED FUNCTION: sigmoid</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">sigmoid</span><span class="params">(z)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line"><span class="string">    Compute the sigmoid of z</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    Arguments:</span></div><div class="line"><span class="string">    z -- A scalar or numpy array of any size.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    Return:</span></div><div class="line"><span class="string">    s -- sigmoid(z)</span></div><div class="line"><span class="string">    """</span></div><div class="line"></div><div class="line">    <span class="comment">### START CODE HERE ### (≈ 1 line of code)</span></div><div class="line">    s = <span class="number">1.0</span>/(<span class="number">1</span>+np.exp(-z))</div><div class="line">    <span class="comment">### END CODE HERE ###</span></div><div class="line">    </div><div class="line">    <span class="keyword">return</span> s</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> (<span class="string">"sigmoid([0, 2]) = "</span> + str(sigmoid(np.array([<span class="number">0</span>,<span class="number">2</span>]))))</div></pre></td></tr></table></figure>
+<pre><code>sigmoid([0, 2]) = [ 0.5         0.88079708]
+</code></pre><p><strong>Expected Output</strong>: </p>
+<table><br>  <tr><br>    <td><strong>sigmoid([0, 2])</strong></td><br>    <td> [ 0.5         0.88079708]</td><br>  </tr><br></table>
+
+<h3 id="4-2-Initializing-parameters"><a href="#4-2-Initializing-parameters" class="headerlink" title="4.2 - Initializing parameters"></a>4.2 - Initializing parameters</h3><p><strong>Exercise:</strong> Implement parameter initialization in the cell below. You have to initialize w as a vector of zeros. If you don’t know what numpy function to use, look up np.zeros() in the Numpy library’s documentation.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># GRADED FUNCTION: initialize_with_zeros</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">initialize_with_zeros</span><span class="params">(dim)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line"><span class="string">    This function creates a vector of zeros of shape (dim, 1) for w and initializes b to 0.</span></div><div class="line"><span class="string">    </span></div><div class="line"><span class="string">    Argument:</span></div><div class="line"><span class="string">    dim -- size of the w vector we want (or number of parameters in this case)</span></div><div class="line"><span class="string">    </span></div><div class="line"><span class="string">    Returns:</span></div><div class="line"><span class="string">    w -- initialized vector of shape (dim, 1)</span></div><div class="line"><span class="string">    b -- initialized scalar (corresponds to the bias)</span></div><div class="line"><span class="string">    """</span></div><div class="line">    </div><div class="line">    <span class="comment">### START CODE HERE ### (≈ 1 line of code)</span></div><div class="line">    w, b = np.zeros((dim,<span class="number">1</span>)), <span class="number">0</span></div><div class="line">    <span class="comment">### END CODE HERE ###</span></div><div class="line"></div><div class="line">    <span class="keyword">assert</span>(w.shape == (dim, <span class="number">1</span>))</div><div class="line">    <span class="keyword">assert</span>(isinstance(b, float) <span class="keyword">or</span> isinstance(b, int))</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> w, b</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">dim = <span class="number">2</span></div><div class="line">w, b = initialize_with_zeros(dim)</div><div class="line"><span class="keyword">print</span> (<span class="string">"w = "</span> + str(w))</div><div class="line"><span class="keyword">print</span> (<span class="string">"b = "</span> + str(b))</div></pre></td></tr></table></figure>
+<pre><code>w = [[ 0.]
+ [ 0.]]
+b = 0
+</code></pre><p><strong>Expected Output</strong>: </p>
+<table style="width:15%"><br>    <tr><br>        <td>  <strong> w </strong>  </td><br>        <td> [[ 0.]<br> [ 0.]] </td><br>    </tr><br>    <tr><br>        <td>  <strong> b </strong>  </td><br>        <td> 0 </td><br>    </tr><br></table>
+
+<p>For image inputs, w will be of shape (num_px $\times$ num_px $\times$ 3, 1).</p>
+<h3 id="4-3-Forward-and-Backward-propagation"><a href="#4-3-Forward-and-Backward-propagation" class="headerlink" title="4.3 - Forward and Backward propagation"></a>4.3 - Forward and Backward propagation</h3><p>Now that your parameters are initialized, you can do the “forward” and “backward” propagation steps for learning the parameters.</p>
+<p><strong>Exercise:</strong> Implement a function <code>propagate()</code> that computes the cost function and its gradient.</p>
+<p><strong>Hints</strong>:</p>
+<p>Forward Propagation:</p>
+<ul>
+<li>You get X</li>
+<li>You compute $A = \sigma(w^T X + b) = (a^{(0)}, a^{(1)}, …, a^{(m-1)}, a^{(m)})$</li>
+<li>You calculate the cost function: $J = -\frac{1}{m}\sum_{i=1}^{m}y^{(i)}\log(a^{(i)})+(1-y^{(i)})\log(1-a^{(i)})$</li>
+</ul>
+<p>Here are the two formulas you will be using: </p>
+<p>$$ \frac{\partial J}{\partial w} = \frac{1}{m}X(A-Y)^T\tag{7}$$<br>$$ \frac{\partial J}{\partial b} = \frac{1}{m} \sum_{i=1}^m (a^{(i)}-y^{(i)})\tag{8}$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># GRADED FUNCTION: propagate</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">propagate</span><span class="params">(w, b, X, Y)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line"><span class="string">    Implement the cost function and its gradient for the propagation explained above</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    Arguments:</span></div><div class="line"><span class="string">    w -- weights, a numpy array of size (num_px * num_px * 3, 1)</span></div><div class="line"><span class="string">    b -- bias, a scalar</span></div><div class="line"><span class="string">    X -- data of size (num_px * num_px * 3, number of examples)</span></div><div class="line"><span class="string">    Y -- true "label" vector (containing 0 if non-cat, 1 if cat) of size (1, number of examples)</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    Return:</span></div><div class="line"><span class="string">    cost -- negative log-likelihood cost for logistic regression</span></div><div class="line"><span class="string">    dw -- gradient of the loss with respect to w, thus same shape as w</span></div><div class="line"><span class="string">    db -- gradient of the loss with respect to b, thus same shape as b</span></div><div class="line"><span class="string">    </span></div><div class="line"><span class="string">    Tips:</span></div><div class="line"><span class="string">    - Write your code step by step for the propagation. np.log(), np.dot()</span></div><div class="line"><span class="string">    """</span></div><div class="line">    </div><div class="line">    m = X.shape[<span class="number">1</span>]</div><div class="line">    </div><div class="line">    <span class="comment"># FORWARD PROPAGATION (FROM X TO COST)</span></div><div class="line">    <span class="comment">### START CODE HERE ### (≈ 2 lines of code)</span></div><div class="line">    A = sigmoid(np.dot(w.T,X)+b) <span class="comment"># A</span></div><div class="line">    cost = -(<span class="number">1</span>/m)*np.sum(Y*np.log(A) + (<span class="number">1</span>-Y)*np.log(<span class="number">1</span>-A))                            <span class="comment"># compute cost</span></div><div class="line">    <span class="comment">### END CODE HERE ###</span></div><div class="line">    </div><div class="line">    <span class="comment"># BACKWARD PROPAGATION (TO FIND GRAD)</span></div><div class="line">    <span class="comment">### START CODE HERE ### (≈ 2 lines of code)</span></div><div class="line">    dw = <span class="number">1</span>/m*np.dot(X,(A-Y).T)</div><div class="line">    db = <span class="number">1</span>/m*np.sum(A-Y)</div><div class="line">    <span class="comment">### END CODE HERE ###</span></div><div class="line"></div><div class="line">    <span class="keyword">assert</span>(dw.shape == w.shape)</div><div class="line">    <span class="keyword">assert</span>(db.dtype == float)</div><div class="line">    cost = np.squeeze(cost)</div><div class="line">    <span class="keyword">assert</span>(cost.shape == ())</div><div class="line">    </div><div class="line">    grads = &#123;<span class="string">"dw"</span>: dw,</div><div class="line">             <span class="string">"db"</span>: db&#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> grads, cost</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">w, b, X, Y = np.array([[<span class="number">1</span>],[<span class="number">2</span>]]), <span class="number">2</span>, np.array([[<span class="number">1</span>,<span class="number">2</span>],[<span class="number">3</span>,<span class="number">4</span>]]), np.array([[<span class="number">1</span>,<span class="number">0</span>]])</div><div class="line">grads, cost = propagate(w, b, X, Y)</div><div class="line"><span class="keyword">print</span> (<span class="string">"dw = "</span> + str(grads[<span class="string">"dw"</span>]))</div><div class="line"><span class="keyword">print</span> (<span class="string">"db = "</span> + str(grads[<span class="string">"db"</span>]))</div><div class="line"><span class="keyword">print</span> (<span class="string">"cost = "</span> + str(cost))</div></pre></td></tr></table></figure>
+<pre><code>dw = [[ 0.99993216]
+ [ 1.99980262]]
+db = 0.499935230625
+cost = 6.00006477319
+</code></pre><p><strong>Expected Output</strong>:</p>
+<table style="width:50%"><br>    <tr><br>        <td>  <strong> dw </strong>  </td><br>        <td> [[ 0.99993216]<br> [ 1.99980262]]</td><br>    </tr><br>    <tr><br>        <td>  <strong> db </strong>  </td><br>        <td> 0.499935230625 </td><br>    </tr><br>    <tr><br>        <td>  <strong> cost </strong>  </td><br>        <td> 6.000064773192205</td><br>    </tr><br><br></table>
+
+<h3 id="d-Optimization"><a href="#d-Optimization" class="headerlink" title="d) Optimization"></a>d) Optimization</h3><ul>
+<li>You have initialized your parameters.</li>
+<li>You are also able to compute a cost function and its gradient.</li>
+<li>Now, you want to update the parameters using gradient descent.</li>
+</ul>
+<p><strong>Exercise:</strong> Write down the optimization function. The goal is to learn $w$ and $b$ by minimizing the cost function $J$. For a parameter $\theta$, the update rule is $ \theta = \theta - \alpha \text{ } d\theta$, where $\alpha$ is the learning rate.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># GRADED FUNCTION: optimize</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">optimize</span><span class="params">(w, b, X, Y, num_iterations, learning_rate, print_cost = False)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line"><span class="string">    This function optimizes w and b by running a gradient descent algorithm</span></div><div class="line"><span class="string">    </span></div><div class="line"><span class="string">    Arguments:</span></div><div class="line"><span class="string">    w -- weights, a numpy array of size (num_px * num_px * 3, 1)</span></div><div class="line"><span class="string">    b -- bias, a scalar</span></div><div class="line"><span class="string">    X -- data of shape (num_px * num_px * 3, number of examples)</span></div><div class="line"><span class="string">    Y -- true "label" vector (containing 0 if non-cat, 1 if cat), of shape (1, number of examples)</span></div><div class="line"><span class="string">    num_iterations -- number of iterations of the optimization loop</span></div><div class="line"><span class="string">    learning_rate -- learning rate of the gradient descent update rule</span></div><div class="line"><span class="string">    print_cost -- True to print the loss every 100 steps</span></div><div class="line"><span class="string">    </span></div><div class="line"><span class="string">    Returns:</span></div><div class="line"><span class="string">    params -- dictionary containing the weights w and bias b</span></div><div class="line"><span class="string">    grads -- dictionary containing the gradients of the weights and bias with respect to the cost function</span></div><div class="line"><span class="string">    costs -- list of all the costs computed during the optimization, this will be used to plot the learning curve.</span></div><div class="line"><span class="string">    </span></div><div class="line"><span class="string">    Tips:</span></div><div class="line"><span class="string">    You basically need to write down two steps and iterate through them:</span></div><div class="line"><span class="string">        1) Calculate the cost and the gradient for the current parameters. Use propagate().</span></div><div class="line"><span class="string">        2) Update the parameters using gradient descent rule for w and b.</span></div><div class="line"><span class="string">    """</span></div><div class="line">    </div><div class="line">    costs = []</div><div class="line">    </div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(num_iterations):</div><div class="line">        </div><div class="line">        </div><div class="line">        <span class="comment"># Cost and gradient calculation (≈ 1-4 lines of code)</span></div><div class="line">        <span class="comment">### START CODE HERE ### </span></div><div class="line">        grads, cost = propagate(w, b, X, Y)</div><div class="line">        costs.append(cost)</div><div class="line">        <span class="comment">### END CODE HERE ###</span></div><div class="line">        </div><div class="line">        <span class="comment"># Retrieve derivatives from grads</span></div><div class="line">        dw = grads[<span class="string">"dw"</span>]</div><div class="line">        db = grads[<span class="string">"db"</span>]</div><div class="line">        </div><div class="line">        <span class="comment"># update rule (≈ 2 lines of code)</span></div><div class="line">        <span class="comment">### START CODE HERE ###</span></div><div class="line">        w = w - learning_rate*dw</div><div class="line">        b = b - learning_rate*db</div><div class="line">        <span class="comment">### END CODE HERE ###</span></div><div class="line">        </div><div class="line">        <span class="comment"># Record the costs</span></div><div class="line">        <span class="keyword">if</span> i % <span class="number">100</span> == <span class="number">0</span>:</div><div class="line">            costs.append(cost)</div><div class="line">        </div><div class="line">        <span class="comment"># Print the cost every 100 training examples</span></div><div class="line">        <span class="keyword">if</span> print_cost <span class="keyword">and</span> i % <span class="number">100</span> == <span class="number">0</span>:</div><div class="line">            <span class="keyword">print</span> (<span class="string">"Cost after iteration %i: %f"</span> %(i, cost))</div><div class="line">    </div><div class="line">    params = &#123;<span class="string">"w"</span>: w,</div><div class="line">              <span class="string">"b"</span>: b&#125;</div><div class="line">    </div><div class="line">    grads = &#123;<span class="string">"dw"</span>: dw,</div><div class="line">             <span class="string">"db"</span>: db&#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> params, grads, costs</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">params, grads, costs = optimize(w, b, X, Y, num_iterations= <span class="number">100</span>, learning_rate = <span class="number">0.009</span>, print_cost = <span class="keyword">False</span>)</div><div class="line"></div><div class="line"><span class="keyword">print</span> (<span class="string">"w = "</span> + str(params[<span class="string">"w"</span>]))</div><div class="line"><span class="keyword">print</span> (<span class="string">"b = "</span> + str(params[<span class="string">"b"</span>]))</div><div class="line"><span class="keyword">print</span> (<span class="string">"dw = "</span> + str(grads[<span class="string">"dw"</span>]))</div><div class="line"><span class="keyword">print</span> (<span class="string">"db = "</span> + str(grads[<span class="string">"db"</span>]))</div></pre></td></tr></table></figure>
+<pre><code>w = [[ 0.1124579 ]
+ [ 0.23106775]]
+b = 1.55930492484
+dw = [[ 0.90158428]
+ [ 1.76250842]]
+db = 0.430462071679
+</code></pre><p><strong>Expected Output</strong>: </p>
+<table style="width:40%"><br>    <tr><br>       <td> <strong>w</strong> </td><br>       <td>[[ 0.1124579 ]<br> [ 0.23106775]] </td><br>    </tr><br><br>    <tr><br>       <td> <strong>b</strong> </td><br>       <td> 1.55930492484 </td><br>    </tr><br>    <tr><br>       <td> <strong>dw</strong> </td><br>       <td> [[ 0.90158428]<br> [ 1.76250842]] </td><br>    </tr><br>    <tr><br>       <td> <strong>db</strong> </td><br>       <td> 0.430462071679 </td><br>    </tr><br><br></table>
+
+<p><strong>Exercise:</strong> The previous function will output the learned w and b. We are able to use w and b to predict the labels for a dataset X. Implement the <code>predict()</code> function. There is two steps to computing predictions:</p>
+<ol>
+<li><p>Calculate $\hat{Y} = A = \sigma(w^T X + b)$</p>
+</li>
+<li><p>Convert the entries of a into 0 (if activation &lt;= 0.5) or 1 (if activation &gt; 0.5), stores the predictions in a vector <code>Y_prediction</code>. If you wish, you can use an <code>if</code>/<code>else</code> statement in a <code>for</code> loop (though there is also a way to vectorize this). </p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># GRADED FUNCTION: predict</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(w, b, X)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line"><span class="string">    Predict whether the label is 0 or 1 using learned logistic regression parameters (w, b)</span></div><div class="line"><span class="string">    </span></div><div class="line"><span class="string">    Arguments:</span></div><div class="line"><span class="string">    w -- weights, a numpy array of size (num_px * num_px * 3, 1)</span></div><div class="line"><span class="string">    b -- bias, a scalar</span></div><div class="line"><span class="string">    X -- data of size (num_px * num_px * 3, number of examples)</span></div><div class="line"><span class="string">    </span></div><div class="line"><span class="string">    Returns:</span></div><div class="line"><span class="string">    Y_prediction -- a numpy array (vector) containing all predictions (0/1) for the examples in X</span></div><div class="line"><span class="string">    '''</span></div><div class="line">    </div><div class="line">    m = X.shape[<span class="number">1</span>]</div><div class="line">    Y_prediction = np.zeros((<span class="number">1</span>,m))</div><div class="line">    w = w.reshape(X.shape[<span class="number">0</span>], <span class="number">1</span>)</div><div class="line">    </div><div class="line">    <span class="comment"># Compute vector "A" predicting the probabilities of a cat being present in the picture</span></div><div class="line">    <span class="comment">### START CODE HERE ### (≈ 1 line of code)</span></div><div class="line">    A =sigmoid(np.dot(w.T,X)+b)</div><div class="line">    <span class="comment">### END CODE HERE ###</span></div><div class="line">    </div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(A.shape[<span class="number">1</span>]):</div><div class="line">        </div><div class="line">        <span class="comment"># Convert probabilities A[0,i] to actual predictions p[0,i]</span></div><div class="line">        <span class="comment">### START CODE HERE ### (≈ 4 lines of code)</span></div><div class="line">        <span class="keyword">if</span> A[<span class="number">0</span>,i]&lt;=<span class="number">0.5</span>:</div><div class="line">            Y_prediction[<span class="number">0</span>,i] = <span class="number">0</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            Y_prediction[<span class="number">0</span>,i] = <span class="number">1</span></div><div class="line">        <span class="comment">### END CODE HERE ###</span></div><div class="line">    </div><div class="line">    <span class="keyword">assert</span>(Y_prediction.shape == (<span class="number">1</span>, m))</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> Y_prediction</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> (<span class="string">"predictions = "</span> + str(predict(w, b, X)))</div></pre></td></tr></table></figure>
+<pre><code>predictions = [[ 1.  1.]]
+</code></pre><p><strong>Expected Output</strong>: </p>
+<table style="width:30%"><br>    <tr><br>         <td><br>             <strong>predictions</strong><br>         </td><br>          <td><br>            [[ 1.  1.]]<br>         </td><br>   </tr><br><br></table>
+
+
+<p><font color="blue"><br><strong>What to remember:</strong><br>You’ve implemented several functions that:</font></p>
+<ul>
+<li>Initialize (w,b)</li>
+<li>Optimize the loss iteratively to learn parameters (w,b):<ul>
+<li>computing the cost and its gradient </li>
+<li>updating the parameters using gradient descent</li>
+</ul>
+</li>
+<li>Use the learned (w,b) to predict the labels for a given set of examples</li>
+</ul>
+<h2 id="5-Merge-all-functions-into-a-model"><a href="#5-Merge-all-functions-into-a-model" class="headerlink" title="5 - Merge all functions into a model"></a>5 - Merge all functions into a model</h2><p>You will now see how the overall model is structured by putting together all the building blocks (functions implemented in the previous parts) together, in the right order.</p>
+<p><strong>Exercise:</strong> Implement the model function. Use the following notation:</p>
+<pre><code>- Y_prediction for your predictions on the test set
+- Y_prediction_train for your predictions on the train set
+- w, costs, grads for the outputs of optimize()
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># GRADED FUNCTION: model</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">model</span><span class="params">(X_train, Y_train, X_test, Y_test, num_iterations = <span class="number">2000</span>, learning_rate = <span class="number">0.5</span>, print_cost = False)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line"><span class="string">    Builds the logistic regression model by calling the function you've implemented previously</span></div><div class="line"><span class="string">    </span></div><div class="line"><span class="string">    Arguments:</span></div><div class="line"><span class="string">    X_train -- training set represented by a numpy array of shape (num_px * num_px * 3, m_train)</span></div><div class="line"><span class="string">    Y_train -- training labels represented by a numpy array (vector) of shape (1, m_train)</span></div><div class="line"><span class="string">    X_test -- test set represented by a numpy array of shape (num_px * num_px * 3, m_test)</span></div><div class="line"><span class="string">    Y_test -- test labels represented by a numpy array (vector) of shape (1, m_test)</span></div><div class="line"><span class="string">    num_iterations -- hyperparameter representing the number of iterations to optimize the parameters</span></div><div class="line"><span class="string">    learning_rate -- hyperparameter representing the learning rate used in the update rule of optimize()</span></div><div class="line"><span class="string">    print_cost -- Set to true to print the cost every 100 iterations</span></div><div class="line"><span class="string">    </span></div><div class="line"><span class="string">    Returns:</span></div><div class="line"><span class="string">    d -- dictionary containing information about the model.</span></div><div class="line"><span class="string">    """</span></div><div class="line">    </div><div class="line">    <span class="comment">### START CODE HERE ###</span></div><div class="line">    </div><div class="line">    <span class="comment"># initialize parameters with zeros (≈ 1 line of code)</span></div><div class="line">    w, b = initialize_with_zeros(X_train.shape[<span class="number">0</span>])</div><div class="line"></div><div class="line">    <span class="comment"># Gradient descent (≈ 1 line of code)</span></div><div class="line">    parameters, grads, costs = optimize(w, b, X_train, Y_train, num_iterations, learning_rate, print_cost)</div><div class="line">    </div><div class="line">    <span class="comment"># Retrieve parameters w and b from dictionary "parameters"</span></div><div class="line">    w = parameters[<span class="string">"w"</span>]</div><div class="line">    b = parameters[<span class="string">"b"</span>]</div><div class="line">    </div><div class="line">    <span class="comment"># Predict test/train set examples (≈ 2 lines of code)</span></div><div class="line">    Y_prediction_test = predict(w, b, X_test)</div><div class="line">    Y_prediction_train = predict(w, b, X_train)</div><div class="line">    <span class="comment">### END CODE HERE ###</span></div><div class="line"></div><div class="line">    <span class="comment"># Print train/test Errors</span></div><div class="line">    print(<span class="string">"train accuracy: &#123;&#125; %"</span>.format(<span class="number">100</span> - np.mean(np.abs(Y_prediction_train - Y_train)) * <span class="number">100</span>))</div><div class="line">    print(<span class="string">"test accuracy: &#123;&#125; %"</span>.format(<span class="number">100</span> - np.mean(np.abs(Y_prediction_test - Y_test)) * <span class="number">100</span>))</div><div class="line"></div><div class="line">    </div><div class="line">    d = &#123;<span class="string">"costs"</span>: costs,</div><div class="line">         <span class="string">"Y_prediction_test"</span>: Y_prediction_test, </div><div class="line">         <span class="string">"Y_prediction_train"</span> : Y_prediction_train, </div><div class="line">         <span class="string">"w"</span> : w, </div><div class="line">         <span class="string">"b"</span> : b,</div><div class="line">         <span class="string">"learning_rate"</span> : learning_rate,</div><div class="line">         <span class="string">"num_iterations"</span>: num_iterations&#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> d</div></pre></td></tr></table></figure>
+<p>Run the following cell to train your model.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">d = model(train_set_x, train_set_y, test_set_x, test_set_y, num_iterations = <span class="number">2000</span>, learning_rate = <span class="number">0.005</span>, print_cost = <span class="keyword">True</span>)</div></pre></td></tr></table></figure>
+<pre><code>Cost after iteration 0: 0.693147
+Cost after iteration 100: 0.584508
+Cost after iteration 200: 0.466949
+Cost after iteration 300: 0.376007
+Cost after iteration 400: 0.331463
+Cost after iteration 500: 0.303273
+Cost after iteration 600: 0.279880
+Cost after iteration 700: 0.260042
+Cost after iteration 800: 0.242941
+Cost after iteration 900: 0.228004
+Cost after iteration 1000: 0.214820
+Cost after iteration 1100: 0.203078
+Cost after iteration 1200: 0.192544
+Cost after iteration 1300: 0.183033
+Cost after iteration 1400: 0.174399
+Cost after iteration 1500: 0.166521
+Cost after iteration 1600: 0.159305
+Cost after iteration 1700: 0.152667
+Cost after iteration 1800: 0.146542
+Cost after iteration 1900: 0.140872
+train accuracy: 99.04306220095694 %
+test accuracy: 70.0 %
+</code></pre><p><strong>Expected Output</strong>: </p>
+<table style="width:40%"><br><br>    <tr><br>        <td> <strong>Train Accuracy</strong>  </td><br>        <td> 99.04306220095694 % </td><br>    </tr><br><br>    <tr><br>        <td><strong>Test Accuracy</strong> </td><br>        <td> 70.0 % </td><br>    </tr><br></table> 
+
+
+
+
+<p><strong>Comment</strong>: Training accuracy is close to 100%. This is a good sanity check: your model is working and has high enough capacity to fit the training data. Test error is 68%. It is actually not bad for this simple model, given the small dataset we used and that logistic regression is a linear classifier. But no worries, you’ll build an even better classifier next week!</p>
+<p>Also, you see that the model is clearly overfitting the training data. Later in this specialization you will learn how to reduce overfitting, for example by using regularization. Using the code below (and changing the <code>index</code> variable) you can look at predictions on pictures of the test set.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Example of a picture that was wrongly classified.</span></div><div class="line">index = <span class="number">1</span></div><div class="line">plt.imshow(test_set_x[:,index].reshape((num_px, num_px, <span class="number">3</span>)))</div><div class="line"><span class="keyword">print</span> (<span class="string">"y = "</span> + str(test_set_y[<span class="number">0</span>,index]) + <span class="string">", you predicted that it is a \""</span> + classes[d[<span class="string">"Y_prediction_test"</span>][<span class="number">0</span>,index]].decode(<span class="string">"utf-8"</span>) +  <span class="string">"\" picture."</span>)</div></pre></td></tr></table></figure>
+<pre><code>/opt/conda/lib/python3.5/site-packages/ipykernel/__main__.py:4: DeprecationWarning: using a non-integer number instead of an integer will result in an error in the future
+
+
+y = 1, you predicted that it is a &quot;cat&quot; picture.
+</code></pre><p><img src="https://i.loli.net/2017/09/14/59b9e0563b548.png" alt="output_44_2.png"></p>
+<p>Let’s also plot the cost function and the gradients.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Plot learning curve (with costs)</span></div><div class="line">costs = np.squeeze(d[<span class="string">'costs'</span>])</div><div class="line">plt.plot(costs)</div><div class="line">plt.ylabel(<span class="string">'cost'</span>)</div><div class="line">plt.xlabel(<span class="string">'iterations (per hundreds)'</span>)</div><div class="line">plt.title(<span class="string">"Learning rate ="</span> + str(d[<span class="string">"learning_rate"</span>]))</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2017/09/14/59b9e06d98c1a.png" alt="output_46_0.png"></p>
+<p><strong>Interpretation</strong>:<br>You can see the cost decreasing. It shows that the parameters are being learned. However, you see that you could train the model even more on the training set. Try to increase the number of iterations in the cell above and rerun the cells. You might see that the training set accuracy goes up, but the test set accuracy goes down. This is called overfitting. </p>
+<h2 id="6-Further-analysis-optional-ungraded-exercise"><a href="#6-Further-analysis-optional-ungraded-exercise" class="headerlink" title="6 - Further analysis (optional/ungraded exercise)"></a>6 - Further analysis (optional/ungraded exercise)</h2><p>Congratulations on building your first image classification model. Let’s analyze it further, and examine possible choices for the learning rate $\alpha$. </p>
+<h4 id="Choice-of-learning-rate"><a href="#Choice-of-learning-rate" class="headerlink" title="Choice of learning rate"></a>Choice of learning rate</h4><p><strong>Reminder</strong>:<br>In order for Gradient Descent to work you must choose the learning rate wisely. The learning rate $\alpha$  determines how rapidly we update the parameters. If the learning rate is too large we may “overshoot” the optimal value. Similarly, if it is too small we will need too many iterations to converge to the best values. That’s why it is crucial to use a well-tuned learning rate.</p>
+<p>Let’s compare the learning curve of our model with several choices of learning rates. Run the cell below. This should take about 1 minute. Feel free also to try different values than the three we have initialized the <code>learning_rates</code> variable to contain, and see what happens. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">learning_rates = [<span class="number">0.01</span>, <span class="number">0.001</span>, <span class="number">0.0001</span>]</div><div class="line">models = &#123;&#125;</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> learning_rates:</div><div class="line">    <span class="keyword">print</span> (<span class="string">"learning rate is: "</span> + str(i))</div><div class="line">    models[str(i)] = model(train_set_x, train_set_y, test_set_x, test_set_y, num_iterations = <span class="number">1500</span>, learning_rate = i, print_cost = <span class="keyword">False</span>)</div><div class="line">    <span class="keyword">print</span> (<span class="string">'\n'</span> + <span class="string">"-------------------------------------------------------"</span> + <span class="string">'\n'</span>)</div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> learning_rates:</div><div class="line">    plt.plot(np.squeeze(models[str(i)][<span class="string">"costs"</span>]), label= str(models[str(i)][<span class="string">"learning_rate"</span>]))</div><div class="line"></div><div class="line">plt.ylabel(<span class="string">'cost'</span>)</div><div class="line">plt.xlabel(<span class="string">'iterations'</span>)</div><div class="line"></div><div class="line">legend = plt.legend(loc=<span class="string">'upper center'</span>, shadow=<span class="keyword">True</span>)</div><div class="line">frame = legend.get_frame()</div><div class="line">frame.set_facecolor(<span class="string">'0.90'</span>)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<pre><code>learning rate is: 0.01
+train accuracy: 99.52153110047847 %
+test accuracy: 68.0 %
+
+-------------------------------------------------------
+
+learning rate is: 0.001
+train accuracy: 88.99521531100478 %
+test accuracy: 64.0 %
+
+-------------------------------------------------------
+
+learning rate is: 0.0001
+train accuracy: 68.42105263157895 %
+test accuracy: 36.0 %
+
+-------------------------------------------------------
+</code></pre><p><img src="https://i.loli.net/2017/09/14/59b9e08244c12.png" alt="output_50_1.png"></p>
+<p><strong>Interpretation</strong>: </p>
+<ul>
+<li>Different learning rates give different costs and thus different predictions results.</li>
+<li>If the learning rate is too large (0.01), the cost may oscillate up and down. It may even diverge (though in this example, using 0.01 still eventually ends up at a good value for the cost). </li>
+<li>A lower cost doesn’t mean a better model. You have to check if there is possibly overfitting. It happens when the training accuracy is a lot higher than the test accuracy.</li>
+<li>In deep learning, we usually recommend that you: <ul>
+<li>Choose the learning rate that better minimizes the cost function.</li>
+<li>If your model overfits, use other techniques to reduce overfitting. (We’ll talk about this in later videos.) </li>
+</ul>
+</li>
+</ul>
+<h2 id="7-Test-with-your-own-image-optional-ungraded-exercise"><a href="#7-Test-with-your-own-image-optional-ungraded-exercise" class="headerlink" title="7 - Test with your own image (optional/ungraded exercise)"></a>7 - Test with your own image (optional/ungraded exercise)</h2><p>Congratulations on finishing this assignment. You can use your own image and see the output of your model. To do that:</p>
+<pre><code>1. Click on &quot;File&quot; in the upper bar of this notebook, then click &quot;Open&quot; to go on your Coursera Hub.
+2. Add your image to this Jupyter Notebook&apos;s directory, in the &quot;images&quot; folder
+3. Change your image&apos;s name in the following code
+4. Run the code and check if the algorithm is right (1 = cat, 0 = non-cat)!
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">## START CODE HERE ## (PUT YOUR IMAGE NAME) </span></div><div class="line">my_image = <span class="string">"my_image.jpg"</span>   <span class="comment"># change this to the name of your image file </span></div><div class="line"><span class="comment">## END CODE HERE ##</span></div><div class="line"></div><div class="line"><span class="comment"># We preprocess the image to fit your algorithm.</span></div><div class="line">fname = <span class="string">"images/"</span> + my_image</div><div class="line">image = np.array(ndimage.imread(fname, flatten=<span class="keyword">False</span>))</div><div class="line">my_image = scipy.misc.imresize(image, size=(num_px,num_px)).reshape((<span class="number">1</span>, num_px*num_px*<span class="number">3</span>)).T</div><div class="line">my_predicted_image = predict(d[<span class="string">"w"</span>], d[<span class="string">"b"</span>], my_image)</div><div class="line"></div><div class="line">plt.imshow(image)</div><div class="line">print(<span class="string">"y = "</span> + str(np.squeeze(my_predicted_image)) + <span class="string">", your algorithm predicts a \""</span> + classes[int(np.squeeze(my_predicted_image)),].decode(<span class="string">"utf-8"</span>) +  <span class="string">"\" picture."</span>)</div></pre></td></tr></table></figure>
+<pre><code>y = 0.0, your algorithm predicts a &quot;non-cat&quot; picture.
+</code></pre><p><img src="https://i.loli.net/2017/09/14/59b9e095d3ad5.png" alt="output_53_1.png"></p>
+<p><font color="blue"><br><strong>What to remember from this assignment:</strong></font></p>
+<ol>
+<li>Preprocessing the dataset is important.</li>
+<li>You implemented each function separately: initialize(), propagate(), optimize(). Then you built a model().</li>
+<li>Tuning the learning rate (which is an example of a “hyperparameter”) can make a big difference to the algorithm. You will see more examples of this later in this course!</li>
+</ol>
+<p>Finally, if you’d like, we invite you to try different things on this Notebook. Make sure you submit before trying anything. Once you submit, things you can play with include:</p>
+<pre><code>- Play with the learning rate and the number of iterations
+- Try different initialization methods and compare the results
+- Test other preprocessings (center the data, or divide each row by its standard deviation)
+</code></pre><p>Bibliography:</p>
+<ul>
+<li><a href="http://www.wildml.com/2015/09/implementing-a-neural-network-from-scratch/" target="_blank" rel="external">http://www.wildml.com/2015/09/implementing-a-neural-network-from-scratch/</a></li>
+<li><a href="https://stats.stackexchange.com/questions/211436/why-do-we-normalize-images-by-subtracting-the-datasets-image-mean-and-not-the-c" target="_blank" rel="external">https://stats.stackexchange.com/questions/211436/why-do-we-normalize-images-by-subtracting-the-datasets-image-mean-and-not-the-c</a></li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/08/31/11-Logistic Regression with a Neural Network mindset v3/">神经网络学习第二周编程作业</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">致Great</a></p>
+        <p><span>发布时间:</span>2017-08-31, 15:29:25</p>
+        <p><span>最后更新:</span>2017-09-14, 01:55:32</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/08/31/11-Logistic Regression with a Neural Network mindset v3/" title="神经网络学习第二周编程作业">http://yoursite.com/2017/08/31/11-Logistic Regression with a Neural Network mindset v3/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/08/31/11-Logistic Regression with a Neural Network mindset v3/　　作者: 致Great" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/08/31/10-贪心算法/">
+                    贪心算法总结
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/08/30/09-快速幂/">
+                    求一个数n次方后的末尾数（数论/快速幂）
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Logistic-Regression-with-a-Neural-Network-mindset"><span class="toc-number">1.</span> <span class="toc-text">Logistic Regression with a Neural Network mindset</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Packages"><span class="toc-number">1.1.</span> <span class="toc-text">1 - Packages</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Overview-of-the-Problem-set"><span class="toc-number">1.2.</span> <span class="toc-text">2 - Overview of the Problem set</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-General-Architecture-of-the-learning-algorithm"><span class="toc-number">1.3.</span> <span class="toc-text">3 - General Architecture of the learning algorithm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Building-the-parts-of-our-algorithm"><span class="toc-number">1.4.</span> <span class="toc-text">4 - Building the parts of our algorithm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-Helper-functions"><span class="toc-number">1.4.1.</span> <span class="toc-text">4.1 - Helper functions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-Initializing-parameters"><span class="toc-number">1.4.2.</span> <span class="toc-text">4.2 - Initializing parameters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-Forward-and-Backward-propagation"><span class="toc-number">1.4.3.</span> <span class="toc-text">4.3 - Forward and Backward propagation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#d-Optimization"><span class="toc-number">1.4.4.</span> <span class="toc-text">d) Optimization</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Merge-all-functions-into-a-model"><span class="toc-number">1.5.</span> <span class="toc-text">5 - Merge all functions into a model</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Further-analysis-optional-ungraded-exercise"><span class="toc-number">1.6.</span> <span class="toc-text">6 - Further analysis (optional/ungraded exercise)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Choice-of-learning-rate"><span class="toc-number">1.6.0.1.</span> <span class="toc-text">Choice of learning rate</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Test-with-your-own-image-optional-ungraded-exercise"><span class="toc-number">1.7.</span> <span class="toc-text">7 - Test with your own image (optional/ungraded exercise)</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"神经网络学习第二周编程作业　| yanqiangmiffy　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/08/31/10-贪心算法/" title="上一篇: 贪心算法总结">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/08/30/09-快速幂/" title="下一篇: 求一个数n次方后的末尾数（数论/快速幂）">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/09/14/hello-world/">我会自动改变</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/31/10-贪心算法/">贪心算法总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/31/11-Logistic Regression with a Neural Network mindset v3/">神经网络学习第二周编程作业</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/30/09-快速幂/">求一个数n次方后的末尾数（数论/快速幂）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/30/08-bfs&&dfs/">图的广度优先搜索和图的深度优先搜索</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/30/07-括号匹配问题/">括号匹配问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/24/06-卡特兰数/">卡特兰数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/06/05- Matrix-Vector/">通过递归的矩阵向量空间预测组合语义</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/04/04-Laravel博客实战/">Laravel博客实战</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/03/03AgeDetection/">使用Keras构建卷积神经网络预测“阿三”的年龄</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/02/02动态规划/">动态规划</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/01/01排序问题/">排序算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/29/HDU1009-FatMouse' Trade/">HDU1009-FatMouse' Trade</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/26/Python28-机器学习算法的基本知识（使用Python和R代码）/">机器学习算法的基本知识（使用Python和R代码）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/26/Keras04-白酒和红酒实例/">Kera实例：预测白酒和红酒的质量</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/Keras02-MNIST手写实例/">Keras实现简单的手写数字识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/Python26-使用Python和R语言从头开始理解和编写神经网络/">使用Python和R语言从头开始理解和编写神经网络</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 致Great
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
