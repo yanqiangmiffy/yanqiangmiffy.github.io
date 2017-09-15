@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="致Great" />
+
+
+
+<meta name="description" content="吴恩达的神经网络学习第三周作业">
+<meta name="keywords" content="机器学习,神经网络,深度学习,梯度下降法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="神经网络学习第三周编程作业">
+<meta property="og:url" content="http://yoursite.com/2017/09/14/12-Planar data classification with one hidden layer v3/index.html">
+<meta property="og:site_name" content="yanqiangmiffy">
+<meta property="og:description" content="吴恩达的神经网络学习第三周作业">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.loli.net/2017/09/14/59ba86d06f1df.png">
+<meta property="og:image" content="https://i.loli.net/2017/09/14/59ba8716f1bcf.png">
+<meta property="og:image" content="http://yoursite.com/2017/09/14/12-Planar%20data%20classification%20with%20one%20hidden%20layer%20v3/images/classification_kiank.png">
+<meta property="og:image" content="http://yoursite.com/2017/09/14/12-Planar%20data%20classification%20with%20one%20hidden%20layer%20v3/images/grad_summary.png">
+<meta property="og:image" content="http://yoursite.com/2017/09/14/12-Planar%20data%20classification%20with%20one%20hidden%20layer%20v3/images/sgd.gif">
+<meta property="og:image" content="http://yoursite.com/2017/09/14/12-Planar%20data%20classification%20with%20one%20hidden%20layer%20v3/images/sgd_bad.gif">
+<meta property="og:image" content="https://i.loli.net/2017/09/14/59ba872ad66e3.png">
+<meta property="og:image" content="https://i.loli.net/2017/09/14/59ba87411a5a5.png">
+<meta property="og:image" content="https://i.loli.net/2017/09/14/59ba87516be30.png">
+<meta property="og:updated_time" content="2017-09-15T08:47:29.949Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="神经网络学习第三周编程作业">
+<meta name="twitter:description" content="吴恩达的神经网络学习第三周作业">
+<meta name="twitter:image" content="https://i.loli.net/2017/09/14/59ba86d06f1df.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="yanqiangmiffy" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>神经网络学习第三周编程作业 | yanqiangmiffy</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">致Great</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="https://yanqiangmiffy.github.io/resume/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="/yanqiangmiffy@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/yanqiangmiffy" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/bfs/">bfs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dfs/">dfs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分类问题/">分类问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/广度优先搜索/">广度优先搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快速幂/">快速幂</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数论/">数论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最小生成树/">最小生成树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/梯度下降法/">梯度下降法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/活动安排问题/">活动安排问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度优先搜索/">深度优先搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/神经网络/">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/背包问题/">背包问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/贪心算法/">贪心算法</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">致Great</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">致Great</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="https://yanqiangmiffy.github.io/resume/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="/yanqiangmiffy@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/yanqiangmiffy" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-12-Planar data classification with one hidden layer v3" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/09/14/12-Planar data classification with one hidden layer v3/" class="article-date">
+      <time datetime="2017-09-14T21:44:25.000Z" itemprop="datePublished">2017-09-14</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      神经网络学习第三周编程作业
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/梯度下降法/">梯度下降法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/神经网络/">神经网络</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><excerpt in="" index="" |="" 首页摘要=""><br>吴恩达的神经网络学习第三周作业<br><a id="more"></a></excerpt></p>
+<h1 id="Planar-data-classification-with-one-hidden-layer"><a href="#Planar-data-classification-with-one-hidden-layer" class="headerlink" title="Planar data classification with one hidden layer"></a>Planar data classification with one hidden layer</h1><p>Welcome to your week 3 programming assignment. It’s time to build your first neural network, which will have a hidden layer. You will see a big difference between this model and the one you implemented using logistic regression. </p>
+<p><strong>You will learn how to:</strong></p>
+<ul>
+<li>Implement a 2-class classification neural network with a single hidden layer</li>
+<li>Use units with a non-linear activation function, such as tanh </li>
+<li>Compute the cross entropy loss </li>
+<li>Implement forward and backward propagation</li>
+</ul>
+<h2 id="1-Packages"><a href="#1-Packages" class="headerlink" title="1 - Packages"></a>1 - Packages</h2><p>Let’s first import all the packages that you will need during this assignment.</p>
+<ul>
+<li><a href="www.numpy.org">numpy</a> is the fundamental package for scientific computing with Python.</li>
+<li><a href="http://scikit-learn.org/stable/" target="_blank" rel="external">sklearn</a> provides simple and efficient tools for data mining and data analysis. </li>
+<li><a href="http://matplotlib.org" target="_blank" rel="external">matplotlib</a> is a library for plotting graphs in Python.</li>
+<li>testCases provides some test examples to assess the correctness of your functions</li>
+<li>planar_utils provide various useful functions used in this assignment</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Package imports</span></div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">from</span> testCases <span class="keyword">import</span> *</div><div class="line"><span class="keyword">import</span> sklearn</div><div class="line"><span class="keyword">import</span> sklearn.datasets</div><div class="line"><span class="keyword">import</span> sklearn.linear_model</div><div class="line"><span class="keyword">from</span> planar_utils <span class="keyword">import</span> plot_decision_boundary, sigmoid, load_planar_dataset, load_extra_datasets</div><div class="line"></div><div class="line">%matplotlib inline</div><div class="line"></div><div class="line">np.random.seed(<span class="number">1</span>) <span class="comment"># set a seed so that the results are consistent</span></div></pre></td></tr></table></figure>
+<h2 id="2-Dataset"><a href="#2-Dataset" class="headerlink" title="2 - Dataset"></a>2 - Dataset</h2><p>First, let’s get the dataset you will work on. The following code will load a “flower” 2-class dataset into variables <code>X</code> and <code>Y</code>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">X, Y = load_planar_dataset()</div></pre></td></tr></table></figure>
+<p>Visualize the dataset using matplotlib. The data looks like a “flower” with some red (label y=0) and some blue (y=1) points. Your goal is to build a model to fit this data. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Visualize the data:</span></div><div class="line">plt.scatter(X[<span class="number">0</span>, :], X[<span class="number">1</span>, :], c=Y, s=<span class="number">40</span>, cmap=plt.cm.Spectral);</div></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2017/09/14/59ba86d06f1df.png" alt="output_6_0.png"></p>
+<p>You have:</p>
+<pre><code>- a numpy-array (matrix) X that contains your features (x1, x2)
+- a numpy-array (vector) Y that contains your labels (red:0, blue:1).
+</code></pre><p>Lets first get a better sense of what our data is like. </p>
+<p><strong>Exercise</strong>: How many training examples do you have? In addition, what is the <code>shape</code> of the variables <code>X</code> and <code>Y</code>? </p>
+<p><strong>Hint</strong>: How do you get the shape of a numpy array? <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.shape.html" target="_blank" rel="external">(help)</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">### START CODE HERE ### (≈ 3 lines of code)</span></div><div class="line">shape_X = X.shape</div><div class="line">shape_Y = Y.shape</div><div class="line">m = X.shape[<span class="number">1</span>]  <span class="comment"># training set size</span></div><div class="line"><span class="comment">### END CODE HERE ###</span></div><div class="line"></div><div class="line"><span class="keyword">print</span> (<span class="string">'The shape of X is: '</span> + str(shape_X))</div><div class="line"><span class="keyword">print</span> (<span class="string">'The shape of Y is: '</span> + str(shape_Y))</div><div class="line"><span class="keyword">print</span> (<span class="string">'I have m = %d training examples!'</span> % (m))</div></pre></td></tr></table></figure>
+<pre><code>The shape of X is: (2, 400)
+The shape of Y is: (1, 400)
+I have m = 400 training examples!
+</code></pre><p><strong>Expected Output</strong>:</p>
+<table style="width:20%"><br><br>  <tr><br>    <td><strong>shape of X</strong></td><br>    <td> (2, 400) </td><br>  </tr><br><br>  <tr><br>    <td><strong>shape of Y</strong></td><br>    <td>(1, 400) </td><br>  </tr><br><br>    <tr><br>    <td><strong>m</strong></td><br>    <td> 400 </td><br>  </tr><br><br></table>
+
+<h2 id="3-Simple-Logistic-Regression"><a href="#3-Simple-Logistic-Regression" class="headerlink" title="3 - Simple Logistic Regression"></a>3 - Simple Logistic Regression</h2><p>Before building a full neural network, lets first see how logistic regression performs on this problem. You can use sklearn’s built-in functions to do that. Run the code below to train a logistic regression classifier on the dataset.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Train the logistic regression classifier</span></div><div class="line">clf = sklearn.linear_model.LogisticRegressionCV();</div><div class="line">clf.fit(X.T, Y.T);</div></pre></td></tr></table></figure>
+<pre><code>/opt/conda/lib/python3.5/site-packages/sklearn/utils/validation.py:515: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)
+</code></pre><p>You can now plot the decision boundary of these models. Run the code below.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Plot the decision boundary for logistic regression</span></div><div class="line">plot_decision_boundary(<span class="keyword">lambda</span> x: clf.predict(x), X, Y)</div><div class="line">plt.title(<span class="string">"Logistic Regression"</span>)</div><div class="line"></div><div class="line"><span class="comment"># Print accuracy</span></div><div class="line">LR_predictions = clf.predict(X.T)</div><div class="line"><span class="keyword">print</span> (<span class="string">'Accuracy of logistic regression: %d '</span> % float((np.dot(Y,LR_predictions) + np.dot(<span class="number">1</span>-Y,<span class="number">1</span>-LR_predictions))/float(Y.size)*<span class="number">100</span>) +</div><div class="line">       <span class="string">'% '</span> + <span class="string">"(percentage of correctly labelled datapoints)"</span>)</div></pre></td></tr></table></figure>
+<pre><code>Accuracy of logistic regression: 47 % (percentage of correctly labelled datapoints)
+</code></pre><p><img src="https://i.loli.net/2017/09/14/59ba8716f1bcf.png" alt="output_13_1.png"></p>
+<p><strong>Expected Output</strong>:</p>
+<table style="width:20%"><br>  <tr><br>    <td><strong>Accuracy</strong></td><br>    <td> 47% </td><br>  </tr><br><br></table>
+
+
+<p><strong>Interpretation</strong>: The dataset is not linearly separable, so logistic regression doesn’t perform well. Hopefully a neural network will do better. Let’s try this now! </p>
+<h2 id="4-Neural-Network-model"><a href="#4-Neural-Network-model" class="headerlink" title="4 - Neural Network model"></a>4 - Neural Network model</h2><p>Logistic regression did not work well on the “flower dataset”. You are going to train a Neural Network with a single hidden layer.</p>
+<p><strong>Here is our model</strong>:<br><img src="images/classification_kiank.png" style="width:600px;height:300px;"></p>
+<p><strong>Mathematically</strong>:</p>
+<p>For one example $x^{(i)}$:<br>$$z^{[1] (i)} =  W^{[1]} x^{(i)} + b^{[1] (i)}\tag{1}$$<br>$$a^{[1] (i)} = \tanh(z^{[1] (i)})\tag{2}$$<br>$$z^{[2] (i)} = W^{[2]} a^{[1] (i)} + b^{[2] (i)}\tag{3}$$<br>$$\hat{y}^{(i)} = a^{[2] (i)} = \sigma(z^{ [2] (i)})\tag{4}$$<br>$$y^{(i)}_{prediction} = \begin{cases} 1 &amp; \mbox{if } a^{<a href="i">2</a>} &gt; 0.5 \ 0 &amp; \mbox{otherwise } \end{cases}\tag{5}$$</p>
+<p>Given the predictions on all the examples, you can also compute the cost $J$ as follows:<br>$$J = - \frac{1}{m} \sum\limits_{i = 0}^{m} \large\left(\small y^{(i)}\log\left(a^{[2] (i)}\right) + (1-y^{(i)})\log\left(1- a^{[2] (i)}\right)  \large  \right) \small \tag{6}$$</p>
+<p><strong>Reminder</strong>: The general methodology to build a Neural Network is to:</p>
+<pre><code>1. Define the neural network structure ( # of input units,  # of hidden units, etc). 
+2. Initialize the model&apos;s parameters
+3. Loop:
+    - Implement forward propagation
+    - Compute loss
+    - Implement backward propagation to get the gradients
+    - Update parameters (gradient descent)
+</code></pre><p>You often build helper functions to compute steps 1-3 and then merge them into one function we call <code>nn_model()</code>. Once you’ve built <code>nn_model()</code> and learnt the right parameters, you can make predictions on new data.</p>
+<h3 id="4-1-Defining-the-neural-network-structure"><a href="#4-1-Defining-the-neural-network-structure" class="headerlink" title="4.1 - Defining the neural network structure"></a>4.1 - Defining the neural network structure</h3><p><strong>Exercise</strong>: Define three variables:</p>
+<pre><code>- n_x: the size of the input layer
+- n_h: the size of the hidden layer (set this to 4) 
+- n_y: the size of the output layer
+</code></pre><p><strong>Hint</strong>: Use shapes of X and Y to find n_x and n_y. Also, hard code the hidden layer size to be 4.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># GRADED FUNCTION: layer_sizes</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">layer_sizes</span><span class="params">(X, Y)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line"><span class="string">    Arguments:</span></div><div class="line"><span class="string">    X -- input dataset of shape (input size, number of examples)</span></div><div class="line"><span class="string">    Y -- labels of shape (output size, number of examples)</span></div><div class="line"><span class="string">    </span></div><div class="line"><span class="string">    Returns:</span></div><div class="line"><span class="string">    n_x -- the size of the input layer</span></div><div class="line"><span class="string">    n_h -- the size of the hidden layer</span></div><div class="line"><span class="string">    n_y -- the size of the output layer</span></div><div class="line"><span class="string">    """</span></div><div class="line">    <span class="comment">### START CODE HERE ### (≈ 3 lines of code)</span></div><div class="line">    n_x = X.shape[<span class="number">0</span>] <span class="comment"># size of input layer</span></div><div class="line">    n_h = <span class="number">4</span></div><div class="line">    n_y = Y.shape[<span class="number">0</span>] <span class="comment"># size of output layer</span></div><div class="line">    <span class="comment">### END CODE HERE ###</span></div><div class="line">    <span class="keyword">return</span> (n_x, n_h, n_y)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">X_assess, Y_assess = layer_sizes_test_case()</div><div class="line">(n_x, n_h, n_y) = layer_sizes(X_assess, Y_assess)</div><div class="line">print(<span class="string">"The size of the input layer is: n_x = "</span> + str(n_x))</div><div class="line">print(<span class="string">"The size of the hidden layer is: n_h = "</span> + str(n_h))</div><div class="line">print(<span class="string">"The size of the output layer is: n_y = "</span> + str(n_y))</div></pre></td></tr></table></figure>
+<pre><code>The size of the input layer is: n_x = 5
+The size of the hidden layer is: n_h = 4
+The size of the output layer is: n_y = 2
+</code></pre><p><strong>Expected Output</strong> (these are not the sizes you will use for your network, they are just used to assess the function you’ve just coded).</p>
+<table style="width:20%"><br>  <tr><br>    <td><strong>n_x</strong></td><br>    <td> 5 </td><br>  </tr><br><br>    <tr><br>    <td><strong>n_h</strong></td><br>    <td> 4 </td><br>  </tr><br><br>    <tr><br>    <td><strong>n_y</strong></td><br>    <td> 2 </td><br>  </tr><br><br></table>
+
+<h3 id="4-2-Initialize-the-model’s-parameters"><a href="#4-2-Initialize-the-model’s-parameters" class="headerlink" title="4.2 - Initialize the model’s parameters"></a>4.2 - Initialize the model’s parameters</h3><p><strong>Exercise</strong>: Implement the function <code>initialize_parameters()</code>.</p>
+<p><strong>Instructions</strong>:</p>
+<ul>
+<li>Make sure your parameters’ sizes are right. Refer to the neural network figure above if needed.</li>
+<li>You will initialize the weights matrices with random values. <ul>
+<li>Use: <code>np.random.randn(a,b) * 0.01</code> to randomly initialize a matrix of shape (a,b).</li>
+</ul>
+</li>
+<li>You will initialize the bias vectors as zeros. <ul>
+<li>Use: <code>np.zeros((a,b))</code> to initialize a matrix of shape (a,b) with zeros.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># GRADED FUNCTION: initialize_parameters</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">initialize_parameters</span><span class="params">(n_x, n_h, n_y)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line"><span class="string">    Argument:</span></div><div class="line"><span class="string">    n_x -- size of the input layer</span></div><div class="line"><span class="string">    n_h -- size of the hidden layer</span></div><div class="line"><span class="string">    n_y -- size of the output layer</span></div><div class="line"><span class="string">    </span></div><div class="line"><span class="string">    Returns:</span></div><div class="line"><span class="string">    params -- python dictionary containing your parameters:</span></div><div class="line"><span class="string">                    W1 -- weight matrix of shape (n_h, n_x)</span></div><div class="line"><span class="string">                    b1 -- bias vector of shape (n_h, 1)</span></div><div class="line"><span class="string">                    W2 -- weight matrix of shape (n_y, n_h)</span></div><div class="line"><span class="string">                    b2 -- bias vector of shape (n_y, 1)</span></div><div class="line"><span class="string">    """</span></div><div class="line">    </div><div class="line">    np.random.seed(<span class="number">2</span>) <span class="comment"># we set up a seed so that your output matches ours although the initialization is random.</span></div><div class="line">    </div><div class="line">    <span class="comment">### START CODE HERE ### (≈ 4 lines of code)</span></div><div class="line">    W1 = np.random.randn(n_h,n_x)*<span class="number">0.01</span></div><div class="line">    b1 = np.zeros((n_h,<span class="number">1</span>))</div><div class="line">    W2 = np.random.randn(n_y,n_h)*<span class="number">0.01</span></div><div class="line">    b2 = np.zeros((n_y,<span class="number">1</span>))</div><div class="line">    <span class="comment">### END CODE HERE ###</span></div><div class="line">    </div><div class="line">    <span class="keyword">assert</span> (W1.shape == (n_h, n_x))</div><div class="line">    <span class="keyword">assert</span> (b1.shape == (n_h, <span class="number">1</span>))</div><div class="line">    <span class="keyword">assert</span> (W2.shape == (n_y, n_h))</div><div class="line">    <span class="keyword">assert</span> (b2.shape == (n_y, <span class="number">1</span>))</div><div class="line">    </div><div class="line">    parameters = &#123;<span class="string">"W1"</span>: W1,</div><div class="line">                  <span class="string">"b1"</span>: b1,</div><div class="line">                  <span class="string">"W2"</span>: W2,</div><div class="line">                  <span class="string">"b2"</span>: b2&#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> parameters</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">n_x, n_h, n_y = initialize_parameters_test_case()</div><div class="line"></div><div class="line">parameters = initialize_parameters(n_x, n_h, n_y)</div><div class="line">print(<span class="string">"W1 = "</span> + str(parameters[<span class="string">"W1"</span>]))</div><div class="line">print(<span class="string">"b1 = "</span> + str(parameters[<span class="string">"b1"</span>]))</div><div class="line">print(<span class="string">"W2 = "</span> + str(parameters[<span class="string">"W2"</span>]))</div><div class="line">print(<span class="string">"b2 = "</span> + str(parameters[<span class="string">"b2"</span>]))</div></pre></td></tr></table></figure>
+<pre><code>W1 = [[-0.00416758 -0.00056267]
+ [-0.02136196  0.01640271]
+ [-0.01793436 -0.00841747]
+ [ 0.00502881 -0.01245288]]
+b1 = [[ 0.]
+ [ 0.]
+ [ 0.]
+ [ 0.]]
+W2 = [[-0.01057952 -0.00909008  0.00551454  0.02292208]]
+b2 = [[ 0.]]
+</code></pre><p><strong>Expected Output</strong>:</p>
+<table style="width:90%"><br>  <tr><br>    <td><strong>W1</strong></td><br>    <td> [[-0.00416758 -0.00056267]<br> [-0.02136196  0.01640271]<br> [-0.01793436 -0.00841747]<br> [ 0.00502881 -0.01245288]] </td><br>  </tr><br><br>  <tr><br>    <td><strong>b1</strong></td><br>    <td> [[ 0.]<br> [ 0.]<br> [ 0.]<br> [ 0.]] </td><br>  </tr><br><br>  <tr><br>    <td><strong>W2</strong></td><br>    <td> [[-0.01057952 -0.00909008  0.00551454  0.02292208]]</td><br>  </tr><br><br><br>  <tr><br>    <td><strong>b2</strong></td><br>    <td> [[ 0.]] </td><br>  </tr><br><br></table>
+
+
+
+<h3 id="4-3-The-Loop"><a href="#4-3-The-Loop" class="headerlink" title="4.3 - The Loop"></a>4.3 - The Loop</h3><p><strong>Question</strong>: Implement <code>forward_propagation()</code>.</p>
+<p><strong>Instructions</strong>:</p>
+<ul>
+<li>Look above at the mathematical representation of your classifier.</li>
+<li>You can use the function <code>sigmoid()</code>. It is built-in (imported) in the notebook.</li>
+<li>You can use the function <code>np.tanh()</code>. It is part of the numpy library.</li>
+<li>The steps you have to implement are:<ol>
+<li>Retrieve each parameter from the dictionary “parameters” (which is the output of <code>initialize_parameters()</code>) by using <code>parameters[&quot;..&quot;]</code>.</li>
+<li>Implement Forward Propagation. Compute $Z^{[1]}, A^{[1]}, Z^{[2]}$ and $A^{[2]}$ (the vector of all your predictions on all the examples in the training set).</li>
+</ol>
+</li>
+<li>Values needed in the backpropagation are stored in “<code>cache</code>“. The <code>cache</code> will be given as an input to the backpropagation function.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># GRADED FUNCTION: forward_propagation</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">forward_propagation</span><span class="params">(X, parameters)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line"><span class="string">    Argument:</span></div><div class="line"><span class="string">    X -- input data of size (n_x, m)</span></div><div class="line"><span class="string">    parameters -- python dictionary containing your parameters (output of initialization function)</span></div><div class="line"><span class="string">    </span></div><div class="line"><span class="string">    Returns:</span></div><div class="line"><span class="string">    A2 -- The sigmoid output of the second activation</span></div><div class="line"><span class="string">    cache -- a dictionary containing "Z1", "A1", "Z2" and "A2"</span></div><div class="line"><span class="string">    """</span></div><div class="line">    <span class="comment"># Retrieve each parameter from the dictionary "parameters"</span></div><div class="line">    <span class="comment">### START CODE HERE ### (≈ 4 lines of code)</span></div><div class="line">    W1 = parameters[<span class="string">'W1'</span>]</div><div class="line">    b1 = parameters[<span class="string">'b1'</span>]</div><div class="line">    W2 = parameters[<span class="string">'W2'</span>]</div><div class="line">    b2 = parameters[<span class="string">'b2'</span>]</div><div class="line">    <span class="comment">### END CODE HERE ###</span></div><div class="line">    </div><div class="line">    <span class="comment"># Implement Forward Propagation to calculate A2 (probabilities)</span></div><div class="line">    <span class="comment">### START CODE HERE ### (≈ 4 lines of code)</span></div><div class="line">    Z1 = np.dot(W1,X)+b1</div><div class="line">    A1 = np.tanh(Z1)</div><div class="line">    Z2 = np.dot(W2,A1)+b2<span class="comment">#第一层的输出作为第二层的输入</span></div><div class="line">    A2 = sigmoid(Z2)</div><div class="line">    <span class="comment">### END CODE HERE ###</span></div><div class="line">    </div><div class="line">    <span class="keyword">assert</span>(A2.shape == (<span class="number">1</span>, X.shape[<span class="number">1</span>]))</div><div class="line">    </div><div class="line">    cache = &#123;<span class="string">"Z1"</span>: Z1,</div><div class="line">             <span class="string">"A1"</span>: A1,</div><div class="line">             <span class="string">"Z2"</span>: Z2,</div><div class="line">             <span class="string">"A2"</span>: A2&#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> A2, cache</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">X_assess, parameters = forward_propagation_test_case()</div><div class="line"></div><div class="line">A2, cache = forward_propagation(X_assess, parameters)</div><div class="line"></div><div class="line"><span class="comment"># Note: we use the mean here just to make sure that your output matches ours. </span></div><div class="line">print(np.mean(cache[<span class="string">'Z1'</span>]) ,np.mean(cache[<span class="string">'A1'</span>]),np.mean(cache[<span class="string">'Z2'</span>]),np.mean(cache[<span class="string">'A2'</span>]))</div></pre></td></tr></table></figure>
+<pre><code>-0.000499755777742 -0.000496963353232 0.000438187450959 0.500109546852
+</code></pre><p><strong>Expected Output</strong>:</p>
+<table style="width:55%"><br>  <tr><br>    <td> -0.000499755777742 -0.000496963353232 0.000438187450959 0.500109546852 </td><br>  </tr><br></table>
+
+<p>Now that you have computed $A^{[2]}$ (in the Python variable “<code>A2</code>“), which contains $a^{<a href="i">2</a>}$ for every example, you can compute the cost function as follows:</p>
+<p>$$J = - \frac{1}{m} \sum\limits_{i = 0}^{m} \large{(} \small y^{(i)}\log\left(a^{[2] (i)}\right) + (1-y^{(i)})\log\left(1- a^{[2] (i)}\right) \large{)} \small\tag{13}$$</p>
+<p><strong>Exercise</strong>: Implement <code>compute_cost()</code> to compute the value of the cost $J$.</p>
+<p><strong>Instructions</strong>:</p>
+<ul>
+<li>There are many ways to implement the cross-entropy loss. To help you, we give you how we would have implemented<br>$- \sum\limits_{i=0}^{m}  y^{(i)}\log(a^{<a href="i">2</a>})$:<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">logprobs = np.multiply(np.log(A2),Y)</div><div class="line">cost = - np.sum(logprobs)                <span class="comment"># no need to use a for loop!</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>(you can use either <code>np.multiply()</code> and then <code>np.sum()</code> or directly <code>np.dot()</code>).</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># GRADED FUNCTION: compute_cost</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">compute_cost</span><span class="params">(A2, Y, parameters)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line"><span class="string">    Computes the cross-entropy cost given in equation (13)</span></div><div class="line"><span class="string">    </span></div><div class="line"><span class="string">    Arguments:</span></div><div class="line"><span class="string">    A2 -- The sigmoid output of the second activation, of shape (1, number of examples)</span></div><div class="line"><span class="string">    Y -- "true" labels vector of shape (1, number of examples)</span></div><div class="line"><span class="string">    parameters -- python dictionary containing your parameters W1, b1, W2 and b2</span></div><div class="line"><span class="string">    </span></div><div class="line"><span class="string">    Returns:</span></div><div class="line"><span class="string">    cost -- cross-entropy cost given equation (13)</span></div><div class="line"><span class="string">    """</span></div><div class="line">    </div><div class="line">    m = Y.shape[<span class="number">1</span>] <span class="comment"># number of example</span></div><div class="line"></div><div class="line">    <span class="comment"># Compute the cross-entropy cost</span></div><div class="line">    <span class="comment">### START CODE HERE ### (≈ 2 lines of code)</span></div><div class="line">    logprobs = np.multiply(np.log(A2),Y)+np.multiply(np.log(<span class="number">1</span>-A2),<span class="number">1</span>-Y)</div><div class="line">    cost = -(<span class="number">1</span>/m)*np.sum(logprobs)</div><div class="line">    <span class="comment">### END CODE HERE ###</span></div><div class="line">    </div><div class="line">    cost = np.squeeze(cost)     <span class="comment"># makes sure cost is the dimension we expect. </span></div><div class="line">                                <span class="comment"># E.g., turns [[17]] into 17 </span></div><div class="line">    <span class="keyword">assert</span>(isinstance(cost, float))</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> cost</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">A2, Y_assess, parameters = compute_cost_test_case()</div><div class="line"></div><div class="line">print(<span class="string">"cost = "</span> + str(compute_cost(A2, Y_assess, parameters)))</div></pre></td></tr></table></figure>
+<pre><code>cost = 0.692919893776
+</code></pre><p><strong>Expected Output</strong>:</p>
+<table style="width:20%"><br>  <tr><br>    <td><strong>cost</strong></td><br>    <td> 0.692919893776 </td><br>  </tr><br><br></table>
+
+<p>Using the cache computed during forward propagation, you can now implement backward propagation.</p>
+<p><strong>Question</strong>: Implement the function <code>backward_propagation()</code>.</p>
+<p><strong>Instructions</strong>:<br>Backpropagation is usually the hardest (most mathematical) part in deep learning. To help you, here again is the slide from the lecture on backpropagation. You’ll want to use the six equations on the right of this slide, since you are building a vectorized implementation.  </p>
+<p><img src="images/grad_summary.png" style="width:600px;height:300px;"></p>
+<!--
+$\frac{\partial \mathcal{J} }{ \partial z_{2}^{(i)} } = \frac{1}{m} (a^{[2](i)} - y^{(i)})$
+
+$\frac{\partial \mathcal{J} }{ \partial W_2 } = \frac{\partial \mathcal{J} }{ \partial z_{2}^{(i)} } a^{[1] (i) T} $
+
+$\frac{\partial \mathcal{J} }{ \partial b_2 } = \sum_i{\frac{\partial \mathcal{J} }{ \partial z_{2}^{(i)}}}$
+
+$\frac{\partial \mathcal{J} }{ \partial z_{1}^{(i)} } =  W_2^T \frac{\partial \mathcal{J} }{ \partial z_{2}^{(i)} } * ( 1 - a^{[1] (i) 2}) $
+
+$\frac{\partial \mathcal{J} }{ \partial W_1 } = \frac{\partial \mathcal{J} }{ \partial z_{1}^{(i)} }  X^T $
+
+$\frac{\partial \mathcal{J} _i }{ \partial b_1 } = \sum_i{\frac{\partial \mathcal{J} }{ \partial z_{1}^{(i)}}}$
+
+- Note that $*$ denotes elementwise multiplication.
+- The notation you will use is common in deep learning coding:
+    - dW1 = $\frac{\partial \mathcal{J} }{ \partial W_1 }$
+    - db1 = $\frac{\partial \mathcal{J} }{ \partial b_1 }$
+    - dW2 = $\frac{\partial \mathcal{J} }{ \partial W_2 }$
+    - db2 = $\frac{\partial \mathcal{J} }{ \partial b_2 }$
+
+!-->
+<ul>
+<li>Tips:<ul>
+<li>To compute dZ1 you’ll need to compute $g^{[1]’}(Z^{[1]})$. Since $g^{[1]}(.)$ is the tanh activation function, if $a = g^{[1]}(z)$ then $g^{[1]’}(z) = 1-a^2$. So you can compute<br>$g^{[1]’}(Z^{[1]})$ using <code>(1 - np.power(A1, 2))</code>.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># GRADED FUNCTION: backward_propagation</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">backward_propagation</span><span class="params">(parameters, cache, X, Y)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line"><span class="string">    Implement the backward propagation using the instructions above.</span></div><div class="line"><span class="string">    </span></div><div class="line"><span class="string">    Arguments:</span></div><div class="line"><span class="string">    parameters -- python dictionary containing our parameters </span></div><div class="line"><span class="string">    cache -- a dictionary containing "Z1", "A1", "Z2" and "A2".</span></div><div class="line"><span class="string">    X -- input data of shape (2, number of examples)</span></div><div class="line"><span class="string">    Y -- "true" labels vector of shape (1, number of examples)</span></div><div class="line"><span class="string">    </span></div><div class="line"><span class="string">    Returns:</span></div><div class="line"><span class="string">    grads -- python dictionary containing your gradients with respect to different parameters</span></div><div class="line"><span class="string">    """</span></div><div class="line">    m = X.shape[<span class="number">1</span>]</div><div class="line">    </div><div class="line">    <span class="comment"># First, retrieve W1 and W2 from the dictionary "parameters".</span></div><div class="line">    <span class="comment">### START CODE HERE ### (≈ 2 lines of code)</span></div><div class="line">    W1 = parameters[<span class="string">"W1"</span>]</div><div class="line">    W2 = parameters[<span class="string">"W2"</span>]</div><div class="line">    <span class="comment">### END CODE HERE ###</span></div><div class="line">        </div><div class="line">    <span class="comment"># Retrieve also A1 and A2 from dictionary "cache".</span></div><div class="line">    <span class="comment">### START CODE HERE ### (≈ 2 lines of code)</span></div><div class="line">    A1 = cache[<span class="string">"A1"</span>]</div><div class="line">    A2 = cache[<span class="string">"A2"</span>]</div><div class="line">    <span class="comment">### END CODE HERE ###</span></div><div class="line">    </div><div class="line">    <span class="comment"># Backward propagation: calculate dW1, db1, dW2, db2. </span></div><div class="line">    <span class="comment">### START CODE HERE ### (≈ 6 lines of code, corresponding to 6 equations on slide above)</span></div><div class="line">    dZ2= A2-Y</div><div class="line">    dW2 = (<span class="number">1</span>/m)*np.dot(dZ2,A1.T)</div><div class="line">    db2 = (<span class="number">1</span>/m)*np.sum(dZ2,axis=<span class="number">1</span>,keepdims=<span class="keyword">True</span>)</div><div class="line">    dZ1 = np.dot(W2.T,dZ2)*(<span class="number">1</span>-np.power(A1,<span class="number">2</span>))</div><div class="line">    dW1 = (<span class="number">1</span>/m)*np.dot(dZ1,X.T)</div><div class="line">    db1 = (<span class="number">1</span>/m)*np.sum(dZ1,axis=<span class="number">1</span>,keepdims=<span class="keyword">True</span>)</div><div class="line">    <span class="comment">### END CODE HERE ###</span></div><div class="line">    </div><div class="line">    grads = &#123;<span class="string">"dW1"</span>: dW1,</div><div class="line">             <span class="string">"db1"</span>: db1,</div><div class="line">             <span class="string">"dW2"</span>: dW2,</div><div class="line">             <span class="string">"db2"</span>: db2&#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> grads</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">parameters, cache, X_assess, Y_assess = backward_propagation_test_case()</div><div class="line"></div><div class="line">grads = backward_propagation(parameters, cache, X_assess, Y_assess)</div><div class="line"><span class="keyword">print</span> (<span class="string">"dW1 = "</span>+ str(grads[<span class="string">"dW1"</span>]))</div><div class="line"><span class="keyword">print</span> (<span class="string">"db1 = "</span>+ str(grads[<span class="string">"db1"</span>]))</div><div class="line"><span class="keyword">print</span> (<span class="string">"dW2 = "</span>+ str(grads[<span class="string">"dW2"</span>]))</div><div class="line"><span class="keyword">print</span> (<span class="string">"db2 = "</span>+ str(grads[<span class="string">"db2"</span>]))</div></pre></td></tr></table></figure>
+<pre><code>dW1 = [[ 0.01018708 -0.00708701]
+ [ 0.00873447 -0.0060768 ]
+ [-0.00530847  0.00369379]
+ [-0.02206365  0.01535126]]
+db1 = [[-0.00069728]
+ [-0.00060606]
+ [ 0.000364  ]
+ [ 0.00151207]]
+dW2 = [[ 0.00363613  0.03153604  0.01162914 -0.01318316]]
+db2 = [[ 0.06589489]]
+</code></pre><p><strong>Expected output</strong>:</p>
+<table style="width:80%"><br>  <tr><br>    <td><strong>dW1</strong></td><br>    <td> [[ 0.01018708 -0.00708701]<br> [ 0.00873447 -0.0060768 ]<br> [-0.00530847  0.00369379]<br> [-0.02206365  0.01535126]] </td><br>  </tr><br><br>  <tr><br>    <td><strong>db1</strong></td><br>    <td>  [[-0.00069728]<br> [-0.00060606]<br> [ 0.000364  ]<br> [ 0.00151207]] </td><br>  </tr><br><br>  <tr><br>    <td><strong>dW2</strong></td><br>    <td> [[ 0.00363613  0.03153604  0.01162914 -0.01318316]] </td><br>  </tr><br><br><br>  <tr><br>    <td><strong>db2</strong></td><br>    <td> [[ 0.06589489]] </td><br>  </tr><br><br></table>  
+
+<p><strong>Question</strong>: Implement the update rule. Use gradient descent. You have to use (dW1, db1, dW2, db2) in order to update (W1, b1, W2, b2).</p>
+<p><strong>General gradient descent rule</strong>: $ \theta = \theta - \alpha \frac{\partial J }{ \partial \theta }$ where $\alpha$ is the learning rate and $\theta$ represents a parameter.</p>
+<p><strong>Illustration</strong>: The gradient descent algorithm with a good learning rate (converging) and a bad learning rate (diverging). Images courtesy of Adam Harley.</p>
+<p><img src="images/sgd.gif" style="width:400;height:400;"> <img src="images/sgd_bad.gif" style="width:400;height:400;"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># GRADED FUNCTION: update_parameters</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">update_parameters</span><span class="params">(parameters, grads, learning_rate = <span class="number">1.2</span>)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line"><span class="string">    Updates parameters using the gradient descent update rule given above</span></div><div class="line"><span class="string">    </span></div><div class="line"><span class="string">    Arguments:</span></div><div class="line"><span class="string">    parameters -- python dictionary containing your parameters </span></div><div class="line"><span class="string">    grads -- python dictionary containing your gradients </span></div><div class="line"><span class="string">    </span></div><div class="line"><span class="string">    Returns:</span></div><div class="line"><span class="string">    parameters -- python dictionary containing your updated parameters </span></div><div class="line"><span class="string">    """</span></div><div class="line">    <span class="comment"># Retrieve each parameter from the dictionary "parameters"</span></div><div class="line">    <span class="comment">### START CODE HERE ### (≈ 4 lines of code)</span></div><div class="line">    W1 = parameters[<span class="string">"W1"</span>]</div><div class="line">    b1 = parameters[<span class="string">"b1"</span>]</div><div class="line">    W2 = parameters[<span class="string">"W2"</span>]</div><div class="line">    b2 = parameters[<span class="string">"b2"</span>]</div><div class="line">    <span class="comment">### END CODE HERE ###</span></div><div class="line">    </div><div class="line">    <span class="comment"># Retrieve each gradient from the dictionary "grads"</span></div><div class="line">    <span class="comment">### START CODE HERE ### (≈ 4 lines of code)</span></div><div class="line">    dW1 = grads[<span class="string">"dW1"</span>]</div><div class="line">    db1 = grads[<span class="string">"db1"</span>]</div><div class="line">    dW2 = grads[<span class="string">"dW2"</span>]</div><div class="line">    db2 = grads[<span class="string">"db2"</span>]</div><div class="line">    <span class="comment">## END CODE HERE ###</span></div><div class="line">    </div><div class="line">    <span class="comment"># Update rule for each parameter</span></div><div class="line">    <span class="comment">### START CODE HERE ### (≈ 4 lines of code)</span></div><div class="line">    W1 = W1-dW1*learning_rate</div><div class="line">    b1 = b1-db1*learning_rate</div><div class="line">    W2 = W2-dW2*learning_rate</div><div class="line">    b2 = b2-db2*learning_rate</div><div class="line">    <span class="comment">### END CODE HERE ###</span></div><div class="line">    </div><div class="line">    parameters = &#123;<span class="string">"W1"</span>: W1,</div><div class="line">                  <span class="string">"b1"</span>: b1,</div><div class="line">                  <span class="string">"W2"</span>: W2,</div><div class="line">                  <span class="string">"b2"</span>: b2&#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> parameters</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">parameters, grads = update_parameters_test_case()</div><div class="line">parameters = update_parameters(parameters, grads)</div><div class="line"></div><div class="line">print(<span class="string">"W1 = "</span> + str(parameters[<span class="string">"W1"</span>]))</div><div class="line">print(<span class="string">"b1 = "</span> + str(parameters[<span class="string">"b1"</span>]))</div><div class="line">print(<span class="string">"W2 = "</span> + str(parameters[<span class="string">"W2"</span>]))</div><div class="line">print(<span class="string">"b2 = "</span> + str(parameters[<span class="string">"b2"</span>]))</div></pre></td></tr></table></figure>
+<pre><code>W1 = [[-0.00643025  0.01936718]
+ [-0.02410458  0.03978052]
+ [-0.01653973 -0.02096177]
+ [ 0.01046864 -0.05990141]]
+b1 = [[ -1.02420756e-06]
+ [  1.27373948e-05]
+ [  8.32996807e-07]
+ [ -3.20136836e-06]]
+W2 = [[-0.01041081 -0.04463285  0.01758031  0.04747113]]
+b2 = [[ 0.00010457]]
+</code></pre><p><strong>Expected Output</strong>:</p>
+<table style="width:80%"><br>  <tr><br>    <td><strong>W1</strong></td><br>    <td> [[-0.00643025  0.01936718]<br> [-0.02410458  0.03978052]<br> [-0.01653973 -0.02096177]<br> [ 0.01046864 -0.05990141]]</td><br>  </tr><br><br>  <tr><br>    <td><strong>b1</strong></td><br>    <td> [[ -1.02420756e-06]<br> [  1.27373948e-05]<br> [  8.32996807e-07]<br> [ -3.20136836e-06]]</td><br>  </tr><br><br>  <tr><br>    <td><strong>W2</strong></td><br>    <td> [[-0.01041081 -0.04463285  0.01758031  0.04747113]] </td><br>  </tr><br><br><br>  <tr><br>    <td><strong>b2</strong></td><br>    <td> [[ 0.00010457]] </td><br>  </tr><br><br></table>  
+
+<h3 id="4-4-Integrate-parts-4-1-4-2-and-4-3-in-nn-model"><a href="#4-4-Integrate-parts-4-1-4-2-and-4-3-in-nn-model" class="headerlink" title="4.4 - Integrate parts 4.1, 4.2 and 4.3 in nn_model()"></a>4.4 - Integrate parts 4.1, 4.2 and 4.3 in nn_model()</h3><p><strong>Question</strong>: Build your neural network model in <code>nn_model()</code>.</p>
+<p><strong>Instructions</strong>: The neural network model has to use the previous functions in the right order.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># GRADED FUNCTION: nn_model</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">nn_model</span><span class="params">(X, Y, n_h, num_iterations = <span class="number">10000</span>, print_cost=False)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line"><span class="string">    Arguments:</span></div><div class="line"><span class="string">    X -- dataset of shape (2, number of examples)</span></div><div class="line"><span class="string">    Y -- labels of shape (1, number of examples)</span></div><div class="line"><span class="string">    n_h -- size of the hidden layer</span></div><div class="line"><span class="string">    num_iterations -- Number of iterations in gradient descent loop</span></div><div class="line"><span class="string">    print_cost -- if True, print the cost every 1000 iterations</span></div><div class="line"><span class="string">    </span></div><div class="line"><span class="string">    Returns:</span></div><div class="line"><span class="string">    parameters -- parameters learnt by the model. They can then be used to predict.</span></div><div class="line"><span class="string">    """</span></div><div class="line">    </div><div class="line">    np.random.seed(<span class="number">3</span>)</div><div class="line">    n_x = layer_sizes(X, Y)[<span class="number">0</span>]</div><div class="line">    n_y = layer_sizes(X, Y)[<span class="number">2</span>]</div><div class="line">    </div><div class="line">    <span class="comment"># Initialize parameters, then retrieve W1, b1, W2, b2. Inputs: "n_x, n_h, n_y". Outputs = "W1, b1, W2, b2, parameters".</span></div><div class="line">    <span class="comment">### START CODE HERE ### (≈ 5 lines of code)</span></div><div class="line">    parameters = initialize_parameters(n_x,n_h,n_y)</div><div class="line">    W1 = parameters[<span class="string">"W1"</span>]</div><div class="line">    b1 = parameters[<span class="string">"b1"</span>]</div><div class="line">    W2 = parameters[<span class="string">"W2"</span>]</div><div class="line">    b2 = parameters[<span class="string">"b2"</span>]</div><div class="line">    <span class="comment">### END CODE HERE ###</span></div><div class="line">    </div><div class="line">    <span class="comment"># Loop (gradient descent)</span></div><div class="line"></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, num_iterations):</div><div class="line">         </div><div class="line">        <span class="comment">### START CODE HERE ### (≈ 4 lines of code)</span></div><div class="line">        <span class="comment"># Forward propagation. Inputs: "X, parameters". Outputs: "A2, cache".</span></div><div class="line">        A2, cache =forward_propagation(X, parameters)</div><div class="line">        </div><div class="line">        <span class="comment"># Cost function. Inputs: "A2, Y, parameters". Outputs: "cost".</span></div><div class="line">        cost = compute_cost(A2, Y, parameters)</div><div class="line"> </div><div class="line">        <span class="comment"># Backpropagation. Inputs: "parameters, cache, X, Y". Outputs: "grads".</span></div><div class="line">        grads = backward_propagation(parameters, cache, X, Y)</div><div class="line"> </div><div class="line">        <span class="comment"># Gradient descent parameter update. Inputs: "parameters, grads". Outputs: "parameters".</span></div><div class="line">        parameters = update_parameters(parameters, grads)</div><div class="line">        </div><div class="line">        <span class="comment">### END CODE HERE ###</span></div><div class="line">        </div><div class="line">        <span class="comment"># Print the cost every 1000 iterations</span></div><div class="line">        <span class="keyword">if</span> print_cost <span class="keyword">and</span> i % <span class="number">1000</span> == <span class="number">0</span>:</div><div class="line">            <span class="keyword">print</span> (<span class="string">"Cost after iteration %i: %f"</span> %(i, cost))</div><div class="line"></div><div class="line">    <span class="keyword">return</span> parameters</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">X_assess, Y_assess = nn_model_test_case()</div><div class="line">parameters = nn_model(X_assess, Y_assess, <span class="number">4</span>, num_iterations=<span class="number">10000</span>, print_cost=<span class="keyword">False</span>)</div><div class="line">print(<span class="string">"W1 = "</span> + str(parameters[<span class="string">"W1"</span>]))</div><div class="line">print(<span class="string">"b1 = "</span> + str(parameters[<span class="string">"b1"</span>]))</div><div class="line">print(<span class="string">"W2 = "</span> + str(parameters[<span class="string">"W2"</span>]))</div><div class="line">print(<span class="string">"b2 = "</span> + str(parameters[<span class="string">"b2"</span>]))</div></pre></td></tr></table></figure>
+<pre><code>/opt/conda/lib/python3.5/site-packages/ipykernel/__main__.py:20: RuntimeWarning: divide by zero encountered in log
+/home/jovyan/work/Week 3/Planar data classification with one hidden layer/planar_utils.py:34: RuntimeWarning: overflow encountered in exp
+  s = 1/(1+np.exp(-x))
+
+
+W1 = [[-4.18494056  5.33220609]
+ [-7.52989382  1.24306181]
+ [-4.1929459   5.32632331]
+ [ 7.52983719 -1.24309422]]
+b1 = [[ 2.32926819]
+ [ 3.79458998]
+ [ 2.33002577]
+ [-3.79468846]]
+W2 = [[-6033.83672146 -6008.12980822 -6033.10095287  6008.06637269]]
+b2 = [[-52.66607724]]
+</code></pre><p><strong>Expected Output</strong>:</p>
+<table style="width:90%"><br>  <tr><br>    <td><strong>W1</strong></td><br>    <td> [[-4.18494056  5.33220609]<br> [-7.52989382  1.24306181]<br> [-4.1929459   5.32632331]<br> [ 7.52983719 -1.24309422]]</td><br>  </tr><br><br>  <tr><br>    <td><strong>b1</strong></td><br>    <td> [[ 2.32926819]<br> [ 3.79458998]<br> [ 2.33002577]<br> [-3.79468846]]</td><br>  </tr><br><br>  <tr><br>    <td><strong>W2</strong></td><br>    <td> [[-6033.83672146 -6008.12980822 -6033.10095287  6008.06637269]] </td><br>  </tr><br><br><br>  <tr><br>    <td><strong>b2</strong></td><br>    <td> [[-52.66607724]] </td><br>  </tr><br><br></table>  
+
+<h3 id="4-5-Predictions"><a href="#4-5-Predictions" class="headerlink" title="4.5 Predictions"></a>4.5 Predictions</h3><p><strong>Question</strong>: Use your model to predict by building predict().<br>Use forward propagation to predict results.</p>
+<p><strong>Reminder</strong>: predictions = $y_{prediction} = \mathbb 1 \textfalse = \begin{cases}<br>      1 &amp; \text{if}\ activation &gt; 0.5 \<br>      0 &amp; \text{otherwise}<br>    \end{cases}$  </p>
+<p>As an example, if you would like to set the entries of a matrix X to 0 and 1 based on a threshold you would do: <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">```python</div><div class="line"># GRADED FUNCTION: predict</div><div class="line"></div><div class="line">def predict(parameters, X):</div><div class="line">    &quot;&quot;&quot;</div><div class="line">    Using the learned parameters, predicts a class for each example in X</div><div class="line">    </div><div class="line">    Arguments:</div><div class="line">    parameters -- python dictionary containing your parameters </div><div class="line">    X -- input data of size (n_x, m)</div><div class="line">    </div><div class="line">    Returns</div><div class="line">    predictions -- vector of predictions of our model (red: 0 / blue: 1)</div><div class="line">    &quot;&quot;&quot;</div><div class="line">    </div><div class="line">    # Computes probabilities using forward propagation, and classifies to 0/1 using 0.5 as the threshold.</div><div class="line">    ### START CODE HERE ### (≈ 2 lines of code)</div><div class="line">    A2, cache = forward_propagation(X, parameters)</div><div class="line">    predictions = (A2&gt;0.5)</div><div class="line">    ### END CODE HERE ###</div><div class="line">    </div><div class="line">    return predictions</div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">parameters, X_assess = predict_test_case()</div><div class="line">predictions = predict(parameters, X_assess)</div><div class="line">print(<span class="string">"predictions mean = "</span> + str(np.mean(predictions)))</div></pre></td></tr></table></figure>
+<pre><code>predictions mean = 0.666666666667
+</code></pre><p><strong>Expected Output</strong>: </p>
+<table style="width:40%"><br>  <tr><br>    <td><strong>predictions mean</strong></td><br>    <td> 0.666666666667 </td><br>  </tr><br><br></table>
+
+<p>It is time to run the model and see how it performs on a planar dataset. Run the following code to test your model with a single hidden layer of $n_h$ hidden units.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Build a model with a n_h-dimensional hidden layer</span></div><div class="line">parameters = nn_model(X, Y, n_h = <span class="number">4</span>, num_iterations = <span class="number">10000</span>, print_cost=<span class="keyword">True</span>)</div><div class="line"></div><div class="line"><span class="comment"># Plot the decision boundary</span></div><div class="line">plot_decision_boundary(<span class="keyword">lambda</span> x: predict(parameters, x.T), X, Y)</div><div class="line">plt.title(<span class="string">"Decision Boundary for hidden layer size "</span> + str(<span class="number">4</span>))</div></pre></td></tr></table></figure>
+<pre><code>Cost after iteration 0: 0.693048
+Cost after iteration 1000: 0.288083
+Cost after iteration 2000: 0.254385
+Cost after iteration 3000: 0.233864
+Cost after iteration 4000: 0.226792
+Cost after iteration 5000: 0.222644
+Cost after iteration 6000: 0.219731
+Cost after iteration 7000: 0.217504
+Cost after iteration 8000: 0.219454
+Cost after iteration 9000: 0.218607
+
+
+
+
+
+&lt;matplotlib.text.Text at 0x7f1b55d40b38&gt;
+</code></pre><p><img src="https://i.loli.net/2017/09/14/59ba872ad66e3.png" alt="output_50_2.png"></p>
+<p><strong>Expected Output</strong>:</p>
+<table style="width:40%"><br>  <tr><br>    <td><strong>Cost after iteration 9000</strong></td><br>    <td> 0.218607 </td><br>  </tr><br><br></table>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Print accuracy</span></div><div class="line">predictions = predict(parameters, X)</div><div class="line"><span class="keyword">print</span> (<span class="string">'Accuracy: %d'</span> % float((np.dot(Y,predictions.T) + np.dot(<span class="number">1</span>-Y,<span class="number">1</span>-predictions.T))/float(Y.size)*<span class="number">100</span>) + <span class="string">'%'</span>)</div></pre></td></tr></table></figure>
+<pre><code>Accuracy: 90%
+</code></pre><p><strong>Expected Output</strong>: </p>
+<table style="width:15%"><br>  <tr><br>    <td><strong>Accuracy</strong></td><br>    <td> 90% </td><br>  </tr><br></table>
+
+<p>Accuracy is really high compared to Logistic Regression. The model has learnt the leaf patterns of the flower! Neural networks are able to learn even highly non-linear decision boundaries, unlike logistic regression. </p>
+<p>Now, let’s try out several hidden layer sizes.</p>
+<h3 id="4-6-Tuning-hidden-layer-size-optional-ungraded-exercise"><a href="#4-6-Tuning-hidden-layer-size-optional-ungraded-exercise" class="headerlink" title="4.6 - Tuning hidden layer size (optional/ungraded exercise)"></a>4.6 - Tuning hidden layer size (optional/ungraded exercise)</h3><p>Run the following code. It may take 1-2 minutes. You will observe different behaviors of the model for various hidden layer sizes.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># This may take about 2 minutes to run</span></div><div class="line"></div><div class="line">plt.figure(figsize=(<span class="number">16</span>, <span class="number">32</span>))</div><div class="line">hidden_layer_sizes = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">20</span>, <span class="number">50</span>]</div><div class="line"><span class="keyword">for</span> i, n_h <span class="keyword">in</span> enumerate(hidden_layer_sizes):</div><div class="line">    plt.subplot(<span class="number">5</span>, <span class="number">2</span>, i+<span class="number">1</span>)</div><div class="line">    plt.title(<span class="string">'Hidden Layer of size %d'</span> % n_h)</div><div class="line">    parameters = nn_model(X, Y, n_h, num_iterations = <span class="number">5000</span>)</div><div class="line">    plot_decision_boundary(<span class="keyword">lambda</span> x: predict(parameters, x.T), X, Y)</div><div class="line">    predictions = predict(parameters, X)</div><div class="line">    accuracy = float((np.dot(Y,predictions.T) + np.dot(<span class="number">1</span>-Y,<span class="number">1</span>-predictions.T))/float(Y.size)*<span class="number">100</span>)</div><div class="line">    <span class="keyword">print</span> (<span class="string">"Accuracy for &#123;&#125; hidden units: &#123;&#125; %"</span>.format(n_h, accuracy))</div></pre></td></tr></table></figure>
+<pre><code>Accuracy for 1 hidden units: 67.5 %
+Accuracy for 2 hidden units: 67.25 %
+Accuracy for 3 hidden units: 90.75 %
+Accuracy for 4 hidden units: 90.5 %
+Accuracy for 5 hidden units: 91.25 %
+Accuracy for 20 hidden units: 90.0 %
+Accuracy for 50 hidden units: 90.25 %
+</code></pre><p><img src="https://i.loli.net/2017/09/14/59ba87411a5a5.png" alt="output_56_1.png"></p>
+<p><strong>Interpretation</strong>:</p>
+<ul>
+<li>The larger models (with more hidden units) are able to fit the training set better, until eventually the largest models overfit the data. </li>
+<li>The best hidden layer size seems to be around n_h = 5. Indeed, a value around here seems to  fits the data well without also incurring noticable overfitting.</li>
+<li>You will also learn later about regularization, which lets you use very large models (such as n_h = 50) without much overfitting. </li>
+</ul>
+<p><strong>Optional questions</strong>:</p>
+<p><strong>Note</strong>: Remember to submit the assignment but clicking the blue “Submit Assignment” button at the upper-right. </p>
+<p>Some optional/ungraded questions that you can explore if you wish: </p>
+<ul>
+<li>What happens when you change the tanh activation for a sigmoid activation or a ReLU activation?</li>
+<li>Play with the learning_rate. What happens?</li>
+<li>What if we change the dataset? (See part 5 below!)</li>
+</ul>
+<p><font color="blue"><br><strong>You’ve learnt to:</strong></font></p>
+<ul>
+<li>Build a complete neural network with a hidden layer</li>
+<li>Make a good use of a non-linear unit</li>
+<li>Implemented forward propagation and backpropagation, and trained a neural network</li>
+<li>See the impact of varying the hidden layer size, including overfitting.</li>
+</ul>
+<p>Nice work! </p>
+<h2 id="5-Performance-on-other-datasets"><a href="#5-Performance-on-other-datasets" class="headerlink" title="5) Performance on other datasets"></a>5) Performance on other datasets</h2><p>If you want, you can rerun the whole notebook (minus the dataset part) for each of the following datasets.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Datasets</span></div><div class="line">noisy_circles, noisy_moons, blobs, gaussian_quantiles, no_structure = load_extra_datasets()</div><div class="line"></div><div class="line">datasets = &#123;<span class="string">"noisy_circles"</span>: noisy_circles,</div><div class="line">            <span class="string">"noisy_moons"</span>: noisy_moons,</div><div class="line">            <span class="string">"blobs"</span>: blobs,</div><div class="line">            <span class="string">"gaussian_quantiles"</span>: gaussian_quantiles&#125;</div><div class="line"></div><div class="line"><span class="comment">### START CODE HERE ### (choose your dataset)</span></div><div class="line">dataset = <span class="string">"noisy_moons"</span></div><div class="line"><span class="comment">### END CODE HERE ###</span></div><div class="line"></div><div class="line">X, Y = datasets[dataset]</div><div class="line">X, Y = X.T, Y.reshape(<span class="number">1</span>, Y.shape[<span class="number">0</span>])</div><div class="line"></div><div class="line"><span class="comment"># make blobs binary</span></div><div class="line"><span class="keyword">if</span> dataset == <span class="string">"blobs"</span>:</div><div class="line">    Y = Y%<span class="number">2</span></div><div class="line"></div><div class="line"><span class="comment"># Visualize the data</span></div><div class="line">plt.scatter(X[<span class="number">0</span>, :], X[<span class="number">1</span>, :], c=Y, s=<span class="number">40</span>, cmap=plt.cm.Spectral);</div></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2017/09/14/59ba87516be30.png" alt="output_63_0.png"></p>
+<p>Congrats on finishing this Programming Assignment!</p>
+<p>Reference:</p>
+<ul>
+<li><a href="http://scs.ryerson.ca/~aharley/neural-networks/" target="_blank" rel="external">http://scs.ryerson.ca/~aharley/neural-networks/</a></li>
+<li><a href="http://cs231n.github.io/neural-networks-case-study/" target="_blank" rel="external">http://cs231n.github.io/neural-networks-case-study/</a></li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/09/14/12-Planar data classification with one hidden layer v3/">神经网络学习第三周编程作业</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">致Great</a></p>
+        <p><span>发布时间:</span>2017-09-14, 21:44:25</p>
+        <p><span>最后更新:</span>2017-09-15, 08:47:29</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/09/14/12-Planar data classification with one hidden layer v3/" title="神经网络学习第三周编程作业">http://yoursite.com/2017/09/14/12-Planar data classification with one hidden layer v3/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/09/14/12-Planar data classification with one hidden layer v3/　　作者: 致Great" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/09/15/hello-world/">
+                    我会自动改变
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/09/14/11-Logistic Regression with a Neural Network mindset v3/">
+                    神经网络学习第二周编程作业
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Planar-data-classification-with-one-hidden-layer"><span class="toc-number">1.</span> <span class="toc-text">Planar data classification with one hidden layer</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Packages"><span class="toc-number">1.1.</span> <span class="toc-text">1 - Packages</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Dataset"><span class="toc-number">1.2.</span> <span class="toc-text">2 - Dataset</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Simple-Logistic-Regression"><span class="toc-number">1.3.</span> <span class="toc-text">3 - Simple Logistic Regression</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Neural-Network-model"><span class="toc-number">1.4.</span> <span class="toc-text">4 - Neural Network model</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-Defining-the-neural-network-structure"><span class="toc-number">1.4.1.</span> <span class="toc-text">4.1 - Defining the neural network structure</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-Initialize-the-model’s-parameters"><span class="toc-number">1.4.2.</span> <span class="toc-text">4.2 - Initialize the model’s parameters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-The-Loop"><span class="toc-number">1.4.3.</span> <span class="toc-text">4.3 - The Loop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-Integrate-parts-4-1-4-2-and-4-3-in-nn-model"><span class="toc-number">1.4.4.</span> <span class="toc-text">4.4 - Integrate parts 4.1, 4.2 and 4.3 in nn_model()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-Predictions"><span class="toc-number">1.4.5.</span> <span class="toc-text">4.5 Predictions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-Tuning-hidden-layer-size-optional-ungraded-exercise"><span class="toc-number">1.4.6.</span> <span class="toc-text">4.6 - Tuning hidden layer size (optional/ungraded exercise)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Performance-on-other-datasets"><span class="toc-number">1.5.</span> <span class="toc-text">5) Performance on other datasets</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"神经网络学习第三周编程作业　| yanqiangmiffy　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/09/15/hello-world/" title="上一篇: 我会自动改变">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/09/14/11-Logistic Regression with a Neural Network mindset v3/" title="下一篇: 神经网络学习第二周编程作业">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/09/15/hello-world/">我会自动改变</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/14/12-Planar data classification with one hidden layer v3/">神经网络学习第三周编程作业</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/14/11-Logistic Regression with a Neural Network mindset v3/">神经网络学习第二周编程作业</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/31/10-贪心算法/">贪心算法总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/30/09-快速幂/">求一个数n次方后的末尾数（数论/快速幂）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/30/08-bfs&&dfs/">图的广度优先搜索和图的深度优先搜索</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/30/07-括号匹配问题/">括号匹配问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/24/06-卡特兰数/">卡特兰数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/06/05- Matrix-Vector/">通过递归的矩阵向量空间预测组合语义</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/04/04-Laravel博客实战/">Laravel博客实战</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/03/03AgeDetection/">使用Keras构建卷积神经网络预测“阿三”的年龄</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/02/02动态规划/">动态规划</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/01/01排序问题/">排序算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/29/HDU1009-FatMouse' Trade/">HDU1009-FatMouse' Trade</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/26/Keras04-白酒和红酒实例/">Kera实例：预测白酒和红酒的质量</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/26/Python28-机器学习算法的基本知识（使用Python和R代码）/">机器学习算法的基本知识（使用Python和R代码）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/Keras02-MNIST手写实例/">Keras实现简单的手写数字识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/Python26-使用Python和R语言从头开始理解和编写神经网络/">使用Python和R语言从头开始理解和编写神经网络</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 致Great
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
