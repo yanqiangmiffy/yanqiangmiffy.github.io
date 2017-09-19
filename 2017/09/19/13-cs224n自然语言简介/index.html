@@ -15,12 +15,13 @@
 
 
 
-<meta name="description" content="1 自然语言处理简介我们从讨论“什么是NLP”开始本章的内容 1.1 NLP有什么特别之处自然（人工）语言为什么如此特别？自然语言是一个专门用来表达语义的系统，并且它不是由任何形式的物质表现产生。正因为如此，人工语言与视觉或者其他任何机器学习任务非常不同。 大多数单词只是一个超语言实体的符号：单词是映射到一个表征（想法或事物）的记号。例如，“火箭”一词是指火箭的概念，并且进一步可以指定火箭的实例。">
+<meta name="description" content="cs224n自然语言处理与深度学习简介笔记1">
+<meta name="keywords" content="深度学习,自然语言处理,NLP,word2vec">
 <meta property="og:type" content="article">
-<meta property="og:title" content="yanqiangmiffy">
+<meta property="og:title" content="cs224n自然语言处理与深度学习简介">
 <meta property="og:url" content="http://yoursite.com/2017/09/19/13-cs224n自然语言简介/index.html">
 <meta property="og:site_name" content="yanqiangmiffy">
-<meta property="og:description" content="1 自然语言处理简介我们从讨论“什么是NLP”开始本章的内容 1.1 NLP有什么特别之处自然（人工）语言为什么如此特别？自然语言是一个专门用来表达语义的系统，并且它不是由任何形式的物质表现产生。正因为如此，人工语言与视觉或者其他任何机器学习任务非常不同。 大多数单词只是一个超语言实体的符号：单词是映射到一个表征（想法或事物）的记号。例如，“火箭”一词是指火箭的概念，并且进一步可以指定火箭的实例。">
+<meta property="og:description" content="cs224n自然语言处理与深度学习简介笔记1">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1531909-9165331d9ade887f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1531909-f127bc3e3191dde6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -56,10 +57,10 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1531909-91f477c46d00027d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1531909-a2e901fbd355c78f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1531909-1c49a1f2cc15a8c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-09-19T08:51:49.127Z">
+<meta property="og:updated_time" content="2017-09-19T11:29:31.781Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="yanqiangmiffy">
-<meta name="twitter:description" content="1 自然语言处理简介我们从讨论“什么是NLP”开始本章的内容 1.1 NLP有什么特别之处自然（人工）语言为什么如此特别？自然语言是一个专门用来表达语义的系统，并且它不是由任何形式的物质表现产生。正因为如此，人工语言与视觉或者其他任何机器学习任务非常不同。 大多数单词只是一个超语言实体的符号：单词是映射到一个表征（想法或事物）的记号。例如，“火箭”一词是指火箭的概念，并且进一步可以指定火箭的实例。">
+<meta name="twitter:title" content="cs224n自然语言处理与深度学习简介">
+<meta name="twitter:description" content="cs224n自然语言处理与深度学习简介笔记1">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1531909-9165331d9ade887f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
@@ -92,7 +93,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>yanqiangmiffy</title>
+<title>cs224n自然语言处理与深度学习简介 | yanqiangmiffy</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -217,7 +218,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/bfs/">bfs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dfs/">dfs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分类问题/">分类问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/广度优先搜索/">广度优先搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快速幂/">快速幂</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数论/">数论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最小生成树/">最小生成树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/梯度下降法/">梯度下降法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/活动安排问题/">活动安排问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度优先搜索/">深度优先搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/神经网络/">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/背包问题/">背包问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/贪心算法/">贪心算法</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/">NLP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bfs/">bfs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dfs/">dfs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/word2vec/">word2vec</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分类问题/">分类问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/广度优先搜索/">广度优先搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快速幂/">快速幂</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数论/">数论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最小生成树/">最小生成树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/梯度下降法/">梯度下降法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/活动安排问题/">活动安排问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度优先搜索/">深度优先搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/神经网络/">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/背包问题/">背包问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自然语言处理/">自然语言处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/贪心算法/">贪心算法</a></li></ul>
                     </div>
                 </section>
                 
@@ -296,7 +297,7 @@
   
     <div class="article-meta">
       <a href="/2017/09/19/13-cs224n自然语言简介/" class="article-date">
-      <time datetime="2017-09-19T08:51:49.127Z" itemprop="datePublished">2017-09-19</time>
+      <time datetime="2017-09-19T19:44:25.000Z" itemprop="datePublished">2017-09-19</time>
 </a>
 
 
@@ -307,10 +308,33 @@
       <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      cs224n自然语言处理与深度学习简介
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/word2vec/">word2vec</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自然语言处理/">自然语言处理</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="1-自然语言处理简介"><a href="#1-自然语言处理简介" class="headerlink" title="1 自然语言处理简介"></a>1 自然语言处理简介</h1><p>我们从讨论“什么是NLP”开始本章的内容</p>
+        <p><excerpt in="" index="" |="" 首页摘要=""><br>cs224n自然语言处理与深度学习简介笔记1<br><a id="more"></a></excerpt></p>
+<h1 id="1-自然语言处理简介"><a href="#1-自然语言处理简介" class="headerlink" title="1 自然语言处理简介"></a>1 自然语言处理简介</h1><p>我们从讨论“什么是NLP”开始本章的内容</p>
 <h2 id="1-1-NLP有什么特别之处"><a href="#1-1-NLP有什么特别之处" class="headerlink" title="1.1 NLP有什么特别之处"></a>1.1 NLP有什么特别之处</h2><p>自然（人工）语言为什么如此特别？自然语言是一个专门用来表达语义的系统，并且它不是由任何形式的物质表现产生。正因为如此，人工语言与视觉或者其他任何机器学习任务非常不同。</p>
 <p>大多数单词只是一个超语言实体的符号：单词是映射到一个表征（想法或事物）的记号。例如，“火箭”一词是指火箭的概念，并且进一步可以指定火箭的实例。有一些单词例外，当我们使用单词和字母代表信号时，想“Whooompaa”一样。除此之外，语言符号可以用多种方式进行编码：语音、手势、文章等。他们可以通过连续的信号传递给大脑，而大脑本身似乎以连续的方式对事物进行编码。（关于语言和语言学的哲学的很多工作已经做到了概念化人类语言，并且可以从语言引用和语义识别单词）。</p>
 <h2 id="1-2-应用实例"><a href="#1-2-应用实例" class="headerlink" title="1.2 应用实例"></a>1.2 应用实例</h2><p>NLP中有不同级别的任务，从语音处理到语义解释和演讲处理。总而言之，NLP的目标就是为了能够设计算法，是计算机能够理解自然语言。下面是不同难度级别的应用实例：</p>
@@ -405,12 +429,12 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/09/19/13-cs224n自然语言简介/"></a></p>
+        <p><span>本文标题:</span><a href="/2017/09/19/13-cs224n自然语言简介/">cs224n自然语言处理与深度学习简介</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">致Great</a></p>
-        <p><span>发布时间:</span>2017-09-19, 08:51:49</p>
-        <p><span>最后更新:</span>2017-09-19, 08:51:49</p>
+        <p><span>发布时间:</span>2017-09-19, 19:44:25</p>
+        <p><span>最后更新:</span>2017-09-19, 11:29:31</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/09/19/13-cs224n自然语言简介/" title="">http://yoursite.com/2017/09/19/13-cs224n自然语言简介/</a>
+            <span>原始链接:</span><a class="post-url" href="/2017/09/19/13-cs224n自然语言简介/" title="cs224n自然语言处理与深度学习简介">http://yoursite.com/2017/09/19/13-cs224n自然语言简介/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/09/19/13-cs224n自然语言简介/　　作者: 致Great" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -423,16 +447,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/09/19/hello-world/">
-                    我会自动改变
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2017/09/14/12-Planar data classification with one hidden layer v3/">
-                    神经网络学习第三周编程作业
+                <a href="/2017/09/19/hello-world/">
+                    我会自动改变
                 </a>
             </div>
         
@@ -480,7 +498,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"　| yanqiangmiffy　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"cs224n自然语言处理与深度学习简介　| yanqiangmiffy　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -500,21 +518,19 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/09/19/hello-world/" title="上一篇: 我会自动改变">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2017/09/14/12-Planar data classification with one hidden layer v3/" title="下一篇: 神经网络学习第三周编程作业">
+            <a href="/2017/09/19/hello-world/" title="下一篇: 我会自动改变">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/09/19/hello-world/">我会自动改变</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/19/13-cs224n自然语言简介/">13-cs224n自然语言简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/14/12-Planar data classification with one hidden layer v3/">神经网络学习第三周编程作业</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/14/11-Logistic Regression with a Neural Network mindset v3/">神经网络学习第二周编程作业</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/31/10-贪心算法/">贪心算法总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/30/09-快速幂/">求一个数n次方后的末尾数（数论/快速幂）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/30/08-bfs&&dfs/">图的广度优先搜索和图的深度优先搜索</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/30/07-括号匹配问题/">括号匹配问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/24/06-卡特兰数/">卡特兰数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/06/05- Matrix-Vector/">通过递归的矩阵向量空间预测组合语义</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/04/04-Laravel博客实战/">Laravel博客实战</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/03/03AgeDetection/">使用Keras构建卷积神经网络预测“阿三”的年龄</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/02/02动态规划/">动态规划</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/01/01排序问题/">排序算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/29/HDU1009-FatMouse' Trade/">HDU1009-FatMouse' Trade</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/26/Keras04-白酒和红酒实例/">Kera实例：预测白酒和红酒的质量</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/26/Python28-机器学习算法的基本知识（使用Python和R代码）/">机器学习算法的基本知识（使用Python和R代码）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/Keras02-MNIST手写实例/">Keras实现简单的手写数字识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/Python26-使用Python和R语言从头开始理解和编写神经网络/">使用Python和R语言从头开始理解和编写神经网络</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/09/19/13-cs224n自然语言简介/">cs224n自然语言处理与深度学习简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/19/hello-world/">我会自动改变</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/14/12-Planar data classification with one hidden layer v3/">神经网络学习第三周编程作业</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/14/11-Logistic Regression with a Neural Network mindset v3/">神经网络学习第二周编程作业</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/31/10-贪心算法/">贪心算法总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/30/09-快速幂/">求一个数n次方后的末尾数（数论/快速幂）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/30/08-bfs&&dfs/">图的广度优先搜索和图的深度优先搜索</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/30/07-括号匹配问题/">括号匹配问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/24/06-卡特兰数/">卡特兰数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/06/05- Matrix-Vector/">通过递归的矩阵向量空间预测组合语义</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/04/04-Laravel博客实战/">Laravel博客实战</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/03/03AgeDetection/">使用Keras构建卷积神经网络预测“阿三”的年龄</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/02/02动态规划/">动态规划</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/01/01排序问题/">排序算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/29/HDU1009-FatMouse' Trade/">HDU1009-FatMouse' Trade</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/26/Python28-机器学习算法的基本知识（使用Python和R代码）/">机器学习算法的基本知识（使用Python和R代码）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/26/Keras04-白酒和红酒实例/">Kera实例：预测白酒和红酒的质量</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/Keras02-MNIST手写实例/">Keras实现简单的手写数字识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/Python26-使用Python和R语言从头开始理解和编写神经网络/">使用Python和R语言从头开始理解和编写神经网络</a></li></ul>
 
 
 
