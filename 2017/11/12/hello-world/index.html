@@ -15,19 +15,17 @@
 
 
 
-<meta name="description" content="文中主要总结动态规划的01背包问题以及相关实例，然后通过c++解决问题">
+<meta name="description" content="我会自动改变Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="动态规划">
-<meta property="og:url" content="http://yoursite.com/2017/08/02/02动态规划/index.html">
+<meta property="og:title" content="我会自动改变">
+<meta property="og:url" content="http://yoursite.com/2017/11/12/hello-world/index.html">
 <meta property="og:site_name" content="yanqiangmiffy">
-<meta property="og:description" content="文中主要总结动态规划的01背包问题以及相关实例，然后通过c++解决问题">
+<meta property="og:description" content="我会自动改变Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://raw.githubusercontent.com/arkulo56/thought/master/images/algorithm/beibao.png">
-<meta property="og:updated_time" content="2017-11-12T01:58:57.186Z">
+<meta property="og:updated_time" content="2017-11-12T01:58:57.201Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="动态规划">
-<meta name="twitter:description" content="文中主要总结动态规划的01背包问题以及相关实例，然后通过c++解决问题">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/arkulo56/thought/master/images/algorithm/beibao.png">
+<meta name="twitter:title" content="我会自动改变">
+<meta name="twitter:description" content="我会自动改变Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -59,7 +57,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>动态规划 | yanqiangmiffy</title>
+<title>我会自动改变 | yanqiangmiffy</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -259,11 +257,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-02动态规划" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/08/02/02动态规划/" class="article-date">
-      <time datetime="2017-08-02T16:00:25.000Z" itemprop="datePublished">2017-08-02</time>
+      <a href="/2017/11/12/hello-world/" class="article-date">
+      <time datetime="2017-11-12T01:58:57.201Z" itemprop="datePublished">2017-11-12</time>
 </a>
 
 
@@ -278,7 +276,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      动态规划
+      我会自动改变
     </h1>
   
 
@@ -295,33 +293,15 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><excerpt in="" index="" |="" 首页摘要=""><br>文中主要总结动态规划的01背包问题以及相关实例，然后通过c++解决问题<br><a id="more"></a></excerpt></p>
-<h1 id="一、背包问题"><a href="#一、背包问题" class="headerlink" title="一、背包问题"></a>一、背包问题</h1><h2 id="01背包问题"><a href="#01背包问题" class="headerlink" title="01背包问题"></a>01背包问题</h2><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
-<p>有N件物品和一个容积为<code>V</code>的背包。第<code>i</code>件物品的体积是<code>c[i]</code>，价值是<code>w[i]</code>。求解将哪些物品装入背包可使价值总和最大。</p>
-</blockquote>
-<h2 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h2><blockquote>
-<p>这是最基础的背包问题，特点是：每种物品仅有一件，可以选择放或不放。<br>用子问题定义状态：即<code>f[i][v]</code>表示前<code>i</code>件物品恰放入一个容量为<code>v</code>的背包可以获得的最大价值。则其状态转移方程便是：</p>
-<ul>
-<li>二维方程：<code>f[i][v]=max(f[i-1][v],f[i-1][v-c[i]]+w[i])</code></li>
-<li>一维方程：<code>f[v]=max(f[v],f[v-c[i]]+w[i])</code><br><strong>状态转移方程解释</strong>：“将前<code>i</code>件物品放入容量为v的背包中”这个子问题，若只考虑第<code>i</code>件物品放或不放，那么就可以转化为一个只牵扯前<code>i-1</code>件物品的问题。如果不放第i件物品，那么问题就转化为“前<code>i-1</code>件物品放入容量为v的背包中”，价值为<code>f[i-1][v]</code>；如果放第i件物品，那么问题就转化为“前i-1件物品放入剩下的容量为<code>v-c[i]</code>的背包中”，此时能获得的最大价值就是<code>f[i-1][v-c[i]]</code>再加上通过放入第i件物品获得的价值<code>w[i]</code>。</li>
-</ul>
-</blockquote>
-<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="https://raw.githubusercontent.com/arkulo56/thought/master/images/algorithm/beibao.png" alt="图解"><br><a href="http://www.jianshu.com/p/48f2dd394608" target="_blank" rel="external">参考</a></p>
-<blockquote>
-<p>有了这张图和上面总结的公式，我们就可以很清晰的理解01背包算法了</p>
-<ol>
-<li>e2单元格：当只有一件物品e，包的容量是2时，装不进去，所以最大值为0</li>
-<li>a8单元格：物品包括a、b、c、d、e，容量为8时，F[i-1,j]=F[b,8]=9，F[i-1,j-Wi]+Pi=F[b,6]+6=9+6=15，两种情况取最大值，因此这里的最大值是15</li>
-</ol>
-</blockquote>
-<p>##实例1 采药(RQNOJ15)；</p>
-<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>辰辰是个天资聪颖的孩子，他的梦想是成为世界上最伟大的医师。为此，他想拜附近最有威望的医师为师。医师为了判断他的资质，给他出了一个难题。医师把他带到一个到处都是草药的山洞里对他说：“孩子，这个山洞里有一些不同的草药，采每一株都需要一些时间，每一株也有它自身的价值。我会给你一段时间，在这段时间里，你可以采到一些草药。如果你是一个聪明的孩子，你应该可以让采到的草药的总价值最大。”<br>　　如果你是辰辰，你能完成这个任务吗？</p>
-<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>　输入的第一行有两个整数T（1 &lt;= T &lt;= 1000）和M（1 &lt;= M &lt;= 100），用一个空格隔开，T代表总共能够用来采药的时间，M代表山洞里的草药的数目。接下来的M行每行包括两个在1到100之间（包括1和100）的整数，分别表示采摘某株草药的时间和这株草药的价值。</p>
-<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>输出包括一行，这一行只包含一个整数，表示在规定的时间内，可以采到的草药的最大总价值。</p>
-<h3 id="样例输入："><a href="#样例输入：" class="headerlink" title="样例输入："></a>样例输入：</h3><p>70 3<br>71 100<br>69 1<br>1 2</p>
-<h3 id="样例输出："><a href="#样例输出：" class="headerlink" title="样例输出："></a>样例输出：</h3><p>3</p>
-<h3 id="参考程序1"><a href="#参考程序1" class="headerlink" title="参考程序1"></a>参考程序1</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> ti[<span class="number">101</span>],money[<span class="number">101</span>];</span><br><span class="line"><span class="keyword">int</span> f[<span class="number">1001</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t,m,i,j;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;t&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;ti[i]&gt;&gt;money[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(j=t;j&gt;=ti[i];j--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(f[j-ti[i]]+money[i]&gt;f[j])&#123;<span class="comment">//把最大值赋值给f[t]</span></span><br><span class="line">                f[j]=f[j-ti[i]]+money[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;f[t];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="参考程序2"><a href="#参考程序2" class="headerlink" title="参考程序2"></a>参考程序2</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>  V 1500</span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> f[<span class="number">10</span>][V];<span class="comment">//全局变量，自动初始化为0</span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> weight[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> value[<span class="number">10</span>];</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>  max(x,y)   (x)&gt;(y)?(x):(y)</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> N,M;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;M;<span class="comment">//背包容量</span></span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;N;<span class="comment">//药品个数</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;weight[i]&gt;&gt;value[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=N; i++)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;=M; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (weight[i]&lt;=j)</span><br><span class="line">            &#123;</span><br><span class="line">                f[i][j]=max(f[i<span class="number">-1</span>][j],f[i<span class="number">-1</span>][j-weight[i]]+value[i]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                f[i][j]=f[i<span class="number">-1</span>][j];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;f[N][M]&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//输出最优解</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p><excerpt in="" index="" |="" 首页摘要=""><br>我会自动改变<br>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.<br><a id="more"></a><br>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</excerpt></p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 
       
     </div>
@@ -330,13 +310,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/08/02/02动态规划/">动态规划</a></p>
+        <p><span>本文标题:</span><a href="/2017/11/12/hello-world/">我会自动改变</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">致Great</a></p>
-        <p><span>发布时间:</span>2017-08-02, 16:00:25</p>
+        <p><span>发布时间:</span>2017-11-12, 01:58:57</p>
         <p><span>最后更新:</span>2017-11-12, 01:58:57</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/08/02/02动态规划/" title="动态规划">http://yoursite.com/2017/08/02/02动态规划/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/08/02/02动态规划/　　作者: 致Great" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/11/12/hello-world/" title="我会自动改变">http://yoursite.com/2017/11/12/hello-world/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/11/12/hello-world/　　作者: 致Great" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -349,15 +329,15 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/08/03/03AgeDetection/">
-                    使用Keras构建卷积神经网络预测“阿三”的年龄
+                <a href="/2017/11/12/14-金融数据网站/">
+                    
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2017/08/01/01排序问题/">
-                    排序算法
+                <a href="/2017/09/19/13-cs224n自然语言简介/">
+                    cs224n自然语言处理与深度学习简介
                 </a>
             </div>
         
@@ -369,7 +349,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、背包问题"><span class="toc-number">1.</span> <span class="toc-text">一、背包问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#01背包问题"><span class="toc-number">1.1.</span> <span class="toc-text">01背包问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-number">1.2.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本思路"><span class="toc-number">1.3.</span> <span class="toc-text">基本思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图解"><span class="toc-number">1.4.</span> <span class="toc-text">图解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.4.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输入格式"><span class="toc-number">1.4.2.</span> <span class="toc-text">输入格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出格式"><span class="toc-number">1.4.3.</span> <span class="toc-text">输出格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#样例输入："><span class="toc-number">1.4.4.</span> <span class="toc-text">样例输入：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#样例输出："><span class="toc-number">1.4.5.</span> <span class="toc-text">样例输出：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考程序1"><span class="toc-number">1.4.6.</span> <span class="toc-text">参考程序1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考程序2"><span class="toc-number">1.4.7.</span> <span class="toc-text">参考程序2</span></a></li></ol></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -405,7 +385,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"动态规划　| yanqiangmiffy　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"我会自动改变　| yanqiangmiffy　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -425,7 +405,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/08/03/03AgeDetection/" title="上一篇: 使用Keras构建卷积神经网络预测“阿三”的年龄">
+            <a href="/2017/11/12/14-金融数据网站/" title="上一篇: ">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -433,7 +413,7 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2017/08/01/01排序问题/" title="下一篇: 排序算法">
+            <a href="/2017/09/19/13-cs224n自然语言简介/" title="下一篇: cs224n自然语言处理与深度学习简介">
                 <i class="fa fa-angle-right"></i>
             </a>
         
