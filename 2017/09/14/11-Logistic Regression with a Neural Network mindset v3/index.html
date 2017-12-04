@@ -16,7 +16,7 @@
 
 
 <meta name="description" content="吴恩达的神经网络学习第二周作业">
-<meta name="keywords" content="机器学习,神经网络,深度学习,分类问题">
+<meta name="keywords" content="深度学习,机器学习,神经网络,分类问题">
 <meta property="og:type" content="article">
 <meta property="og:title" content="神经网络学习第二周编程作业">
 <meta property="og:url" content="http://yoursite.com/2017/09/14/11-Logistic Regression with a Neural Network mindset v3/index.html">
@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://i.loli.net/2017/09/14/59b9e06d98c1a.png">
 <meta property="og:image" content="https://i.loli.net/2017/09/14/59b9e08244c12.png">
 <meta property="og:image" content="https://i.loli.net/2017/09/14/59b9e095d3ad5.png">
-<meta property="og:updated_time" content="2017-11-12T01:58:57.186Z">
+<meta property="og:updated_time" content="2017-12-04T07:56:14.069Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="神经网络学习第二周编程作业">
 <meta name="twitter:description" content="吴恩达的神经网络学习第二周作业">
@@ -324,9 +324,9 @@
 <h2 id="1-Packages"><a href="#1-Packages" class="headerlink" title="1 - Packages"></a>1 - Packages</h2><p>First, let’s run the cell below to import all the packages that you will need during this assignment. </p>
 <ul>
 <li><a href="www.numpy.org">numpy</a> is the fundamental package for scientific computing with Python.</li>
-<li><a href="http://www.h5py.org" target="_blank" rel="external">h5py</a> is a common package to interact with a dataset that is stored on an H5 file.</li>
-<li><a href="http://matplotlib.org" target="_blank" rel="external">matplotlib</a> is a famous library to plot graphs in Python.</li>
-<li><a href="http://www.pythonware.com/products/pil/" target="_blank" rel="external">PIL</a> and <a href="https://www.scipy.org/" target="_blank" rel="external">scipy</a> are used here to test your model with your own picture at the end.</li>
+<li><a href="http://www.h5py.org" target="_blank" rel="noopener">h5py</a> is a common package to interact with a dataset that is stored on an H5 file.</li>
+<li><a href="http://matplotlib.org" target="_blank" rel="noopener">matplotlib</a> is a famous library to plot graphs in Python.</li>
+<li><a href="http://www.pythonware.com/products/pil/" target="_blank" rel="noopener">PIL</a> and <a href="https://www.scipy.org/" target="_blank" rel="noopener">scipy</a> are used here to test your model with your own picture at the end.</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> h5py</span><br><span class="line"><span class="keyword">import</span> scipy</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> ndimage</span><br><span class="line"><span class="keyword">from</span> lr_utils <span class="keyword">import</span> load_dataset</span><br><span class="line"></span><br><span class="line">%matplotlib inline</span><br></pre></td></tr></table></figure>
 <h2 id="2-Overview-of-the-Problem-set"><a href="#2-Overview-of-the-Problem-set" class="headerlink" title="2 - Overview of the Problem set"></a>2 - Overview of the Problem set</h2><p><strong>Problem Statement</strong>: You are given a dataset (“data.h5”) containing:</p>
@@ -340,7 +340,7 @@
 <p>Each line of your train_set_x_orig and test_set_x_orig is an array representing an image. You can visualize an example by running the following code. Feel free also to change the <code>index</code> value and re-run to see other images. </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Example of a picture</span></span><br><span class="line">index = <span class="number">25</span></span><br><span class="line">plt.imshow(train_set_x_orig[index])</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"y = "</span> + str(train_set_y[:, index]) + <span class="string">", it's a '"</span> + classes[np.squeeze(train_set_y[:, index])].decode(<span class="string">"utf-8"</span>) +  <span class="string">"' picture."</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>y = [1], it&apos;s a &apos;cat&apos; picture.
-</code></pre><p><a href="https://i.loli.net/2017/09/14/59b9e0275a1e0.png" target="_blank" rel="external"><img src="https://i.loli.net/2017/09/14/59b9e0275a1e0.png" alt="output_6_1.png"></a></p>
+</code></pre><p><a href="https://i.loli.net/2017/09/14/59b9e0275a1e0.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2017/09/14/59b9e0275a1e0.png" alt="output_6_1.png"></a></p>
 <p>Many software bugs in deep learning come from having matrix/vector dimensions that don’t fit. If you can keep your matrix/vector dimensions straight you will go a long way toward eliminating many bugs. </p>
 <p><strong>Exercise:</strong> Find the values for:</p>
 <pre><code>- m_train (number of training examples)
@@ -586,8 +586,8 @@ test accuracy: 36.0 %
 - Test other preprocessings (center the data, or divide each row by its standard deviation)
 </code></pre><p>Bibliography:</p>
 <ul>
-<li><a href="http://www.wildml.com/2015/09/implementing-a-neural-network-from-scratch/" target="_blank" rel="external">http://www.wildml.com/2015/09/implementing-a-neural-network-from-scratch/</a></li>
-<li><a href="https://stats.stackexchange.com/questions/211436/why-do-we-normalize-images-by-subtracting-the-datasets-image-mean-and-not-the-c" target="_blank" rel="external">https://stats.stackexchange.com/questions/211436/why-do-we-normalize-images-by-subtracting-the-datasets-image-mean-and-not-the-c</a></li>
+<li><a href="http://www.wildml.com/2015/09/implementing-a-neural-network-from-scratch/" target="_blank" rel="noopener">http://www.wildml.com/2015/09/implementing-a-neural-network-from-scratch/</a></li>
+<li><a href="https://stats.stackexchange.com/questions/211436/why-do-we-normalize-images-by-subtracting-the-datasets-image-mean-and-not-the-c" target="_blank" rel="noopener">https://stats.stackexchange.com/questions/211436/why-do-we-normalize-images-by-subtracting-the-datasets-image-mean-and-not-the-c</a></li>
 </ul>
 
       
@@ -600,7 +600,7 @@ test accuracy: 36.0 %
         <p><span>本文标题:</span><a href="/2017/09/14/11-Logistic Regression with a Neural Network mindset v3/">神经网络学习第二周编程作业</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">致Great</a></p>
         <p><span>发布时间:</span>2017-09-14, 09:58:25</p>
-        <p><span>最后更新:</span>2017-11-12, 01:58:57</p>
+        <p><span>最后更新:</span>2017-12-04, 07:56:14</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/09/14/11-Logistic Regression with a Neural Network mindset v3/" title="神经网络学习第二周编程作业">http://yoursite.com/2017/09/14/11-Logistic Regression with a Neural Network mindset v3/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/09/14/11-Logistic Regression with a Neural Network mindset v3/　　作者: 致Great" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -706,7 +706,7 @@ test accuracy: 36.0 %
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/11/12/14-金融数据网站/">14-金融数据网站</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/12/hello-world/">我会自动改变</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/19/13-cs224n自然语言简介/">cs224n自然语言处理与深度学习简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/14/12-Planar data classification with one hidden layer v3/">神经网络学习第三周编程作业</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/14/11-Logistic Regression with a Neural Network mindset v3/">神经网络学习第二周编程作业</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/31/10-贪心算法/">贪心算法总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/30/09-快速幂/">求一个数n次方后的末尾数（数论/快速幂）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/30/08-bfs&&dfs/">图的广度优先搜索和图的深度优先搜索</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/30/07-括号匹配问题/">括号匹配问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/24/06-卡特兰数/">卡特兰数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/06/05- Matrix-Vector/">通过递归的矩阵向量空间预测组合语义</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/04/04-Laravel博客实战/">Laravel博客实战</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/03/03AgeDetection/">使用Keras构建卷积神经网络预测“阿三”的年龄</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/02/02动态规划/">动态规划</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/01/01排序问题/">排序算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/29/HDU1009-FatMouse' Trade/">HDU1009-FatMouse' Trade</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/26/Python28-机器学习算法的基本知识（使用Python和R代码）/">机器学习算法的基本知识（使用Python和R代码）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/26/Keras04-白酒和红酒实例/">Kera实例：预测白酒和红酒的质量</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/Keras02-MNIST手写实例/">Keras实现简单的手写数字识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/Python26-使用Python和R语言从头开始理解和编写神经网络/">使用Python和R语言从头开始理解和编写神经网络</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/12/04/hello-world/">我会自动改变</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/04/14-金融数据网站/">14-金融数据网站</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/19/13-cs224n自然语言简介/">cs224n自然语言处理与深度学习简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/14/12-Planar data classification with one hidden layer v3/">神经网络学习第三周编程作业</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/14/11-Logistic Regression with a Neural Network mindset v3/">神经网络学习第二周编程作业</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/31/10-贪心算法/">贪心算法总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/30/09-快速幂/">求一个数n次方后的末尾数（数论/快速幂）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/30/08-bfs&&dfs/">图的广度优先搜索和图的深度优先搜索</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/30/07-括号匹配问题/">括号匹配问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/24/06-卡特兰数/">卡特兰数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/06/05- Matrix-Vector/">通过递归的矩阵向量空间预测组合语义</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/04/04-Laravel博客实战/">Laravel博客实战</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/03/03AgeDetection/">使用Keras构建卷积神经网络预测“阿三”的年龄</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/02/02动态规划/">动态规划</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/01/01排序问题/">排序算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/29/HDU1009-FatMouse' Trade/">HDU1009-FatMouse' Trade</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/26/Python28-机器学习算法的基本知识（使用Python和R代码）/">机器学习算法的基本知识（使用Python和R代码）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/26/Keras04-白酒和红酒实例/">Kera实例：预测白酒和红酒的质量</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/Keras02-MNIST手写实例/">Keras实现简单的手写数字识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/Python26-使用Python和R语言从头开始理解和编写神经网络/">使用Python和R语言从头开始理解和编写神经网络</a></li></ul>
 
 
 
