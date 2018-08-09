@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-08-09T03:14:21.231Z</updated>
+  <updated>2018-08-09T03:59:45.451Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,8 +19,8 @@
     <title>我会自动改变</title>
     <link href="http://yoursite.com/2018/08/09/hello-world/"/>
     <id>http://yoursite.com/2018/08/09/hello-world/</id>
-    <published>2018-08-09T03:14:21.231Z</published>
-    <updated>2018-08-09T03:14:21.231Z</updated>
+    <published>2018-08-09T03:59:45.451Z</published>
+    <updated>2018-08-09T03:59:45.451Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>我会自动改变<br>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.<br><a id="more"></a><br>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</excerpt></p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
@@ -46,8 +46,8 @@
     <title></title>
     <link href="http://yoursite.com/2018/08/09/14-%E9%87%91%E8%9E%8D%E6%95%B0%E6%8D%AE%E7%BD%91%E7%AB%99/"/>
     <id>http://yoursite.com/2018/08/09/14-金融数据网站/</id>
-    <published>2018-08-09T03:14:21.225Z</published>
-    <updated>2018-08-09T03:14:21.225Z</updated>
+    <published>2018-08-09T03:59:45.436Z</published>
+    <updated>2018-08-09T03:59:45.436Z</updated>
     
     <content type="html"><![CDATA[<h1 id="金融数据网站列表"><a href="#金融数据网站列表" class="headerlink" title="金融数据网站列表"></a>金融数据网站列表</h1><h2 id="1、股票名称-股票代码"><a href="#1、股票名称-股票代码" class="headerlink" title="1、股票名称/股票代码"></a>1、股票名称/股票代码</h2><ul>
 <li><a href="http://stock.stockstar.com/" target="_blank" rel="external">证券之星</a></li>
@@ -74,7 +74,7 @@
     <link href="http://yoursite.com/2017/09/19/13-cs224n%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E7%AE%80%E4%BB%8B/"/>
     <id>http://yoursite.com/2017/09/19/13-cs224n自然语言简介/</id>
     <published>2017-09-19T19:44:25.000Z</published>
-    <updated>2018-08-09T03:14:21.225Z</updated>
+    <updated>2018-08-09T03:59:45.420Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>cs224n自然语言处理与深度学习简介笔记1<br><a id="more"></a></excerpt></p>
 <h1 id="1-自然语言处理简介"><a href="#1-自然语言处理简介" class="headerlink" title="1 自然语言处理简介"></a>1 自然语言处理简介</h1><p>我们从讨论“什么是NLP”开始本章的内容</p>
@@ -188,7 +188,7 @@
     <link href="http://yoursite.com/2017/09/14/12-Planar%20data%20classification%20with%20one%20hidden%20layer%20v3/"/>
     <id>http://yoursite.com/2017/09/14/12-Planar data classification with one hidden layer v3/</id>
     <published>2017-09-14T21:44:25.000Z</published>
-    <updated>2018-08-09T03:14:21.225Z</updated>
+    <updated>2018-08-09T03:59:45.420Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>吴恩达的神经网络学习第三周作业<br><a id="more"></a></excerpt></p>
 <h1 id="Planar-data-classification-with-one-hidden-layer"><a href="#Planar-data-classification-with-one-hidden-layer" class="headerlink" title="Planar data classification with one hidden layer"></a>Planar data classification with one hidden layer</h1><p>Welcome to your week 3 programming assignment. It’s time to build your first neural network, which will have a hidden layer. You will see a big difference between this model and the one you implemented using logistic regression. </p>
@@ -521,7 +521,7 @@ Accuracy for 50 hidden units: 90.25 %
     <link href="http://yoursite.com/2017/09/14/11-Logistic%20Regression%20with%20a%20Neural%20Network%20mindset%20v3/"/>
     <id>http://yoursite.com/2017/09/14/11-Logistic Regression with a Neural Network mindset v3/</id>
     <published>2017-09-14T09:58:25.000Z</published>
-    <updated>2018-08-09T03:14:21.225Z</updated>
+    <updated>2018-08-09T03:59:45.420Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>吴恩达的神经网络学习第二周作业<br><a id="more"></a></excerpt></p>
 <h1 id="Logistic-Regression-with-a-Neural-Network-mindset"><a href="#Logistic-Regression-with-a-Neural-Network-mindset" class="headerlink" title="Logistic Regression with a Neural Network mindset"></a>Logistic Regression with a Neural Network mindset</h1><p>Welcome to your first (required) programming assignment! You will build a logistic regression classifier to recognize  cats. This assignment will step you through how to do this with a Neural Network mindset, and so will also hone your intuitions about deep learning.</p>
@@ -831,7 +831,7 @@ test accuracy: 36.0 %
     <link href="http://yoursite.com/2017/08/31/10-%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/"/>
     <id>http://yoursite.com/2017/08/31/10-贪心算法/</id>
     <published>2017-08-31T15:29:25.000Z</published>
-    <updated>2018-08-09T03:14:21.210Z</updated>
+    <updated>2018-08-09T03:59:45.420Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>贪心算法的介绍以及背包问题，活动安排问题，最小生成树问题三大实例的解析<br><a id="more"></a></excerpt></p>
 <h1 id="什么贪心算法"><a href="#什么贪心算法" class="headerlink" title="什么贪心算法"></a>什么贪心算法</h1><p>贪心算法（又称贪婪算法）是指，在对问题求解时，总是做出在当前看来是最好的选择。也就是说，不从整体最优上加以考虑，他所做出的是在某种意义上的局部最优解。<br>贪心算法不是对所有问题都能得到整体最优解，关键是贪心策略的选择，选择的贪心策略必须具备无后效性，即某个状态以前的过程不会影响以后的状态，只与当前状态有关。</p>
@@ -948,7 +948,7 @@ test accuracy: 36.0 %
     <link href="http://yoursite.com/2017/08/30/09-%E5%BF%AB%E9%80%9F%E5%B9%82/"/>
     <id>http://yoursite.com/2017/08/30/09-快速幂/</id>
     <published>2017-08-30T23:14:25.000Z</published>
-    <updated>2018-08-09T03:14:21.210Z</updated>
+    <updated>2018-08-09T03:59:45.420Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>如何快速求出一个数n次方后的末尾数为多少<br><a id="more"></a></excerpt></p>
 <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1061" target="_blank" rel="external">hdu1061-Rightmost Digit</a><br><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1097" target="_blank" rel="external">hdu1097-A hard puzzle</a><br>这两个oj题目思路几乎一样，都是为了快速求出一个数n次方后的末尾数为多少？</p>
@@ -992,7 +992,7 @@ test accuracy: 36.0 %
     <link href="http://yoursite.com/2017/08/30/08-bfs&amp;&amp;dfs/"/>
     <id>http://yoursite.com/2017/08/30/08-bfs&amp;&amp;dfs/</id>
     <published>2017-08-30T15:29:25.000Z</published>
-    <updated>2018-08-09T03:14:21.210Z</updated>
+    <updated>2018-08-09T03:59:45.420Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>图的邻接链表的表示方法、图的广度优先搜索和图的深度优先搜索<br><a id="more"></a></excerpt></p>
 <h1 id="邻接链表"><a href="#邻接链表" class="headerlink" title="邻接链表"></a>邻接链表</h1><blockquote>
@@ -1040,7 +1040,7 @@ test accuracy: 36.0 %
     <link href="http://yoursite.com/2017/08/30/07-%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/"/>
     <id>http://yoursite.com/2017/08/30/07-括号匹配问题/</id>
     <published>2017-08-30T11:42:25.000Z</published>
-    <updated>2018-08-09T03:14:21.210Z</updated>
+    <updated>2018-08-09T03:59:45.420Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>这篇文章主要介绍了c++栈（stack）的应用以及括号匹配问题的实现<br><a id="more"></a></excerpt></p>
 <p><a href="http://acm.nyist.net/JudgeOnline/problem.php?pid=2" target="_blank" rel="external">括号配对问题-题目链接</a></p>
@@ -1074,7 +1074,7 @@ test accuracy: 36.0 %
     <link href="http://yoursite.com/2017/08/24/06-%E5%8D%A1%E7%89%B9%E5%85%B0%E6%95%B0/"/>
     <id>http://yoursite.com/2017/08/24/06-卡特兰数/</id>
     <published>2017-08-24T16:00:25.000Z</published>
-    <updated>2018-08-09T03:14:21.210Z</updated>
+    <updated>2018-08-09T03:59:45.420Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>这篇文章主要介绍了卡特兰数、推导和应用<br><a id="more"></a></excerpt></p>
 <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>卡特兰数又称卡塔兰数，卡特兰数是组合数学中一个常出现在各种计数问题中的数列。<br>卡塔兰数的一般项公式为：<br><img src="http://upload-images.jianshu.io/upload_images/1531909-0c81412304254b5b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="卡特兰公式"><br>其前20项为：1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862, 16796, 58786, 208012, 742900, 2674440, 9694845, 35357670, 129644790, 477638700, 1767263190。</p>
@@ -1163,7 +1163,7 @@ test accuracy: 36.0 %
     <link href="http://yoursite.com/2017/08/06/05-%20Matrix-Vector/"/>
     <id>http://yoursite.com/2017/08/06/05- Matrix-Vector/</id>
     <published>2017-08-06T16:31:25.000Z</published>
-    <updated>2018-08-09T03:14:21.210Z</updated>
+    <updated>2018-08-09T03:59:45.420Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>关于论文的总结<br><a id="more"></a></excerpt></p>
 <p><a href="http://www.socher.org/index.php/Main/SemanticCompositionalityThroughRecursiveMatrix-VectorSpaces" target="_blank" rel="external">Semantic Compositionality Through Recursive Matrix-Vector Spaces</a></p>
@@ -1225,7 +1225,7 @@ test accuracy: 36.0 %
     <link href="http://yoursite.com/2017/08/04/04-Laravel%E5%8D%9A%E5%AE%A2%E5%AE%9E%E6%88%98/"/>
     <id>http://yoursite.com/2017/08/04/04-Laravel博客实战/</id>
     <published>2017-08-04T17:31:25.000Z</published>
-    <updated>2018-08-09T03:14:21.210Z</updated>
+    <updated>2018-08-09T03:59:45.420Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>用了5天时间，参考后盾网老师的Laravel实战视频做的博客<br><a id="more"></a></excerpt></p>
 <blockquote>
@@ -1309,7 +1309,7 @@ test accuracy: 36.0 %
     <link href="http://yoursite.com/2017/08/03/03AgeDetection/"/>
     <id>http://yoursite.com/2017/08/03/03AgeDetection/</id>
     <published>2017-08-03T17:45:25.000Z</published>
-    <updated>2018-08-09T03:14:21.210Z</updated>
+    <updated>2018-08-09T03:59:45.420Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>用Keras构建基本的前馈神经网络以及借助卷积层逐步优化预测结果，从海量图片中预测印度人们的年龄。目前结果为（0.750904）<br><a id="more"></a></excerpt></p>
 <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>我们的任务是从一个人的面部特征来预测他的年龄(用“Young”“Middle ”“Old”表示)，我们训练的数据集大约有19906多张照片及其每张图片对应的年龄（全是阿三的头像。。。），测试集有6636张图片，首先我们加载数据集，然后我们通过深度学习框架Keras建立、编译、训练模型，预测出6636张人物头像对应的年龄</p>
@@ -1553,7 +1553,7 @@ _________________________________________________________________
     <link href="http://yoursite.com/2017/08/02/02%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
     <id>http://yoursite.com/2017/08/02/02动态规划/</id>
     <published>2017-08-02T16:00:25.000Z</published>
-    <updated>2018-08-09T03:14:21.210Z</updated>
+    <updated>2018-08-09T03:59:45.420Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>文中主要总结动态规划的01背包问题以及相关实例，然后通过c++解决问题<br><a id="more"></a></excerpt></p>
 <h1 id="一、背包问题"><a href="#一、背包问题" class="headerlink" title="一、背包问题"></a>一、背包问题</h1><h2 id="01背包问题"><a href="#01背包问题" class="headerlink" title="01背包问题"></a>01背包问题</h2><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
@@ -1598,7 +1598,7 @@ _________________________________________________________________
     <link href="http://yoursite.com/2017/08/01/01%E6%8E%92%E5%BA%8F%E9%97%AE%E9%A2%98/"/>
     <id>http://yoursite.com/2017/08/01/01排序问题/</id>
     <published>2017-08-01T16:00:25.000Z</published>
-    <updated>2018-08-09T03:14:21.210Z</updated>
+    <updated>2018-08-09T03:59:45.420Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>这篇文章主要介绍了啊哈算法的排序问题，包括桶排序、快速排序、冒泡排序<br><a id="more"></a></excerpt></p>
 <h1 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h1><h2 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h2><p><code>这个算法好比有11个桶，编号从0~10。每出现一个数，就在对应编号的桶里放一个小旗子。最后只要数数每个桶中有几个小旗子就可以了。例如2号桶中有2个旗子，表示数字2出现了2次。</code></p>
@@ -1625,7 +1625,7 @@ _________________________________________________________________
     <link href="http://yoursite.com/2017/07/29/HDU1009-FatMouse&#39;%20Trade/"/>
     <id>http://yoursite.com/2017/07/29/HDU1009-FatMouse&#39; Trade/</id>
     <published>2017-07-29T14:54:03.000Z</published>
-    <updated>2018-08-09T03:14:21.225Z</updated>
+    <updated>2018-08-09T03:59:45.436Z</updated>
     
     <content type="html"><![CDATA[<excerpt in="" index="" |="" 首页摘要=""> 
 
@@ -1656,7 +1656,7 @@ _________________________________________________________________
     <link href="http://yoursite.com/2017/07/26/Keras04-%E7%99%BD%E9%85%92%E5%92%8C%E7%BA%A2%E9%85%92%E5%AE%9E%E4%BE%8B/"/>
     <id>http://yoursite.com/2017/07/26/Keras04-白酒和红酒实例/</id>
     <published>2017-07-26T15:51:25.000Z</published>
-    <updated>2018-08-09T03:14:21.225Z</updated>
+    <updated>2018-08-09T03:59:45.436Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>本篇文章是益智的教程，参考之后动手进行实践了一遍。编译环境windows10+python3.5<br><a id="more"></a></excerpt></p>
 <p><a href="https://jizhi.im/course/dl_keras/2" target="_blank" rel="external">参考</a></p>
@@ -2244,7 +2244,7 @@ Epoch 5/5
     <link href="http://yoursite.com/2017/07/26/Python28-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%EF%BC%88%E4%BD%BF%E7%94%A8Python%E5%92%8CR%E4%BB%A3%E7%A0%81%EF%BC%89/"/>
     <id>http://yoursite.com/2017/07/26/Python28-机器学习算法的基本知识（使用Python和R代码）/</id>
     <published>2017-07-26T15:51:25.000Z</published>
-    <updated>2018-08-09T03:14:21.231Z</updated>
+    <updated>2018-08-09T03:59:45.451Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>本篇文章是<a href="https://www.analyticsvidhya.com/blog/2015/08/common-machine-learning-algorithms/" target="_blank" rel="external">原文</a>的译文，然后自己对其中做了一些修改和添加内容（随机森林和降维算法）。文章简洁地介绍了机器学习的主要算法和一些伪代码，对于初学者有很大帮助，是一篇不错的总结文章，后期可以通过文中提到的算法展开去做一些实际问题。<br><a id="more"></a></excerpt></p>
 <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><hr>
@@ -2404,7 +2404,7 @@ logit(p) = ln(p/(1-p)) = b0+b1X1+b2X2+b3X3....+bkXk</code></p>
     <link href="http://yoursite.com/2017/07/24/Keras02-MNIST%E6%89%8B%E5%86%99%E5%AE%9E%E4%BE%8B/"/>
     <id>http://yoursite.com/2017/07/24/Keras02-MNIST手写实例/</id>
     <published>2017-07-24T14:54:03.000Z</published>
-    <updated>2018-08-09T03:14:21.225Z</updated>
+    <updated>2018-08-09T03:59:45.436Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>Keras实现简单的手写数字识别：构建模型、编译模型、训练数据、输出<br><a id="more"></a></excerpt></p>
 <p><a href="http://www.cnblogs.com/yqtm/p/6924939.html" target="_blank" rel="external">参考</a><br>文中代码有点小bug,加以改正。顺带才了下数据集的坑</p>
@@ -2745,7 +2745,7 @@ The accuracy of the model is 0.943400
     <link href="http://yoursite.com/2017/07/24/Python26-%E4%BD%BF%E7%94%A8Python%E5%92%8CR%E8%AF%AD%E8%A8%80%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B%E7%90%86%E8%A7%A3%E5%92%8C%E7%BC%96%E5%86%99%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     <id>http://yoursite.com/2017/07/24/Python26-使用Python和R语言从头开始理解和编写神经网络/</id>
     <published>2017-07-24T14:46:25.000Z</published>
-    <updated>2018-08-09T03:14:21.231Z</updated>
+    <updated>2018-08-09T03:59:45.451Z</updated>
     
     <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>本篇文章是<a href="https://www.analyticsvidhya.com/blog/2017/05/neural-network-from-scratch-in-python-and-r/" target="_blank" rel="external">原文</a>的翻译过来的，自己在学习和阅读之后觉得文章非常不错，文章结构清晰，由浅入深、从理论到代码实现，最终将神经网络的概念和工作流程呈现出来。自己将其翻译成中文，以便以后阅读和复习和网友参考。因时间（文字纯手打加配图）紧促和翻译水平有限，文章有不足之处请大家指正。<br><a id="more"></a></excerpt></p>
 <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>你可以通过两种方式学习和实践一个概念：</p>
